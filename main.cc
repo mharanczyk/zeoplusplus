@@ -1024,9 +1024,12 @@ int main(int argc, char * argv[]){
               //printf("%s\n",prefix.c_str());
             }
             //printf("%s\n",prefix.c_str());
-            string filename_xyz = processFilenameXtra(command, name, prefix, "_voro.xyz", 1, 2);
-            string filename2_xyz = processFilenameXtra(command, name, prefix, "_voro_accessible.xyz", 1, 2);
-            string filename3_xyz = processFilenameXtra(command, name, prefix, "_voro_nonaccessible.xyz", 1, 2);
+            string filename_xyz = processFilenameXtra(command, name, prefix, ".voro", 1, 2);
+            string filename2_xyz = processFilenameXtra(command, name, prefix, ".voro_accessible", 1, 2);
+            string filename3_xyz = processFilenameXtra(command, name, prefix, ".voro_nonaccessible", 1, 2);
+            // string filename_xyz = processFilenameXtra(command, name, prefix, "_voro.xyz", 1, 2);
+            // string filename2_xyz = processFilenameXtra(command, name, prefix, "_voro_accessible.xyz", 1, 2);
+            // string filename3_xyz = processFilenameXtra(command, name, prefix, "_voro_nonaccessible.xyz", 1, 2);
             string filename_vtk = processFilenameXtra(command, name, prefix, "_voro.vtk", 1, 2);
             string filename2_vtk = processFilenameXtra(command, name, prefix, "_voro_accessible.vtk", 1, 2);
             string filename3_vtk = processFilenameXtra(command, name, prefix, "_voro_nonaccessible.vtk", 1, 2);
