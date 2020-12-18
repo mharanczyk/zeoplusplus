@@ -1,0 +1,22 @@
+language: cpp
+compiler:
+  - gcc
+dist: trusty
+
+# Could turn on caching - e.g. for building voro++
+#cache:
+#  directories:
+#  - zeopp
+
+env:
+  global:
+  # add network executable to PATH
+  - PATH=${PATH}:${TRAVIS_BUILD_DIR}
+
+install:
+  - cd voro++/src; make; cd -
+  - make
+
+script:
+  - cd tests/ && ./run_tests.sh
+
