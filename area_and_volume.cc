@@ -2630,7 +2630,8 @@ void blockPockets(ATOM_NETWORK *atmnet, ostream &output, vector<Point> axsPoints
       //3) begin a loop - while there are points in selected_points, we need to do more blocking
       int num_selected_points = selected_points.size();
       while(num_selected_points>0) {
-        if(debug) printf("DEBUG: there are %d points left to be blocked in pore with ID %d\n", num_selected_points, i);
+        if(debug) printf("DEBUG: there are %d points left to be blocked in pore with ID %d; No. spheres so far = %d\n", 
+                                                  num_selected_points, i, spheres_vector.size());
         int most_dense_index = get_most_dense_index(atmnet, &selected_points);
         Point most_dense = selected_points.at(most_dense_index); //find most dense point in the remaining point cloud
         double closest_channel = -1; //distance to nearest MC point that is in a channel
@@ -2639,6 +2640,7 @@ void blockPockets(ATOM_NETWORK *atmnet, ostream &output, vector<Point> axsPoints
           double dist = atmnet->calcDistanceABC(p[0], p[1], p[2], most_dense[0], most_dense[1], most_dense[2]);
           if(dist<closest_channel || closest_channel<0) closest_channel=dist;
         }
+        if(debug) printf("DEBUG: the closest channel for the most dense of the set of points: %f\n", closest_channel);
         double furthest_same_pocket = 0; //distance to furthest MC point that is part of this pore
         vector<double> vector_of_distances_to_sphere_centroid; //keep track of the distance of each to-be-blocked point to the most dense point - it will save us calculating this again later when we check which points were blocked
         for(int j=0; j<num_selected_points; j++) { //loop over points to be blocked, and find furthest
@@ -2646,13 +2648,18 @@ void blockPockets(ATOM_NETWORK *atmnet, ostream &output, vector<Point> axsPoints
           double dist = atmnet->calcDistanceABC(p[0], p[1], p[2], most_dense[0], most_dense[1], most_dense[2]);
           if(dist>furthest_same_pocket || furthest_same_pocket<0) furthest_same_pocket=dist;
           vector_of_distances_to_sphere_centroid.push_back(dist);
+          if(debug) printf("DEBUG: Point %d and its distance to the most dense: %f\n", j, dist);
         }
 
         //4) calculate the largest acceptable sphere at this most dense position
         double radius = 0;
         if(closest_channel<0) radius = furthest_same_pocket + probeRad + sphere_radius_overshoot; //no channels - we can safely have a single sphere, inflated by probeRad to cover the void space here
-        else if(furthest_same_pocket<closest_channel) radius = min(furthest_same_pocket + probeRad + sphere_radius_overshoot, closest_channel - (probeRad + sphere_radius_overshoot)); //there are channels, but none are closer than the furthest point in this pocket, so we can extend the sphere to cover everything; try and inflate the sphere by probeRad to ensure the void space is blocked, but not if this would cause anything within probeRad of an accessible MC point to be blocked
+//        else if(furthest_same_pocket<closest_channel) radius = min(furthest_same_pocket + probeRad + sphere_radius_overshoot, closest_channel - (probeRad + sphere_radius_overshoot)); //there are channels, but none are closer than the furthest point in this pocket, so we can extend the sphere to cover everything; try and inflate the sphere by probeRad to ensure the void space is blocked, but not if this would cause anything within probeRad of an accessible MC point to be blocked
+        else if(furthest_same_pocket<closest_channel) 
+                     {radius = furthest_same_pocket + sphere_radius_overshoot; 
+                      radius = radius + min( probeRad, 0.5*(closest_channel-furthest_same_pocket));}  //there are channels, but none are closer than the furthest point in this pocket, so we can extend the sphere to cover everything; try and inflate the sphere by probeRad to ensure the void space is blocked, but not if this would cause anything within probeRad of an accessible MC point to be blocked
         else radius = max(sphere_radius_overshoot, closest_channel - (probeRad + sphere_radius_overshoot)); //else there are channels closer than the furthest pocket MC point, and we have to accommodate them
+
 
         //5) create the sphere and remove to-be-blocked points that were blocked by it
         SPHERE new_sphere;
@@ -2661,6 +2668,8 @@ void blockPockets(ATOM_NETWORK *atmnet, ostream &output, vector<Point> axsPoints
         new_sphere.z = most_dense[2];
         new_sphere.r = radius;
         spheres_vector.push_back(new_sphere);
+        if(debug) printf("DEBUG: Creating sphere with radious %f\n", radius);
+
         for(int j=num_selected_points-1; j>=0; j--) { //loop over points to be blocked and eliminate blocked ones - we iterate backwards so that the vector of distances is still relevant
           if(vector_of_distances_to_sphere_centroid.at(j)<radius) { //blocked
 				    Point swap = selected_points.at(j);
