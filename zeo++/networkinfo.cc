@@ -149,7 +149,7 @@ radTable.insert(pair <string,double> ("Ds",  2));
 
 
 /** Fills the covalent radius table with several default values. */
-/* 
+/*
  * When determining bonding using these radii CCDC advises to use
  * threshold +0.4A
  * */
@@ -752,7 +752,7 @@ void readRadTable(char *filename){
   radTable.clear();
   fstream input;
   input.open(filename, fstream::in);
-  
+
   if(!input.is_open()){
     cerr << "Failed to open radius input file " << filename << "\n";
     cerr << "Exiting ..." << "\n";
@@ -777,7 +777,7 @@ void readMassTable(char *filename){
   massTable.clear();
   fstream input;
   input.open(filename);
-  
+
   if(!input.is_open()){
     cerr << "Failed to open molar mass input file " << filename << "\n";
     cerr << "Exiting ..." << "\n";
@@ -861,7 +861,7 @@ int lookupAtomicNumber(string atomType){
 bool isMetal(string atomType){
   map <string,bool>::iterator  info = atomicCharacterTable.find(atomType);
   if(info == atomicCharacterTable.end()){
-    cerr << "Unable to find character information for " << atomType << " in table. Please modify networkinfo.cc and recomplie the code " << "\n" 
+    cerr << "Unable to find character information for " << atomType << " in table. Please modify networkinfo.cc and recomplie the code " << "\n"
          << "Exiting ..." << "\n";
     exit(1);
   }
@@ -881,4 +881,3 @@ std::string stripAtomName(std::string extAtom) {
                 return extAtom;
         }
 }
-

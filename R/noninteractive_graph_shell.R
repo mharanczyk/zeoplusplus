@@ -2,13 +2,13 @@
 #V.1.0 March 6, 2013
 #Author: Marielle Pinheiro
 
-#	To run this file: R --slave --args (directory path, input file name, 
+#	To run this file: R --slave --args (directory path, input file name,
 #	output file name, custom parameters (Y/N))
 
 #Load functions
 source("noninteractive_graph_functions.R")
 
-##Initial plot parameters 
+##Initial plot parameters
 ## These get overwritten by program to optimized limits
 ## For customized parameters, change desired variables in
 ## parameters file
@@ -22,7 +22,7 @@ ymax = 3
 xlab = "Diameter (A)"
 ylab = "PSD"
 
-#1. Initialize with command line arguments: directory path, file path/ pattern, 
+#1. Initialize with command line arguments: directory path, file path/ pattern,
 #		output file/ path, custom parameters (Y/N), single or batch (S/B)
 args <- commandArgs(TRUE)
 if (length(args) != 4){

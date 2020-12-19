@@ -103,4 +103,3 @@ main(int argc, char *argv[]) {
 		printf("Similarity: %.6f\n", similarity);
 	} else printf("At least one structure is invalid\n");
 }
-

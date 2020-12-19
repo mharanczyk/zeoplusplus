@@ -1,6 +1,6 @@
 /* Stores information about the basic data types that constitute a unit cell,
- * such as atoms (ATOM) and networks of atoms (ATOM_NETWORK). Also stores 
- * information about the underlying Voronoi network constituents such as nodes 
+ * such as atoms (ATOM) and networks of atoms (ATOM_NETWORK). Also stores
+ * information about the underlying Voronoi network constituents such as nodes
  * (VOR_NODE), edges (VOR_EDGE), and the network itself (VORONOI_NETWORK).
  */
 
@@ -38,7 +38,7 @@ public:
   ATOM(XYZ xyz, std::string s, double r);
   ATOM(XYZ xyz, std::string s, std::string l, double r); //variant with label
 
-  /** Print the information about this atom to the provided output stream. 
+  /** Print the information about this atom to the provided output stream.
    *  Default is standard output stream*/
   void print(std::ostream &out = std::cout);
 
@@ -114,8 +114,8 @@ class ATOM_NETWORK {
   void initMatrices();
 
   MIN_PER_DISTANCE getDistCalc() const;
-  
-    /** Determines whether a specific supercell size satisfies the non-overlapping 
+
+    /** Determines whether a specific supercell size satisfies the non-overlapping
      *  sphere requirement */
     //int check_sphere_overlap(int num_a, int num_b, int num_c, double diam);
 
@@ -123,7 +123,7 @@ class ATOM_NETWORK {
      *  and returns as a vector of doubles */
     //std::vector<double> find_tetrahedra(std::string element);
 
-    /** Determine the smallest supercell dimensions such that a sphere of a given 
+    /** Determine the smallest supercell dimensions such that a sphere of a given
      *  diameter does not overlap with itself across the periodic boundary */
     TRIPLET getSmallestSupercell(double sphere_diam);
 
@@ -140,25 +140,25 @@ class ATOM_NETWORK {
     coordinates (x,y,z). */
     const Point abc_to_xyz (const XYZ& temp) const;
     const XYZ abc_to_xyz_returning_XYZ (const XYZ& temp) const;
-    
-    /** Convert coordinates relative to the cartesian axes to those
-    relative to the unit cell vectors. Returns a Point instance of the
-    form (a_coord, b_coord, c_coord). */
-    const Point xyz_to_abc(double x, double y, double z) const; 
-    const XYZ xyz_to_abc_returning_XYZ(double x, double y, double z) const; 
 
     /** Convert coordinates relative to the cartesian axes to those
     relative to the unit cell vectors. Returns a Point instance of the
     form (a_coord, b_coord, c_coord). */
-    const Point xyz_to_abc (Point xyzPt) const; 
+    const Point xyz_to_abc(double x, double y, double z) const;
+    const XYZ xyz_to_abc_returning_XYZ(double x, double y, double z) const;
+
+    /** Convert coordinates relative to the cartesian axes to those
+    relative to the unit cell vectors. Returns a Point instance of the
+    form (a_coord, b_coord, c_coord). */
+    const Point xyz_to_abc (Point xyzPt) const;
 
     /** Convert coordinates relative to the cartesian axes to those
     relative to the unit cell vectors. Returns an Point instance of the
     form (a_coord, b_coord, c_coord). */
     const Point xyz_to_abc (const XYZ& temp) const;
     const XYZ xyz_to_abc_returning_XYZ (const XYZ& temp) const;
-    
-    /* Calculates the minimum distance between the two points whose coordinates are relative to the unit cell vectors. */ 
+
+    /* Calculates the minimum distance between the two points whose coordinates are relative to the unit cell vectors. */
     double calcDistanceABC(double a1, double b1, double c1, double a2, double b2, double c2) const;
 
     /** Calculates the minimum distance between the point (x,y,z) and the other point whose coordinates
@@ -173,12 +173,12 @@ class ATOM_NETWORK {
 
     /* Calculates the minimum distance between the points (x1,y1,z1) and (x2,y2,z2).  */
     double calcDistanceXYZ(double x1, double y1, double z1, double x2, double y2, double z2) const;
-    
+
     /* Rich edit: for static point (x1,y1,z1), returns the closest periodic image of point (x2,y2,z2).  */
     const XYZ getClosestPointInABC(double x1, double y1, double z1, double x2, double y2, double z2);
 
-    /** Modify the provided (x,y,z) Point so that its coordinates reflect unit cell translations 
-     *  by the provided amounts along each unit cell axis. */ 
+    /** Modify the provided (x,y,z) Point so that its coordinates reflect unit cell translations
+     *  by the provided amounts along each unit cell axis. */
     void translatePoint(Point *origPoint, double da, double db, double dc);
 
     /** Shifts the provided Point whose coordinates are relative to the unit cell vectors
@@ -268,7 +268,7 @@ void read_xyz(FILE *input, MOLECULE *mol, const char *filename);
 /* End: Marked for deletion */
 
 
-/* Determine the smallest supercell dimensions such that a sphere of a given 
+/* Determine the smallest supercell dimensions such that a sphere of a given
    diameter does not overlap with itself across the periodic boundary */
 /* Marked for deletion
    TRIPLET getSmallestSupercell(double sphere_diam, ATOM_NETWORK *atmnet);
@@ -300,32 +300,32 @@ public:
                // e.g. this typically will set to false after pruning the network using a probe radius
 };
 
-/** Data structure that stores the nodes and edges that comprise a 
+/** Data structure that stores the nodes and edges that comprise a
     Voronoi network. */
 class VORONOI_NETWORK{
 public:
     XYZ v_a, v_b, v_c;      // Unit cell vectors
     std::vector <VOR_NODE> nodes;
     std::vector <VOR_EDGE> edges;
-    
+
     VORONOI_NETWORK();
     VORONOI_NETWORK(const XYZ&, const XYZ&, const XYZ&, const std::vector<VOR_NODE>&, const std::vector<VOR_EDGE>&);
 
     /* Copy constructor for VORONIO_NETWORK class. */
     VORONOI_NETWORK(const VORONOI_NETWORK &);
-    
+
     /** Copy the data contained in this VORONOI_NETWORK to a new network
      *  using the provided pointer. Deprecated, use the copy constructor.
      */
     void copy(VORONOI_NETWORK *newNet);
 
-    /** Returns a new VORONOI_NETWORK where all the edges between nodes that are not 
+    /** Returns a new VORONOI_NETWORK where all the edges between nodes that are not
      *  contained in nodeIDs are removed. However, the nodes are not removed */
     const VORONOI_NETWORK filterEdges(std::vector<int> nodeIDs);
 
 /* Marked for deletion
-    static void filterVornetEdges(std::vector<int> nodeIDs, 
-                                  VORONOI_NETWORK *oldNet, 
+    static void filterVornetEdges(std::vector<int> nodeIDs,
+                                  VORONOI_NETWORK *oldNet,
                                   VORONOI_NETWORK *newNet);
 * End: Marked for deletion
 */
@@ -347,24 +347,24 @@ public:
 
 /** Copies all edges and nodes within the provided VORONOI_NETWORK
     to a new network iff a sphere with the specified radius can pass.*/
-VORONOI_NETWORK filterVoronoiNetwork(const VORONOI_NETWORK* vornet, 
+VORONOI_NETWORK filterVoronoiNetwork(const VORONOI_NETWORK* vornet,
                                      const double minRadius);
 
 /** Copies all edges and nodes within the provided VORONOI_NETWORK
     to a new network iff a sphere with the specified radius can pass.*/
 /* The following function is deprecated. Use the function above*/
-void filterVoronoiNetwork(VORONOI_NETWORK *vornet, 
-                          VORONOI_NETWORK *newVornet, 
+void filterVoronoiNetwork(VORONOI_NETWORK *vornet,
+                          VORONOI_NETWORK *newVornet,
                           double minRadius);
 
 
-  
+
 /** Stores a copy of the original VORNOI_NETWORK into the other provided
     VORONOI_NETWORK but removes the edges that do not allow a sphere
     with the provided radius to pass. */
 /* Marked for deletion
-   void pruneVoronoiNetwork(VORONOI_NETWORK *vornet, 
-                         VORONOI_NETWORK *newVornet, 
+   void pruneVoronoiNetwork(VORONOI_NETWORK *vornet,
+                         VORONOI_NETWORK *newVornet,
                          double minRadius);
  * End: Mark for deletion
  */
@@ -372,51 +372,51 @@ void filterVoronoiNetwork(VORONOI_NETWORK *vornet,
 /** Stores a copy of the original VORNOI_NETWORK into the other provided
  *  *  VORONOI_NETWORK but removes the edges that are connected to specified nodes
  *   */
-void pruneVoronoiNetworkfromEdgeList(VORONOI_NETWORK *vornet, 
-                                     VORONOI_NETWORK *newVornet, 
+void pruneVoronoiNetworkfromEdgeList(VORONOI_NETWORK *vornet,
+                                     VORONOI_NETWORK *newVornet,
                                      std::vector <int> ids);
 
-/* Attempt to substitute every other Si atom with an Al atom. ATOM_NETWORK may 
+/* Attempt to substitute every other Si atom with an Al atom. ATOM_NETWORK may
  * only consist of Si and O atoms, where each Si atom must be bonded to exactly
- * 4 oxygen atoms and each oxygen atom must be bonded to exactly 2 Si atoms. 
- * Returns true iff the substitution was successful and stores the number of 
- * substitutions using the provided reference. The provided boolean specifies 
+ * 4 oxygen atoms and each oxygen atom must be bonded to exactly 2 Si atoms.
+ * Returns true iff the substitution was successful and stores the number of
+ * substitutions using the provided reference. The provided boolean specifies
  * whether the seeded silicon atom is substituted or not.
- * Since only 2 configurations are possible if the structure is consistent, 
+ * Since only 2 configurations are possible if the structure is consistent,
  * changing this parameter enables generation of all configurations. */
-bool substituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet, 
+bool substituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
                      bool substituteSeed, int *numSubstitutions, bool radial);
 
-/* Attempt to substitute the specified fraction of Si atom with an Al atom. 
- * ATOM_NETWORK may only consist of Si and O atoms, where each Si atom must be 
- * bonded to exactly 4 oxygen atoms and each oxygen atom must be bonded to 
- * exactly 2 Si atoms. Returns true iff the substitution was successful and 
- * stores the number of substitutions and the  fraction of substitutions using 
- * the provided references. The provided boolean specifies whether the seeded 
- * silicon atom is substituted or not when generating the initial 50/50 
- * configuration.  The function works  by first substituting every other Si 
- * atom and then reverting some of the substituted atoms back to Si. The 
- * provided random number generator seed is used to choose which atoms to 
+/* Attempt to substitute the specified fraction of Si atom with an Al atom.
+ * ATOM_NETWORK may only consist of Si and O atoms, where each Si atom must be
+ * bonded to exactly 4 oxygen atoms and each oxygen atom must be bonded to
+ * exactly 2 Si atoms. Returns true iff the substitution was successful and
+ * stores the number of substitutions and the  fraction of substitutions using
+ * the provided references. The provided boolean specifies whether the seeded
+ * silicon atom is substituted or not when generating the initial 50/50
+ * configuration.  The function works  by first substituting every other Si
+ * atom and then reverting some of the substituted atoms back to Si. The
+ * provided random number generator seed is used to choose which atoms to
  * switch back.*/
-bool fracSubstituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet, 
-                         bool substituteSeed, double frac, int randSeed, 
+bool fracSubstituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
+                         bool substituteSeed, double frac, int randSeed,
                          int *numSubstitutions, double *subFrac, bool radial);
 
-/* Attempt to substitute the specified fraction of Si atom with an Al atom. 
- * ATOM_NETWORK may only consist of Si and O atoms, where each Si atom must be 
- * bonded to exactly 4 oxygen atoms and each oxygen atom must be bonded to 
- * exactly 2 Si atoms. 
+/* Attempt to substitute the specified fraction of Si atom with an Al atom.
+ * ATOM_NETWORK may only consist of Si and O atoms, where each Si atom must be
+ * bonded to exactly 4 oxygen atoms and each oxygen atom must be bonded to
+ * exactly 2 Si atoms.
  * This is Maciek's version that does not require initial 50/50 distribution */
-bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet, 
-                                bool substituteSeed, double frac, int randSeed, 
+bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet,
+                                bool substituteSeed, double frac, int randSeed,
                                 int &numSubstitutions, double &subFrac, bool radial);
 
 /* Returns the integer nearest to the provided double.*/
 int nearestInt(double num);
 
-/* Determines whether a specific supercell size satisfies the non-overlapping 
+/* Determines whether a specific supercell size satisfies the non-overlapping
  * sphere requirement */
-int check_sphere_overlap(int num_a, int num_b, int num_c, double diam, 
+int check_sphere_overlap(int num_a, int num_b, int num_c, double diam,
                          ATOM_NETWORK *atmnet);
 
 /* Returns the id of the VOR_NODE in the provided VORONOI_NETWORK whose coordinates
@@ -426,5 +426,3 @@ int getNodeID(Point pt, ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet);
 
 
 #endif
-
-

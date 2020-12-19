@@ -560,8 +560,8 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNode;
 struct __pyx_obj_3zeo_10netstorage_VoronoiNetwork;
 
 /* "zeo/geometry.pxd":24
- * 
- * 
+ *
+ *
  * cdef class Xyz:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ XYZ class defined in geometry.h
@@ -573,8 +573,8 @@ struct __pyx_obj_3zeo_8geometry_Xyz {
 
 
 /* "zeo/geometry.pxd":32
- * 
- * 
+ *
+ *
  * cdef class Point:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ Point class defined in geometry.h
@@ -586,11 +586,11 @@ struct __pyx_obj_3zeo_8geometry_Point {
 
 
 /* "zeo/voronoicell.pxd":39
- * 
- * 
+ *
+ *
  * cdef class VorFace:             # <<<<<<<<<<<<<<
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorFace {
   PyObject_HEAD
@@ -600,10 +600,10 @@ struct __pyx_obj_3zeo_11voronoicell_VorFace {
 
 /* "zeo/voronoicell.pxd":42
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  * cdef class VorCell:             # <<<<<<<<<<<<<<
  *     cdef VOR_CELL* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorCell {
   PyObject_HEAD
@@ -613,7 +613,7 @@ struct __pyx_obj_3zeo_11voronoicell_VorCell {
 
 /* "zeo/voronoicell.pxd":45
  *     cdef VOR_CELL* thisptr
- * 
+ *
  * cdef class BasicVCell:             # <<<<<<<<<<<<<<
  *     cdef BASIC_VCELL* thisptr
  */
@@ -625,7 +625,7 @@ struct __pyx_obj_3zeo_11voronoicell_BasicVCell {
 
 /* "zeo/netstorage.pxd":120
  *             VORONOI_NETWORK* vornet, ATOM_NETWORK* atmnet)
- * 
+ *
  * cdef class Atom:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM class.
@@ -638,7 +638,7 @@ struct __pyx_obj_3zeo_10netstorage_Atom {
 
 /* "zeo/netstorage.pxd":126
  *     cdef ATOM* thisptr
- * 
+ *
  * cdef class AtomNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM_NETWORK class.
@@ -652,7 +652,7 @@ struct __pyx_obj_3zeo_10netstorage_AtomNetwork {
 
 /* "zeo/netstorage.pxd":135
  *     cdef bint rad_flag
- * 
+ *
  * cdef class VoronoiNode:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VOR_NODE class.
@@ -665,7 +665,7 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNode {
 
 /* "zeo/netstorage.pxd":141
  *     cdef VOR_NODE* thisptr
- * 
+ *
  * cdef class VoronoiNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VORONOI_NETWORK class.
@@ -912,7 +912,7 @@ static PyObject *__pyx_codeobj__4;
 
 /* "zeo/area_volume.pyx":6
  * import zeo.high_accuracy
- * 
+ *
  * def volume(atmnet, channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,
  *         exclude_pockets=True, low_dist_range=-1, high_dist_range=-1):
@@ -943,7 +943,7 @@ static PyObject *__pyx_pw_3zeo_11area_volume_1volume(PyObject *__pyx_self, PyObj
     PyObject* values[9] = {0,0,0,0,0,0,0,0,0};
 
     /* "zeo/area_volume.pyx":7
- * 
+ *
  * def volume(atmnet, channel_radius, probe_radius,
  *         mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,             # <<<<<<<<<<<<<<
  *         exclude_pockets=True, low_dist_range=-1, high_dist_range=-1):
@@ -1064,7 +1064,7 @@ static PyObject *__pyx_pw_3zeo_11area_volume_1volume(PyObject *__pyx_self, PyObj
 
   /* "zeo/area_volume.pyx":6
  * import zeo.high_accuracy
- * 
+ *
  * def volume(atmnet, channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,
  *         exclude_pockets=True, low_dist_range=-1, high_dist_range=-1):
@@ -1176,7 +1176,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_volume(CYTHON_UNUSED PyObject *__py
  *         ret_high_acc_atmnet = True
  *     else:
  *         ret_high_acc_atmnet = False             # <<<<<<<<<<<<<<
- * 
+ *
  *     if high_accuracy_atmnet and not high_accuracy:
  */
     __pyx_v_ret_high_acc_atmnet = 0;
@@ -1185,10 +1185,10 @@ static PyObject *__pyx_pf_3zeo_11area_volume_volume(CYTHON_UNUSED PyObject *__py
 
   /* "zeo/area_volume.pyx":44
  *         ret_high_acc_atmnet = False
- * 
+ *
  *     if high_accuracy_atmnet and not high_accuracy:             # <<<<<<<<<<<<<<
  *         high_accuracy = True
- * 
+ *
  */
   __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_high_accuracy_atmnet); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_2) {
@@ -1201,10 +1201,10 @@ static PyObject *__pyx_pf_3zeo_11area_volume_volume(CYTHON_UNUSED PyObject *__py
   if (__pyx_t_1) {
 
     /* "zeo/area_volume.pyx":45
- * 
+ *
  *     if high_accuracy_atmnet and not high_accuracy:
  *         high_accuracy = True             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef ATOM_NETWORK* c_org_atmnet_ptr = (<AtomNetwork?>atmnet).thisptr
  */
     __Pyx_INCREF(Py_True);
@@ -1215,7 +1215,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_volume(CYTHON_UNUSED PyObject *__py
 
   /* "zeo/area_volume.pyx":47
  *         high_accuracy = True
- * 
+ *
  *     cdef ATOM_NETWORK* c_org_atmnet_ptr = (<AtomNetwork?>atmnet).thisptr             # <<<<<<<<<<<<<<
  *     cdef ATOM_NETWORK* c_atmnet_ptr
  *     if high_accuracy_atmnet:
@@ -1253,7 +1253,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_volume(CYTHON_UNUSED PyObject *__py
  *     else:
  *         tmp_atmnet = atmnet.copy()             # <<<<<<<<<<<<<<
  *         c_atmnet_ptr = (<AtomNetwork?>tmp_atmnet).thisptr
- * 
+ *
  */
     __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_atmnet, __pyx_n_s_copy); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 52; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
@@ -1267,7 +1267,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_volume(CYTHON_UNUSED PyObject *__py
  *     else:
  *         tmp_atmnet = atmnet.copy()
  *         c_atmnet_ptr = (<AtomNetwork?>tmp_atmnet).thisptr             # <<<<<<<<<<<<<<
- * 
+ *
  *     vol_str = calcAV(c_atmnet_ptr, c_org_atmnet_ptr, high_accuracy,
  */
     if (!(likely(__Pyx_TypeTest(__pyx_v_tmp_atmnet, __pyx_ptype_3zeo_10netstorage_AtomNetwork)))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -1278,7 +1278,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_volume(CYTHON_UNUSED PyObject *__py
 
   /* "zeo/area_volume.pyx":55
  *         c_atmnet_ptr = (<AtomNetwork?>tmp_atmnet).thisptr
- * 
+ *
  *     vol_str = calcAV(c_atmnet_ptr, c_org_atmnet_ptr, high_accuracy,             # <<<<<<<<<<<<<<
  *             channel_radius, probe_radius, mc_sampling_no, exclude_pockets,
  *             low_dist_range, high_dist_range)
@@ -1286,7 +1286,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_volume(CYTHON_UNUSED PyObject *__py
   __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_high_accuracy); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "zeo/area_volume.pyx":56
- * 
+ *
  *     vol_str = calcAV(c_atmnet_ptr, c_org_atmnet_ptr, high_accuracy,
  *             channel_radius, probe_radius, mc_sampling_no, exclude_pockets,             # <<<<<<<<<<<<<<
  *             low_dist_range, high_dist_range)
@@ -1309,7 +1309,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_volume(CYTHON_UNUSED PyObject *__py
 
   /* "zeo/area_volume.pyx":55
  *         c_atmnet_ptr = (<AtomNetwork?>tmp_atmnet).thisptr
- * 
+ *
  *     vol_str = calcAV(c_atmnet_ptr, c_org_atmnet_ptr, high_accuracy,             # <<<<<<<<<<<<<<
  *             channel_radius, probe_radius, mc_sampling_no, exclude_pockets,
  *             low_dist_range, high_dist_range)
@@ -1354,7 +1354,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_volume(CYTHON_UNUSED PyObject *__py
  *         return vol_str, high_accuracy_atmnet
  *     else:
  *         return vol_str             # <<<<<<<<<<<<<<
- * 
+ *
  *     #lines = vol_str.split('\n')
  */
     __Pyx_XDECREF(__pyx_r);
@@ -1367,7 +1367,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_volume(CYTHON_UNUSED PyObject *__py
 
   /* "zeo/area_volume.pyx":6
  * import zeo.high_accuracy
- * 
+ *
  * def volume(atmnet, channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,
  *         exclude_pockets=True, low_dist_range=-1, high_dist_range=-1):
@@ -1391,7 +1391,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_volume(CYTHON_UNUSED PyObject *__py
 
 /* "zeo/area_volume.pyx":70
  *     #        print fields[1], fields[3]
- * 
+ *
  * def surface_area(atmnet, channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,
  *         exclude_pockets=True, extended_output=False):
@@ -1421,11 +1421,11 @@ static PyObject *__pyx_pw_3zeo_11area_volume_3surface_area(PyObject *__pyx_self,
     PyObject* values[8] = {0,0,0,0,0,0,0,0};
 
     /* "zeo/area_volume.pyx":71
- * 
+ *
  * def surface_area(atmnet, channel_radius, probe_radius,
  *         mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,             # <<<<<<<<<<<<<<
  *         exclude_pockets=True, extended_output=False):
- * 
+ *
  */
     values[4] = ((PyObject *)Py_False);
     values[5] = ((PyObject *)Py_None);
@@ -1434,7 +1434,7 @@ static PyObject *__pyx_pw_3zeo_11area_volume_3surface_area(PyObject *__pyx_self,
  * def surface_area(atmnet, channel_radius, probe_radius,
  *         mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,
  *         exclude_pockets=True, extended_output=False):             # <<<<<<<<<<<<<<
- * 
+ *
  *     """
  */
     values[6] = ((PyObject *)Py_True);
@@ -1533,7 +1533,7 @@ static PyObject *__pyx_pw_3zeo_11area_volume_3surface_area(PyObject *__pyx_self,
 
   /* "zeo/area_volume.pyx":70
  *     #        print fields[1], fields[3]
- * 
+ *
  * def surface_area(atmnet, channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,
  *         exclude_pockets=True, extended_output=False):
@@ -1643,7 +1643,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_2surface_area(CYTHON_UNUSED PyObjec
  *         ret_high_acc_atmnet = True
  *     else:
  *         ret_high_acc_atmnet = False             # <<<<<<<<<<<<<<
- * 
+ *
  *     if high_accuracy_atmnet and not high_accuracy:
  */
     __pyx_v_ret_high_acc_atmnet = 0;
@@ -1652,10 +1652,10 @@ static PyObject *__pyx_pf_3zeo_11area_volume_2surface_area(CYTHON_UNUSED PyObjec
 
   /* "zeo/area_volume.pyx":109
  *         ret_high_acc_atmnet = False
- * 
+ *
  *     if high_accuracy_atmnet and not high_accuracy:             # <<<<<<<<<<<<<<
  *         high_accuracy = True
- * 
+ *
  */
   __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_high_accuracy_atmnet); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 109; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_2) {
@@ -1668,10 +1668,10 @@ static PyObject *__pyx_pf_3zeo_11area_volume_2surface_area(CYTHON_UNUSED PyObjec
   if (__pyx_t_1) {
 
     /* "zeo/area_volume.pyx":110
- * 
+ *
  *     if high_accuracy_atmnet and not high_accuracy:
  *         high_accuracy = True             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef ATOM_NETWORK* c_org_atmnet_ptr = (<AtomNetwork?>atmnet).thisptr
  */
     __Pyx_INCREF(Py_True);
@@ -1682,7 +1682,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_2surface_area(CYTHON_UNUSED PyObjec
 
   /* "zeo/area_volume.pyx":112
  *         high_accuracy = True
- * 
+ *
  *     cdef ATOM_NETWORK* c_org_atmnet_ptr = (<AtomNetwork?>atmnet).thisptr             # <<<<<<<<<<<<<<
  *     cdef ATOM_NETWORK* c_atmnet_ptr
  *     if high_accuracy_atmnet:
@@ -1720,7 +1720,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_2surface_area(CYTHON_UNUSED PyObjec
  *     else:
  *         tmp_atmnet = atmnet.copy()             # <<<<<<<<<<<<<<
  *         c_atmnet_ptr = (<AtomNetwork?>tmp_atmnet).thisptr
- * 
+ *
  */
     __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_atmnet, __pyx_n_s_copy); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 117; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
@@ -1734,7 +1734,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_2surface_area(CYTHON_UNUSED PyObjec
  *     else:
  *         tmp_atmnet = atmnet.copy()
  *         c_atmnet_ptr = (<AtomNetwork?>tmp_atmnet).thisptr             # <<<<<<<<<<<<<<
- * 
+ *
  *     sa_str = calcASA(c_atmnet_ptr, c_org_atmnet_ptr, high_accuracy,
  */
     if (!(likely(__Pyx_TypeTest(__pyx_v_tmp_atmnet, __pyx_ptype_3zeo_10netstorage_AtomNetwork)))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -1745,7 +1745,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_2surface_area(CYTHON_UNUSED PyObjec
 
   /* "zeo/area_volume.pyx":120
  *         c_atmnet_ptr = (<AtomNetwork?>tmp_atmnet).thisptr
- * 
+ *
  *     sa_str = calcASA(c_atmnet_ptr, c_org_atmnet_ptr, high_accuracy,             # <<<<<<<<<<<<<<
  *             channel_radius, probe_radius, mc_sampling_no, exclude_pockets,
  *             extended_output)
@@ -1753,7 +1753,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_2surface_area(CYTHON_UNUSED PyObjec
   __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_high_accuracy); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 120; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "zeo/area_volume.pyx":121
- * 
+ *
  *     sa_str = calcASA(c_atmnet_ptr, c_org_atmnet_ptr, high_accuracy,
  *             channel_radius, probe_radius, mc_sampling_no, exclude_pockets,             # <<<<<<<<<<<<<<
  *             extended_output)
@@ -1775,7 +1775,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_2surface_area(CYTHON_UNUSED PyObjec
 
   /* "zeo/area_volume.pyx":120
  *         c_atmnet_ptr = (<AtomNetwork?>tmp_atmnet).thisptr
- * 
+ *
  *     sa_str = calcASA(c_atmnet_ptr, c_org_atmnet_ptr, high_accuracy,             # <<<<<<<<<<<<<<
  *             channel_radius, probe_radius, mc_sampling_no, exclude_pockets,
  *             extended_output)
@@ -1831,7 +1831,7 @@ static PyObject *__pyx_pf_3zeo_11area_volume_2surface_area(CYTHON_UNUSED PyObjec
 
   /* "zeo/area_volume.pyx":70
  *     #        print fields[1], fields[3]
- * 
+ *
  * def surface_area(atmnet, channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,
  *         exclude_pockets=True, extended_output=False):
@@ -1854,11 +1854,11 @@ static PyObject *__pyx_pf_3zeo_11area_volume_2surface_area(CYTHON_UNUSED PyObjec
 }
 
 /* "string.to_py":30
- * 
+ *
  * @cname("__pyx_convert_string_to_py_")
  * cdef object __pyx_convert_string_to_py_(string& s):             # <<<<<<<<<<<<<<
  *     return __Pyx_PyObject_FromStringAndSize(s.data(), s.size())
- * 
+ *
  */
 
 static PyObject *__pyx_convert_string_to_py_(const std::string &__pyx_v_s) {
@@ -1874,8 +1874,8 @@ static PyObject *__pyx_convert_string_to_py_(const std::string &__pyx_v_s) {
  * @cname("__pyx_convert_string_to_py_")
  * cdef object __pyx_convert_string_to_py_(string& s):
  *     return __Pyx_PyObject_FromStringAndSize(s.data(), s.size())             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyObject_FromStringAndSize(__pyx_v_s.data(), __pyx_v_s.size()); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -1885,11 +1885,11 @@ static PyObject *__pyx_convert_string_to_py_(const std::string &__pyx_v_s) {
   goto __pyx_L0;
 
   /* "string.to_py":30
- * 
+ *
  * @cname("__pyx_convert_string_to_py_")
  * cdef object __pyx_convert_string_to_py_(string& s):             # <<<<<<<<<<<<<<
  *     return __Pyx_PyObject_FromStringAndSize(s.data(), s.size())
- * 
+ *
  */
 
   /* function exit code */
@@ -1964,7 +1964,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/area_volume.pyx":6
  * import zeo.high_accuracy
- * 
+ *
  * def volume(atmnet, channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,
  *         exclude_pockets=True, low_dist_range=-1, high_dist_range=-1):
@@ -1976,7 +1976,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/area_volume.pyx":70
  *     #        print fields[1], fields[3]
- * 
+ *
  * def surface_area(atmnet, channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,
  *         exclude_pockets=True, extended_output=False):
@@ -2095,10 +2095,10 @@ PyMODINIT_FUNC PyInit_area_volume(void)
   /*--- Execution code ---*/
 
   /* "zeo/area_volume.pyx":4
- * 
+ *
  * from zeo.netstorage cimport AtomNetwork, ATOM_NETWORK
  * import zeo.high_accuracy             # <<<<<<<<<<<<<<
- * 
+ *
  * def volume(atmnet, channel_radius, probe_radius,
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_zeo_high_accuracy, 0, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -2108,7 +2108,7 @@ PyMODINIT_FUNC PyInit_area_volume(void)
 
   /* "zeo/area_volume.pyx":6
  * import zeo.high_accuracy
- * 
+ *
  * def volume(atmnet, channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,
  *         exclude_pockets=True, low_dist_range=-1, high_dist_range=-1):
@@ -2120,7 +2120,7 @@ PyMODINIT_FUNC PyInit_area_volume(void)
 
   /* "zeo/area_volume.pyx":70
  *     #        print fields[1], fields[3]
- * 
+ *
  * def surface_area(atmnet, channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,
  *         exclude_pockets=True, extended_output=False):
@@ -2132,7 +2132,7 @@ PyMODINIT_FUNC PyInit_area_volume(void)
 
   /* "zeo/area_volume.pyx":1
  * from libcpp.string cimport string             # <<<<<<<<<<<<<<
- * 
+ *
  * from zeo.netstorage cimport AtomNetwork, ATOM_NETWORK
  */
   __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -2141,11 +2141,11 @@ PyMODINIT_FUNC PyInit_area_volume(void)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "string.to_py":30
- * 
+ *
  * @cname("__pyx_convert_string_to_py_")
  * cdef object __pyx_convert_string_to_py_(string& s):             # <<<<<<<<<<<<<<
  *     return __Pyx_PyObject_FromStringAndSize(s.data(), s.size())
- * 
+ *
  */
   goto __pyx_L0;
   __pyx_L1_error:;

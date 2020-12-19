@@ -1,5 +1,5 @@
 //Define constants for Zeo++
- 
+
 #ifndef ZEOCONSTS_H
 #define ZEOCONSTS_H
 

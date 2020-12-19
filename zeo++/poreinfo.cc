@@ -1,4 +1,4 @@
-/** 
+/**
   * In poreinfo.* files, there are functions to perform time-series analysis for
   * void space data contain in a set of .poreinfo summary files
   *
@@ -22,7 +22,7 @@ using namespace std;
 
 
 /* Function that performs analysis for a set of .poreinfo files listed in listfilename.
- * Output is written to outputfilename. Atom_network has to be provided to enable distance 
+ * Output is written to outputfilename. Atom_network has to be provided to enable distance
    calculations */
 
 void  analyzePoreInfoFiles(ATOM_NETWORK *atmnet, std::string listfilename, std::string outputfilename){
@@ -66,7 +66,7 @@ void  analyzePoreInfoFiles(ATOM_NETWORK *atmnet, std::string listfilename, std::
 
 
 
-/* Function loads .poreinfo file into a vector of poreinfo frames 
+/* Function loads .poreinfo file into a vector of poreinfo frames
 
  */
 void loadPoreInfoFile(vector < vector<POREINFO> > *poreinfoframes, std::string poreinfofilename){
@@ -171,7 +171,7 @@ void loadPoreInfoFile(vector < vector<POREINFO> > *poreinfoframes, std::string p
    for(int i = 0; i < nChannels; i++)
      {
      int nNodes; NODESPHERE ns;
-     input >> nNodes >> PoreInfoFrame.at(i).di >> PoreInfoFrame.at(i).pos[0] >> PoreInfoFrame.at(i).pos[1] 
+     input >> nNodes >> PoreInfoFrame.at(i).di >> PoreInfoFrame.at(i).pos[0] >> PoreInfoFrame.at(i).pos[1]
            >> PoreInfoFrame.at(i).pos[2] >> PoreInfoFrame.at(i).enc_radius;
      for(int j = 0; j < nNodes; j++)
         {
@@ -200,5 +200,3 @@ void loadPoreInfoFile(vector < vector<POREINFO> > *poreinfoframes, std::string p
 
 
 } // ends loadPoreInfoFile
-
-

@@ -557,8 +557,8 @@ struct __pyx_obj_3zeo_11voronoicell_VorCell;
 struct __pyx_obj_3zeo_11voronoicell_BasicVCell;
 
 /* "zeo/geometry.pxd":24
- * 
- * 
+ *
+ *
  * cdef class Xyz:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ XYZ class defined in geometry.h
@@ -570,8 +570,8 @@ struct __pyx_obj_3zeo_8geometry_Xyz {
 
 
 /* "zeo/geometry.pxd":32
- * 
- * 
+ *
+ *
  * cdef class Point:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ Point class defined in geometry.h
@@ -584,7 +584,7 @@ struct __pyx_obj_3zeo_8geometry_Point {
 
 /* "zeo/netstorage.pxd":120
  *             VORONOI_NETWORK* vornet, ATOM_NETWORK* atmnet)
- * 
+ *
  * cdef class Atom:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM class.
@@ -597,7 +597,7 @@ struct __pyx_obj_3zeo_10netstorage_Atom {
 
 /* "zeo/netstorage.pxd":126
  *     cdef ATOM* thisptr
- * 
+ *
  * cdef class AtomNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM_NETWORK class.
@@ -611,7 +611,7 @@ struct __pyx_obj_3zeo_10netstorage_AtomNetwork {
 
 /* "zeo/netstorage.pxd":135
  *     cdef bint rad_flag
- * 
+ *
  * cdef class VoronoiNode:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VOR_NODE class.
@@ -624,7 +624,7 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNode {
 
 /* "zeo/netstorage.pxd":141
  *     cdef VOR_NODE* thisptr
- * 
+ *
  * cdef class VoronoiNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VORONOI_NETWORK class.
@@ -636,11 +636,11 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNetwork {
 
 
 /* "zeo/voronoicell.pxd":39
- * 
- * 
+ *
+ *
  * cdef class VorFace:             # <<<<<<<<<<<<<<
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorFace {
   PyObject_HEAD
@@ -650,10 +650,10 @@ struct __pyx_obj_3zeo_11voronoicell_VorFace {
 
 /* "zeo/voronoicell.pxd":42
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  * cdef class VorCell:             # <<<<<<<<<<<<<<
  *     cdef VOR_CELL* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorCell {
   PyObject_HEAD
@@ -663,7 +663,7 @@ struct __pyx_obj_3zeo_11voronoicell_VorCell {
 
 /* "zeo/voronoicell.pxd":45
  *     cdef VOR_CELL* thisptr
- * 
+ *
  * cdef class BasicVCell:             # <<<<<<<<<<<<<<
  *     cdef BASIC_VCELL* thisptr
  */
@@ -865,7 +865,7 @@ static PyObject *__pyx_n_s_test;
  *     #cdef VOR_CELL *thiptr
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.thisptr = new VOR_CELL()
- * 
+ *
  */
 
 /* Python wrapper */
@@ -897,7 +897,7 @@ static int __pyx_pf_3zeo_11voronoicell_7VorCell___cinit__(struct __pyx_obj_3zeo_
  *     #cdef VOR_CELL *thiptr
  *     def __cinit__(self):
  *         self.thisptr = new VOR_CELL()             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self):
  */
   try {
@@ -913,7 +913,7 @@ static int __pyx_pf_3zeo_11voronoicell_7VorCell___cinit__(struct __pyx_obj_3zeo_
  *     #cdef VOR_CELL *thiptr
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.thisptr = new VOR_CELL()
- * 
+ *
  */
 
   /* function exit code */
@@ -929,10 +929,10 @@ static int __pyx_pf_3zeo_11voronoicell_7VorCell___cinit__(struct __pyx_obj_3zeo_
 
 /* "zeo/voronoicell.pyx":23
  *         self.thisptr = new VOR_CELL()
- * 
+ *
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         pass
- * 
+ *
  */
 
 /* Python wrapper */
@@ -964,10 +964,10 @@ static int __pyx_pf_3zeo_11voronoicell_7VorCell_2__init__(CYTHON_UNUSED struct _
 
 /* "zeo/voronoicell.pyx":26
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
 /* Python wrapper */
@@ -986,20 +986,20 @@ static void __pyx_pf_3zeo_11voronoicell_7VorCell_4__dealloc__(struct __pyx_obj_3
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "zeo/voronoicell.pyx":27
- * 
+ *
  *     def __dealloc__(self):
  *         del self.thisptr             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef class BasicVCell:
  */
   delete __pyx_v_self->thisptr;
 
   /* "zeo/voronoicell.pyx":26
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
   /* function exit code */
@@ -1011,7 +1011,7 @@ static void __pyx_pf_3zeo_11voronoicell_7VorCell_4__dealloc__(struct __pyx_obj_3
  *     #cdef BASIC_VCELL *thisptr
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.thisptr = new BASIC_VCELL()
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1043,7 +1043,7 @@ static int __pyx_pf_3zeo_11voronoicell_10BasicVCell___cinit__(struct __pyx_obj_3
  *     #cdef BASIC_VCELL *thisptr
  *     def __cinit__(self):
  *         self.thisptr = new BASIC_VCELL()             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self):
  */
   try {
@@ -1059,7 +1059,7 @@ static int __pyx_pf_3zeo_11voronoicell_10BasicVCell___cinit__(struct __pyx_obj_3
  *     #cdef BASIC_VCELL *thisptr
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.thisptr = new BASIC_VCELL()
- * 
+ *
  */
 
   /* function exit code */
@@ -1075,10 +1075,10 @@ static int __pyx_pf_3zeo_11voronoicell_10BasicVCell___cinit__(struct __pyx_obj_3
 
 /* "zeo/voronoicell.pyx":34
  *         self.thisptr = new BASIC_VCELL()
- * 
+ *
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         pass
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1110,7 +1110,7 @@ static int __pyx_pf_3zeo_11voronoicell_10BasicVCell_2__init__(CYTHON_UNUSED stru
 
 /* "zeo/voronoicell.pyx":37
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
  */
@@ -1131,7 +1131,7 @@ static void __pyx_pf_3zeo_11voronoicell_10BasicVCell_4__dealloc__(struct __pyx_o
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "zeo/voronoicell.pyx":38
- * 
+ *
  *     def __dealloc__(self):
  *         del self.thisptr             # <<<<<<<<<<<<<<
  */
@@ -1139,7 +1139,7 @@ static void __pyx_pf_3zeo_11voronoicell_10BasicVCell_4__dealloc__(struct __pyx_o
 
   /* "zeo/voronoicell.pyx":37
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
  */
@@ -1565,7 +1565,7 @@ PyMODINIT_FUNC PyInit_voronoicell(void)
 
   /* "zeo/voronoicell.pyx":1
  * from libcpp.vector cimport vector             # <<<<<<<<<<<<<<
- * 
+ *
  * #from zeo.geometry cimport CPoint
  */
   __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}

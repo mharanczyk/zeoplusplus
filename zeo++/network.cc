@@ -1,4 +1,4 @@
-// 
+//
 //
 // Author   : Thomas F. Willems (LBL / UC Berkeley)
 // Email    : tfwillems@berkeley.edu
@@ -47,7 +47,7 @@ void* performVoronoiDecomp(bool radial, ATOM_NETWORK *cell, VORONOI_NETWORK *vor
   int i,n;
   double bx,bxy,by,bxz,byz,bz;
   vector<int> atomShifts;
-  
+
   // Set the box dimensions and number of particles
   bx  = cell->v_a.x;
   bxy = cell->v_b.x;
@@ -56,13 +56,13 @@ void* performVoronoiDecomp(bool radial, ATOM_NETWORK *cell, VORONOI_NETWORK *vor
   byz = cell->v_c.y;
   bz  = cell->v_c.z;
   n   = cell->numAtoms;
-  
+
   // Print the box dimensions
   printf("Box dimensions:\n"
 	 "  va=(%f 0 0)\n"
 	 "  vb=(%f %f 0)\n"
 	 "  vc=(%f %f %f)\n\n",bx,bxy,by,bxz,byz,bz);
-  
+
   // Check that the input parameters make sense
   if(n<1) {
     char* sentence = new char[300];
@@ -75,7 +75,7 @@ void* performVoronoiDecomp(bool radial, ATOM_NETWORK *cell, VORONOI_NETWORK *vor
 	  " Please check unit cell parameters.\nExiting ...\n",stderr);
     exit(1);
   }
-  
+
   // Compute the internal grid size, aiming to make
   // the grid blocks square with around 6 particles
   // in each
@@ -83,7 +83,7 @@ void* performVoronoiDecomp(bool radial, ATOM_NETWORK *cell, VORONOI_NETWORK *vor
   double nxf=bx*ls+1.1;
   double nyf=by*ls+1.1;
   double nzf=bz*ls+1.1;
-  
+
   // Check the grid is not too huge, using floating point numbers to avoid
   // integer wrap-arounds
   if (nxf*nyf*nzf>max_regions) {
@@ -91,7 +91,7 @@ void* performVoronoiDecomp(bool radial, ATOM_NETWORK *cell, VORONOI_NETWORK *vor
 		   "Either increase the particle length scale, or recompile with an increased\nmaximum.",max_regions);
     exit(1);
   }
-  
+
   // Now that we are confident that the number of regions is reasonable,
   // create integer versions of them
   int nx=int(nxf);
@@ -104,18 +104,18 @@ void* performVoronoiDecomp(bool radial, ATOM_NETWORK *cell, VORONOI_NETWORK *vor
   int numAttemptsPermitted = 1;
   if(cell->allowAdjustCoordsAndCellFlag) numAttemptsPermitted++;
   for(int attempt=0; attempt<numAttemptsPermitted; attempt++) {
-    
+
     if(radial) {
       puts("Using voro++ with radii for particles.");
       // Create a container with the geometry given above
       container_periodic_poly *rad_con;
       rad_con =  new container_periodic_poly (bx,bxy,by,bxz,byz,bz,nx,ny,nz,memory);
-      
+
       // Read in the particles from the provided ATOM_NETWORK
       vector <ATOM> ::iterator iter = cell->atoms.begin();
       i = 0;
       int da, db, dc;
-      while(iter != cell->atoms.end()){ 
+      while(iter != cell->atoms.end()){
         rad_con->put(i,iter->x,iter->y,iter->z,iter->radius, da, db, dc);
         atomShifts.push_back(da); atomShifts.push_back(db); atomShifts.push_back(dc);
         iter++;
@@ -172,7 +172,7 @@ void* performVoronoiDecomp(bool radial, ATOM_NETWORK *cell, VORONOI_NETWORK *vor
 
 /** Decompose the provided network of atoms into a VORONOI_NETWORK that is stored using the provided pointer. If
     the option is specified, information about each VOR_CELL will also be stored using the provied pointer to
-    a vector of VOR_CELL instances. The BASIC_VCELL information is stored regardless of the option specified. 
+    a vector of VOR_CELL instances. The BASIC_VCELL information is stored regardless of the option specified.
     This function is wrapper to above function and has no return type*/
 bool performVoronoiDecomp(bool radial, ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet, vector<VOR_CELL> *cells, bool saveVorCells,
 			   vector<BASIC_VCELL> *bvcells){
@@ -181,8 +181,8 @@ bool performVoronoiDecomp(bool radial, ATOM_NETWORK *atmnet, VORONOI_NETWORK *vo
     container_periodic *no_rad_con = NULL;
     if (radial)
         rad_con = (container_periodic_poly *)performVoronoiDecomp(radial, atmnet, vornet, *cells, saveVorCells, *bvcells);
-     else 
-          no_rad_con = (container_periodic *)performVoronoiDecomp (radial, atmnet, vornet, *cells, saveVorCells, *bvcells); 
+     else
+          no_rad_con = (container_periodic *)performVoronoiDecomp (radial, atmnet, vornet, *cells, saveVorCells, *bvcells);
 
      delete rad_con;
      delete no_rad_con;
@@ -194,7 +194,7 @@ void createAdvCell(voronoicell &cell, vector<double> coords, int *idMap, VOR_CEL
   int numFaces = cell.number_of_faces();
   vector<int> faceVertices;
   cell.face_vertices(faceVertices);
-      
+
   int index = 0;
   for(int i = 0; i < numFaces; i++){
     vector<Point> faceCoords;
@@ -238,11 +238,11 @@ bool storeVoronoiNetwork(c_option &con, ATOM_NETWORK *atmnet, VORONOI_NETWORK *v
   int **cellInfo;
   cellInfo = new int*[atmnet->numAtoms];
     if(vl.start()) {
-      do { 
+      do {
 	if(con.compute_cell(c,vl)) {
 	  vvol+=c.volume();
 	  vl.pos(id,x,y,z,r);
-	  	  
+
 	  int *map;
 	  vector<double> coords;
 	  c.vertices(atmnet->atoms[id].x, atmnet->atoms[id].y, atmnet->atoms[id].z, coords);
@@ -254,18 +254,18 @@ bool storeVoronoiNetwork(c_option &con, ATOM_NETWORK *atmnet, VORONOI_NETWORK *v
 	  vnet.add_to_network(c,id,x,y,z,r, map);
 
 	  cellInfo[cellIndex] = map;
-	  
+
 	  if(storeAdvCells){
 	    VOR_CELL newCell;
 	    createAdvCell(c, coords, map, newCell);
 	    advCells[id] = newCell;
 	  }
-	} 
+	}
 	else {
 	  numNodes.push_back(0);
 	  cellIDs.push_back(-1);
 	  vertices.push_back(vector<double>());
-	  
+
 	  cellInfo[cellIndex] = NULL;
 	}
 	cellIndex++;
@@ -286,23 +286,23 @@ bool storeVoronoiNetwork(c_option &con, ATOM_NETWORK *atmnet, VORONOI_NETWORK *v
 //    }
     double box_vol = bx*by*bz;
     double error_percent = 100*abs(vvol - box_vol)/box_vol;
-    double error_percent_tolerance = 0.001; // former (before Voro++ fit default = 0.1; 
+    double error_percent_tolerance = 0.001; // former (before Voro++ fit default = 0.1;
     if(error_percent > error_percent_tolerance) {
       printf("Error: Voronoi volume check failed (%.3f%% error, > %.3f%% tolerance).\nExiting...\n", error_percent, error_percent_tolerance);
       return false;
 //      exit(1);
     }
-    
+
     cout << "Voronoi decomposition finished. Rerouting Voronoi network information." << "\n";
-    
+
     vnet.store_network(vornet->nodes, vornet->edges, false);
     for(int i = 0; i < atmnet->numAtoms; i++){
       if(numNodes[i] == 0){
 	continue;
       }
-      
+
       vector<int> nodeIDs;
-      vector<Point> nodeLocations; 
+      vector<Point> nodeLocations;
       if((int)vertices[i].size() != 3*numNodes[i]){
 	cerr << "Error: Improper number of node coordinates in Voronoi decomposition" << "\n"
 	     << "Found " << vertices[i].size() << " but expected " << 3*numNodes[i] << "\n"
@@ -314,7 +314,7 @@ bool storeVoronoiNetwork(c_option &con, ATOM_NETWORK *atmnet, VORONOI_NETWORK *v
 	nodeLocations.push_back(Point(vertices[i][3*j], vertices[i][3*j+1], vertices[i][3*j+2])) ;
 	nodeIDs.push_back(cellInfo[i][j*4]);
       }
-      
+
       basCells[cellIDs[i]] = BASIC_VCELL(nodeLocations, nodeIDs);
       delete [] cellInfo[i];
     }
@@ -367,7 +367,7 @@ void extendUnitCell(ATOM_NETWORK *cell, ATOM_NETWORK *newCell, int xfactor, int 
 
 
 /** Extend the given VORONOI_NETWORK by 10 unit cells along a unit cell vector in the provided
- *  direction. The direction must be either (1,0,0), (0,1,0) or (0,0,1).  The list of atoms 
+ *  direction. The direction must be either (1,0,0), (0,1,0) or (0,0,1).  The list of atoms
  *  belonging to each atom are NOT APPROPRIATELY REPLICATED.*/
 void extendVorNet(VORONOI_NETWORK *vornet, VORONOI_NETWORK *newNet, DELTA_POS direction, map<int,int> *idAliases, set<int> *sourceNodes){
   idAliases->clear();
@@ -375,7 +375,7 @@ void extendVorNet(VORONOI_NETWORK *vornet, VORONOI_NETWORK *newNet, DELTA_POS di
 
   DELTA_POS filter = DELTA_POS(1,1,1) - direction;
   int numIDs = vornet->nodes.size();
-  
+
   for(unsigned int i = 0; i < vornet->edges.size(); i++){
     VOR_EDGE curEdge = vornet->edges.at(i);
     DELTA_POS dirComp = DELTA_POS(curEdge.delta_uc_x, curEdge.delta_uc_y, curEdge.delta_uc_z)*direction;
@@ -396,14 +396,14 @@ void extendVorNet(VORONOI_NETWORK *vornet, VORONOI_NETWORK *newNet, DELTA_POS di
   //Repeat copy process for each additional unit cell
   int idCount = 0;
   for(int i = 0; i <= factor; i++){
-    
+
     //Translate all of the Voronoi nodes and assign them new id's
     for(int j = 0; j < numIDs; j++){
       VOR_NODE oldNode = vornet->nodes.at(j);
-      VOR_NODE newNode; 
-      newNode.x = oldNode.x + i*direction.x*vornet->v_a.x + i*direction.y*vornet->v_b.x + i*direction.z*vornet->v_c.x; 
-      newNode.y = oldNode.y + i*direction.x*vornet->v_a.y + i*direction.y*vornet->v_b.y + i*direction.z*vornet->v_c.y; 
-      newNode.z = oldNode.z + i*direction.x*vornet->v_a.z + i*direction.y*vornet->v_b.z + i*direction.z*vornet->v_c.z; 
+      VOR_NODE newNode;
+      newNode.x = oldNode.x + i*direction.x*vornet->v_a.x + i*direction.y*vornet->v_b.x + i*direction.z*vornet->v_c.x;
+      newNode.y = oldNode.y + i*direction.x*vornet->v_a.y + i*direction.y*vornet->v_b.y + i*direction.z*vornet->v_c.y;
+      newNode.z = oldNode.z + i*direction.x*vornet->v_a.z + i*direction.y*vornet->v_b.z + i*direction.z*vornet->v_c.z;
       newNode.rad_stat_sphere = oldNode.rad_stat_sphere;
       newNet->nodes.push_back(newNode);
       if(sourceNodes->find(j) != sourceNodes->end()){
@@ -427,7 +427,7 @@ void extendVorNet(VORONOI_NETWORK *vornet, VORONOI_NETWORK *newNet, DELTA_POS di
 	changeInTo = -1;
       else
 	changeInTo = 1;
-     
+
       int newTo = i + changeInTo;
       if(newTo < 0){
 	newDirection = newDirection + (direction*(-1));
@@ -437,14 +437,14 @@ void extendVorNet(VORONOI_NETWORK *vornet, VORONOI_NETWORK *newNet, DELTA_POS di
 	newDirection = newDirection + direction;
 	newTo = 0;
       }
- 
+
       VOR_EDGE newEdge;
-      newEdge.from = oldEdge.from + i*numIDs; 
-      newEdge.to = oldEdge.to + newTo*numIDs; 
-      newEdge.rad_moving_sphere = oldEdge.rad_moving_sphere; 
-    
+      newEdge.from = oldEdge.from + i*numIDs;
+      newEdge.to = oldEdge.to + newTo*numIDs;
+      newEdge.rad_moving_sphere = oldEdge.rad_moving_sphere;
+
       newEdge.delta_uc_x = newDirection.x;
-      newEdge.delta_uc_y = newDirection.y; 
+      newEdge.delta_uc_y = newDirection.y;
       newEdge.delta_uc_z = newDirection.z;
       newEdge.length = oldEdge.length;
       newNet->edges.push_back(newEdge);
@@ -463,20 +463,20 @@ void calculateFreeSphereParameters(VORONOI_NETWORK *vornet, char *filename, bool
     set<int> sourceNodes;
     map<int,int> idAliases;
     extendVorNet(vornet, &newNet, directions[i], &idAliases, &sourceNodes);
-   
+
     DIJKSTRA_NETWORK dnet;
     DIJKSTRA_NETWORK::buildDijkstraNetwork(&newNet,&dnet);
 
-    TRAVERSAL_NETWORK analyzeNet = TRAVERSAL_NETWORK(directions[i].x,directions[i].y,directions[i].z, &dnet);    
+    TRAVERSAL_NETWORK analyzeNet = TRAVERSAL_NETWORK(directions[i].x,directions[i].y,directions[i].z, &dnet);
     pair<bool,PATH> results = analyzeNet.findMaxFreeSphere(&idAliases, &sourceNodes);
-    
+
     freeRadResults.push_back(2*results.second.max_radius);
     incRadResults.push_back(2*results.second.max_inc_radius);
     NtoN.push_back(results.first);
   }
 
   fstream output;
-  output.setf(ios::fixed,ios::floatfield);  
+  output.setf(ios::fixed,ios::floatfield);
   output.precision(5);
   output.width(12);
   output.open(filename, fstream::out);
@@ -490,7 +490,7 @@ void calculateFreeSphereParameters(VORONOI_NETWORK *vornet, char *filename, bool
        {
        if(maxd<freeRadResults[i])
          {
-         maxd=freeRadResults[i]; 
+         maxd=freeRadResults[i];
          maxdir=i;
          }
        else if(maxd==freeRadResults[i])
@@ -511,15 +511,15 @@ void calculateFreeSphereParameters(VORONOI_NETWORK *vornet, char *filename, bool
        output << incRadResults[i] << "  ";
     };
 
- /* 
+ /*
   for(unsigned int i = 0; i < NtoN.size(); i++)
     output << (NtoN[i] ? "t" : "f") << "  ";
  */
   output << "\n";
 }
 
-/* New calculateFreeSphere function that works with MATERIAL class 
- * added by M Haranczyk / Feb 2014 
+/* New calculateFreeSphere function that works with MATERIAL class
+ * added by M Haranczyk / Feb 2014
  */
 
 void NEWcalculateFreeSphereParameters(MATERIAL *Mat){
@@ -539,13 +539,13 @@ void NEWcalculateFreeSphereParameters(MATERIAL *Mat){
     set<int> sourceNodes;
     map<int,int> idAliases;
     extendVorNet(&(Mat->vornet), &newNet, directions[i], &idAliases, &sourceNodes);
-   
+
     DIJKSTRA_NETWORK dnet;
     DIJKSTRA_NETWORK::buildDijkstraNetwork(&newNet,&dnet);
 
-    TRAVERSAL_NETWORK analyzeNet = TRAVERSAL_NETWORK(directions[i].x,directions[i].y,directions[i].z, &dnet);    
+    TRAVERSAL_NETWORK analyzeNet = TRAVERSAL_NETWORK(directions[i].x,directions[i].y,directions[i].z, &dnet);
     pair<bool,PATH> results = analyzeNet.findMaxFreeSphere(&idAliases, &sourceNodes);
-    
+
     freeRadResults.push_back(2*results.second.max_radius);
     incRadResults.push_back(2*results.second.max_inc_radius);
     NtoN.push_back(results.first);
@@ -559,7 +559,7 @@ void NEWcalculateFreeSphereParameters(MATERIAL *Mat){
        {
        if(maxd<freeRadResults[i])
          {
-         maxd=freeRadResults[i]; 
+         maxd=freeRadResults[i];
          maxdir=i;
          }
        else if(maxd==freeRadResults[i])
@@ -598,7 +598,7 @@ void NEWcalculateFreeSphereParametersPrint(MATERIAL *Mat, char *filename, bool e
        output << Mat->directionDif.at(i) << "  ";
     };
 
- /* 
+ /*
   for(unsigned int i = 0; i < NtoN.size(); i++)
     output << (NtoN[i] ? "t" : "f") << "  ";
  */
@@ -625,7 +625,7 @@ void viewVoronoiDecomp(ATOM_NETWORK *atmnet, double r_probe, string filename){
 
 void loadRadii(ATOM_NETWORK *atmnet){
   vector <ATOM> ::iterator iter = atmnet->atoms.begin();
-  while(iter != atmnet->atoms.end()){ 
+  while(iter != atmnet->atoms.end()){
     iter->radius = lookupRadius(iter->type, true);
     iter++;
   }
@@ -648,17 +648,17 @@ void loadMass(bool useMassFlag, ATOM_NETWORK *atmnet){
 
 
 
-/* Print information about topology of the structure 
+/* Print information about topology of the structure
    It defines a periodic graph representing atom connectivity
    and then reuses findChannel function (required Dijkstra graph for atoms */
 void getStructureInformation(char *filename, char *filenameExtendedOutput, ATOM_NETWORK *atmnet, bool extendedOutput){
 
- // to speed up calculations, identify atoms on the "surface" of the unit cell 
+ // to speed up calculations, identify atoms on the "surface" of the unit cell
 
  vector <int> surfaceIDs;
  vector <bool> surfaceFlag;
 
- double surface_slab_d = 2.5; // cutoff distance from the surface 
+ double surface_slab_d = 2.5; // cutoff distance from the surface
 
  double a_step = surface_slab_d/atmnet->a;
  double b_step = surface_slab_d/atmnet->b;
@@ -668,7 +668,7 @@ void getStructureInformation(char *filename, char *filenameExtendedOutput, ATOM_
 
  if(a_step>=1.0 || b_step>=1.0 || c_step>=1.0)
    {//no speed up
-   for(unsigned int i = 0; i < atmnet->atoms.size(); i++) 
+   for(unsigned int i = 0; i < atmnet->atoms.size(); i++)
       {
       surfaceIDs.push_back(i);
       surfaceFlag.at(i) = true;
@@ -734,7 +734,7 @@ void getStructureInformation(char *filename, char *filenameExtendedOutput, ATOM_
               unsigned int j = surfaceIDs.at(k);
 
               XYZ atom2(DijkstraAtomNetwork.nodes.at(j).x, DijkstraAtomNetwork.nodes.at(j).y, DijkstraAtomNetwork.nodes.at(j).z);
-              XYZ va = DijkstraAtomNetwork.v_a; XYZ vb = DijkstraAtomNetwork.v_b; XYZ vc = DijkstraAtomNetwork.v_c; 
+              XYZ va = DijkstraAtomNetwork.v_a; XYZ vb = DijkstraAtomNetwork.v_b; XYZ vc = DijkstraAtomNetwork.v_c;
               atom2 = atom2 + va.scale(x) + vb.scale(y) + vc.scale(z);
 
               double dist = calcEuclideanDistance(atom1.x, atom1.y, atom1.z, atom2.x, atom2.y, atom2.z);
@@ -765,7 +765,7 @@ void getStructureInformation(char *filename, char *filenameExtendedOutput, ATOM_
     if(structureSegments[i].dimensionality == 2) nChan2D++;
     if(structureSegments[i].dimensionality == 3) nChan3D++;
     };
- output << filename << "   "<< atmnet->returnChemicalFormula() << "   " << structureSegments.size() << " segments: " << (structureSegments.size() - nPockets) << " framework(s) (1D/2D/3D " 
+ output << filename << "   "<< atmnet->returnChemicalFormula() << "   " << structureSegments.size() << " segments: " << (structureSegments.size() - nPockets) << " framework(s) (1D/2D/3D "
         << nChan1D << " " << nChan2D << " " << nChan3D
         << " ) and  "  << nPockets << "  molecule(s). Identified dimensionality of framework(s): ";
  for(unsigned int i = 0; i < structureSegments.size(); i++){
@@ -820,7 +820,7 @@ void getStructureInformation(char *filename, char *filenameExtendedOutput, ATOM_
 */
 
 
-/* Analysis of cages ONLY 
+/* Analysis of cages ONLY
  * for Ismael  */
 /*
  if(extendedOutput == true)
@@ -833,7 +833,7 @@ void getStructureInformation(char *filename, char *filenameExtendedOutput, ATOM_
       if(structureSegments[i].dimensionality == 0)
         {
         vector < pair <int,XYZ> > cageReconstructedCoords = structureSegments[i].getReconstructedPore();
-        
+
         for(unsigned int j = 0; j< structureSegments[i].reverseIDMappings.size(); j++)
            {
            int atomID = structureSegments[i].reverseIDMappings.find((cageReconstructedCoords.at(j).first))->second;
@@ -921,7 +921,7 @@ void getStructureInformation(char *filename, char *filenameExtendedOutput, ATOM_
            /* SDF header */
            output2 << i << endl;
            output2 << "Zeomolecule" << endl << endl;
-           output2 << "  " << structureSegments[i].reverseIDMappings.size() << " " << cageBonds.size() << " 0     0  0  0  0  0  0999 V2000\n"; 
+           output2 << "  " << structureSegments[i].reverseIDMappings.size() << " " << cageBonds.size() << " 0     0  0  0  0  0  0999 V2000\n";
            for(unsigned int j = 0; j< structureSegments[i].reverseIDMappings.size(); j++)
               {
               int atomID = structureSegments[i].reverseIDMappings.find((cagesMultipleCopiesReconstructedCoords[k].at(j).first))->second;
@@ -934,7 +934,7 @@ void getStructureInformation(char *filename, char *filenameExtendedOutput, ATOM_
               {
               output2 << cageBonds[k].first << "  " << cageBonds[k].second << " 1 0 0 0 0\n" ;
               };
-           output2 << "M  END\n$$$$\n";  
+           output2 << "M  END\n$$$$\n";
            /* ends saving file in SDF format */
 
            }; // ends for loop over copies of the segment i (each molecule)
@@ -964,7 +964,7 @@ void getStructureInformation(char *filename, char *filenameExtendedOutput, ATOM_
       {
       if(atmnet->atoms.at(i).type == "C") nCs++;
       if(atmnet->atoms.at(i).type == "H") nHs++;
-      if(isMetal(atmnet->atoms.at(i).type) == true) 
+      if(isMetal(atmnet->atoms.at(i).type) == true)
         {
         nMetals++;
         if(metalmap[atmnet->atoms.at(i).type] == 0) metalmap[atmnet->atoms.at(i).type] =1;
@@ -977,7 +977,7 @@ void getStructureInformation(char *filename, char *filenameExtendedOutput, ATOM_
    std::map<std::string,int>::iterator it;
    for(it=metalmap.begin(); it!=metalmap.end(); ++it)
       {
-      output2 << "  " << (*it).first << " " << (*it).second; 
+      output2 << "  " << (*it).first << " " << (*it).second;
       };
 
 
@@ -1005,7 +1005,7 @@ void getStructureInformation(char *filename, char *filenameExtendedOutput, ATOM_
 
    for(unsigned int i = 0; i < structureSegments.size(); i++)
       {
-      if(structureSegments[i].dimensionality>2) 
+      if(structureSegments[i].dimensionality>2)
       {
       for(unsigned int j = 0; j< structureSegments[i].reverseIDMappings.size(); j++)
          {
@@ -1025,9 +1025,9 @@ void getStructureInformation(char *filename, char *filenameExtendedOutput, ATOM_
 
 
 
-/* Print information about the presence of open metal sites 
+/* Print information about the presence of open metal sites
    */
-   
+
 void getOMSInformation(char *filename, char *filenameExtendedOutput, ATOM_NETWORK *atmnet, bool extendedOutput){
 
  // General consts
@@ -1037,12 +1037,12 @@ void getOMSInformation(char *filename, char *filenameExtendedOutput, ATOM_NETWOR
  int nOMS=0;
  vector< vector<int> > OMS_atomIDs;
 
- // to speed up calculations, identify atoms on the "surface" of the unit cell 
+ // to speed up calculations, identify atoms on the "surface" of the unit cell
 
  vector <int> surfaceIDs;
  vector <bool> surfaceFlag;
 
- double surface_slab_d = 3.5; // cutoff distance from the surface 
+ double surface_slab_d = 3.5; // cutoff distance from the surface
 
  double a_step = surface_slab_d/atmnet->a;
  double b_step = surface_slab_d/atmnet->b;
@@ -1052,7 +1052,7 @@ void getOMSInformation(char *filename, char *filenameExtendedOutput, ATOM_NETWOR
 
  if(a_step>=1.0 || b_step>=1.0 || c_step>=1.0)
    {//no speed up
-   for(unsigned int i = 0; i < atmnet->atoms.size(); i++) 
+   for(unsigned int i = 0; i < atmnet->atoms.size(); i++)
       {
       surfaceIDs.push_back(i);
       surfaceFlag.at(i) = true;
@@ -1142,7 +1142,7 @@ void getOMSInformation(char *filename, char *filenameExtendedOutput, ATOM_NETWOR
         }; // end loop over cells outside the central cell
        }; //ends loop over supercell (x,y,z)
 
-   if(IsExposedMoleculeThreshold(cluster, Threshold)) 
+   if(IsExposedMoleculeThreshold(cluster, Threshold))
       {
       nOMS++;
       OMS_atomIDs.push_back(cluster_atomIDs);

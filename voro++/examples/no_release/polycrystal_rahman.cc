@@ -30,7 +30,7 @@ int main() {
 	int i,j=0,c_id;
 	double x,y,z,x1,y1,z1,x2,y2,z2,x3,y3,z3,xt,yt,zt,rx,ry,rz;
 	double theta,cth,sth,r,v,xc,yc,zc,vx,vy,vz;
-    	
+
 	// Create the container class
 	container con(x_min,x_max,y_min,y_max,z_min,z_max,10,10,10,
 			false,false,false,8);
@@ -52,7 +52,7 @@ int main() {
 	voronoicell c;
 	if(cl.start()) do if(con.compute_cell(c,cl)) {
 
-		// Generate the first vector of an orthonormal basis 
+		// Generate the first vector of an orthonormal basis
 		x1=2*rnd()-1;y1=2*rnd()-1;z1=2*rnd()-1;r=1/sqrt(x1*x1+y1*y1+z1*z1);
 		x1*=r;y1*=r;z1*=r;
 
@@ -77,7 +77,7 @@ int main() {
 		// so that it's not always perfectly aligned with the generator
 		vx=-v+h*rnd();vy=-v+h*rnd();vz=-v+h*rnd();
 
-		// Print diagnostic information about this generator 
+		// Print diagnostic information about this generator
 		c_id=cl.pid();cl.pos(xc,yc,zc);
 		printf("Generator %d at (%g,%g,%g), random basis:\n",c_id,xc,yc,zc);
 		printf("%g %g %g\n",x1,y1,z1);

@@ -17,7 +17,7 @@ int main(int argc,char **argv) {
 		return VOROPP_CMD_LINE_ERROR;
 	}
 
-	// Create the unit cell 
+	// Create the unit cell
 	unitcell uc(atof(argv[1]),atof(argv[2]),atof(argv[3]),atof(argv[4]),atof(argv[5]),atof(argv[6]));
 
 	// Calculate the images

@@ -11,7 +11,7 @@
 #ifndef EIGEN_PARTIAL_REDUX_H
 #define EIGEN_PARTIAL_REDUX_H
 
-namespace Eigen { 
+namespace Eigen {
 
 /** \class PartialReduxExpr
   * \ingroup Core_Module
@@ -234,7 +234,7 @@ template<typename ExpressionType, int Direction> class VectorwiseOp
                        Direction==Vertical   ? 1 : m_matrix.rows(),
                        Direction==Horizontal ? 1 : m_matrix.cols());
     }
-    
+
     template<typename OtherDerived> struct OppositeExtendedType {
       typedef Replicate<OtherDerived,
                         Direction==Horizontal ? 1 : ExpressionType::RowsAtCompileTime,
@@ -278,7 +278,7 @@ template<typename ExpressionType, int Direction> class VectorwiseOp
 
     /** \returns a row (or column) vector expression of the smallest coefficient
       * of each column (or row) of the referenced expression.
-      * 
+      *
       * \warning the result is undefined if \c *this contains NaN.
       *
       * Example: \include PartialRedux_minCoeff.cpp
@@ -290,7 +290,7 @@ template<typename ExpressionType, int Direction> class VectorwiseOp
 
     /** \returns a row (or column) vector expression of the largest coefficient
       * of each column (or row) of the referenced expression.
-      * 
+      *
       * \warning the result is undefined if \c *this contains NaN.
       *
       * Example: \include PartialRedux_maxCoeff.cpp
@@ -531,7 +531,7 @@ template<typename ExpressionType, int Direction> class VectorwiseOp
       EIGEN_STATIC_ASSERT_SAME_XPR_KIND(ExpressionType, OtherDerived)
       return m_matrix / extendedTo(other.derived());
     }
-    
+
     /** \returns an expression where each column of row of the referenced matrix are normalized.
       * The referenced matrix is \b not modified.
       * \sa MatrixBase::normalized(), normalize()
@@ -540,8 +540,8 @@ template<typename ExpressionType, int Direction> class VectorwiseOp
                   const ExpressionTypeNestedCleaned,
                   const typename OppositeExtendedType<typename ReturnType<internal::member_norm,RealScalar>::Type>::Type>
     normalized() const { return m_matrix.cwiseQuotient(extendedToOpposite(this->norm())); }
-    
-    
+
+
     /** Normalize in-place each row or columns of the referenced matrix.
       * \sa MatrixBase::normalize(), normalized()
       */

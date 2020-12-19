@@ -76,7 +76,7 @@ void processMassParameters(std::vector<std::string> args){
         << "Exiting..." << "\n";
         exit(1);
     };
-    
+
 } // ends processMassParameters()
 
 
@@ -92,9 +92,9 @@ string processAccuracyParameters(vector<string> args){
         accSetting = "DEF";
     }
     else if(args.size() == 2){
-        
+
         string tempSetting = toUpperCase(args[1]);
-        
+
         if(tempSetting == "OCC" ||
            tempSetting == "FCC" ||
            tempSetting == "ACC" ||
@@ -123,18 +123,18 @@ string processAccuracyParameters(vector<string> args){
             << "Available options: FCC ACC AQC DDH TIH ICH ICC RIH S4 S10 S20 S30 S40 S50 S100 S500 S1000 S10000 HI MED LOW DEF\n"
             << "Exiting..." << "\n";
             exit(1);
-            
+
         };
-        
+
     }
     else{
         cerr << "Error: -ha option accepts at most 1 argument but " << args.size() - 1 << " were provided." << "\n"
         << "Exiting..." << "\n";
         exit(1);
     }
-    
+
     return accSetting;
-    
+
 }
 
 /* Analyze visualization settings for writing output files */

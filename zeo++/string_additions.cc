@@ -18,8 +18,8 @@ int strCmpList(vector<string> list,string str){
   return -1;
 }
 
-/** Function that will split a string based on the 
-	delimiters used if there are two delimeters in a 
+/** Function that will split a string based on the
+	delimiters used if there are two delimeters in a
 	row it will skip them **/
 vector<string> split(string line, string delimeter){
   vector<string> token;
@@ -92,4 +92,3 @@ string intAsString(int number) {
    std::string val = sin.str();
    return val;
 }
-

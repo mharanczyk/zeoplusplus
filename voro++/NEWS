@@ -157,7 +157,7 @@ Version 0.4 (August 30th 2011)
   link to particles as they are stored, allowing for the Voronoi computation to
   be carried out in the same order as the input file. The core computation
   routines can be run with a variety of different loops, and a new example
-  "loops.cc" is provided to demonstrate this. 
+  "loops.cc" is provided to demonstrate this.
 * The order of parameters to certain functions have been changed to take
   advantage of the C++ default parameter mechanism wherever possible
 * The container and container_poly classes are now derived from a base class,
@@ -169,7 +169,7 @@ Version 0.4 (August 30th 2011)
   common base class, rather than being different instances of a template. This
   simplifies the code and stops common routines from being duplicated. The core
   nplane routine is now a function template that can be instantiated on the
-  parent class itself. 
+  parent class itself.
 * All output routines have been switched from using C++ iostreams to using the C
   cstdio library. This has been done for increased performance. In general the
   cstdio routines run significantly faster than the comparable iostream

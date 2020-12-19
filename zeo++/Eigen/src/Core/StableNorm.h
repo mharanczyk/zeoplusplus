@@ -10,7 +10,7 @@
 #ifndef EIGEN_STABLENORM_H
 #define EIGEN_STABLENORM_H
 
-namespace Eigen { 
+namespace Eigen {
 
 namespace internal {
 
@@ -19,7 +19,7 @@ inline void stable_norm_kernel(const ExpressionType& bl, Scalar& ssq, Scalar& sc
 {
   using std::max;
   Scalar maxCoeff = bl.cwiseAbs().maxCoeff();
-  
+
   if (maxCoeff>scale)
   {
     ssq = ssq * numext::abs2(scale/maxCoeff);
@@ -35,10 +35,10 @@ inline void stable_norm_kernel(const ExpressionType& bl, Scalar& ssq, Scalar& sc
       invScale = tmp;
     }
   }
-  
+
   // TODO if the maxCoeff is much much smaller than the current scale,
   // then we can neglect this sub vector
-  if(scale>Scalar(0)) // if scale==0, then bl is 0 
+  if(scale>Scalar(0)) // if scale==0, then bl is 0
     ssq += (bl*invScale).squaredNorm();
 }
 
@@ -46,7 +46,7 @@ template<typename Derived>
 inline typename NumTraits<typename traits<Derived>::Scalar>::Real
 blueNorm_impl(const EigenBase<Derived>& _vec)
 {
-  typedef typename Derived::RealScalar RealScalar;  
+  typedef typename Derived::RealScalar RealScalar;
   typedef typename Derived::Index Index;
   using std::pow;
   using std::min;

@@ -13,7 +13,7 @@
 #ifndef EIGEN_LDLT_H
 #define EIGEN_LDLT_H
 
-namespace Eigen { 
+namespace Eigen {
 
 namespace internal {
   template<typename MatrixType, int UpLo> struct LDLT_Traits;
@@ -72,11 +72,11 @@ template<typename _MatrixType, int _UpLo> class LDLT
       * The default constructor is useful in cases in which the user intends to
       * perform decompositions via LDLT::compute(const MatrixType&).
       */
-    LDLT() 
-      : m_matrix(), 
-        m_transpositions(), 
+    LDLT()
+      : m_matrix(),
+        m_transpositions(),
         m_sign(internal::ZeroSign),
-        m_isInitialized(false) 
+        m_isInitialized(false)
     {}
 
     /** \brief Default Constructor with memory preallocation
@@ -151,7 +151,7 @@ template<typename _MatrixType, int _UpLo> class LDLT
       eigen_assert(m_isInitialized && "LDLT is not initialized.");
       return m_sign == internal::PositiveSemiDef || m_sign == internal::ZeroSign;
     }
-    
+
     #ifdef EIGEN2_SUPPORT
     inline bool isPositiveDefinite() const
     {
@@ -173,7 +173,7 @@ template<typename _MatrixType, int _UpLo> class LDLT
       * \note_about_checking_solutions
       *
       * More precisely, this method solves \f$ A x = b \f$ using the decomposition \f$ A = P^T L D L^* P \f$
-      * by solving the systems \f$ P^T y_1 = b \f$, \f$ L y_2 = y_1 \f$, \f$ D y_3 = y_2 \f$, 
+      * by solving the systems \f$ P^T y_1 = b \f$, \f$ L y_2 = y_1 \f$, \f$ D y_3 = y_2 \f$,
       * \f$ L^* y_4 = y_3 \f$ and \f$ P x = y_4 \f$ in succession. If the matrix \f$ A \f$ is singular, then
       * \f$ D \f$ will also be singular (all the other matrices are invertible). In that case, the
       * least-square solution of \f$ D y_3 = y_2 \f$ is computed. This does not mean that this function
@@ -235,7 +235,7 @@ template<typename _MatrixType, int _UpLo> class LDLT
     }
 
   protected:
-    
+
     static void check_template_parameters()
     {
       EIGEN_STATIC_ASSERT_NON_INTEGER(Scalar);
@@ -321,7 +321,7 @@ template<> struct ldlt_inplace<Lower>
         if(rs>0)
           A21.noalias() -= A20 * temp.head(k);
       }
-      
+
       // In some previous versions of Eigen (e.g., 3.2.1), the scaling was omitted if the pivot
       // was smaller than the cutoff value. However, soince LDLT is not rank-revealing
       // we should only make sure we do not introduce INF or NaN values.
@@ -440,7 +440,7 @@ template<typename MatrixType, int _UpLo>
 LDLT<MatrixType,_UpLo>& LDLT<MatrixType,_UpLo>::compute(const MatrixType& a)
 {
   check_template_parameters();
-  
+
   eigen_assert(a.rows()==a.cols());
   const Index size = a.rows();
 
@@ -472,7 +472,7 @@ LDLT<MatrixType,_UpLo>& LDLT<MatrixType,_UpLo>::rankUpdate(const MatrixBase<Deri
     eigen_assert(m_matrix.rows()==size);
   }
   else
-  {    
+  {
     m_matrix.resize(size,size);
     m_matrix.setZero();
     m_transpositions.resize(size);
@@ -519,7 +519,7 @@ struct solve_retval<LDLT<_MatrixType,_UpLo>, Rhs>
     // diagonal element is not well justified and to numerical issues in some cases.
     // Moreover, Lapack's xSYTRS routines use 0 for the tolerance.
     RealScalar tolerance = RealScalar(1) / NumTraits<RealScalar>::highest();
-    
+
     for (Index i = 0; i < vectorD.size(); ++i) {
       if(abs(vectorD(i)) > tolerance)
         dst.row(i) /= vectorD(i);

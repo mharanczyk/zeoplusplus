@@ -48,7 +48,7 @@ gen_single <- function(name_path, output_name, custom_par)
 	check_true = read_files(name_path, var_name)
 	if (check_true == TRUE){
 		variable = get(var_name)
-		if (custom_par == "N" || custom_par == "n"){ 
+		if (custom_par == "N" || custom_par == "n"){
 			main = paste(var_name, "PSD Distribution")
 			xmax = get_length(variable)
 			ymax = get_height(variable)
@@ -58,4 +58,3 @@ gen_single <- function(name_path, output_name, custom_par)
 		plot_distr(variable, plot_parameters, output_name)
 	}
 }
-

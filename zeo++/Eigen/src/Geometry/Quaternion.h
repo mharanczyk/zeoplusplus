@@ -10,7 +10,7 @@
 
 #ifndef EIGEN_QUATERNION_H
 #define EIGEN_QUATERNION_H
-namespace Eigen { 
+namespace Eigen {
 
 
 /***************************************************************************
@@ -280,7 +280,7 @@ public:
 
 protected:
   Coefficients m_coeffs;
-  
+
 #ifndef EIGEN_PARSED_BY_DOXYGEN
     static EIGEN_STRONG_INLINE void _check_template_params()
     {
@@ -673,11 +673,11 @@ QuaternionBase<Derived>::angularDistance(const QuaternionBase<OtherDerived>& oth
   return Scalar(2) * atan2( d.vec().norm(), abs(d.w()) );
 }
 
- 
-    
+
+
 /** \returns the spherical linear interpolation between the two quaternions
   * \c *this and \a other at the parameter \a t in [0;1].
-  * 
+  *
   * This represents an interpolation for a constant motion between \c *this and \a other,
   * see also http://en.wikipedia.org/wiki/Slerp.
   */

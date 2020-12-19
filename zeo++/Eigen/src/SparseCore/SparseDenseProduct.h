@@ -10,7 +10,7 @@
 #ifndef EIGEN_SPARSEDENSEPRODUCT_H
 #define EIGEN_SPARSEDENSEPRODUCT_H
 
-namespace Eigen { 
+namespace Eigen {
 
 template<typename Lhs, typename Rhs, int InnerSize> struct SparseDenseProductReturnType
 {
@@ -134,16 +134,16 @@ class SparseDenseOuterProduct<Lhs,Rhs,Transpose>::InnerIterator : public _LhsNes
     {
       return rhs.coeff(outer);
     }
-    
+
     static Scalar get(const _RhsNested &rhs, Index outer, Sparse = Sparse())
     {
       typename Traits::_RhsNested::InnerIterator it(rhs, outer);
       if (it && it.index()==0)
         return it.value();
-      
+
       return Scalar(0);
     }
-    
+
     Index m_outer;
     Scalar m_factor;
 };

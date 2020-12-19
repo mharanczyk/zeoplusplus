@@ -17,7 +17,6 @@ cdef class DijkstraNetwork:
         dijkstranet = DijkstraNetwork()
         c_vornet = (<VoronoiNetwork?>vornet).thisptr
         buildDijkstraNetwork(c_vornet, dijkstranet.thisptr)
-        return dijkstranet 
+        return dijkstranet
     def __dealloc__(self):
         del self.thisptr
-

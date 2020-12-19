@@ -12,7 +12,7 @@ the numerical result as a double**/
 float symbCalc(string expresion,float x,float y,float z){
   float val=0;
   vector<string> numbers = split(expresion,"+-/*");
-  
+
   //This will replace all x,y,z with there "value"
   for (unsigned int i=0;i<numbers.size();i++){
     if (numbers[i].compare("x")==0){
@@ -30,9 +30,9 @@ float symbCalc(string expresion,float x,float y,float z){
   for (unsigned int i=0;i<numbers.size();i++){
     nums.push_back(convertToDouble(numbers[i]));
   }
-  
+
   vector<string> opperator = split(expresion,"1234567890.xyz");
-  
+
   //To get rid of the +- before the expresion
   if (opperator.size() == numbers.size()){
     if (opperator[0].compare("-")==0){
@@ -40,14 +40,14 @@ float symbCalc(string expresion,float x,float y,float z){
     }
     opperator.erase(opperator.begin());
   }
-  
+
   //deal with - signs
   for (unsigned int i=0;i<opperator.size();i++){
     if (opperator[i].compare("-")==0){
       nums[i+1]=-nums[i+1]; //negate the element
     }
   }
-  
+
   //deal with * signs
   for (unsigned int i=0;i<opperator.size();i++){
     if (opperator[i].compare("*")==0){
@@ -62,7 +62,7 @@ float symbCalc(string expresion,float x,float y,float z){
     if (opperator[i].compare("/")==0){
       nums[i]=nums[i]/nums[i+1];
       opperator.erase(opperator.begin()+i);
-      nums.erase(nums.begin()+i+1); //I chose i+1 becuase i stored value in i  
+      nums.erase(nums.begin()+i+1); //I chose i+1 becuase i stored value in i
     }
   }
 
@@ -70,7 +70,6 @@ float symbCalc(string expresion,float x,float y,float z){
   for (unsigned int i=0;i<nums.size();i++){
     val = val + nums[i];
   }
-  
+
   return val;
 }
-

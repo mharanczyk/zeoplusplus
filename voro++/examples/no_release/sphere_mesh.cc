@@ -149,7 +149,7 @@ int main() {
 			q[l*nface+i+1]=q[l*nface+j];
 			q[l*nface+j]=o;
 		}
-	
+
 		// Reverse all connections if the have the wrong handedness
 		j=3*l;k=3*q[l*nface];o=3*q[l*nface+1];
 		x=p[j]-p[k];dx=p[j]-p[o];
@@ -176,7 +176,7 @@ int main() {
 				mpi[l]=k;
 				mp[k]=l++;
 			}
-			if(mp[i]<mp[k]) 
+			if(mp[i]<mp[k])
 				fprintf(ff,"%g %g %g\n%g %g %g\n\n\n",p[3*i],p[3*i+1],p[3*i+2],p[3*k],p[3*k+1],p[3*k+2]);
 		}
 		o++;
@@ -185,7 +185,7 @@ int main() {
 
 	// Save binary representation of the mesh
 	FILE *fb=safe_fopen("sphere_mesh.bin","wb");
-	
+
 	// Write header
 	int kk[3],sz=tote+particles+2,*red(new int[sz]),*rp=red;
 	*kk=1;kk[1]=sz;kk[2]=3*particles;

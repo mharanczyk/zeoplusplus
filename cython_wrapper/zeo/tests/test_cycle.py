@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 import sys
 from zeo.netstorage import AtomNetwork
 from zeo.cycle import compute_centroid_4cycles, compute_face_centers
 
-atmnet = AtomNetwork.read_from_CSSR("MgO.cssr", rad_file="MgO.rad")
+atmnet = AtomNetwork.read_from_CSSR('MgO.cssr', rad_file='MgO.rad')
 compute_face_centers(atmnet)
 sys.exit()
 
@@ -18,12 +19,10 @@ while i < len(oh_interstitials):
         i = i+1
     else:
         oh_interstitials.pop(i)
-        
+
 print len(oh_interstitials)
 for inter in oh_interstitials:
     node_ids = inter['ids']
     print node_ids
     coord = inter['coords']
     print coord.x, coord.y, coord.z
-
-

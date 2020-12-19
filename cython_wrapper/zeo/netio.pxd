@@ -36,4 +36,3 @@ cdef extern from '../../networkio.h':
     cdef bint writeToMOPAC(char *filename, ATOM_NETWORK *cell, bint is_supercell)
 
     cdef bint writeVornetToXYZ "writeToXYZ"(char *filename, VORONOI_NETWORK*, double)
-

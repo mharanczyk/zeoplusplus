@@ -1,4 +1,4 @@
-/* 
+/*
  *  Time-dependent PLD and Histogram tool
  *
  *  added by M. Haranczyk
@@ -56,7 +56,7 @@ vector<int> histogram(vector <double> valuelist){
    {
    cerr << "Histogram sanity check failed, exit\n";
    abort();
-   }; 
+   };
 
  return histogram;
 }
@@ -72,13 +72,13 @@ pair<double,double> normal_distr_parameters(vector <double> valuelist){
     mean_stddev.first += valuelist[i];
     };
  mean_stddev.first = mean_stddev.first / (double) valuelist.size();
- 
+
  mean_stddev.second = 0.0;
 
  for(unsigned int i=0; i<valuelist.size(); i++)
     {
     mean_stddev.second += ( (valuelist[i] - mean_stddev.first)*(valuelist[i] - mean_stddev.first) );
-    }; 
+    };
  mean_stddev.second = mean_stddev.second /(double) valuelist.size();
 
  mean_stddev.second = sqrt(mean_stddev.second);
@@ -91,7 +91,7 @@ int main(int argc, char * argv[]){
 
  if(argc != 4){
 
- cout << "This tool requires 2 arguments: filename1 filename2 filename3\n" 
+ cout << "This tool requires 2 arguments: filename1 filename2 filename3\n"
       << "    filename1 is .pld file that defines topology used in analysis\n"
       << "    filename2 is a file with a list of .pld files to be analyzed\n"
       << "    filename3 is one specifying types of cages (5th column with type id)"
@@ -110,7 +110,7 @@ int main(int argc, char * argv[]){
  listfilename = argv[2];
  poreidfile = argv[3];
 
-// bin_size = atof(argv[3]); 
+// bin_size = atof(argv[3]);
  bin_size = 0.1;           // @@@@@@@@@@@@@@@@@2  overridding to match NBINS
 
  cout << "Proceeding with arguments: " << summaryfilename << " " << listfilename << " " << bin_size << "\n";
@@ -132,7 +132,7 @@ int main(int argc, char * argv[]){
    DiTable.resize(n_segments, -1);
    vector<int> vinttemp;
    vinttemp.resize(n_segments, -1);
-   for(int i=0; i<n_segments; i++) 
+   for(int i=0; i<n_segments; i++)
      {
      PLDTable.push_back(DiTable);
      PLDActiveTable.push_back(vinttemp);
@@ -168,8 +168,8 @@ int main(int argc, char * argv[]){
        if(d>1.0) { PLDActiveTable.at(i).at(j) = 1;} else { PLDActiveTable.at(i).at(j) = 0;};
        };
      getline(sumfile, buffer); // reading end of line
-     };   
-  
+     };
+
    };
 
  /* double check connectivity - pore type connections */
@@ -216,7 +216,7 @@ int main(int argc, char * argv[]){
       };
 
     nfiles++;
- 
+
     fstream input;
     input.open(inputfilename.c_str());
     if(input.is_open()==false){
@@ -232,7 +232,7 @@ int main(int argc, char * argv[]){
         cerr << "Number of segments in this frame is wrong\n";
         return 1;
         };
-     
+
       getline(input, buffer);
 
       input >> buffer; // skipping a string
@@ -240,7 +240,7 @@ int main(int argc, char * argv[]){
         {
         input >> DiTable[i];
         };
- 
+
       TDDiTable.push_back(DiTable);
 
       getline(input, buffer); // skipping sgment Di line
@@ -255,7 +255,7 @@ int main(int argc, char * argv[]){
         getline(input, buffer); // reading end of line
         };
 
-      TDPLDTable.push_back(PLDTable);      
+      TDPLDTable.push_back(PLDTable);
 
       input.close();
       }; // ends input.is_open() for reading-in the current frame
@@ -294,7 +294,7 @@ int main(int argc, char * argv[]){
 
         for(int j=i+1; j<n_segments; j++)
            {
-           if(PLDActiveTable.at(i).at(j)==1) 
+           if(PLDActiveTable.at(i).at(j)==1)
              {
              dfvalues.push_back(TDPLDTable[k].at(i).at(j));
 
@@ -305,17 +305,17 @@ int main(int argc, char * argv[]){
              {
              if(TDPLDTable[k].at(i).at(j)>0)
                 {
-//                cerr << "Unusual segment connection detected " << i << "  " << j << " with diameter " << TDPLDTable[k].at(i).at(j) << "\n"; 
+//                cerr << "Unusual segment connection detected " << i << "  " << j << " with diameter " << TDPLDTable[k].at(i).at(j) << "\n";
                 dfnonconvalues.push_back(TDPLDTable[k].at(i).at(j));
                 };
              };
-           
+
            };
         };
 
      };
 
-  cout << "Sizes of vectors: divalue, dfvalues and dfnonconvalues " << di1values.size() 
+  cout << "Sizes of vectors: divalue, dfvalues and dfnonconvalues " << di1values.size()
        << "     " << dfvalues.size() << "   " << dfnonconvalues.size() << "\n";
 
   vector<int> di1hist = histogram(di1values);
@@ -349,7 +349,7 @@ int main(int argc, char * argv[]){
     {
     if(i<81)
     cout << i*bin_size << "   " << di1hist[i]  << "    "<< dfhist[i] << "       ";
-    cout << double(di1hist[i])/double(di1values.size()) << "    " 
+    cout << double(di1hist[i])/double(di1values.size()) << "    "
          << double(dfhist[i])/double(dfvalues.size()) << "    "
          << double(dfnonconhist[i])/double(dfvalues.size()) << "\n";
     };
@@ -391,12 +391,3 @@ int main(int argc, char * argv[]){
  }; // ends if(argc!=4
 
 }
-
-
-
-
-
-
-
-
-

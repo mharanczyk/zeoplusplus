@@ -11,7 +11,7 @@ using namespace std;
  * information about the faces, edges and nodes in each cell and one that only
  * stores information about the node coordinates. The first definition, VOR_CELL, is used
  * when visualization is important. The other, BASIC_VCELL, is used in surface area/volume
- * calculations to decrease overhead time. 
+ * calculations to decrease overhead time.
  *
  * The file also contains all of the functions required to visualize an ATOM_NETWORK
  * and VORONOI_NETWORK using the ZeoVis tool.
@@ -56,7 +56,7 @@ vector< pair<Point, Point> > VOR_FACE::getEdgeCoords() {
   return results;
 }
 
-/* Using the provided ouput stream, write the geometric objects that would fill the Voronoi 
+/* Using the provided ouput stream, write the geometric objects that would fill the Voronoi
  * face when drawn.   */
 void VOR_FACE::writeVMDFilled(fstream &output){
   Point p1 = orderedVertices[0];
@@ -65,9 +65,9 @@ void VOR_FACE::writeVMDFilled(fstream &output){
   while(n3 < orderedVertices.size()){
     Point p2 = orderedVertices.at(n2);
     Point p3 = orderedVertices.at(n3);
-    output << "{triangle {" 
-	   << p1[0] << " " << p1[1] << " " << p1[2] << "} {" 
-	   << p2[0] << " " << p2[1] << " " << p2[2] << "} {" 
+    output << "{triangle {"
+	   << p1[0] << " " << p1[1] << " " << p1[2] << "} {"
+	   << p2[0] << " " << p2[1] << " " << p2[2] << "} {"
 	   << p3[0] << " " << p3[1] << " " << p3[2] << "} }" << "\n";
     n2++;
     n3++;
@@ -92,8 +92,8 @@ VOR_CELL::VOR_CELL(){
 void VOR_CELL::addNode(int nodeID, Point coord){
   if(vertexIDs.find(coord) == vertexIDs.end()){
     idMappings.insert(pair<int,int> (numVertices, nodeID));
-    
-    map<int, vector<int> >::iterator revMap = reverseIDMappings.find(nodeID);      
+
+    map<int, vector<int> >::iterator revMap = reverseIDMappings.find(nodeID);
     if(revMap == reverseIDMappings.end()){
       vector<int> newList = vector<int> ();
       newList.push_back(numVertices);
@@ -108,7 +108,7 @@ void VOR_CELL::addNode(int nodeID, Point coord){
     numVertices++;
   }
 }
-  
+
 /* Add the edge that spans the two points if it has not yet been added.*/
 void VOR_CELL::addEdge(Point from, Point to){
   map<Point,int>::iterator iter1 = vertexIDs.find(from);
@@ -120,12 +120,12 @@ void VOR_CELL::addEdge(Point from, Point to){
 	 << "Exiting..." << "\n";
     exit(1);
   }
-  
+
   if(edgeConnections[iter2->second].find(iter1->second) == edgeConnections[iter2->second].end())
     edgeConnections[iter1->second].insert(iter2->second);
 }
 
-/* Add the face to the VOR_CELL. Adds all edges and vertices that have not yet been added 
+/* Add the face to the VOR_CELL. Adds all edges and vertices that have not yet been added
  *  to the cell.*/
 void VOR_CELL::addFace(VOR_FACE face) {
   faces.push_back(face);
@@ -147,7 +147,7 @@ vector<Point> VOR_CELL::getNodeCoords(int nodeID){
   map<int, vector<int> >::iterator iter = reverseIDMappings.find(nodeID);
   if(iter == reverseIDMappings.end()){
     cerr << "Error: Node #" << nodeID << " isn't in this Voronoi cell." << "\n";
-    cerr << "Cell contains these nodes: "; 
+    cerr << "Cell contains these nodes: ";
     map<int, vector<int> >::iterator nIter = reverseIDMappings.begin();
     while(nIter != reverseIDMappings.end()){
       cerr << nIter->first << " ";
@@ -166,7 +166,7 @@ vector<Point> VOR_CELL::getNodeCoords(int nodeID){
 }
 
 /* Using the underlying list of faces, write the set of commands necessary
- *  to fill the VOR_CELL's exterior to the provided output stream. Labels 
+ *  to fill the VOR_CELL's exterior to the provided output stream. Labels
  *  the corresponding commands as faces(n).*/
 void VOR_CELL::writeVMDFilled(fstream &output, int n){
   output << "set faces(" << n << ") {" << "\n"
@@ -177,20 +177,20 @@ void VOR_CELL::writeVMDFilled(fstream &output, int n){
   output << "}" << "\n";
 }
 
-/* Using the set of nodes and edges, write the set of commands necessary to 
- *  draw the outline of the VOR_CELL to the provided output stream. Labels 
+/* Using the set of nodes and edges, write the set of commands necessary to
+ *  draw the outline of the VOR_CELL to the provided output stream. Labels
  *  the corresponding commands as vorcells(n)*/
 void VOR_CELL::writeVMDOutlined(fstream &output, int n){
   output << "set vorcells(" << n <<") {" << "\n";
-  
+
   // Iterate over all nodes in VOR_CELL
   for(int i = 0; i < numVertices; i++){
     Point curPoint = vertexCoords.find(i)->second;
     int nodeID = idMappings.find(i)->second;
-    output << "{color $nodeColors(" << nodeID << ") }" << "\n"; 
+    output << "{color $nodeColors(" << nodeID << ") }" << "\n";
     output << "{sphere {" << curPoint[0] << " " << curPoint[1] << " " << curPoint[2] << "} radius $nodeRadii(" << nodeID << ") resolution $sphere_resolution}" << "\n";
   }
-  
+
   // Iterate over all edges in VOR_CELL
   output << "{color $vorcellColors(" << n << ") }" << "\n";
   for(int i = 0; i < numVertices; i++){
@@ -198,8 +198,8 @@ void VOR_CELL::writeVMDOutlined(fstream &output, int n){
     set<int>::iterator vertexIter = edgeConnections[i].begin();
     while(vertexIter != edgeConnections[i].end()){
       Point p2 = vertexCoords[*vertexIter];
-	output << "{line {" 
-	       << p1[0] << " " << p1[1] << " " << p1[2] << "} {" 
+	output << "{line {"
+	       << p1[0] << " " << p1[1] << " " << p1[2] << "} {"
 	       << p2[0] << " " << p2[1] << " " << p2[2] << "} width 1}" << "\n";
 	vertexIter++;
     }
@@ -242,7 +242,7 @@ int BASIC_VCELL::getNumNodes(){
 Point BASIC_VCELL::getNodeCoord(int index){
   return nodeCoords[index];
 }
-  
+
 int BASIC_VCELL::getNodeID(int index){
   return nodeIDs[index];
 }
@@ -255,24 +255,24 @@ void BASIC_VCELL::removeOverlappedNodes(int atomID, ATOM_NETWORK *atmnet, double
   ATOM center = atmnet->atoms[atomID];
   for(unsigned int i = 0; i < nodeCoords.size(); i++){
     Point node  = nodeCoords[i];
-    if(calcEuclideanDistance(node[0], node[1], node[2], center.x, center.y, center.z) >= 
+    if(calcEuclideanDistance(node[0], node[1], node[2], center.x, center.y, center.z) >=
 		(center.radius + r_probe)){
       newIDs.push_back(nodeIDs[i]);
       newCoords.push_back(nodeCoords[i]);
     }
   }
-  nodeIDs = newIDs; 
+  nodeIDs = newIDs;
   nodeCoords = newCoords;
 }
 
 void BASIC_VCELL::writeToVMD(fstream &output, int n){
   output << "set nodecells(" << n <<") {" << "\n";
-  
+
   // Iterate over all nodes in the cell
   for(unsigned int i = 0; i < nodeCoords.size(); i++){
     Point curPoint = nodeCoords[i];
     int nodeID = nodeIDs[i];
-    output << "{color $nodeColors(" << nodeID << ") }" << "\n"; 
+    output << "{color $nodeColors(" << nodeID << ") }" << "\n";
     output << "{sphere {" << curPoint[0] << " " << curPoint[1] << " " << curPoint[2]
            << "} radius $nodeRadii(" << nodeID << ") resolution $sphere_resolution}" << "\n";
   }
@@ -290,7 +290,7 @@ void writeVMDUC(fstream &output, ATOM_NETWORK *atmnet){
   XYZ v_a = atmnet->v_a;
   XYZ v_b = atmnet->v_b;
   XYZ v_c = atmnet->v_c;
-  
+
   output << "set unitcells(0) {" << "\n"
 	 << "{color $unitcellColors(0)}" << "\n";
   DELTA_POS directions [3] = {DELTA_POS(1,0,0), DELTA_POS(0,1,0), DELTA_POS(0,0,1)};
@@ -303,12 +303,12 @@ void writeVMDUC(fstream &output, ATOM_NETWORK *atmnet){
 	for(int c = 0; c < 2; c++){
 	  if((limit.x < a) || (limit.y < b) || (limit.z < c))
 	    continue;
-	  
+
 	  // Calculate starting coordinate
 	  double x1 = v_a.x *a + v_b.x*b + v_c.x*c;
 	  double y1 = v_a.y *a + v_b.y*b + v_c.y*c;
 	  double z1 = v_a.z *a + v_b.z*b + v_c.z*c;
-	  
+
 	  // Calculate ending coordinate
 	  double x2 = x1 + v_a.x*direction.x + v_b.x*direction.y + v_c.x*direction.z;
 	  double y2 = y1 + v_a.y*direction.x + v_b.y*direction.y + v_c.y*direction.z;
@@ -324,8 +324,8 @@ void writeVMDUC(fstream &output, ATOM_NETWORK *atmnet){
   output << "}" << "\n";
 }
 
-/* Writes the commands to the provided output stream necessary to display 
- * the entire Voronoi network. Labels the Voronoi network as vornets(0). 
+/* Writes the commands to the provided output stream necessary to display
+ * the entire Voronoi network. Labels the Voronoi network as vornets(0).
  */
 void writeVornet(fstream &output, ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet){
   output << "set vornets(0) {" << "\n";
@@ -334,7 +334,7 @@ void writeVornet(fstream &output, ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet)
   for(unsigned int i = 0; i < vornet->nodes.size(); i++){
     VOR_NODE curNode = vornet->nodes.at(i);
     output << "{color $nodeColors("<< i << ") }" << "\n"
-	       << "{sphere {" << curNode.x << " " << curNode.y << " " << curNode.z 
+	       << "{sphere {" << curNode.x << " " << curNode.y << " " << curNode.z
 	       << "} radius $nodeRadii(" << i << ") resolution $sphere_resolution}" << "\n";
   }
 
@@ -347,9 +347,9 @@ void writeVornet(fstream &output, ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet)
     VOR_NODE endNode = vornet->nodes.at(curEdge.to);
     Point end = Point(endNode.x, endNode.y, endNode.z);
     atmnet->translatePoint(&end, curEdge.delta_uc_x, curEdge.delta_uc_y, curEdge.delta_uc_z);
-    output << "{line {" 
-	   << start[0] << " " << start[1] << " " << start[2] << "} " 
-	   << "{" << end[0] << " " << end[1] << " " << end[2] << "}" 
+    output << "{line {"
+	   << start[0] << " " << start[1] << " " << start[2] << "} "
+	   << "{" << end[0] << " " << end[1] << " " << end[2] << "}"
 	   << "}" << "\n";
   }
   output << "}" << "\n";
@@ -364,8 +364,8 @@ void writeVMDAtomsAndNodes(fstream &output, ATOM_NETWORK *atmnet, VORONOI_NETWOR
     ATOM curAtom = atmnet->atoms.at(i);
     output << "set atoms(" << i << ") {" << "\n"
 	       << "{color $atomColors(" << i << ") }" << "\n"
-	       << "{sphere {" << curAtom.x << " " << curAtom.y << " " << curAtom.z 
-	       << "} radius $atomRadii(" << i << ") resolution $sphere_resolution}" 
+	       << "{sphere {" << curAtom.x << " " << curAtom.y << " " << curAtom.z
+	       << "} radius $atomRadii(" << i << ") resolution $sphere_resolution}"
 	       << "\n" << "}" << "\n";
     output << "set atomRadii(" << i << ") " << curAtom.radius << "\n";
   }
@@ -375,15 +375,15 @@ void writeVMDAtomsAndNodes(fstream &output, ATOM_NETWORK *atmnet, VORONOI_NETWOR
     VOR_NODE curNode = vornet->nodes.at(i);
     output << "set nodes(" << i << ") {" << "\n"
 	   << "{color $nodeColors("<< i << ") }" << "\n"
-	   << "{sphere {" << curNode.x << " " << curNode.y << " " << curNode.z 
+	   << "{sphere {" << curNode.x << " " << curNode.y << " " << curNode.z
 	   << "} radius $nodeRadii(" << i <<  ") resolution $sphere_resolution}" << "\n"
 	   << "}" << "\n";
     output << "set nodeRadii(" << i << ") " << curNode.rad_stat_sphere << "\n";
-  }    
+  }
 }
 
 /* Writes the commands to the provided output stream for ZeoVis
- * that establishes the number of each component as well as 
+ * that establishes the number of each component as well as
  * unitcell vector information.
  */
 void writeVMDEnvVars(fstream &output,  ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet){
@@ -395,9 +395,9 @@ void writeVMDEnvVars(fstream &output,  ATOM_NETWORK *atmnet, VORONOI_NETWORK *vo
   output << "set num_atoms " << atmnet->numAtoms << "\n";
   output << "set num_unitcells 1" << "\n";
   output << "set num_channels 0" << "\n";
-  
+
   // Write unitcell vector information
-  output << "set uc_a_vector {" << atmnet->v_a.x << " " << atmnet->v_a.y 
+  output << "set uc_a_vector {" << atmnet->v_a.x << " " << atmnet->v_a.y
          << " " << atmnet->v_a.z << "}" << "\n";
   output << "set uc_b_vector {" << atmnet->v_b.x << " " << atmnet->v_b.y
          << " " << atmnet->v_b.z << "}" << "\n";
@@ -409,8 +409,8 @@ void writeVMDEnvVars(fstream &output,  ATOM_NETWORK *atmnet, VORONOI_NETWORK *vo
 
 
 /* Writes all of the information necessary to properly visualize the Voronoi
- * and atom network in ZeoVis to the file referred to by filename. Information 
- * includes atoms, nodes, the unitcell, the voronoi network, 
+ * and atom network in ZeoVis to the file referred to by filename. Information
+ * includes atoms, nodes, the unitcell, the voronoi network,
  * voronoi cells (outlined and filled) and environment variables.
  */
 void writeZeoVisFile(char *filename, vector<VOR_CELL> *cells,
@@ -425,7 +425,7 @@ void writeZeoVisFile(char *filename, vector<VOR_CELL> *cells,
   }
   else{
     cout << "Writing ZeoVis information to " << filename << "\n";
-    
+
     writeVMDEnvVars(output, atmnet, vornet);
     writeVMDAtomsAndNodes(output, atmnet, vornet);
     writeVornet(output, atmnet, vornet);
@@ -444,9 +444,9 @@ void writeZeoVisFile(char *filename, vector<VOR_CELL> *cells,
   output.close();
 }
 
-/* Identical to writeZeoVisFile except that information about the basic voronoi 
+/* Identical to writeZeoVisFile except that information about the basic voronoi
  * cells is also outputted. */
-void writeSpecialZeoVisFile(char *filename, vector<VOR_CELL> *cells, 
+void writeSpecialZeoVisFile(char *filename, vector<VOR_CELL> *cells,
   ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet, vector<BASIC_VCELL> &vcells)
 {
   fstream output;
@@ -458,7 +458,7 @@ void writeSpecialZeoVisFile(char *filename, vector<VOR_CELL> *cells,
   }
   else{
     cout << "Writing ZeoVis information to " << filename << "\n";
-    
+
     writeVMDEnvVars(output, atmnet, vornet);
     writeVMDAtomsAndNodes(output, atmnet, vornet);
     writeVornet(output, atmnet, vornet);
@@ -470,7 +470,7 @@ void writeSpecialZeoVisFile(char *filename, vector<VOR_CELL> *cells,
     }
     output << "set num_faces " << cells->size() << "\n";
     output << "set num_channels " << 0 << "\n";
-    
+
     for(unsigned int i = 0; i < vcells.size(); i++){
       vcells[i].writeToVMD(output, i);
     }
@@ -478,4 +478,3 @@ void writeSpecialZeoVisFile(char *filename, vector<VOR_CELL> *cells,
   }
   output.close();
 }
-

@@ -97,4 +97,3 @@ string toLowerCase(string s);
 vector<XYZ> get_periodic_images_of_uc_abc_position(XYZ e_abc);
 
 #endif
-

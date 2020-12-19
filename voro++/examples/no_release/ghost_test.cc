@@ -55,7 +55,7 @@ int main() {
 
 	// Compute a single ghost cell
 	if(con.compute_ghost_cell(c,1.56,0.67,0,1)) c.draw_gnuplot(1.56,0.67,0,fp);
-	
+
 	// Close ghost cell file
 	fclose(fp);
 

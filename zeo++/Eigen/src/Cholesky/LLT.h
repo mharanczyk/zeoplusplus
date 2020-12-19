@@ -10,7 +10,7 @@
 #ifndef EIGEN_LLT_H
 #define EIGEN_LLT_H
 
-namespace Eigen { 
+namespace Eigen {
 
 namespace internal{
 template<typename MatrixType, int UpLo> struct LLT_Traits;
@@ -40,7 +40,7 @@ template<typename MatrixType, int UpLo> struct LLT_Traits;
   *
   * Example: \include LLT_example.cpp
   * Output: \verbinclude LLT_example.out
-  *    
+  *
   * \sa MatrixBase::llt(), class LDLT
   */
  /* HEY THIS DOX IS DISABLED BECAUSE THERE's A BUG EITHER HERE OR IN LDLT ABOUT THAT (OR BOTH)
@@ -134,7 +134,7 @@ template<typename _MatrixType, int _UpLo> class LLT
       *result = this->solve(b);
       return true;
     }
-    
+
     bool isPositiveDefinite() const { return true; }
     #endif
 
@@ -174,12 +174,12 @@ template<typename _MatrixType, int _UpLo> class LLT
     LLT rankUpdate(const VectorType& vec, const RealScalar& sigma = 1);
 
   protected:
-    
+
     static void check_template_parameters()
     {
       EIGEN_STATIC_ASSERT_NON_INTEGER(Scalar);
     }
-    
+
     /** \internal
       * Used to compute and store L
       * The strict upper part is not used and even not initialized.
@@ -272,7 +272,7 @@ template<typename Scalar> struct llt_inplace<Scalar, Lower>
   {
     using std::sqrt;
     typedef typename MatrixType::Index Index;
-    
+
     eigen_assert(mat.rows()==mat.cols());
     const Index size = mat.rows();
     for(Index k = 0; k < size; ++k)
@@ -333,7 +333,7 @@ template<typename Scalar> struct llt_inplace<Scalar, Lower>
     return Eigen::internal::llt_rank_update_lower(mat, vec, sigma);
   }
 };
-  
+
 template<typename Scalar> struct llt_inplace<Scalar, Upper>
 {
   typedef typename NumTraits<Scalar>::Real RealScalar;
@@ -391,7 +391,7 @@ template<typename MatrixType, int _UpLo>
 LLT<MatrixType,_UpLo>& LLT<MatrixType,_UpLo>::compute(const MatrixType& a)
 {
   check_template_parameters();
-  
+
   eigen_assert(a.rows()==a.cols());
   const Index size = a.rows();
   m_matrix.resize(size, size);
@@ -423,7 +423,7 @@ LLT<_MatrixType,_UpLo> LLT<_MatrixType,_UpLo>::rankUpdate(const VectorType& v, c
 
   return *this;
 }
-    
+
 namespace internal {
 template<typename _MatrixType, int UpLo, typename Rhs>
 struct solve_retval<LLT<_MatrixType, UpLo>, Rhs>
@@ -441,7 +441,7 @@ struct solve_retval<LLT<_MatrixType, UpLo>, Rhs>
 }
 
 /** \internal use x = llt_object.solve(x);
-  * 
+  *
   * This is the \em in-place version of solve().
   *
   * \param bAndX represents both the right-hand side matrix b and result x.

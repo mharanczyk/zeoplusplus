@@ -1,4 +1,4 @@
-// 
+//
 //
 // Author   : Thomas F. Willems (LBL / UC Berkeley)
 // Email    : tfwillems@berkeley.edu
@@ -85,7 +85,7 @@ void extendUnitCell(ATOM_NETWORK *cell, ATOM_NETWORK *newCell, int xfactor, int 
 
 
 /** Extend the given VORONOI_NETWORK by 10 unit cells along a unit cell vector in the provided
- *  direction. The direction must be either (1,0,0), (0,1,0) or (0,0,1).  The list of atoms 
+ *  direction. The direction must be either (1,0,0), (0,1,0) or (0,0,1).  The list of atoms
  *  belonging to each atom are NOT APPROPRIATELY REPLICATED.*/
 void extendVorNet(VORONOI_NETWORK *vornet, VORONOI_NETWORK *newNet, DELTA_POS direction, std::map<int,int> *idAliases, std::set<int> *sourceNodes);
 

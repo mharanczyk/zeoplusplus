@@ -16,16 +16,16 @@ int FEATURE::createFeatures(ATOM_NETWORK *uc,VORONOI_NETWORK *origVNet, DIJKSTRA
         << "Exiting..." << "\n";
         exit(1);
     }
-    
+
     std::vector< std::vector<int> > nodesForFeatures = std::vector < std::vector<int> > (nfeatures, std::vector<int> ());
     std::vector<FEATURE> featChannels = std::vector<FEATURE> ();
     for(unsigned int i = 0; i < feature_node_mapping.size(); i++){
         nodesForFeatures[feature_node_mapping[i]].push_back(reverseIDMappings.find(i)->second);
     }
-    
-    
+
+
     int zeroVecs [3][3] = {{0, 0, 0},{ 0, 0, 0}, {0, 0, 0}};
-    
+
     for(int i = 0; i < nfeatures; i++){
         DIJKSTRA_NETWORK featNet;
         DIJKSTRA_NETWORK::filterDnetEdges(nodesForFeatures[i], origVNet, &featNet);
@@ -56,15 +56,15 @@ int FEATURE::createSegments(ATOM_NETWORK *uc,VORONOI_NETWORK *origVNet, DIJKSTRA
         << "Exiting..." << "\n";
         exit(1);
     }
-    
+
     std::vector< std::vector<int> > nodesForSegments = std::vector < std::vector<int> > (nsegments, std::vector<int> ());
     std::vector<CHANNEL> segChannels = std::vector<CHANNEL> ();
     for(unsigned int i = 0; i < segments.size(); i++){
         nodesForSegments[segments[i]].push_back(reverseIDMappings.find(i)->second);
     }
-    
+
     int zeroVecs [3][3] = {{0, 0, 0},{ 0, 0, 0}, {0, 0, 0}};
-    
+
     for(int i = 0; i < nsegments; i++){
         DIJKSTRA_NETWORK segNet;
         DIJKSTRA_NETWORK::filterDnetEdges(nodesForSegments[i], origVNet, &segNet);
@@ -110,7 +110,7 @@ segment_saveVis(output1);
 output1.close();
 */
 
-//segment_identify_connections(); // analyzes connectivity of each segment to find segment's 'faces' - connection between segments 
+//segment_identify_connections(); // analyzes connectivity of each segment to find segment's 'faces' - connection between segments
 
 
 
@@ -169,7 +169,7 @@ int nd=-1;
 double min=0;
 for(i=0;i<(int)nodes.size();i++)
    {
-   if(segments[i]==-1&&nodes.at(i).max_radius>min) 
+   if(segments[i]==-1&&nodes.at(i).max_radius>min)
        {
        nd=i;
        min=nodes.at(i).max_radius;
@@ -238,7 +238,7 @@ while(segment_findMaxNode()>-1)
 }while(validateSegmentation()==0);
 //}while(scale_factor>0.5);
 
-cout << " no segments after segment_distBasedSegmentation: " << nsegments << "\n"; 
+cout << " no segments after segment_distBasedSegmentation: " << nsegments << "\n";
 
 } // end of segment_distBasedSegmentation()
 
@@ -278,7 +278,7 @@ vector <int> heap;
 /* count nodes and init heap */
 for(i=0;i<(int)nodes.size();i++)
    {
-   if(segments[i]==segid) 
+   if(segments[i]==segid)
       {
       nodelist.push_back(i);
 //      visited.push_back(-1);
@@ -371,7 +371,7 @@ for(i=0;i<(int)nodes.at(nodeid).connections.size();i++)
          segment_growSegment_cont(uc,initnodeid,conn_to);
          }
          ;
-// 
+//
 /*
       else if(nodes.at(conn_to).max_radius==r&&
              ((nodes.at(conn_to).max_radius/nodes.at(nodeid).connections.at(i).max_radius)<1.05||
@@ -393,7 +393,7 @@ for(i=0;i<(int)nodes.at(nodeid).connections.size();i++)
       segcon.max_radius=nodes.at(nodeid).connections.at(i).max_radius;
       segcon.length=nodes.at(nodeid).connections.at(i).length;
       segcon.merged=0;
-      
+
       segment_conn_fulllist.push_back(segcon); // store every intersegment connection
                                                // this will be used to identify features
                                                // connecting different segments
@@ -409,11 +409,11 @@ for(i=0;i<(int)nodes.at(nodeid).connections.size();i++)
                       ||(segment_conn.at(j).from_seg==segments[conn_to]&&segment_conn.at(j).to==nsegments))
                  {
                  update_conn_flag=1;
-                 if(segment_conn.at(j).max_radius<nodes.at(nodeid).connections.at(i).max_radius) 
+                 if(segment_conn.at(j).max_radius<nodes.at(nodeid).connections.at(i).max_radius)
                             segment_conn.at(j).max_radius=nodes.at(nodeid).connections.at(i).max_radius;
                  };
          /*        else
-                 {             
+                 {
                  segment_conn.push_back(segcon);
                  }; */
               };
@@ -440,7 +440,7 @@ for(i=0;i<(int)nodes.at(nodeid).connections.size();i++)
   vector <SEGCONN> segment_conn_fulllist; // lists all connections (edges) briging different segments
                                           // this will be used to determine topology of segments
   vector < vector<int> > segment_faces_conn;   // list of 'faces' for each segment, faces are clusters of edges that connect to another segment
-  vector < vector<double> > segment_faces_max_r; // max r for each segment's face 
+  vector < vector<double> > segment_faces_max_r; // max r for each segment's face
 */
 void FEATURE::segment_identify_connections(){
 int i,j,k;
@@ -474,14 +474,14 @@ for(i=0;i<nsegments;i++)
       {
       for(k=0;k<(int)nodes.at(nodes_in_segment[j]).connections.size();k++)
          {
-         if(segments[nodes.at(nodes_in_segment[j]).connections.at(k).to]!=i) 
+         if(segments[nodes.at(nodes_in_segment[j]).connections.at(k).to]!=i)
              {
-             face_nodes_in_segment[j]++; 
+             face_nodes_in_segment[j]++;
              connected_segment_for_face_nodes_in_segment[j]=segments[nodes.at(nodes_in_segment[j]).connections.at(k).to];
-        
+
              segc.from=nodes_in_segment[j]; // this is ID id in channel)
              segc.to=nodes.at(nodes_in_segment[j]).connections.at(k).to; // node id in channel
-             segc.from_seg=i; 
+             segc.from_seg=i;
              segc.to_seg=segments[nodes.at(nodes_in_segment[j]).connections.at(k).to];
              segc.max_radius=nodes.at(nodes_in_segment[j]).connections.at(k).max_radius;
              segc.deltaPos=nodes.at(nodes_in_segment[j]).connections.at(k).deltaPos;
@@ -490,7 +490,7 @@ for(i=0;i<nsegments;i++)
          };
       };
 
-// now connected_segment_for_face_nodes_in_segment has a list of segments each node in the current segment is conneed to (-1 if not) 
+// now connected_segment_for_face_nodes_in_segment has a list of segments each node in the current segment is conneed to (-1 if not)
 // we need now to find "clusters" of these nodes that will correspond to different connections;
 // edges_from_segment stores all edges going out from a segment to other segments
 
@@ -542,7 +542,7 @@ for(i=0;i<(int)edges->size();i++)
    {
    if(i!=curr_edge&&edgeinface->at(i)==-1) // only consider if not yet assigned to face
      {
-     //only consider pairs of edges that connect to the same segment 
+     //only consider pairs of edges that connect to the same segment
      if(curr_neigh_seg==edges->at(i).to_seg&&edges->at(curr_edge).deltaPos.equals(edges->at(i).deltaPos))
        {
        // for two edges connecting to another segment, two edges are on the same face
@@ -601,7 +601,7 @@ void FEATURE::update_node_segmentinfo(vector <int> *segid,int *curr_id,int flag)
 
 
 /* This function does perform "fake" merging - all segments are being copied as features
- * this is done to use all datastrucutres created for features to analyze segments  
+ * this is done to use all datastrucutres created for features to analyze segments
 */
 void FEATURE::merge_nothing()
 {
@@ -719,7 +719,7 @@ void FEATURE::merge_singlenode_segments()
 
 	for(i=0;i<(int)nodes.size();i++)
 	{
-		if(feature_node_mapping[i]==-1) 
+		if(feature_node_mapping[i]==-1)
 		{
 			cout << "Feature construction failed. Abort."<< "\n";abort();
 		}
@@ -778,13 +778,13 @@ void FEATURE::merge_segments()
 	};
 
 	/* after connections of to-be-merged segments have been identified, we build
-	* features, this includes 'flood fill' of segments */ 
+	* features, this includes 'flood fill' of segments */
 
 	do{
-		//find first segment not assigned to feature 
-		current_segment=merge_findNotAssignedFragment();  
+		//find first segment not assigned to feature
+		current_segment=merge_findNotAssignedFragment();
 		//creature new feature
-		features.push_back(nfeatures); // number of segments after merging 
+		features.push_back(nfeatures); // number of segments after merging
 		//grow
 		//  cout << current_segment << "\n";
 		merge_newSegmentGrow(current_segment);
@@ -796,7 +796,7 @@ void FEATURE::merge_segments()
 	feature_max_r.resize(nfeatures,0);
 	for(i=0;i<(int)segment_merge_list.size();i++)
 	{
-		if(feature_max_r[segment_merge_list[i]]<segment_max_r[i]) feature_max_r[segment_merge_list[i]]=segment_max_r[i]; 
+		if(feature_max_r[segment_merge_list[i]]<segment_max_r[i]) feature_max_r[segment_merge_list[i]]=segment_max_r[i];
 	};
 	// update feature information on all nodes in a channel
 	for(i=0;i<(int)nodes.size();i++)
@@ -834,7 +834,7 @@ void FEATURE::merge_newSegmentGrow(int segid)
 	{
 		if((segment_conn.at(k).from_seg==segid||segment_conn.at(k).to_seg==segid)&&segment_conn.at(k).merged==1)
 		{
-			if(segment_conn.at(k).from_seg==segid) 
+			if(segment_conn.at(k).from_seg==segid)
 				{conn_to=segment_conn.at(k).to_seg;}
 			else {conn_to=segment_conn.at(k).from_seg;};
 
@@ -892,7 +892,7 @@ void FEATURE::segment_saveVis(fstream &output)
 						double zCoord = curNode.z + v_a.z*disp.x + v_b.z*disp.y + v_c.z*disp.z;
 
 	// Command used to draw node
-//        output << "draw sphere {" << xCoord <<  " " << yCoord << " " << zCoord << "} radius " <<  curNode.max_radius << "\n";	
+//        output << "draw sphere {" << xCoord <<  " " << yCoord << " " << zCoord << "} radius " <<  curNode.max_radius << "\n";
 						output << "draw sphere {" << xCoord <<  " " << yCoord << " " << zCoord << "} radius " <<  0.1 << "\n";
 
 					};//printing segment block
@@ -909,10 +909,10 @@ void FEATURE::segment_saveVis(fstream &output)
 /** Calcluate volume of channel/segment/feature
  *  It uses reconstructed feature, puts it in a box
  *  and performs MC integration */
- 
+
 double FEATURE::calculateVolume(){
- 
-  long int i,j,counter=0;  
+
+  long int i,j,counter=0;
   double volume;
 
   XYZ max,min;
@@ -926,21 +926,21 @@ double FEATURE::calculateVolume(){
     for(unsigned int i = 0; i < unitCells.size(); i++){
       vector<int> nodeIDs = ucNodes.at(i);
       DELTA_POS disp = unitCells.at(i);
-      
+
       // Iterate over all nodes in the unit cell
       for(unsigned int j = 0; j < nodeIDs.size(); j++){
 	DIJKSTRA_NODE curNode = nodes.at(nodeIDs.at(j));
-	
+
 	// Find node coordinates
 
-        if(dimensionality<1) 
+        if(dimensionality<1)
            { // if feature is not a channel, use reconstrcted feature
 	   sph.x = curNode.x + v_a.x*disp.x + v_b.x*disp.y + v_c.x*disp.z;
 	   sph.y = curNode.y + v_a.y*disp.x + v_b.y*disp.y + v_c.y*disp.z;
 	   sph.z = curNode.z + v_a.z*disp.x + v_b.z*disp.y + v_c.z*disp.z;
            } else {
            sph.x = nodes.at(nodeIDs.at(j)).x;sph.y = nodes.at(nodeIDs.at(j)).y;sph.z = nodes.at(nodeIDs.at(j)).z;
-//           cout << "draw sphere { " << sph.x << "  " << sph.y << "  " << sph.z << " } radius 0.1 " << "\n"; 
+//           cout << "draw sphere { " << sph.x << "  " << sph.y << "  " << sph.z << " } radius 0.1 " << "\n";
            };
 
 	sph.r = SPHERE_SCALE*curNode.max_radius;
@@ -961,7 +961,7 @@ double FEATURE::calculateVolume(){
           if(min.z>(sph.z-sph.r)) min.z=sph.z-sph.r;
           if(max.z<(sph.z+sph.r)) max.z=sph.z+sph.r;
           };
-		
+
       }
     } // end of analysis of object
 
@@ -971,10 +971,10 @@ double FEATURE::calculateVolume(){
   box.x=max.x-min.x;
   box.y=max.y-min.y;
   box.z=max.z-min.z;
- 
+
   volume=box.x*box.y*box.z;
 
-  cout << "Segment Box volume= " << volume << "\n"; 
+  cout << "Segment Box volume= " << volume << "\n";
 
 // Now MC integration of volume
 
@@ -1050,10 +1050,10 @@ void FEATURE::calculateVolumeForAllFeatures(VORONOI_NETWORK *origVNet,DIJKSTRA_N
 /** Calcluate surface area of channel/segment/feature
  *  It uses reconstructed feature, puts it in a box
  *  and performs MC integration */
- 
+
 double FEATURE::calculateSurfaceArea_OLD(ATOM_NETWORK *uc,vector<DIJKSTRA_NODE> *ChanNodeList,vector <int> *featnodemap,int curr_f,char *name,int fid){
- 
-  long int i,j,k,counter=0;  
+
+  long int i,j,k,counter=0;
   double volume;
   int step;
   double r_tr; // threshold for r
@@ -1074,21 +1074,21 @@ double FEATURE::calculateSurfaceArea_OLD(ATOM_NETWORK *uc,vector<DIJKSTRA_NODE> 
     for(unsigned int i = 0; i < unitCells.size(); i++){
       vector<int> nodeIDs = ucNodes.at(i);
       DELTA_POS disp = unitCells.at(i);
-      
+
       // Iterate over all nodes in the unit cell
       for(unsigned int j = 0; j < nodeIDs.size(); j++){
 	DIJKSTRA_NODE curNode = nodes.at(nodeIDs.at(j));
-	
+
 	// Find node coordinates
 
-        if(dimensionality<1) 
+        if(dimensionality<1)
            { // if feature is not a channel, use reconstrcted feature
 	   sph.x = curNode.x + v_a.x*disp.x + v_b.x*disp.y + v_c.x*disp.z;
 	   sph.y = curNode.y + v_a.y*disp.x + v_b.y*disp.y + v_c.y*disp.z;
 	   sph.z = curNode.z + v_a.z*disp.x + v_b.z*disp.y + v_c.z*disp.z;
            } else {
            sph.x = nodes.at(nodeIDs.at(j)).x;sph.y = nodes.at(nodeIDs.at(j)).y;sph.z = nodes.at(nodeIDs.at(j)).z;
-//           cout << "draw sphere { " << sph.x << "  " << sph.y << "  " << sph.z << " } radius 0.1 " << "\n"; 
+//           cout << "draw sphere { " << sph.x << "  " << sph.y << "  " << sph.z << " } radius 0.1 " << "\n";
            };
 
 	sph.r = SPHERE_SCALE*curNode.max_radius;
@@ -1109,7 +1109,7 @@ double FEATURE::calculateSurfaceArea_OLD(ATOM_NETWORK *uc,vector<DIJKSTRA_NODE> 
           if(min.z>(sph.z-sph.r)) min.z=sph.z-sph.r;
           if(max.z<(sph.z+sph.r)) max.z=sph.z+sph.r;
           };
-		
+
       }
     } // end of analysis of object
 
@@ -1131,7 +1131,7 @@ double FEATURE::calculateSurfaceArea_OLD(ATOM_NETWORK *uc,vector<DIJKSTRA_NODE> 
        Point p_shifted=uc->shiftXYZInUC(p);
 
        double dist = uc->calcDistanceXYZ(p.x,p.y,p.z,node.x,node.y,node.z);
-       if(dist<0.01&&fabs(ChanNodeList->at(j).max_radius*SPHERE_SCALE-object[i].r)<0.01) 
+       if(dist<0.01&&fabs(ChanNodeList->at(j).max_radius*SPHERE_SCALE-object[i].r)<0.01)
           {
           count++; break;
           };
@@ -1164,7 +1164,7 @@ vector <int> conn_feat;
     {
     if(featnodemap->at(j)==curr_f)
       {
-      for(i=0;i<(int)(ChanNodeList->at(j).connections.size());i++)      
+      for(i=0;i<(int)(ChanNodeList->at(j).connections.size());i++)
          {
          if(featnodemap->at(ChanNodeList->at(j).connections.at(i).to)!=curr_f)
             {
@@ -1205,10 +1205,10 @@ cout << "Outside spheres list contain " << other_object.size() << " spheres (of 
   box.x=max.x-min.x;
   box.y=max.y-min.y;
   box.z=max.z-min.z;
- 
+
   volume=box.x*box.y*box.z;
 
-//  cout << "Segment Box volume= " << volume << "\n"; 
+//  cout << "Segment Box volume= " << volume << "\n";
 
 // Now MC integration of surface
 
@@ -1260,8 +1260,8 @@ for(step=0;step<NBINS_SA_HOLO;step++) // loop over all bins for surface area hol
         // Convert spherical coordinates to xyz coordinates
         double xpoint = sin(phi)*cos(theta); //Don't need abs(sin(phi)) becase phi is from 0 to pi
         double ypoint = sin(phi)*sin(theta);
-        double zpoint = cosphi;	
-      
+        double zpoint = cosphi;
+
         // Scale the point to lie on a radius of r_probe + r_atom#i
         xpoint *= (object[i].r-r_tr);
         ypoint *= (object[i].r-r_tr);
@@ -1308,7 +1308,7 @@ for(step=0;step<NBINS_SA_HOLO;step++) // loop over all bins for surface area hol
 
            };
 
- 
+
           if(overlap_otherf==false) count_otherf++;
 
           }else{
@@ -1321,7 +1321,7 @@ for(step=0;step<NBINS_SA_HOLO;step++) // loop over all bins for surface area hol
 /*
           if(abc_coords.x<0||abc_coords.x>=1||abc_coords.y<0||abc_coords.y>=1||abc_coords.z<0||abc_coords.z>=1)
              {
-             overlap=true;           
+             overlap=true;
              };
 */
           if(overlap!=true)
@@ -1342,7 +1342,7 @@ for(step=0;step<NBINS_SA_HOLO;step++) // loop over all bins for surface area hol
           if(overlap==false) count++;
 
          // check otherlap with other segments
-  
+
          if(overlap==false)
          for(int jk=0;jk<(int)other_object.size();jk++)
             {
@@ -1357,21 +1357,21 @@ for(step=0;step<NBINS_SA_HOLO;step++) // loop over all bins for surface area hol
                  };
 
            };
-          
 
-          if(overlap_otherf == false) 
+
+          if(overlap_otherf == false)
 	    count_otherf++;
 
           }; // end if, for channels (dim>0)
 
-     
+
        }; // ends for(int j = 0; j < N_MC_SA_SAMPLE; j++){
 
 //     cout << " count= " << count << "    cont_otherf= " << count_otherf << "\n";
 
      SA_holo[step]+= ((double)count/(double)N_MC_SA_SAMPLE)* 4.0 * PI * pow(object[i].r-r_tr,2);
      SA_holo_otherf[step]+= ((double)count_otherf/(double)N_MC_SA_SAMPLE)* 4.0 * PI * pow(object[i].r-r_tr,2);
-     }; // ends for(int i = 0; i < (int)object.size() 
+     }; // ends for(int i = 0; i < (int)object.size()
 
      }else   // from if(counter>0)
      {
@@ -1409,8 +1409,8 @@ return SA_holo[0];
 /* New version of feature surface area calcuation */
 
 double FEATURE::calculateSurfaceArea(ATOM_NETWORK *uc,vector<DIJKSTRA_NODE> *ChanNodeList,vector <int> *featnodemap,int curr_f,char *name,int fid){
- 
-  long int i,j,k,counter=0;  
+
+  long int i,j,k,counter=0;
   int step;
   double r_tr; // threshold for r
   Point pt;
@@ -1441,7 +1441,7 @@ vector <int> conn_feat;
       object.push_back(sph);
 
       /* check feature two which it is connected */
-      for(i=0;i<(int)(ChanNodeList->at(j).connections.size());i++)      
+      for(i=0;i<(int)(ChanNodeList->at(j).connections.size());i++)
          {
          if(featnodemap->at(ChanNodeList->at(j).connections.at(i).to)!=curr_f)
             {
@@ -1471,7 +1471,7 @@ for(i=0;i<(int)conn_feat.size();i++)
            pp[0]=ChanNodeList->at(j).x; pp[1]=ChanNodeList->at(j).y; pp[2]=ChanNodeList->at(j).z;
            Point pt_s=uc->minimizePointDistance(pp,object[k].x, object[k].y, object[k].z); // pt_s shifted
            double d = calcEuclideanDistance(pt_s[0],pt_s[1],pt_s[2],object[k].x, object[k].y, object[k].z);
-           if(d<object[k].r+sph2.r) 
+           if(d<object[k].r+sph2.r)
               {
               flag=1; break;
               };
@@ -1529,8 +1529,8 @@ for(step=0;step<NBINS_SA_HOLO;step++) // loop over all bins for surface area hol
         // Convert spherical coordinates to xyz coordinates
         double xpoint = sin(phi)*cos(theta); //Don't need abs(sin(phi)) becase phi is from 0 to pi
         double ypoint = sin(phi)*sin(theta);
-        double zpoint = cosphi;	
-      
+        double zpoint = cosphi;
+
         // Scale the point to lie on a radius of r_probe + r_atom#i
         xpoint *= (object[i].r-r_tr);
         ypoint *= (object[i].r-r_tr);
@@ -1543,7 +1543,7 @@ for(step=0;step<NBINS_SA_HOLO;step++) // loop over all bins for surface area hol
         pt[2]=object[i].z+zpoint;
 
 //             if(fid==0) cout << "### draw point { "<< pt.x << "  " << pt.y << "  " << pt.z<< " } " << "\n";
- 
+
         Point newpt=uc->xyz_to_abc(pt);
         newpt=uc->shiftABCInUC(newpt);
         pt=uc->abc_to_xyz(newpt);
@@ -1555,7 +1555,7 @@ for(step=0;step<NBINS_SA_HOLO;step++) // loop over all bins for surface area hol
            if(k!=i)
              {
 //             Point pt_s=minimizePointDistance(pt,object[k].x, object[k].y, object[k].z, uc); // pt_s shifted
-//             double centerDist = calcEuclideanDistance(pt_s.x,pt_s.y,pt_s.z,object[k].x, object[k].y, object[k].z); 
+//             double centerDist = calcEuclideanDistance(pt_s.x,pt_s.y,pt_s.z,object[k].x, object[k].y, object[k].z);
 
              double centerDist = uc->calcDistanceXYZ(pt[0],pt[1],pt[2],object[k].x, object[k].y, object[k].z);
 
@@ -1568,7 +1568,7 @@ for(step=0;step<NBINS_SA_HOLO;step++) // loop over all bins for surface area hol
           if(overlap==false) count++;
 
          // check otherlap with other segments
-  
+
          if(overlap==false)
          for(int jk=0;jk<(int)other_object.size();jk++)
             {
@@ -1583,25 +1583,25 @@ for(step=0;step<NBINS_SA_HOLO;step++) // loop over all bins for surface area hol
                  };
 
            };
-          
 
-          if(overlap==false&&overlap_otherf==false) 
+
+          if(overlap==false&&overlap_otherf==false)
              {
              count_otherf++;
 
-//             if(fid==0) cout << "### draw point { "<< pt.x << "  " << pt.y << "  " << pt.z<< " } " << "\n"; 
+//             if(fid==0) cout << "### draw point { "<< pt.x << "  " << pt.y << "  " << pt.z<< " } " << "\n";
 
              };
 
 
-     
+
        }; // ends for(int j = 0; j < N_MC_SA_SAMPLE; j++){
 
      cout << " count= " << count << "    cont_otherf= " << count_otherf << "\n";
 
      SA_holo[step]+= ((double)count/(double)N_MC_SA_SAMPLE)* 4.0 * PI * pow(object[i].r-r_tr,2);
      SA_holo_otherf[step]+= ((double)count_otherf/(double)N_MC_SA_SAMPLE)* 4.0 * PI * pow(object[i].r-r_tr,2);
-     }; // ends for(int i = 0; i < (int)object.size() 
+     }; // ends for(int i = 0; i < (int)object.size()
 
      }else   // from if(counter>0)
      {

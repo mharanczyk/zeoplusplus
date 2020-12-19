@@ -52,7 +52,7 @@ int main() {
 		// Calculate centroid
 		c.centroid(cx,cy,cz);
 		printf("Particle %2d at (% .3f,% .3f,% .3f), centroid at (% .3f,% .3f,% .3f)\n",
-		       i,x,y,z,x+cx,y+cy,z+cz);	
+		       i,x,y,z,x+cx,y+cy,z+cz);
 
 		// Calculate volume and sum it
 		vvol+=c.volume();
@@ -62,7 +62,7 @@ int main() {
 		// ...
 		// ...
 
-	} while(cl.inc());	
+	} while(cl.inc());
 
 	// Print the volume check
 	printf("\nContainer volume : %g\n"

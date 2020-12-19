@@ -18,7 +18,7 @@ proc run_network_program {list_of_args} {
 
 proc readFileName {} {
     global filename
-    puts "Please enter the filename of your input file" 
+    puts "Please enter the filename of your input file"
     gets stdin filename
     return ""
 }
@@ -58,4 +58,4 @@ set num_segments 0
 set num_features 0
 set num_cages    0
 initialize
-puts "ENJOY ZEOVIS!" 
+puts "ENJOY ZEOVIS!"

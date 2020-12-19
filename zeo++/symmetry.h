@@ -10,4 +10,3 @@
 vector <XYZ> GetEquivalentPositions(int spacegroup,XYZ *pt);
 bool IsUniqueVertex(XYZ *p, ATOM_NETWORK &cell);
 int get_sym_ID(string s);
-

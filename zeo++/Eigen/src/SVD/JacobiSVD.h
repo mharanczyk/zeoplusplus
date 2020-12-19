@@ -10,7 +10,7 @@
 #ifndef EIGEN_JACOBISVD_H
 #define EIGEN_JACOBISVD_H
 
-namespace Eigen { 
+namespace Eigen {
 
 namespace internal {
 // forward declaration (needed by ICC)
@@ -375,7 +375,7 @@ struct svd_precondition_2x2_block_to_be_real<MatrixType, QRPreconditioner, true>
     Scalar z;
     JacobiRotation<Scalar> rot;
     RealScalar n = sqrt(numext::abs2(work_matrix.coeff(p,p)) + numext::abs2(work_matrix.coeff(q,p)));
-    
+
     if(n==0)
     {
       z = abs(work_matrix.coeff(p,q)) / work_matrix.coeff(p,q);
@@ -673,7 +673,7 @@ template<typename _MatrixType, int QRPreconditioner> class JacobiSVD
       eigen_assert(m_isInitialized && "JacobiSVD is not initialized.");
       return m_nonzeroSingularValues;
     }
-    
+
     /** \returns the rank of the matrix of which \c *this is the SVD.
       *
       * \note This method has to determine which singular values should be considered nonzero.
@@ -690,7 +690,7 @@ template<typename _MatrixType, int QRPreconditioner> class JacobiSVD
       while(i>=0 && m_singularValues.coeff(i) < premultiplied_threshold) --i;
       return i+1;
     }
-    
+
     /** Allows to prescribe a threshold to be used by certain methods, such as rank() and solve(),
       * which need to determine when singular values are to be considered nonzero.
       * This is not used for the SVD decomposition itself.
@@ -742,7 +742,7 @@ template<typename _MatrixType, int QRPreconditioner> class JacobiSVD
 
   private:
     void allocate(Index rows, Index cols, unsigned int computationOptions);
-    
+
     static void check_template_parameters()
     {
       EIGEN_STATIC_ASSERT_NON_INTEGER(Scalar);
@@ -813,7 +813,7 @@ void JacobiSVD<MatrixType, QRPreconditioner>::allocate(Index rows, Index cols, u
                             : m_computeThinV ? m_diagSize
                             : 0);
   m_workMatrix.resize(m_diagSize, m_diagSize);
-  
+
   if(m_cols>m_rows)   m_qr_precond_morecols.allocate(*this);
   if(m_rows>m_cols)   m_qr_precond_morerows.allocate(*this);
   if(m_cols!=m_cols)  m_scaledMatrix.resize(rows,cols);
@@ -824,7 +824,7 @@ JacobiSVD<MatrixType, QRPreconditioner>&
 JacobiSVD<MatrixType, QRPreconditioner>::compute(const MatrixType& matrix, unsigned int computationOptions)
 {
   check_template_parameters();
-  
+
   using std::abs;
   allocate(matrix.rows(), matrix.cols(), computationOptions);
 
@@ -838,7 +838,7 @@ JacobiSVD<MatrixType, QRPreconditioner>::compute(const MatrixType& matrix, unsig
   // Scaling factor to reduce over/under-flows
   RealScalar scale = matrix.cwiseAbs().maxCoeff();
   if(scale==RealScalar(0)) scale = RealScalar(1);
-  
+
   /*** step 1. The R-SVD step: we use a QR decomposition to reduce to the case of a square matrix */
 
   if(m_rows!=m_cols)
@@ -925,7 +925,7 @@ JacobiSVD<MatrixType, QRPreconditioner>::compute(const MatrixType& matrix, unsig
       if(computeV()) m_matrixV.col(pos).swap(m_matrixV.col(i));
     }
   }
-  
+
   m_singularValues *= scale;
 
   m_isInitialized = true;
@@ -949,7 +949,7 @@ struct solve_retval<JacobiSVD<_MatrixType, QRPreconditioner>, Rhs>
 
     Matrix<Scalar, Dynamic, Rhs::ColsAtCompileTime, 0, _MatrixType::MaxRowsAtCompileTime, Rhs::MaxColsAtCompileTime> tmp;
     Index rank = dec().rank();
-    
+
     tmp.noalias() = dec().matrixU().leftCols(rank).adjoint() * rhs();
     tmp = dec().singularValues().head(rank).asDiagonal().inverse() * tmp;
     dst = dec().matrixV().leftCols(rank) * tmp;

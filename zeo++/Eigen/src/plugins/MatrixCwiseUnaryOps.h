@@ -49,4 +49,3 @@ cwiseSqrt() const { return derived(); }
   */
 inline const CwiseUnaryOp<internal::scalar_inverse_op<Scalar>, const Derived>
 cwiseInverse() const { return derived(); }
-

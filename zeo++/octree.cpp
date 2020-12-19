@@ -5,7 +5,7 @@ Octree::Octree()
   m_ABC[0] = Vector(1,0,0);
   m_ABC[1] = Vector(0,1,0);
   m_ABC[2] = Vector(0,0,1);
-    
+
   pm_Head = new Node();
 
   InitializeOctree();
@@ -73,7 +73,7 @@ Node* Node::OctreeConstruct(vector<Point>& objects)
       InitializeChildren();
 
       for (unsigned int i=0; i<8; i++) //For each octant reinvoke octree
-	{  
+	{
 	  vector<Point> subset_Objects;
 	  for (unsigned int j=0; j<objects.size(); j++)
 	    {
@@ -354,7 +354,7 @@ bool Node::Subset(Point object)
 	      return true;
 	    }
 	}
-    } 
+    }
    return false;
 }
 
@@ -370,7 +370,6 @@ bool Node::Subset(Sphere object)
 	      return true;
 	    }
 	}
-    } 
+    }
    return false;
 }
-

@@ -16,7 +16,7 @@ const double ay=-0.5,by=25.5;
 const double az=-0.5,bz=25.5;
 
 int main() {
-	
+
 	// Manually import the file
 	int i,j,id,max_id=0,n;
 	double x,y,z;
@@ -67,11 +67,11 @@ int main() {
 		cl.pos(x,y,z);
 		id=cl.pid();
 		c.neighbors(neigh);
-				
+
 		// Get face areas et total surface of faces
 		c.face_areas(vd);c.surface_area();
 		c.draw_gnuplot(x,y,z,fp3);
-		
+
 		// Initialize second cell
 		c2.init(ax-x,bx-x,ay-y,by-y,az-z,bz-z);
 
@@ -86,12 +86,12 @@ int main() {
 
 		// Get information of c2 cell
 		c2.face_areas(vd);c2.face_orders(f_order);
-		
+
 		// Output information to file
 		i=vd.size();
 		fprintf(fp,"%d %d",id,i);
 		for(j=0;j<i;j++) fprintf(fp," %d",f_order[j]);
-		for(j=0;j<i;j++) fprintf(fp," %.3f",vd[j]);		
+		for(j=0;j<i;j++) fprintf(fp," %.3f",vd[j]);
 		fprintf(fp," %.3f %.3f %.3f\n",x,y,z);
 
 		c2.draw_gnuplot(x,y,z,fp2);
@@ -100,7 +100,7 @@ int main() {
 	// Close files
 	fclose(fp);
 	fclose(fp2);
-	
+
 	// Delete dynamically allocated arrays
 	delete [] xi;
 	delete [] yi;

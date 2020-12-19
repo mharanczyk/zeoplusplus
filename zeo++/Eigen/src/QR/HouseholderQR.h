@@ -12,7 +12,7 @@
 #ifndef EIGEN_QR_H
 #define EIGEN_QR_H
 
-namespace Eigen { 
+namespace Eigen {
 
 /** \ingroup QR_Module
   *
@@ -24,7 +24,7 @@ namespace Eigen {
   * \param MatrixType the type of the matrix of which we are computing the QR decomposition
   *
   * This class performs a QR decomposition of a matrix \b A into matrices \b Q and \b R
-  * such that 
+  * such that
   * \f[
   *  \mathbf{A} = \mathbf{Q} \, \mathbf{R}
   * \f]
@@ -83,12 +83,12 @@ template<typename _MatrixType> class HouseholderQR
       *
       * This constructor computes the QR factorization of the matrix \a matrix by calling
       * the method compute(). It is a short cut for:
-      * 
+      *
       * \code
       * HouseholderQR<MatrixType> qr(matrix.rows(), matrix.cols());
       * qr.compute(matrix);
       * \endcode
-      * 
+      *
       * \sa compute()
       */
     HouseholderQR(const MatrixType& matrix)
@@ -181,20 +181,20 @@ template<typename _MatrixType> class HouseholderQR
 
     inline Index rows() const { return m_qr.rows(); }
     inline Index cols() const { return m_qr.cols(); }
-    
+
     /** \returns a const reference to the vector of Householder coefficients used to represent the factor \c Q.
-      * 
+      *
       * For advanced uses only.
       */
     const HCoeffsType& hCoeffs() const { return m_hCoeffs; }
 
   protected:
-    
+
     static void check_template_parameters()
     {
       EIGEN_STATIC_ASSERT_NON_INTEGER(Scalar);
     }
-    
+
     MatrixType m_qr;
     HCoeffsType m_hCoeffs;
     RowVectorType m_temp;
@@ -356,7 +356,7 @@ template<typename MatrixType>
 HouseholderQR<MatrixType>& HouseholderQR<MatrixType>::compute(const MatrixType& matrix)
 {
   check_template_parameters();
-  
+
   Index rows = matrix.rows();
   Index cols = matrix.cols();
   Index size = (std::min)(rows,cols);

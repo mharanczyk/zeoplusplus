@@ -16,7 +16,7 @@
 #include "sphere_approx.h"
 #include "poreinfo.h"
 #include "zeojobs.h"
-#include "arguments.h" 
+#include "arguments.h"
 
 using namespace std;
 using namespace voro;
@@ -32,13 +32,13 @@ int main(int argc, char * argv[]){
   }
 
   if(!error) {
-    char *filename = argv[argc-1];  
+    char *filename = argv[argc-1];
     if(!checkInputFile(filename)) error=true;
     if(!error) {
       char *name = new char [256];
       char *extension = new char [256];
       parseFilename(filename, name, extension);
-     
+
       string inputFile = argv[argc - 1];
       vector< vector<string> > commands = vector< vector<string> > ();
       vector<string> currentCommand = vector<string> ();
@@ -50,7 +50,7 @@ int main(int argc, char * argv[]){
 	    commands.push_back(currentCommand);
           currentCommand = vector<string> ();
         }
-        
+
         currentCommand.push_back(argv[argcount]);
         argcount++;
       }
@@ -168,7 +168,7 @@ int main(int argc, char * argv[]){
         //  Strip atom names with non-atomic-name indexes
         if(stripAtomNamesFlag)
          {
-         stripAtomNames(&atmnet);  
+         stripAtomNames(&atmnet);
          cout << "Striping atom names\n";
          };
         // Read radii after reading atoms if -r  requested
@@ -180,8 +180,8 @@ int main(int argc, char * argv[]){
 
         loadMass(useMass, &atmnet); // assigns masses to atoms (assigns 0s in useMass flag = false)
         // High accuracy options - if the system contains particles of different radii, the employed radical
-        // Voronoi decomposition may not be accurate. it can be, however, improved if large particles are 
-        // replaced by clusters of smaller one (idea taken from Carolyn Philiphs/Chris Rycroft). 
+        // Voronoi decomposition may not be accurate. it can be, however, improved if large particles are
+        // replaced by clusters of smaller one (idea taken from Carolyn Philiphs/Chris Rycroft).
         atmnet.copy(&orgAtomnet); // keep a copy of original atomnet (if high accuracy is not set, this is the same as analyzed network)
         if(radial && highAccuracy)
           {
@@ -189,8 +189,8 @@ int main(int argc, char * argv[]){
           // calling the following function will modify atmnet - replace large atoms with clusters of small ones
           setupHighAccuracyAtomNetwork(&atmnet, AccSetting);
           };
-        // please note that orgAtomnet is empty unless highAccuracy flag is set !! 
- 
+        // please note that orgAtomnet is empty unless highAccuracy flag is set !!
+
 
         // Declase object req. for Voronoi decomposition
 
@@ -199,10 +199,10 @@ int main(int argc, char * argv[]){
 
         // Perform the relevant Voronoi decomposition
         cout << "Starting Voronoi decomposition" << "\n";
-        if(radial) 
+        if(radial)
           rad_con = (container_periodic_poly *)performVoronoiDecomp(true, &atmnet, &vornet, cells, outputZvis, bvcells);
-        else 
-          no_rad_con = (container_periodic *)performVoronoiDecomp (false, &atmnet, &vornet, cells, outputZvis, bvcells); 
+        else
+          no_rad_con = (container_periodic *)performVoronoiDecomp (false, &atmnet, &vornet, cells, outputZvis, bvcells);
         cout << "Finished Voronoi decomposition" << "\n";
 
 
@@ -230,7 +230,7 @@ int main(int argc, char * argv[]){
             string filename = processFilename(command, name, ".xyz", 0, 1);
             if(filename.empty()) {error=true; break;}
             bool is_supercell = false; bool is_duplicate_perimeter_atoms = false;
-            if(!writeToXYZ((char *)filename.data(), &atmnet, is_supercell, 
+            if(!writeToXYZ((char *)filename.data(), &atmnet, is_supercell,
                         is_duplicate_perimeter_atoms)) {
                 error=true; break;
             }
@@ -239,7 +239,7 @@ int main(int argc, char * argv[]){
             string filename = processFilename(command, name, "_supercell.xyz", 0, 1);
             if(filename.empty()) {error=true; break;}
             bool is_supercell = true; bool is_duplicate_perimeter_atoms = false;
-            if(!writeToXYZ((char *)filename.data(), &atmnet, is_supercell, 
+            if(!writeToXYZ((char *)filename.data(), &atmnet, is_supercell,
                         is_duplicate_perimeter_atoms)) {
                 error=true; break;
             }
@@ -248,14 +248,14 @@ int main(int argc, char * argv[]){
             string filename1 = processFilename(command, name, "_vis.xyz", 0, 1);
             if(filename1.empty()) {error=true; break;}
             bool is_supercell = false; bool is_duplicate_perimeter_atoms = true;
-            if(!writeToXYZ((char *)filename1.data(), &atmnet, is_supercell, 
+            if(!writeToXYZ((char *)filename1.data(), &atmnet, is_supercell,
                         is_duplicate_perimeter_atoms)) {
                 error=true; break;
             }
             string filename2 = processFilename(command, name, "_supercell_vis.xyz", 0, 1);
             if(filename2.empty()) {error=true; break;}
             is_supercell = true;
-            if(!writeToXYZ((char *)filename2.data(), &atmnet, is_supercell, 
+            if(!writeToXYZ((char *)filename2.data(), &atmnet, is_supercell,
                         is_duplicate_perimeter_atoms)) {
                 error=true; break;
             }
@@ -300,7 +300,7 @@ int main(int argc, char * argv[]){
             if(filename.empty()) {error=true; break;}
             calculateFreeSphereParameters(&vornet, (char *)filename.data(), true);
           }
-          else if(command[0].compare("-strinfo") == 0 || command[0].compare("-strinfoex") == 0){ 
+          else if(command[0].compare("-strinfo") == 0 || command[0].compare("-strinfoex") == 0){
                                                // print information about the structure/topology
                                                // extended option saves framework/molecules with their ids next to each atom
             string filename = processFilename(command, name, ".strinfo", 0, 1);
@@ -312,8 +312,8 @@ int main(int argc, char * argv[]){
               getStructureInformation((char *)filename.data(), (char *)filenameExtOutput.data(), &atmnet, true);
           }
           else if(command[0].compare("-oms") == 0 || command[0].compare("-omsex") == 0){
-                                               // print information about open metal site present 
-                                               // extended option saves detailed information for each atom 
+                                               // print information about open metal site present
+                                               // extended option saves detailed information for each atom
             string filename = processFilename(command, name, ".oms", 0, 1);
             string filenameExtOutput = processFilename(command, name, ".omsex", 0, 1); // filename to save ext. output
             if(filename.empty()) {error=true; break;}
@@ -340,7 +340,7 @@ int main(int argc, char * argv[]){
             vector<CHANNEL> channels;
             double probeRad = strtod(command[1].data(), NULL);
             CHANNEL::findChannels(&vornet, probeRad, &accessInfo, &channels);
-            
+
       //      analyze_accessible_voronoi_pre_segment(&vornet, probeRad, &accessInfo, name);
             fstream output; output.open(filename.c_str(), fstream::out);
             for(unsigned int i = 0; i < accessInfo.size(); i++)
@@ -367,7 +367,7 @@ int main(int argc, char * argv[]){
               }
               analyze_accessible_voronoi_pre_segment(&vornet, probeRad, &accessInfo, name, bin_directory); //this line generates and outputs Voronoi holograms with bins from a specified directory
             }
-            analyze_accessible_voronoi_pre_segment(&vornet, probeRad, &accessInfo, name); //this line generates and outputs Voronoi holograms with default bins 
+            analyze_accessible_voronoi_pre_segment(&vornet, probeRad, &accessInfo, name); //this line generates and outputs Voronoi holograms with default bins
           }
 
       /* Rich: uses segments
@@ -458,7 +458,7 @@ int main(int argc, char * argv[]){
             for(unsigned int i = 0; i < channels.size(); i++){
 	            output << channels[i].dimensionality << " ";
             }
-	          output << "\n"; 
+	          output << "\n";
 	          // Per channel analysis
 
             double di=0, df=0, dif=0;
@@ -478,8 +478,8 @@ int main(int argc, char * argv[]){
             string filename =  processFilename(command, name, ".zchan", 1, 2);
             if(filename.empty()) {error=true; break;}
             double probe_radius = strtod(command[1].data(), NULL);
-            
-            fstream output; 
+
+            fstream output;
             output.open(filename.data(), fstream::out);
             vector<bool> accessInfo;
             vector<CHANNEL> channels;
@@ -525,7 +525,7 @@ int main(int argc, char * argv[]){
 
             for(unsigned int i = 0; i < pores.size(); i++)
               if(pores[i].dimensionality>0) pores[i].printPoreSummary(output, &atmnet); // Channels
-           
+
             for(unsigned int i = 0; i < pores.size(); i++)
               if(pores[i].dimensionality==0) pores[i].printPoreSummary(output, &atmnet); // Pockets
 
@@ -543,7 +543,7 @@ int main(int argc, char * argv[]){
 */
             output.close();
           }
-          else if(command[0].compare("-poreinfoSummary")==0){  // analyzes a series of .poreinfo files  
+          else if(command[0].compare("-poreinfoSummary")==0){  // analyzes a series of .poreinfo files
             string filename_output =  processFilename(command, name, ".poreinfoSummary", 1, 2);
             if(filename_output.empty()) {error=true; break;}
             string filename_InputData = string(command[1]);
@@ -569,10 +569,10 @@ int main(int argc, char * argv[]){
             double chan_radius  = strtod(command[1].data(), NULL);
             double probe_radius = strtod(command[2].data(), NULL);
             int numSamples      = int(strtod(command[3].data(), NULL));
-          
-            fstream output; 
+
+            fstream output;
             output.open(filename.data(), fstream::out);
-            calcASA(&atmnet, &orgAtomnet, highAccuracy, chan_radius, probe_radius, calcDensity(&atmnet), numSamples, true, output, (char *)filename.data(), visualize, visVisITflag, LiverpoolFlag, ExtendedOutputFlag); 
+            calcASA(&atmnet, &orgAtomnet, highAccuracy, chan_radius, probe_radius, calcDensity(&atmnet), numSamples, true, output, (char *)filename.data(), visualize, visVisITflag, LiverpoolFlag, ExtendedOutputFlag);
             output.close();
           }
           else if( (command[0].compare("-vol") == 0) || (command[0].compare("-zvol") == 0) || (command[0].compare("-vvol") == 0) || (command[0].compare("-lvol") == 0) || (command[0].compare("-volpo") == 0)) {
@@ -632,7 +632,7 @@ int main(int argc, char * argv[]){
             if(command.size()==5 || command.size()==7) //specifying output filename
               filename = string(command[command.size()-1]);
             else filename = string(name).append(suffix);
-            fstream output; 
+            fstream output;
             output.open(filename.data(), fstream::out);
             bool blockingMode = false;
             calcAV(&atmnet, &orgAtomnet, highAccuracy, chan_radius, probe_radius, numSamples, true, output, (char *)filename.data(), visualize, VisITflag, LiverpoolFlag, blockingMode, low_dist_range, high_dist_range, ProbeOccupiableFlag);
@@ -657,7 +657,7 @@ int main(int argc, char * argv[]){
 
             double volume = calcDeterminant(atmnet.ucVectors); // Unit cell volume/Units of A^3
             numSamples = (int)(volume*numSamples);
-            fstream output; 
+            fstream output;
             output.open(filename.data(), fstream::out);
             calcAV(&atmnet, &orgAtomnet, highAccuracy, probe_radius, probe_radius, numSamples, true, output, (char *)filename.data(), 0, 0, 0, 1, low_dist_range, high_dist_range, 0);
             output.close();
@@ -688,7 +688,7 @@ int main(int argc, char * argv[]){
             if(filename_Gaussian_cube.empty()) {error=true; break;}
             generateGaussianGrid(&atmnet, filename_Gaussian_cube, angstrom_to_bohr, useMass);
           }
-          else if(command[0].compare("-gridGprojdata")==0 || command[0].compare("-gridGprojdataBohr")==0){  // projects a file with datapoints (frac. coordinates) onto a gaussian grid (3d histogram) 
+          else if(command[0].compare("-gridGprojdata")==0 || command[0].compare("-gridGprojdataBohr")==0){  // projects a file with datapoints (frac. coordinates) onto a gaussian grid (3d histogram)
             string filename_Gaussian_cube =  processFilename(command, name, ".cube", 1, 2);
             bool angstrom_to_bohr = command[0].compare("-gridGprojdataBohr")==0;
             if(filename_Gaussian_cube.empty()) {error=true; break;}
@@ -697,7 +697,7 @@ int main(int argc, char * argv[]){
             calculateAverageGrid(&atmnet, filename_InputData, filename_Gaussian_cube, angstrom_to_bohr, useMass);
           }
           else if(command[0].compare("-gridGprojdataperframe")==0 || command[0].compare("-gridGprojdataperframeBohr")==0){  // projects a file with datapoints (frac. coordinates) onto a gaussian grid (3d histogram)
-                                                                     // it adds 1 per each frame if a point is occupied 
+                                                                     // it adds 1 per each frame if a point is occupied
             string filename_Gaussian_cube =  processFilename(command, name, ".cube", 1, 2);
             bool angstrom_to_bohr = command[0].compare("-gridGprojdataperframeBohr")==0;
             if(filename_Gaussian_cube.empty()) {error=true; break;}
@@ -758,9 +758,9 @@ int main(int argc, char * argv[]){
             double probe_radius = strtod(command[2].data(), NULL);
             int numSamples      = int(strtod(command[3].data(), NULL));
             string atom="atom";
-            fstream output; 
+            fstream output;
             output.open(filename.data(), fstream::out);
-            calcRaysInAV(&atmnet, &orgAtomnet, highAccuracy, chan_radius, probe_radius, numSamples, output, visualize,atom); 
+            calcRaysInAV(&atmnet, &orgAtomnet, highAccuracy, chan_radius, probe_radius, numSamples, output, visualize,atom);
             output.close();
             }
 
@@ -777,9 +777,9 @@ int main(int argc, char * argv[]){
             double probe_radius = strtod(command[2].data(), NULL);
             int numSamples      = int(strtod(command[3].data(), NULL));
             string sphere="sphere";
-            fstream output; 
+            fstream output;
             output.open(filename.data(), fstream::out);
-            calcRaysInAV(&atmnet, &orgAtomnet, highAccuracy, chan_radius, probe_radius, numSamples, output, visualize,sphere); 
+            calcRaysInAV(&atmnet, &orgAtomnet, highAccuracy, chan_radius, probe_radius, numSamples, output, visualize,sphere);
             output.close();
             }
 
@@ -796,9 +796,9 @@ int main(int argc, char * argv[]){
             double probe_radius = strtod(command[2].data(), NULL);
             int numSamples      = int(strtod(command[3].data(), NULL));
             string node="node";
-            fstream output; 
+            fstream output;
             output.open(filename.data(), fstream::out);
-            calcRaysInAV(&atmnet, &orgAtomnet, highAccuracy, chan_radius, probe_radius, numSamples, output, visualize,node); 
+            calcRaysInAV(&atmnet, &orgAtomnet, highAccuracy, chan_radius, probe_radius, numSamples, output, visualize,node);
             output.close();
             }
           else if((command[0].compare("-ray_andrew_sphere") == 0) || (command[0].compare("-zray_andrew_sphere") == 0)) {
@@ -814,9 +814,9 @@ int main(int argc, char * argv[]){
             double probe_radius = strtod(command[2].data(), NULL);
             int numSamples      = int(strtod(command[3].data(), NULL));
             string option="andrew_sphere";
-            fstream output; 
+            fstream output;
             output.open(filename.data(), fstream::out);
-            calcRaysInAV(&atmnet, &orgAtomnet, highAccuracy, chan_radius, probe_radius, numSamples, output, visualize,option); 
+            calcRaysInAV(&atmnet, &orgAtomnet, highAccuracy, chan_radius, probe_radius, numSamples, output, visualize,option);
             output.close();
           }
           else if((command[0].compare("-ray_andrew_atom") == 0) || (command[0].compare("-zray_andrew_atom") == 0)) {
@@ -832,9 +832,9 @@ int main(int argc, char * argv[]){
             double probe_radius = strtod(command[2].data(), NULL);
             int numSamples      = int(strtod(command[3].data(), NULL));
             string option="andrew_atom";
-            fstream output; 
+            fstream output;
             output.open(filename.data(), fstream::out);
-            calcRaysInAV(&atmnet, &orgAtomnet, highAccuracy, chan_radius, probe_radius, numSamples, output, visualize,option); 
+            calcRaysInAV(&atmnet, &orgAtomnet, highAccuracy, chan_radius, probe_radius, numSamples, output, visualize,option);
             output.close();
           }
           else if(command[0].compare("-r") == 0 || command[0].compare("-nor") == 0){
@@ -861,7 +861,7 @@ int main(int argc, char * argv[]){
             string filename =  processFilename(command, name, suffix, 1, 2);
             if(filename.empty()) {error=true; break;}
             double probe_radius = strtod(command[1].data(), NULL);
-            
+
             DIJKSTRA_NETWORK dnet;
             DIJKSTRA_NETWORK::buildDijkstraNetwork(&vornet,&dnet);
 
@@ -878,13 +878,13 @@ int main(int argc, char * argv[]){
             //VORONOI_NETWORK newNetwork;  pruneVoronoiNetwork(&vornet, &newNetwork, probe_radius);
             VORONOI_NETWORK newNetwork = vornet.prune(probe_radius);
             DIJKSTRA_NETWORK dnet;       DIJKSTRA_NETWORK::buildDijkstraNetwork(&newNetwork, &dnet);
-            
+
             CHANNEL::findChannels(&dnet, &accessInfo, &channels);
 
             fstream output;  output.open(filename.data(), fstream::out);
             int initIndex = 0;
             vector<int> segCounts;
-            for(unsigned int i = 0; i < channels.size(); i++){ 
+            for(unsigned int i = 0; i < channels.size(); i++){
 	      vector<int> nodeIDs = vector<int>();
 	      map<int,int>::iterator iter = channels[i].idMappings.begin();
 	      while(iter != channels[i].idMappings.end()){
@@ -899,7 +899,7 @@ int main(int argc, char * argv[]){
             }
             output.close();
 
-            //fstream output;  
+            //fstream output;
             output.open("seginfo.data", fstream::out);
             output << "set seg_counts {";
             for(unsigned int i = 0; i < segCounts.size(); i++)
@@ -917,7 +917,7 @@ int main(int argc, char * argv[]){
             DIJKSTRA_NETWORK dnet;       DIJKSTRA_NETWORK::buildDijkstraNetwork(&newNetwork, &dnet);
 
             CHANNEL::findChannels(&dnet, &accessInfo, &channels);
-            
+
             fstream output;  output.open(filename.data(), fstream::out);
             int initIndex = 0;
             vector<int> featCounts;
@@ -935,7 +935,7 @@ int main(int argc, char * argv[]){
 	      initIndex += numFeats;
             }
             output.close();
-            
+
             output.open("featinfo.data", fstream::out);
             output << "set feat_counts {";
             for(unsigned int i = 0; i < featCounts.size(); i++)
@@ -968,10 +968,10 @@ int main(int argc, char * argv[]){
             newNetwork.allowAdjustCoordsAndCellFlag = allowAdjustCoordsAndCell;
             int numSubs = 0;
             double subFrac = 0.0;
-            
+
             // Change either parameter to generate other possible configurations
-            int  randSeed = 105543297; // Random number generator seed. 
-            bool subSeed = false;      // Substitute first Si when creating initial 50/50 configuration 
+            int  randSeed = 105543297; // Random number generator seed.
+            bool subSeed = false;      // Substitute first Si when creating initial 50/50 configuration
             bool success = fracSubstituteAtoms(&atmnet, &newNetwork, subSeed, frac, randSeed, &numSubs, &subFrac, radial);
             if(!success){
 	      cerr << "Error: Atom substitution unsucessful." << "\n"
@@ -984,7 +984,7 @@ int main(int argc, char * argv[]){
           }
           /* Maciek's version of substitution */
           /* This function has two modifications w.r.t -fsub. It allows chaging random seed to generate different configurations
-             and removes topology check which ensured that every other atom is Si */ 
+             and removes topology check which ensured that every other atom is Si */
           /* usage: -fsubM fraction random_seed(0 for default) outname */
           else if(command[0].compare("-fsubM") == 0){
             string filename = processFilename(command, name, "_fsub.cssr", 2, 3);
@@ -997,14 +997,14 @@ int main(int argc, char * argv[]){
             double subFrac = 0.0;
 
             // Change either parameter to generate other possible configurations
-            int  randSeed = 105543297; // Random number generator seed. 
-         
-            if(rsd!=0) 
+            int  randSeed = 105543297; // Random number generator seed.
+
+            if(rsd!=0)
                 {
                 randSeed = rsd; // this is a quick fix to renerate random structures
                 cout << "Overriding default random seed with " << rsd << endl;
                 };
-            bool subSeed = false;      // Substitute first Si when creating initial 50/50 configuration 
+            bool subSeed = false;      // Substitute first Si when creating initial 50/50 configuration
             bool success = fracSubstituteAtoms_Maciek(atmnet, newNetwork, subSeed, frac, randSeed, numSubs, subFrac, radial);
             if(!success){
               cerr << "Error: Atom substitution unsucessful." << "\n"
@@ -1112,7 +1112,7 @@ else if(command[0].compare("-defining") == 0) {
 
           else{
             cerr << "Error: Invalid option " << command[0] << " specified." << "\n"
-	         << "Exiting..." << "\n"; 
+	         << "Exiting..." << "\n";
       //      exit(EXIT_FAILURE);
             error=true; break; //memory leaks avoided by allowing main to terminate, rather than calling exit()
           }
@@ -1128,5 +1128,3 @@ else if(command[0].compare("-defining") == 0) {
     }
   }
 }
-
-

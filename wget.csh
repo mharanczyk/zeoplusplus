@@ -16,4 +16,3 @@ wget http://rcsr.anu.edu.au/webfiles/systreinput/$net.cgd
 
 mkdir nets
 mv $net.cgd nets/
-

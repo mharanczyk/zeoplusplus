@@ -13,7 +13,7 @@ def high_accuracy_atmnet(atmnet, accuracy_setting="LOW"):
         atmnet:
             zeo.netstorage.AtomNetwork
             Is modified in place.
-        accuracy_setting: 
+        accuracy_setting:
             String specifying the accuracy settings.
             Possible choices are "OCC","FCC","ACC","AQC","DDH",
             "TIH","ICH","ICC","RIH","S4","S10","S20","S30","S40","S50",
@@ -27,5 +27,3 @@ def high_accuracy_atmnet(atmnet, accuracy_setting="LOW"):
         accuracy_setting = (<unicode>accuracy_setting).encode('utf8')
     cdef string acc_set = accuracy_setting
     setupHighAccuracyAtomNetwork(c_atmnetptr, acc_set)
-
-

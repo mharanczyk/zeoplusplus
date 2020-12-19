@@ -662,8 +662,8 @@ struct __pyx_obj_3zeo_10netstorage___pyx_scope_struct__perform_voronoi_decomposi
 struct __pyx_obj_3zeo_10netstorage___pyx_scope_struct_1_genexpr;
 
 /* "zeo/geometry.pxd":24
- * 
- * 
+ *
+ *
  * cdef class Xyz:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ XYZ class defined in geometry.h
@@ -675,8 +675,8 @@ struct __pyx_obj_3zeo_8geometry_Xyz {
 
 
 /* "zeo/geometry.pxd":32
- * 
- * 
+ *
+ *
  * cdef class Point:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ Point class defined in geometry.h
@@ -688,11 +688,11 @@ struct __pyx_obj_3zeo_8geometry_Point {
 
 
 /* "zeo/voronoicell.pxd":39
- * 
- * 
+ *
+ *
  * cdef class VorFace:             # <<<<<<<<<<<<<<
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorFace {
   PyObject_HEAD
@@ -702,10 +702,10 @@ struct __pyx_obj_3zeo_11voronoicell_VorFace {
 
 /* "zeo/voronoicell.pxd":42
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  * cdef class VorCell:             # <<<<<<<<<<<<<<
  *     cdef VOR_CELL* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorCell {
   PyObject_HEAD
@@ -715,7 +715,7 @@ struct __pyx_obj_3zeo_11voronoicell_VorCell {
 
 /* "zeo/voronoicell.pxd":45
  *     cdef VOR_CELL* thisptr
- * 
+ *
  * cdef class BasicVCell:             # <<<<<<<<<<<<<<
  *     cdef BASIC_VCELL* thisptr
  */
@@ -727,7 +727,7 @@ struct __pyx_obj_3zeo_11voronoicell_BasicVCell {
 
 /* "zeo/netstorage.pxd":120
  *             VORONOI_NETWORK* vornet, ATOM_NETWORK* atmnet)
- * 
+ *
  * cdef class Atom:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM class.
@@ -740,7 +740,7 @@ struct __pyx_obj_3zeo_10netstorage_Atom {
 
 /* "zeo/netstorage.pxd":126
  *     cdef ATOM* thisptr
- * 
+ *
  * cdef class AtomNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM_NETWORK class.
@@ -754,7 +754,7 @@ struct __pyx_obj_3zeo_10netstorage_AtomNetwork {
 
 /* "zeo/netstorage.pxd":135
  *     cdef bint rad_flag
- * 
+ *
  * cdef class VoronoiNode:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VOR_NODE class.
@@ -767,7 +767,7 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNode {
 
 /* "zeo/netstorage.pxd":141
  *     cdef VOR_NODE* thisptr
- * 
+ *
  * cdef class VoronoiNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VORONOI_NETWORK class.
@@ -780,7 +780,7 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNetwork {
 
 /* "zeo/netstorage.pyx":361
  *         calculateFreeSphereParameters(vornet_ptr, c_fname, False)
- * 
+ *
  *     def perform_voronoi_decomposition(self, saveVorCells=True):             # <<<<<<<<<<<<<<
  *         """
  *         Performs weighted voronoi decomposition of atoms in the AtomNetwork
@@ -1463,7 +1463,7 @@ static PyObject *__pyx_codeobj__2;
  *     """
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.thisptr = new ATOM()
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1492,7 +1492,7 @@ static int __pyx_pf_3zeo_10netstorage_4Atom___cinit__(struct __pyx_obj_3zeo_10ne
  *     """
  *     def __cinit__(self):
  *         self.thisptr = new ATOM()             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self):
  */
   try {
@@ -1508,7 +1508,7 @@ static int __pyx_pf_3zeo_10netstorage_4Atom___cinit__(struct __pyx_obj_3zeo_10ne
  *     """
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.thisptr = new ATOM()
- * 
+ *
  */
 
   /* function exit code */
@@ -1524,10 +1524,10 @@ static int __pyx_pf_3zeo_10netstorage_4Atom___cinit__(struct __pyx_obj_3zeo_10ne
 
 /* "zeo/netstorage.pyx":28
  *         self.thisptr = new ATOM()
- * 
+ *
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         pass
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1559,10 +1559,10 @@ static int __pyx_pf_3zeo_10netstorage_4Atom_2__init__(CYTHON_UNUSED struct __pyx
 
 /* "zeo/netstorage.pyx":31
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1581,20 +1581,20 @@ static void __pyx_pf_3zeo_10netstorage_4Atom_4__dealloc__(struct __pyx_obj_3zeo_
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "zeo/netstorage.pyx":32
- * 
+ *
  *     def __dealloc__(self):
  *         del self.thisptr             # <<<<<<<<<<<<<<
- * 
+ *
  *     property coords:
  */
   delete __pyx_v_self->thisptr;
 
   /* "zeo/netstorage.pyx":31
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
   /* function exit code */
@@ -1602,7 +1602,7 @@ static void __pyx_pf_3zeo_10netstorage_4Atom_4__dealloc__(struct __pyx_obj_3zeo_
 }
 
 /* "zeo/netstorage.pyx":35
- * 
+ *
  *     property coords:
  *         def __get__(self):             # <<<<<<<<<<<<<<
  *             coords = list(self.thisptr.x, self.thisptr.y, self.thisptr.z)
@@ -1675,7 +1675,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_4Atom_6coords___get__(struct __pyx_o
   goto __pyx_L0;
 
   /* "zeo/netstorage.pyx":35
- * 
+ *
  *     property coords:
  *         def __get__(self):             # <<<<<<<<<<<<<<
  *             coords = list(self.thisptr.x, self.thisptr.y, self.thisptr.z)
@@ -1752,7 +1752,7 @@ static int __pyx_pf_3zeo_10netstorage_4Atom_6coords_2__set__(struct __pyx_obj_3z
  *             self.thisptr.x = coords[0]
  *             self.thisptr.y = coords[1]             # <<<<<<<<<<<<<<
  *             self.thisptr.z = coords[2]
- * 
+ *
  */
   __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -1764,7 +1764,7 @@ static int __pyx_pf_3zeo_10netstorage_4Atom_6coords_2__set__(struct __pyx_obj_3z
  *             self.thisptr.x = coords[0]
  *             self.thisptr.y = coords[1]
  *             self.thisptr.z = coords[2]             # <<<<<<<<<<<<<<
- * 
+ *
  *     property radius:
  */
   __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
@@ -1794,7 +1794,7 @@ static int __pyx_pf_3zeo_10netstorage_4Atom_6coords_2__set__(struct __pyx_obj_3z
 }
 
 /* "zeo/netstorage.pyx":48
- * 
+ *
  *     property radius:
  *         def __get__(self): return self.thisptr.radius             # <<<<<<<<<<<<<<
  *         def __set__(self, radius):
@@ -1869,7 +1869,7 @@ static int __pyx_pf_3zeo_10netstorage_4Atom_6radius_2__set__(struct __pyx_obj_3z
  *         def __set__(self, radius):
  *             print ("This value is not supposed to be modified")             # <<<<<<<<<<<<<<
  *             self.thisptr.radius = radius
- * 
+ *
  */
   if (__Pyx_PrintOne(0, __pyx_kp_s_This_value_is_not_supposed_to_be) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
 
@@ -1877,8 +1877,8 @@ static int __pyx_pf_3zeo_10netstorage_4Atom_6radius_2__set__(struct __pyx_obj_3z
  *         def __set__(self, radius):
  *             print ("This value is not supposed to be modified")
  *             self.thisptr.radius = radius             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_radius); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 51, __pyx_L1_error)
   __pyx_v_self->thisptr->radius = __pyx_t_1;
@@ -1907,7 +1907,7 @@ static int __pyx_pf_3zeo_10netstorage_4Atom_6radius_2__set__(struct __pyx_obj_3z
  *     #for each atomic species is non-zero.
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.thisptr = new ATOM_NETWORK()
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1936,7 +1936,7 @@ static int __pyx_pf_3zeo_10netstorage_11AtomNetwork___cinit__(struct __pyx_obj_3
  *     #for each atomic species is non-zero.
  *     def __cinit__(self):
  *         self.thisptr = new ATOM_NETWORK()             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self):
  */
   try {
@@ -1952,7 +1952,7 @@ static int __pyx_pf_3zeo_10netstorage_11AtomNetwork___cinit__(struct __pyx_obj_3
  *     #for each atomic species is non-zero.
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.thisptr = new ATOM_NETWORK()
- * 
+ *
  */
 
   /* function exit code */
@@ -1968,10 +1968,10 @@ static int __pyx_pf_3zeo_10netstorage_11AtomNetwork___cinit__(struct __pyx_obj_3
 
 /* "zeo/netstorage.pyx":64
  *         self.thisptr = new ATOM_NETWORK()
- * 
+ *
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         pass
- * 
+ *
  */
 
 /* Python wrapper */
@@ -2003,10 +2003,10 @@ static int __pyx_pf_3zeo_10netstorage_11AtomNetwork_2__init__(CYTHON_UNUSED stru
 
 /* "zeo/netstorage.pyx":67
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
 /* Python wrapper */
@@ -2025,20 +2025,20 @@ static void __pyx_pf_3zeo_10netstorage_11AtomNetwork_4__dealloc__(struct __pyx_o
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "zeo/netstorage.pyx":68
- * 
+ *
  *     def __dealloc__(self):
  *         del self.thisptr             # <<<<<<<<<<<<<<
- * 
+ *
  *     def copy(self):
  */
   delete __pyx_v_self->thisptr;
 
   /* "zeo/netstorage.pyx":67
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
   /* function exit code */
@@ -2047,7 +2047,7 @@ static void __pyx_pf_3zeo_10netstorage_11AtomNetwork_4__dealloc__(struct __pyx_o
 
 /* "zeo/netstorage.pyx":70
  *         del self.thisptr
- * 
+ *
  *     def copy(self):             # <<<<<<<<<<<<<<
  *         """
  *         Create a copy of the AtomNetwork instance
@@ -2101,7 +2101,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_6copy(struct __pyx_obj
  *         self.thisptr.copy(newatmnet.thisptr)
  *         newatmnet.rad_flag = self.rad_flag             # <<<<<<<<<<<<<<
  *         return newatmnet
- * 
+ *
  */
   __pyx_t_2 = __pyx_v_self->rad_flag;
   __pyx_v_newatmnet->rad_flag = __pyx_t_2;
@@ -2110,7 +2110,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_6copy(struct __pyx_obj
  *         self.thisptr.copy(newatmnet.thisptr)
  *         newatmnet.rad_flag = self.rad_flag
  *         return newatmnet             # <<<<<<<<<<<<<<
- * 
+ *
  *     #def relative_to_absolute(self, point):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -2120,7 +2120,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_6copy(struct __pyx_obj
 
   /* "zeo/netstorage.pyx":70
  *         del self.thisptr
- * 
+ *
  *     def copy(self):             # <<<<<<<<<<<<<<
  *         """
  *         Create a copy of the AtomNetwork instance
@@ -2139,7 +2139,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_6copy(struct __pyx_obj
 }
 
 /* "zeo/netstorage.pyx":95
- * 
+ *
  *     @classmethod
  *     def read_from_CIF(cls, filename, rad_flag=True, rad_file=None):             # <<<<<<<<<<<<<<
  *         """
@@ -2239,7 +2239,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_rad_file); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_rad_file);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -2273,9 +2273,9 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
-  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
@@ -2283,7 +2283,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):
  *             filename = (<unicode>filename).encode('utf8')             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef char* c_rad_file = rad_file
  */
     if (unlikely(__pyx_v_filename == Py_None)) {
@@ -2300,13 +2300,13 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":118
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  *         cdef char* c_rad_file = rad_file             # <<<<<<<<<<<<<<
  *         if rad_flag:
  *             if not rad_file:
@@ -2315,7 +2315,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
   __pyx_v_c_rad_file = __pyx_t_4;
 
   /* "zeo/netstorage.pyx":119
- * 
+ *
  *         cdef char* c_rad_file = rad_file
  *         if rad_flag:             # <<<<<<<<<<<<<<
  *             if not rad_file:
@@ -2359,7 +2359,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
  *             else:       # rad_file is defined
  *                 c_rad_file = rad_file             # <<<<<<<<<<<<<<
  *                 zeo.netinfo.zeo_readRadTable(c_rad_file)
- * 
+ *
  */
     /*else*/ {
       __pyx_t_4 = __Pyx_PyObject_AsString(__pyx_v_rad_file); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(0, 123, __pyx_L1_error)
@@ -2369,7 +2369,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
  *             else:       # rad_file is defined
  *                 c_rad_file = rad_file
  *                 zeo.netinfo.zeo_readRadTable(c_rad_file)             # <<<<<<<<<<<<<<
- * 
+ *
  *         atmnet = AtomNetwork()
  */
       readRadTable(__pyx_v_c_rad_file);
@@ -2377,7 +2377,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
     __pyx_L6:;
 
     /* "zeo/netstorage.pyx":119
- * 
+ *
  *         cdef char* c_rad_file = rad_file
  *         if rad_flag:             # <<<<<<<<<<<<<<
  *             if not rad_file:
@@ -2387,7 +2387,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
 
   /* "zeo/netstorage.pyx":126
  *                 zeo.netinfo.zeo_readRadTable(c_rad_file)
- * 
+ *
  *         atmnet = AtomNetwork()             # <<<<<<<<<<<<<<
  *         cdef char* c_filename = filename
  *         if not readCIFFile(c_filename, atmnet.thisptr, rad_flag):
@@ -2398,7 +2398,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
   __pyx_t_3 = 0;
 
   /* "zeo/netstorage.pyx":127
- * 
+ *
  *         atmnet = AtomNetwork()
  *         cdef char* c_filename = filename             # <<<<<<<<<<<<<<
  *         if not readCIFFile(c_filename, atmnet.thisptr, rad_flag):
@@ -2442,7 +2442,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
  *             raise IOError
  *         atmnet.rad_flag = rad_flag             # <<<<<<<<<<<<<<
  *         return atmnet
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_rad_flag); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 130, __pyx_L1_error)
   __pyx_v_atmnet->rad_flag = __pyx_t_1;
@@ -2451,7 +2451,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
  *             raise IOError
  *         atmnet.rad_flag = rad_flag
  *         return atmnet             # <<<<<<<<<<<<<<
- * 
+ *
  *     @classmethod
  */
   __Pyx_XDECREF(__pyx_r);
@@ -2460,7 +2460,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
   goto __pyx_L0;
 
   /* "zeo/netstorage.pyx":95
- * 
+ *
  *     @classmethod
  *     def read_from_CIF(cls, filename, rad_flag=True, rad_file=None):             # <<<<<<<<<<<<<<
  *         """
@@ -2482,7 +2482,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_8read_from_CIF(CYTHON_
 }
 
 /* "zeo/netstorage.pyx":134
- * 
+ *
  *     @classmethod
  *     def read_from_ARC(cls, filename, rad_flag=True, rad_file=None):             # <<<<<<<<<<<<<<
  *         """
@@ -2582,7 +2582,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_10read_from_ARC(CYTHON
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_rad_file); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_rad_file);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -2616,9 +2616,9 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_10read_from_ARC(CYTHON
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
-  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
@@ -2626,7 +2626,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_10read_from_ARC(CYTHON
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):
  *             filename = (<unicode>filename).encode('utf8')             # <<<<<<<<<<<<<<
- * 
+ *
  *         #Calls Zeo++ readARCFile function defined in networkio.cc.
  */
     if (unlikely(__pyx_v_filename == Py_None)) {
@@ -2643,12 +2643,12 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_10read_from_ARC(CYTHON
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":157
- * 
+ *
  *         #Calls Zeo++ readARCFile function defined in networkio.cc.
  *         cdef char* c_rad_file = rad_file             # <<<<<<<<<<<<<<
  *         if rad_flag:
@@ -2702,7 +2702,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_10read_from_ARC(CYTHON
  *             else:       # rad_file is defined
  *                 c_rad_file = rad_file             # <<<<<<<<<<<<<<
  *                 zeo.netinfo.zeo_readRadTable(c_rad_file)
- * 
+ *
  */
     /*else*/ {
       __pyx_t_4 = __Pyx_PyObject_AsString(__pyx_v_rad_file); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(0, 162, __pyx_L1_error)
@@ -2712,7 +2712,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_10read_from_ARC(CYTHON
  *             else:       # rad_file is defined
  *                 c_rad_file = rad_file
  *                 zeo.netinfo.zeo_readRadTable(c_rad_file)             # <<<<<<<<<<<<<<
- * 
+ *
  *         atmnet = AtomNetwork()
  */
       readRadTable(__pyx_v_c_rad_file);
@@ -2730,7 +2730,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_10read_from_ARC(CYTHON
 
   /* "zeo/netstorage.pyx":165
  *                 zeo.netinfo.zeo_readRadTable(c_rad_file)
- * 
+ *
  *         atmnet = AtomNetwork()             # <<<<<<<<<<<<<<
  *         cdef char* c_filename = filename
  *         if not readARCFile(c_filename, atmnet.thisptr, rad_flag):
@@ -2741,7 +2741,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_10read_from_ARC(CYTHON
   __pyx_t_3 = 0;
 
   /* "zeo/netstorage.pyx":166
- * 
+ *
  *         atmnet = AtomNetwork()
  *         cdef char* c_filename = filename             # <<<<<<<<<<<<<<
  *         if not readARCFile(c_filename, atmnet.thisptr, rad_flag):
@@ -2785,7 +2785,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_10read_from_ARC(CYTHON
  *             raise IOError
  *         atmnet.rad_flag = rad_flag             # <<<<<<<<<<<<<<
  *         return atmnet
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_rad_flag); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 169, __pyx_L1_error)
   __pyx_v_atmnet->rad_flag = __pyx_t_1;
@@ -2794,7 +2794,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_10read_from_ARC(CYTHON
  *             raise IOError
  *         atmnet.rad_flag = rad_flag
  *         return atmnet             # <<<<<<<<<<<<<<
- * 
+ *
  *     @classmethod
  */
   __Pyx_XDECREF(__pyx_r);
@@ -2803,7 +2803,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_10read_from_ARC(CYTHON
   goto __pyx_L0;
 
   /* "zeo/netstorage.pyx":134
- * 
+ *
  *     @classmethod
  *     def read_from_ARC(cls, filename, rad_flag=True, rad_file=None):             # <<<<<<<<<<<<<<
  *         """
@@ -2825,7 +2825,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_10read_from_ARC(CYTHON
 }
 
 /* "zeo/netstorage.pyx":173
- * 
+ *
  *     @classmethod
  *     def read_from_CSSR(cls, filename, rad_flag=True, rad_file=None):             # <<<<<<<<<<<<<<
  *         """
@@ -2925,7 +2925,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_12read_from_CSSR(CYTHO
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_rad_file); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_rad_file);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -2959,9 +2959,9 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_12read_from_CSSR(CYTHO
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
-  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
@@ -2969,7 +2969,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_12read_from_CSSR(CYTHO
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):
  *             filename = (<unicode>filename).encode('utf8')             # <<<<<<<<<<<<<<
- * 
+ *
  *         #Calls Zeo++ readCSSRFile function defined in networkio.cc.
  */
     if (unlikely(__pyx_v_filename == Py_None)) {
@@ -2986,7 +2986,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_12read_from_CSSR(CYTHO
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
   }
 
@@ -3042,7 +3042,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_12read_from_CSSR(CYTHO
  *             if rad_file:       # rad_file is defined
  *                 c_rad_file = rad_file             # <<<<<<<<<<<<<<
  *                 zeo.netinfo.zeo_readRadTable(c_rad_file)
- * 
+ *
  */
       __pyx_t_4 = __Pyx_PyObject_AsString(__pyx_v_rad_file); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(0, 202, __pyx_L1_error)
       __pyx_v_c_rad_file = __pyx_t_4;
@@ -3051,7 +3051,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_12read_from_CSSR(CYTHO
  *             if rad_file:       # rad_file is defined
  *                 c_rad_file = rad_file
  *                 zeo.netinfo.zeo_readRadTable(c_rad_file)             # <<<<<<<<<<<<<<
- * 
+ *
  *         atmnet = AtomNetwork()
  */
       readRadTable(__pyx_v_c_rad_file);
@@ -3076,7 +3076,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_12read_from_CSSR(CYTHO
 
   /* "zeo/netstorage.pyx":205
  *                 zeo.netinfo.zeo_readRadTable(c_rad_file)
- * 
+ *
  *         atmnet = AtomNetwork()             # <<<<<<<<<<<<<<
  *         cdef char* c_filename = filename
  *         if not readCSSRFile(c_filename, atmnet.thisptr, rad_flag):
@@ -3087,7 +3087,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_12read_from_CSSR(CYTHO
   __pyx_t_3 = 0;
 
   /* "zeo/netstorage.pyx":206
- * 
+ *
  *         atmnet = AtomNetwork()
  *         cdef char* c_filename = filename             # <<<<<<<<<<<<<<
  *         if not readCSSRFile(c_filename, atmnet.thisptr, rad_flag):
@@ -3131,7 +3131,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_12read_from_CSSR(CYTHO
  *             raise IOError
  *         atmnet.rad_flag = rad_flag             # <<<<<<<<<<<<<<
  *         return atmnet
- * 
+ *
  */
   __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_rad_flag); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 209, __pyx_L1_error)
   __pyx_v_atmnet->rad_flag = __pyx_t_2;
@@ -3140,7 +3140,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_12read_from_CSSR(CYTHO
  *             raise IOError
  *         atmnet.rad_flag = rad_flag
  *         return atmnet             # <<<<<<<<<<<<<<
- * 
+ *
  *     @classmethod
  */
   __Pyx_XDECREF(__pyx_r);
@@ -3149,7 +3149,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_12read_from_CSSR(CYTHO
   goto __pyx_L0;
 
   /* "zeo/netstorage.pyx":173
- * 
+ *
  *     @classmethod
  *     def read_from_CSSR(cls, filename, rad_flag=True, rad_file=None):             # <<<<<<<<<<<<<<
  *         """
@@ -3171,7 +3171,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_12read_from_CSSR(CYTHO
 }
 
 /* "zeo/netstorage.pyx":213
- * 
+ *
  *     @classmethod
  *     def read_from_V1(cls, filename, rad_flag=True, rad_file=None):             # <<<<<<<<<<<<<<
  *         """
@@ -3271,7 +3271,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_14read_from_V1(CYTHON_
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_rad_file); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_rad_file);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -3305,9 +3305,9 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_14read_from_V1(CYTHON_
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
-  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
@@ -3315,7 +3315,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_14read_from_V1(CYTHON_
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):
  *             filename = (<unicode>filename).encode('utf8')             # <<<<<<<<<<<<<<
- * 
+ *
  *         #Calls Zeo++ readV1File function defined in networkio.cc.
  */
     if (unlikely(__pyx_v_filename == Py_None)) {
@@ -3332,12 +3332,12 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_14read_from_V1(CYTHON_
  *             rad_file = (<unicode>rad_file).encode('utf8')
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":236
- * 
+ *
  *         #Calls Zeo++ readV1File function defined in networkio.cc.
  *         cdef char* c_rad_file = rad_file             # <<<<<<<<<<<<<<
  *         if rad_flag:
@@ -3390,7 +3390,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_14read_from_V1(CYTHON_
  *                 zeo.netinfo.zeo_initializeRadTable()
  *             else:       # rad_file is defined
  *                 zeo.netinfo.zeo_readRadTable(c_rad_file)             # <<<<<<<<<<<<<<
- * 
+ *
  *         atmnet = AtomNetwork()
  */
     /*else*/ {
@@ -3409,7 +3409,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_14read_from_V1(CYTHON_
 
   /* "zeo/netstorage.pyx":243
  *                 zeo.netinfo.zeo_readRadTable(c_rad_file)
- * 
+ *
  *         atmnet = AtomNetwork()             # <<<<<<<<<<<<<<
  *         cdef char* c_filename = filename
  *         if not readV1File(c_filename, atmnet.thisptr, rad_flag):
@@ -3420,7 +3420,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_14read_from_V1(CYTHON_
   __pyx_t_3 = 0;
 
   /* "zeo/netstorage.pyx":244
- * 
+ *
  *         atmnet = AtomNetwork()
  *         cdef char* c_filename = filename             # <<<<<<<<<<<<<<
  *         if not readV1File(c_filename, atmnet.thisptr, rad_flag):
@@ -3464,7 +3464,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_14read_from_V1(CYTHON_
  *             raise IOError
  *         atmnet.rad_flag = rad_flag             # <<<<<<<<<<<<<<
  *         return atmnet
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_rad_flag); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 247, __pyx_L1_error)
   __pyx_v_atmnet->rad_flag = __pyx_t_1;
@@ -3473,7 +3473,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_14read_from_V1(CYTHON_
  *             raise IOError
  *         atmnet.rad_flag = rad_flag
  *         return atmnet             # <<<<<<<<<<<<<<
- * 
+ *
  *     def write_to_CSSR(self, filename):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -3482,7 +3482,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_14read_from_V1(CYTHON_
   goto __pyx_L0;
 
   /* "zeo/netstorage.pyx":213
- * 
+ *
  *     @classmethod
  *     def read_from_V1(cls, filename, rad_flag=True, rad_file=None):             # <<<<<<<<<<<<<<
  *         """
@@ -3505,7 +3505,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_14read_from_V1(CYTHON_
 
 /* "zeo/netstorage.pyx":250
  *         return atmnet
- * 
+ *
  *     def write_to_CSSR(self, filename):             # <<<<<<<<<<<<<<
  *         """
  *         Writes the atom data in AtomNetwork to a CSSR file.
@@ -3541,9 +3541,9 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_16write_to_CSSR(struct
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -3551,7 +3551,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_16write_to_CSSR(struct
  *         """
  *         if isinstance(filename, unicode):
  *             filename = (<unicode>filename).encode('utf8')             # <<<<<<<<<<<<<<
- * 
+ *
  *         #Calls Zeo++ writeToCSSR function defined in networkio.cc.
  */
     if (unlikely(__pyx_v_filename == Py_None)) {
@@ -3568,12 +3568,12 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_16write_to_CSSR(struct
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":261
- * 
+ *
  *         #Calls Zeo++ writeToCSSR function defined in networkio.cc.
  *         cdef char* c_filename = filename             # <<<<<<<<<<<<<<
  *         if not writeToCSSR(c_filename, self.thisptr):
@@ -3587,7 +3587,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_16write_to_CSSR(struct
  *         cdef char* c_filename = filename
  *         if not writeToCSSR(c_filename, self.thisptr):             # <<<<<<<<<<<<<<
  *             raise IOError
- * 
+ *
  */
   __pyx_t_2 = ((!(writeToCSSR(__pyx_v_c_filename, __pyx_v_self->thisptr) != 0)) != 0);
   if (__pyx_t_2) {
@@ -3596,7 +3596,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_16write_to_CSSR(struct
  *         cdef char* c_filename = filename
  *         if not writeToCSSR(c_filename, self.thisptr):
  *             raise IOError             # <<<<<<<<<<<<<<
- * 
+ *
  *     def write_to_CIF(self, filename):
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
@@ -3607,13 +3607,13 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_16write_to_CSSR(struct
  *         cdef char* c_filename = filename
  *         if not writeToCSSR(c_filename, self.thisptr):             # <<<<<<<<<<<<<<
  *             raise IOError
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":250
  *         return atmnet
- * 
+ *
  *     def write_to_CSSR(self, filename):             # <<<<<<<<<<<<<<
  *         """
  *         Writes the atom data in AtomNetwork to a CSSR file.
@@ -3635,7 +3635,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_16write_to_CSSR(struct
 
 /* "zeo/netstorage.pyx":265
  *             raise IOError
- * 
+ *
  *     def write_to_CIF(self, filename):             # <<<<<<<<<<<<<<
  *         """
  *         Writes the atom data in AtomNetwork to a CIF file.
@@ -3671,9 +3671,9 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_18write_to_CIF(struct 
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -3681,7 +3681,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_18write_to_CIF(struct 
  *         """
  *         if isinstance(filename, unicode):
  *             filename = (<unicode>filename).encode('utf8')             # <<<<<<<<<<<<<<
- * 
+ *
  *         #Calls Zeo++ writeToCIF function defined in networkio.cc.
  */
     if (unlikely(__pyx_v_filename == Py_None)) {
@@ -3698,12 +3698,12 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_18write_to_CIF(struct 
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":276
- * 
+ *
  *         #Calls Zeo++ writeToCIF function defined in networkio.cc.
  *         cdef char* c_filename = filename             # <<<<<<<<<<<<<<
  *         if not writeToCIF(c_filename, self.thisptr):
@@ -3717,7 +3717,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_18write_to_CIF(struct 
  *         cdef char* c_filename = filename
  *         if not writeToCIF(c_filename, self.thisptr):             # <<<<<<<<<<<<<<
  *             raise IOError
- * 
+ *
  */
   __pyx_t_2 = ((!(writeToCIF(__pyx_v_c_filename, __pyx_v_self->thisptr) != 0)) != 0);
   if (__pyx_t_2) {
@@ -3726,7 +3726,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_18write_to_CIF(struct 
  *         cdef char* c_filename = filename
  *         if not writeToCIF(c_filename, self.thisptr):
  *             raise IOError             # <<<<<<<<<<<<<<
- * 
+ *
  *     def write_to_V1(self, filename):
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
@@ -3737,13 +3737,13 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_18write_to_CIF(struct 
  *         cdef char* c_filename = filename
  *         if not writeToCIF(c_filename, self.thisptr):             # <<<<<<<<<<<<<<
  *             raise IOError
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":265
  *             raise IOError
- * 
+ *
  *     def write_to_CIF(self, filename):             # <<<<<<<<<<<<<<
  *         """
  *         Writes the atom data in AtomNetwork to a CIF file.
@@ -3765,7 +3765,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_18write_to_CIF(struct 
 
 /* "zeo/netstorage.pyx":280
  *             raise IOError
- * 
+ *
  *     def write_to_V1(self, filename):             # <<<<<<<<<<<<<<
  *         """
  *         Writes the atom data in AtomNetwork to a V1 file.
@@ -3801,9 +3801,9 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_20write_to_V1(struct _
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -3811,7 +3811,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_20write_to_V1(struct _
  *         """
  *         if isinstance(filename, unicode):
  *             filename = (<unicode>filename).encode('utf8')             # <<<<<<<<<<<<<<
- * 
+ *
  *         #Calls Zeo++ writeToV1 function defined in networkio.cc.
  */
     if (unlikely(__pyx_v_filename == Py_None)) {
@@ -3828,12 +3828,12 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_20write_to_V1(struct _
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":291
- * 
+ *
  *         #Calls Zeo++ writeToV1 function defined in networkio.cc.
  *         cdef char* c_filename = filename             # <<<<<<<<<<<<<<
  *         if not writeToV1(c_filename, self.thisptr):
@@ -3847,7 +3847,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_20write_to_V1(struct _
  *         cdef char* c_filename = filename
  *         if not writeToV1(c_filename, self.thisptr):             # <<<<<<<<<<<<<<
  *             raise IOError
- * 
+ *
  */
   __pyx_t_2 = ((!(writeToV1(__pyx_v_c_filename, __pyx_v_self->thisptr) != 0)) != 0);
   if (__pyx_t_2) {
@@ -3856,7 +3856,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_20write_to_V1(struct _
  *         cdef char* c_filename = filename
  *         if not writeToV1(c_filename, self.thisptr):
  *             raise IOError             # <<<<<<<<<<<<<<
- * 
+ *
  *     def write_to_XYZ(self, filename, supercell_flag,
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
@@ -3867,13 +3867,13 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_20write_to_V1(struct _
  *         cdef char* c_filename = filename
  *         if not writeToV1(c_filename, self.thisptr):             # <<<<<<<<<<<<<<
  *             raise IOError
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":280
  *             raise IOError
- * 
+ *
  *     def write_to_V1(self, filename):             # <<<<<<<<<<<<<<
  *         """
  *         Writes the atom data in AtomNetwork to a V1 file.
@@ -3895,7 +3895,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_20write_to_V1(struct _
 
 /* "zeo/netstorage.pyx":295
  *             raise IOError
- * 
+ *
  *     def write_to_XYZ(self, filename, supercell_flag,             # <<<<<<<<<<<<<<
  *                      is_duplicate_perimeter_atoms):
  *         """
@@ -3986,9 +3986,9 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_22write_to_XYZ(struct 
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -3996,7 +3996,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_22write_to_XYZ(struct 
  *         """
  *         if isinstance(filename, unicode):
  *             filename = (<unicode>filename).encode('utf8')             # <<<<<<<<<<<<<<
- * 
+ *
  *         #Calls Zeo++ writeToXYZ function defined in networkio.cc.
  */
     if (unlikely(__pyx_v_filename == Py_None)) {
@@ -4013,12 +4013,12 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_22write_to_XYZ(struct 
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":311
- * 
+ *
  *         #Calls Zeo++ writeToXYZ function defined in networkio.cc.
  *         cdef char* c_filename = filename             # <<<<<<<<<<<<<<
  *         if not writeToXYZ(c_filename, self.thisptr, supercell_flag,
@@ -4041,7 +4041,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_22write_to_XYZ(struct 
  *         if not writeToXYZ(c_filename, self.thisptr, supercell_flag,
  *                 is_duplicate_perimeter_atoms):             # <<<<<<<<<<<<<<
  *             raise IOError
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_is_duplicate_perimeter_atoms); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 313, __pyx_L1_error)
 
@@ -4059,7 +4059,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_22write_to_XYZ(struct 
  *         if not writeToXYZ(c_filename, self.thisptr, supercell_flag,
  *                 is_duplicate_perimeter_atoms):
  *             raise IOError             # <<<<<<<<<<<<<<
- * 
+ *
  *     def write_to_VTK(self, filename):
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
@@ -4076,7 +4076,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_22write_to_XYZ(struct 
 
   /* "zeo/netstorage.pyx":295
  *             raise IOError
- * 
+ *
  *     def write_to_XYZ(self, filename, supercell_flag,             # <<<<<<<<<<<<<<
  *                      is_duplicate_perimeter_atoms):
  *         """
@@ -4098,7 +4098,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_22write_to_XYZ(struct 
 
 /* "zeo/netstorage.pyx":316
  *             raise IOError
- * 
+ *
  *     def write_to_VTK(self, filename):             # <<<<<<<<<<<<<<
  *         """
  *         Writes the boundary of unit cell within the AtomNetwork to a VTK file.
@@ -4134,9 +4134,9 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_24write_to_VTK(struct 
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -4144,7 +4144,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_24write_to_VTK(struct 
  *         """
  *         if isinstance(filename, unicode):
  *             filename = (<unicode>filename).encode('utf8')             # <<<<<<<<<<<<<<
- * 
+ *
  *         #Calls Zeo++ writeToVTK function defined in networkio.cc.
  */
     if (unlikely(__pyx_v_filename == Py_None)) {
@@ -4161,12 +4161,12 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_24write_to_VTK(struct 
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":327
- * 
+ *
  *         #Calls Zeo++ writeToVTK function defined in networkio.cc.
  *         cdef char* c_filename = filename             # <<<<<<<<<<<<<<
  *         if not writeToVTK(c_filename, self.thisptr):
@@ -4180,7 +4180,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_24write_to_VTK(struct 
  *         cdef char* c_filename = filename
  *         if not writeToVTK(c_filename, self.thisptr):             # <<<<<<<<<<<<<<
  *             raise IOError
- * 
+ *
  */
   __pyx_t_2 = ((!(writeToVTK(__pyx_v_c_filename, __pyx_v_self->thisptr) != 0)) != 0);
   if (__pyx_t_2) {
@@ -4189,7 +4189,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_24write_to_VTK(struct 
  *         cdef char* c_filename = filename
  *         if not writeToVTK(c_filename, self.thisptr):
  *             raise IOError             # <<<<<<<<<<<<<<
- * 
+ *
  *     def write_to_MOPAC(self, filename, supercell_flag):
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
@@ -4200,13 +4200,13 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_24write_to_VTK(struct 
  *         cdef char* c_filename = filename
  *         if not writeToVTK(c_filename, self.thisptr):             # <<<<<<<<<<<<<<
  *             raise IOError
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":316
  *             raise IOError
- * 
+ *
  *     def write_to_VTK(self, filename):             # <<<<<<<<<<<<<<
  *         """
  *         Writes the boundary of unit cell within the AtomNetwork to a VTK file.
@@ -4228,7 +4228,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_24write_to_VTK(struct 
 
 /* "zeo/netstorage.pyx":331
  *             raise IOError
- * 
+ *
  *     def write_to_MOPAC(self, filename, supercell_flag):             # <<<<<<<<<<<<<<
  *         """
  *         Writes the atom data in AtomNetwork to a .mop file.
@@ -4309,9 +4309,9 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_26write_to_MOPAC(struc
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -4319,7 +4319,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_26write_to_MOPAC(struc
  *         """
  *         if isinstance(filename, unicode):
  *             filename = (<unicode>filename).encode('utf8')             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef char* c_filename = filename
  */
     if (unlikely(__pyx_v_filename == Py_None)) {
@@ -4336,13 +4336,13 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_26write_to_MOPAC(struc
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":341
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  *         cdef char* c_filename = filename             # <<<<<<<<<<<<<<
  *         if not writeToMOPAC(c_filename, self.thisptr, supercell_flag):
  *              raise IOError
@@ -4351,11 +4351,11 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_26write_to_MOPAC(struc
   __pyx_v_c_filename = __pyx_t_4;
 
   /* "zeo/netstorage.pyx":342
- * 
+ *
  *         cdef char* c_filename = filename
  *         if not writeToMOPAC(c_filename, self.thisptr, supercell_flag):             # <<<<<<<<<<<<<<
  *              raise IOError
- * 
+ *
  */
   __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_supercell_flag); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 342, __pyx_L1_error)
   __pyx_t_1 = ((!(writeToMOPAC(__pyx_v_c_filename, __pyx_v_self->thisptr, __pyx_t_2) != 0)) != 0);
@@ -4365,24 +4365,24 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_26write_to_MOPAC(struc
  *         cdef char* c_filename = filename
  *         if not writeToMOPAC(c_filename, self.thisptr, supercell_flag):
  *              raise IOError             # <<<<<<<<<<<<<<
- * 
+ *
  *     def calculate_free_sphere_parameters(self, filename):
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
     __PYX_ERR(0, 343, __pyx_L1_error)
 
     /* "zeo/netstorage.pyx":342
- * 
+ *
  *         cdef char* c_filename = filename
  *         if not writeToMOPAC(c_filename, self.thisptr, supercell_flag):             # <<<<<<<<<<<<<<
  *              raise IOError
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":331
  *             raise IOError
- * 
+ *
  *     def write_to_MOPAC(self, filename, supercell_flag):             # <<<<<<<<<<<<<<
  *         """
  *         Writes the atom data in AtomNetwork to a .mop file.
@@ -4404,7 +4404,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_26write_to_MOPAC(struc
 
 /* "zeo/netstorage.pyx":345
  *              raise IOError
- * 
+ *
  *     def calculate_free_sphere_parameters(self, filename):             # <<<<<<<<<<<<<<
  *         """
  *         Computes the diameters of the largest included sphere, free sphere
@@ -4450,9 +4450,9 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_28calculate_free_spher
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -4460,7 +4460,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_28calculate_free_spher
  *         """
  *         if isinstance(filename, unicode):
  *             filename = (<unicode>filename).encode('utf8')             # <<<<<<<<<<<<<<
- * 
+ *
  *         vornet, edge_centers, face_centers = self.perform_voronoi_decomposition()
  */
     if (unlikely(__pyx_v_filename == Py_None)) {
@@ -4477,13 +4477,13 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_28calculate_free_spher
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":356
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  *         vornet, edge_centers, face_centers = self.perform_voronoi_decomposition()             # <<<<<<<<<<<<<<
  *         cdef char* c_fname = filename
  *         vornet_ptr = (<VoronoiNetwork?>vornet).thisptr
@@ -4522,13 +4522,13 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_28calculate_free_spher
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
-      __pyx_t_4 = PyTuple_GET_ITEM(sequence, 0); 
-      __pyx_t_5 = PyTuple_GET_ITEM(sequence, 1); 
-      __pyx_t_6 = PyTuple_GET_ITEM(sequence, 2); 
+      __pyx_t_4 = PyTuple_GET_ITEM(sequence, 0);
+      __pyx_t_5 = PyTuple_GET_ITEM(sequence, 1);
+      __pyx_t_6 = PyTuple_GET_ITEM(sequence, 2);
     } else {
-      __pyx_t_4 = PyList_GET_ITEM(sequence, 0); 
-      __pyx_t_5 = PyList_GET_ITEM(sequence, 1); 
-      __pyx_t_6 = PyList_GET_ITEM(sequence, 2); 
+      __pyx_t_4 = PyList_GET_ITEM(sequence, 0);
+      __pyx_t_5 = PyList_GET_ITEM(sequence, 1);
+      __pyx_t_6 = PyList_GET_ITEM(sequence, 2);
     }
     __Pyx_INCREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_t_5);
@@ -4573,7 +4573,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_28calculate_free_spher
   __pyx_t_6 = 0;
 
   /* "zeo/netstorage.pyx":357
- * 
+ *
  *         vornet, edge_centers, face_centers = self.perform_voronoi_decomposition()
  *         cdef char* c_fname = filename             # <<<<<<<<<<<<<<
  *         vornet_ptr = (<VoronoiNetwork?>vornet).thisptr
@@ -4587,7 +4587,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_28calculate_free_spher
  *         cdef char* c_fname = filename
  *         vornet_ptr = (<VoronoiNetwork?>vornet).thisptr             # <<<<<<<<<<<<<<
  *         calculateFreeSphereParameters(vornet_ptr, c_fname, False)
- * 
+ *
  */
   if (!(likely(__Pyx_TypeTest(__pyx_v_vornet, __pyx_ptype_3zeo_10netstorage_VoronoiNetwork)))) __PYX_ERR(0, 358, __pyx_L1_error)
   __pyx_t_10 = ((struct __pyx_obj_3zeo_10netstorage_VoronoiNetwork *)__pyx_v_vornet)->thisptr;
@@ -4597,14 +4597,14 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_28calculate_free_spher
  *         cdef char* c_fname = filename
  *         vornet_ptr = (<VoronoiNetwork?>vornet).thisptr
  *         calculateFreeSphereParameters(vornet_ptr, c_fname, False)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def perform_voronoi_decomposition(self, saveVorCells=True):
  */
   calculateFreeSphereParameters(__pyx_v_vornet_ptr, __pyx_v_c_fname, 0);
 
   /* "zeo/netstorage.pyx":345
  *              raise IOError
- * 
+ *
  *     def calculate_free_sphere_parameters(self, filename):             # <<<<<<<<<<<<<<
  *         """
  *         Computes the diameters of the largest included sphere, free sphere
@@ -4633,7 +4633,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_28calculate_free_spher
 
 /* "zeo/netstorage.pyx":361
  *         calculateFreeSphereParameters(vornet_ptr, c_fname, False)
- * 
+ *
  *     def perform_voronoi_decomposition(self, saveVorCells=True):             # <<<<<<<<<<<<<<
  *         """
  *         Performs weighted voronoi decomposition of atoms in the AtomNetwork
@@ -4840,7 +4840,7 @@ static PyObject *__pyx_gb_3zeo_10netstorage_11AtomNetwork_29perform_voronoi_deco
 
 /* "zeo/netstorage.pyx":361
  *         calculateFreeSphereParameters(vornet_ptr, c_fname, False)
- * 
+ *
  *     def perform_voronoi_decomposition(self, saveVorCells=True):             # <<<<<<<<<<<<<<
  *         """
  *         Performs weighted voronoi decomposition of atoms in the AtomNetwork
@@ -4943,7 +4943,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_30perform_voronoi_deco
  *                 vornet.thisptr, &vcells, saveVorCells, &bvcells):
  *             raise ValueError # Change it to appropriate error             # <<<<<<<<<<<<<<
  *         cdef int N
- * 
+ *
  */
     __Pyx_Raise(__pyx_builtin_ValueError, 0, 0, 0);
     __PYX_ERR(0, 379, __pyx_L1_error)
@@ -4958,7 +4958,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_30perform_voronoi_deco
   }
 
   /* "zeo/netstorage.pyx":383
- * 
+ *
  *         # Get the edge centers
  *         edge_centers = []             # <<<<<<<<<<<<<<
  *         cdef vector[VOR_EDGE] vedges = vornet.thisptr.edges
@@ -5113,7 +5113,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_30perform_voronoi_deco
  *             edge_center = tuple(x/2 for x in edge_center)
  *             if edge_center not in edge_centers:             # <<<<<<<<<<<<<<
  *                 edge_centers.append(edge_center)
- * 
+ *
  */
     __pyx_t_3 = (__Pyx_PySequence_ContainsTF(__pyx_cur_scope->__pyx_v_edge_center, __pyx_v_edge_centers, Py_NE)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 395, __pyx_L1_error)
     __pyx_t_2 = (__pyx_t_3 != 0);
@@ -5123,8 +5123,8 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_30perform_voronoi_deco
  *             edge_center = tuple(x/2 for x in edge_center)
  *             if edge_center not in edge_centers:
  *                 edge_centers.append(edge_center)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       __pyx_t_10 = __pyx_cur_scope->__pyx_v_edge_center;
       __Pyx_INCREF(__pyx_t_10);
@@ -5136,13 +5136,13 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_30perform_voronoi_deco
  *             edge_center = tuple(x/2 for x in edge_center)
  *             if edge_center not in edge_centers:             # <<<<<<<<<<<<<<
  *                 edge_centers.append(edge_center)
- * 
+ *
  */
     }
   }
 
   /* "zeo/netstorage.pyx":401
- * 
+ *
  *         # Get the vorcells and obtain the face centers
  *         face_centers = []             # <<<<<<<<<<<<<<
  *         cdef vector[VOR_FACE] vfaces
@@ -5415,7 +5415,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_30perform_voronoi_deco
  *                     centroid.y = centroid.y/vertices.size()
  *                     centroid.z = centroid.z/vertices.size()             # <<<<<<<<<<<<<<
  *                     face_centers.append(centroid)
- * 
+ *
  */
         __pyx_t_9 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_centroid), __pyx_n_s_z); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 427, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
@@ -5432,7 +5432,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_30perform_voronoi_deco
  *                     centroid.y = centroid.y/vertices.size()
  *                     centroid.z = centroid.z/vertices.size()
  *                     face_centers.append(centroid)             # <<<<<<<<<<<<<<
- * 
+ *
  *         # Convert the Zeo++ Point objects in (x,y,z) tuple objects
  */
         __pyx_t_12 = __Pyx_PyList_Append(__pyx_v_face_centers, ((PyObject *)__pyx_v_centroid)); if (unlikely(__pyx_t_12 == -1)) __PYX_ERR(0, 428, __pyx_L1_error)
@@ -5449,7 +5449,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_30perform_voronoi_deco
   }
 
   /* "zeo/netstorage.pyx":431
- * 
+ *
  *         # Convert the Zeo++ Point objects in (x,y,z) tuple objects
  *         fcs = []             # <<<<<<<<<<<<<<
  *         for center in face_centers:
@@ -5484,7 +5484,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_30perform_voronoi_deco
  *         for center in face_centers:
  *             cntr = (center.x,center.y,center.z)             # <<<<<<<<<<<<<<
  *             fcs.append(cntr)
- * 
+ *
  */
     __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_v_center, __pyx_n_s_x); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 433, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
@@ -5510,7 +5510,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_30perform_voronoi_deco
  *         for center in face_centers:
  *             cntr = (center.x,center.y,center.z)
  *             fcs.append(cntr)             # <<<<<<<<<<<<<<
- * 
+ *
  *         #bvcelllist = []
  */
     __pyx_t_12 = __Pyx_PyList_Append(__pyx_v_fcs, __pyx_v_cntr); if (unlikely(__pyx_t_12 == -1)) __PYX_ERR(0, 434, __pyx_L1_error)
@@ -5529,8 +5529,8 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_30perform_voronoi_deco
  *             #basicvcell.thisptr = &(bvcells[i])
  *             #bvcelllist.append(bvcells[i])
  *         return vornet, edge_centers, fcs             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 448, __pyx_L1_error)
@@ -5550,7 +5550,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_30perform_voronoi_deco
 
   /* "zeo/netstorage.pyx":361
  *         calculateFreeSphereParameters(vornet_ptr, c_fname, False)
- * 
+ *
  *     def perform_voronoi_decomposition(self, saveVorCells=True):             # <<<<<<<<<<<<<<
  *         """
  *         Performs weighted voronoi decomposition of atoms in the AtomNetwork
@@ -5587,7 +5587,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11AtomNetwork_30perform_voronoi_deco
  *     """
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.thisptr = new VOR_NODE()
- * 
+ *
  */
 
 /* Python wrapper */
@@ -5616,7 +5616,7 @@ static int __pyx_pf_3zeo_10netstorage_11VoronoiNode___cinit__(struct __pyx_obj_3
  *     """
  *     def __cinit__(self):
  *         self.thisptr = new VOR_NODE()             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self):
  */
   try {
@@ -5632,7 +5632,7 @@ static int __pyx_pf_3zeo_10netstorage_11VoronoiNode___cinit__(struct __pyx_obj_3
  *     """
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.thisptr = new VOR_NODE()
- * 
+ *
  */
 
   /* function exit code */
@@ -5648,10 +5648,10 @@ static int __pyx_pf_3zeo_10netstorage_11VoronoiNode___cinit__(struct __pyx_obj_3
 
 /* "zeo/netstorage.pyx":458
  *         self.thisptr = new VOR_NODE()
- * 
+ *
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         pass
- * 
+ *
  */
 
 /* Python wrapper */
@@ -5683,10 +5683,10 @@ static int __pyx_pf_3zeo_10netstorage_11VoronoiNode_2__init__(CYTHON_UNUSED stru
 
 /* "zeo/netstorage.pyx":461
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
 /* Python wrapper */
@@ -5705,20 +5705,20 @@ static void __pyx_pf_3zeo_10netstorage_11VoronoiNode_4__dealloc__(struct __pyx_o
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "zeo/netstorage.pyx":462
- * 
+ *
  *     def __dealloc__(self):
  *         del self.thisptr             # <<<<<<<<<<<<<<
- * 
+ *
  *     property coords:
  */
   delete __pyx_v_self->thisptr;
 
   /* "zeo/netstorage.pyx":461
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
   /* function exit code */
@@ -5726,7 +5726,7 @@ static void __pyx_pf_3zeo_10netstorage_11VoronoiNode_4__dealloc__(struct __pyx_o
 }
 
 /* "zeo/netstorage.pyx":465
- * 
+ *
  *     property coords:
  *         def __get__(self):             # <<<<<<<<<<<<<<
  *             coords = list(self.thisptr.x, self.thisptr.y, self.thisptr.z)
@@ -5799,7 +5799,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_11VoronoiNode_6coords___get__(struct
   goto __pyx_L0;
 
   /* "zeo/netstorage.pyx":465
- * 
+ *
  *     property coords:
  *         def __get__(self):             # <<<<<<<<<<<<<<
  *             coords = list(self.thisptr.x, self.thisptr.y, self.thisptr.z)
@@ -5876,7 +5876,7 @@ static int __pyx_pf_3zeo_10netstorage_11VoronoiNode_6coords_2__set__(struct __py
  *             self.thisptr.x = coords[0]
  *             self.thisptr.y = coords[1]             # <<<<<<<<<<<<<<
  *             self.thisptr.z = coords[2]
- * 
+ *
  */
   __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 474, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -5888,7 +5888,7 @@ static int __pyx_pf_3zeo_10netstorage_11VoronoiNode_6coords_2__set__(struct __py
  *             self.thisptr.x = coords[0]
  *             self.thisptr.y = coords[1]
  *             self.thisptr.z = coords[2]             # <<<<<<<<<<<<<<
- * 
+ *
  *     property radius:
  */
   __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 475, __pyx_L1_error)
@@ -5918,7 +5918,7 @@ static int __pyx_pf_3zeo_10netstorage_11VoronoiNode_6coords_2__set__(struct __py
 }
 
 /* "zeo/netstorage.pyx":478
- * 
+ *
  *     property radius:
  *         def __get__(self): return self.thisptr.rad_stat_sphere             # <<<<<<<<<<<<<<
  *         def __set__(self, rad):
@@ -5993,7 +5993,7 @@ static int __pyx_pf_3zeo_10netstorage_11VoronoiNode_6radius_2__set__(struct __py
  *         def __set__(self, rad):
  *             print ("This value is not supposed to be modified")             # <<<<<<<<<<<<<<
  *             self.thisptr.rad_stat_sphere = rad
- * 
+ *
  */
   if (__Pyx_PrintOne(0, __pyx_kp_s_This_value_is_not_supposed_to_be) < 0) __PYX_ERR(0, 480, __pyx_L1_error)
 
@@ -6001,7 +6001,7 @@ static int __pyx_pf_3zeo_10netstorage_11VoronoiNode_6radius_2__set__(struct __py
  *         def __set__(self, rad):
  *             print ("This value is not supposed to be modified")
  *             self.thisptr.rad_stat_sphere = rad             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef class VoronoiNetwork:
  */
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_rad); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 481, __pyx_L1_error)
@@ -6031,7 +6031,7 @@ static int __pyx_pf_3zeo_10netstorage_11VoronoiNode_6radius_2__set__(struct __py
  *     #for each atomic species is non-zero.
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.thisptr = new VORONOI_NETWORK()
- * 
+ *
  */
 
 /* Python wrapper */
@@ -6060,7 +6060,7 @@ static int __pyx_pf_3zeo_10netstorage_14VoronoiNetwork___cinit__(struct __pyx_ob
  *     #for each atomic species is non-zero.
  *     def __cinit__(self):
  *         self.thisptr = new VORONOI_NETWORK()             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self):
  */
   try {
@@ -6076,7 +6076,7 @@ static int __pyx_pf_3zeo_10netstorage_14VoronoiNetwork___cinit__(struct __pyx_ob
  *     #for each atomic species is non-zero.
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.thisptr = new VORONOI_NETWORK()
- * 
+ *
  */
 
   /* function exit code */
@@ -6092,10 +6092,10 @@ static int __pyx_pf_3zeo_10netstorage_14VoronoiNetwork___cinit__(struct __pyx_ob
 
 /* "zeo/netstorage.pyx":494
  *         self.thisptr = new VORONOI_NETWORK()
- * 
+ *
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         pass
- * 
+ *
  */
 
 /* Python wrapper */
@@ -6127,10 +6127,10 @@ static int __pyx_pf_3zeo_10netstorage_14VoronoiNetwork_2__init__(CYTHON_UNUSED s
 
 /* "zeo/netstorage.pyx":497
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
 /* Python wrapper */
@@ -6149,20 +6149,20 @@ static void __pyx_pf_3zeo_10netstorage_14VoronoiNetwork_4__dealloc__(struct __py
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "zeo/netstorage.pyx":498
- * 
+ *
  *     def __dealloc__(self):
  *         del self.thisptr             # <<<<<<<<<<<<<<
- * 
+ *
  *     def size(self):
  */
   delete __pyx_v_self->thisptr;
 
   /* "zeo/netstorage.pyx":497
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
   /* function exit code */
@@ -6171,10 +6171,10 @@ static void __pyx_pf_3zeo_10netstorage_14VoronoiNetwork_4__dealloc__(struct __py
 
 /* "zeo/netstorage.pyx":500
  *         del self.thisptr
- * 
+ *
  *     def size(self):             # <<<<<<<<<<<<<<
  *         return self.thisptr.nodes.size()
- * 
+ *
  */
 
 /* Python wrapper */
@@ -6197,10 +6197,10 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_6size(struct __pyx_
   __Pyx_RefNannySetupContext("size", 0);
 
   /* "zeo/netstorage.pyx":501
- * 
+ *
  *     def size(self):
  *         return self.thisptr.nodes.size()             # <<<<<<<<<<<<<<
- * 
+ *
  *     def prune(self, radius):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -6212,10 +6212,10 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_6size(struct __pyx_
 
   /* "zeo/netstorage.pyx":500
  *         del self.thisptr
- * 
+ *
  *     def size(self):             # <<<<<<<<<<<<<<
  *         return self.thisptr.nodes.size()
- * 
+ *
  */
 
   /* function exit code */
@@ -6231,7 +6231,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_6size(struct __pyx_
 
 /* "zeo/netstorage.pyx":503
  *         return self.thisptr.nodes.size()
- * 
+ *
  *     def prune(self, radius):             # <<<<<<<<<<<<<<
  *         """
  *         Removes the edges that do not allow a sphere to pass.
@@ -6287,7 +6287,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_8prune(struct __pyx
  *         newvornet = VoronoiNetwork()
  *         newvornet.thisptr = &newcvornet             # <<<<<<<<<<<<<<
  *         return newvornet
- * 
+ *
  */
   __pyx_v_newvornet->thisptr = (&__pyx_v_newcvornet);
 
@@ -6295,7 +6295,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_8prune(struct __pyx
  *         newvornet = VoronoiNetwork()
  *         newvornet.thisptr = &newcvornet
  *         return newvornet             # <<<<<<<<<<<<<<
- * 
+ *
  *     def analyze_writeto_XYZ(self, name, double probeRad, atmnet,
  */
   __Pyx_XDECREF(__pyx_r);
@@ -6305,7 +6305,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_8prune(struct __pyx
 
   /* "zeo/netstorage.pyx":503
  *         return self.thisptr.nodes.size()
- * 
+ *
  *     def prune(self, radius):             # <<<<<<<<<<<<<<
  *         """
  *         Removes the edges that do not allow a sphere to pass.
@@ -6325,7 +6325,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_8prune(struct __pyx
 
 /* "zeo/netstorage.pyx":517
  *         return newvornet
- * 
+ *
  *     def analyze_writeto_XYZ(self, name, double probeRad, atmnet,             # <<<<<<<<<<<<<<
  *             int shift_x=0, int shift_y=0, int shift_z=0):
  *         """
@@ -6458,9 +6458,9 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_10analyze_writeto_X
  *         """
  *         if isinstance(name, unicode):             # <<<<<<<<<<<<<<
  *             name = (<unicode>name).encode('utf8')
- * 
+ *
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_name); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_name);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -6468,7 +6468,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_10analyze_writeto_X
  *         """
  *         if isinstance(name, unicode):
  *             name = (<unicode>name).encode('utf8')             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef ATOM_NETWORK* c_atmnetptr = (<AtomNetwork?>atmnet).thisptr
  */
     if (unlikely(__pyx_v_name == Py_None)) {
@@ -6485,13 +6485,13 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_10analyze_writeto_X
  *         """
  *         if isinstance(name, unicode):             # <<<<<<<<<<<<<<
  *             name = (<unicode>name).encode('utf8')
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":540
  *             name = (<unicode>name).encode('utf8')
- * 
+ *
  *         cdef ATOM_NETWORK* c_atmnetptr = (<AtomNetwork?>atmnet).thisptr             # <<<<<<<<<<<<<<
  *         cdef char* cname = name
  *         visVoro(name, probeRad, shift_x, shift_y, shift_z, self.thisptr,
@@ -6501,7 +6501,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_10analyze_writeto_X
   __pyx_v_c_atmnetptr = __pyx_t_4;
 
   /* "zeo/netstorage.pyx":541
- * 
+ *
  *         cdef ATOM_NETWORK* c_atmnetptr = (<AtomNetwork?>atmnet).thisptr
  *         cdef char* cname = name             # <<<<<<<<<<<<<<
  *         visVoro(name, probeRad, shift_x, shift_y, shift_z, self.thisptr,
@@ -6515,7 +6515,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_10analyze_writeto_X
  *         cdef char* cname = name
  *         visVoro(name, probeRad, shift_x, shift_y, shift_z, self.thisptr,             # <<<<<<<<<<<<<<
  *                 c_atmnetptr)
- * 
+ *
  */
   __pyx_t_5 = __Pyx_PyObject_AsString(__pyx_v_name); if (unlikely((!__pyx_t_5) && PyErr_Occurred())) __PYX_ERR(0, 542, __pyx_L1_error)
 
@@ -6523,14 +6523,14 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_10analyze_writeto_X
  *         cdef char* cname = name
  *         visVoro(name, probeRad, shift_x, shift_y, shift_z, self.thisptr,
  *                 c_atmnetptr)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def write_to_XYZ(self, filename, double cutoff_radius=0):
  */
   visVoro(__pyx_t_5, __pyx_v_probeRad, __pyx_v_shift_x, __pyx_v_shift_y, __pyx_v_shift_z, __pyx_v_self->thisptr, __pyx_v_c_atmnetptr);
 
   /* "zeo/netstorage.pyx":517
  *         return newvornet
- * 
+ *
  *     def analyze_writeto_XYZ(self, name, double probeRad, atmnet,             # <<<<<<<<<<<<<<
  *             int shift_x=0, int shift_y=0, int shift_z=0):
  *         """
@@ -6552,7 +6552,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_10analyze_writeto_X
 
 /* "zeo/netstorage.pyx":545
  *                 c_atmnetptr)
- * 
+ *
  *     def write_to_XYZ(self, filename, double cutoff_radius=0):             # <<<<<<<<<<<<<<
  *         """
  *         Write only voronoi node information to XYZ file.
@@ -6639,9 +6639,9 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_12write_to_XYZ(stru
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -6649,7 +6649,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_12write_to_XYZ(stru
  *         """
  *         if isinstance(filename, unicode):
  *             filename = (<unicode>filename).encode('utf8')             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef char* c_filename = filename
  */
     if (unlikely(__pyx_v_filename == Py_None)) {
@@ -6666,13 +6666,13 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_12write_to_XYZ(stru
  *         """
  *         if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  */
   }
 
   /* "zeo/netstorage.pyx":559
  *             filename = (<unicode>filename).encode('utf8')
- * 
+ *
  *         cdef char* c_filename = filename             # <<<<<<<<<<<<<<
  *         if not writeVornetToXYZ(c_filename, self.thisptr,
  *                 cutoff_radius):
@@ -6681,7 +6681,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_12write_to_XYZ(stru
   __pyx_v_c_filename = __pyx_t_4;
 
   /* "zeo/netstorage.pyx":560
- * 
+ *
  *         cdef char* c_filename = filename
  *         if not writeVornetToXYZ(c_filename, self.thisptr,             # <<<<<<<<<<<<<<
  *                 cutoff_radius):
@@ -6694,14 +6694,14 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_12write_to_XYZ(stru
  *         if not writeVornetToXYZ(c_filename, self.thisptr,
  *                 cutoff_radius):
  *             raise ValueError             # <<<<<<<<<<<<<<
- * 
+ *
  *     @classmethod
  */
     __Pyx_Raise(__pyx_builtin_ValueError, 0, 0, 0);
     __PYX_ERR(0, 562, __pyx_L1_error)
 
     /* "zeo/netstorage.pyx":560
- * 
+ *
  *         cdef char* c_filename = filename
  *         if not writeVornetToXYZ(c_filename, self.thisptr,             # <<<<<<<<<<<<<<
  *                 cutoff_radius):
@@ -6711,7 +6711,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_12write_to_XYZ(stru
 
   /* "zeo/netstorage.pyx":545
  *                 c_atmnetptr)
- * 
+ *
  *     def write_to_XYZ(self, filename, double cutoff_radius=0):             # <<<<<<<<<<<<<<
  *         """
  *         Write only voronoi node information to XYZ file.
@@ -6732,7 +6732,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_12write_to_XYZ(stru
 }
 
 /* "zeo/netstorage.pyx":565
- * 
+ *
  *     @classmethod
  *     def perform_voronoi_decomposition(cls, atmnet, saveVorCells=False):             # <<<<<<<<<<<<<<
  *         """
@@ -6892,7 +6892,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_14perform_voronoi_d
  *             #basicvcell.thisptr = &(bvcells[i])
  *             #bvcelllist.append(bvcells[i])
  *         return vornet             # <<<<<<<<<<<<<<
- * 
+ *
  * def substitute_atoms(atmnet, substituteSeed, radialFlag):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -6901,7 +6901,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_14perform_voronoi_d
   goto __pyx_L0;
 
   /* "zeo/netstorage.pyx":565
- * 
+ *
  *     @classmethod
  *     def perform_voronoi_decomposition(cls, atmnet, saveVorCells=False):             # <<<<<<<<<<<<<<
  *         """
@@ -6922,7 +6922,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_14VoronoiNetwork_14perform_voronoi_d
 
 /* "zeo/netstorage.pyx":601
  *         return vornet
- * 
+ *
  * def substitute_atoms(atmnet, substituteSeed, radialFlag):             # <<<<<<<<<<<<<<
  *     """
  *     Attempt to substitute every other Si atom with Al atom.
@@ -7087,7 +7087,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_substitute_atoms(CYTHON_UNUSED PyObj
  *         raise ValueError
  *     subNo = substitutionNo[0]             # <<<<<<<<<<<<<<
  *     return atmnet_copy, subNo
- * 
+ *
  */
   __pyx_v_subNo = (__pyx_v_substitutionNo[0]);
 
@@ -7095,8 +7095,8 @@ static PyObject *__pyx_pf_3zeo_10netstorage_substitute_atoms(CYTHON_UNUSED PyObj
  *         raise ValueError
  *     subNo = substitutionNo[0]
  *     return atmnet_copy, subNo             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_subNo); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 629, __pyx_L1_error)
@@ -7115,7 +7115,7 @@ static PyObject *__pyx_pf_3zeo_10netstorage_substitute_atoms(CYTHON_UNUSED PyObj
 
   /* "zeo/netstorage.pyx":601
  *         return vornet
- * 
+ *
  * def substitute_atoms(atmnet, substituteSeed, radialFlag):             # <<<<<<<<<<<<<<
  *     """
  *     Attempt to substitute every other Si atom with Al atom.
@@ -7910,7 +7910,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netstorage.pyx":601
  *         return vornet
- * 
+ *
  * def substitute_atoms(atmnet, substituteSeed, radialFlag):             # <<<<<<<<<<<<<<
  *     """
  *     Attempt to substitute every other Si atom with Al atom.
@@ -8056,7 +8056,7 @@ PyMODINIT_FUNC PyInit_netstorage(void)
 
   /* "zeo/netstorage.pyx":6
  * """
- * 
+ *
  * __author__ = "Bharat Medasani"             # <<<<<<<<<<<<<<
  * __maintainer__ = "Bharat Medasani"
  * __email__ = "mbkumar@gmail.com"
@@ -8064,7 +8064,7 @@ PyMODINIT_FUNC PyInit_netstorage(void)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_author, __pyx_kp_s_Bharat_Medasani) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
 
   /* "zeo/netstorage.pyx":7
- * 
+ *
  * __author__ = "Bharat Medasani"
  * __maintainer__ = "Bharat Medasani"             # <<<<<<<<<<<<<<
  * __email__ = "mbkumar@gmail.com"
@@ -8077,7 +8077,7 @@ PyMODINIT_FUNC PyInit_netstorage(void)
  * __maintainer__ = "Bharat Medasani"
  * __email__ = "mbkumar@gmail.com"             # <<<<<<<<<<<<<<
  * __date__ = "Dec 12, 2013"
- * 
+ *
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_email, __pyx_kp_s_mbkumar_gmail_com) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
 
@@ -8085,13 +8085,13 @@ PyMODINIT_FUNC PyInit_netstorage(void)
  * __maintainer__ = "Bharat Medasani"
  * __email__ = "mbkumar@gmail.com"
  * __date__ = "Dec 12, 2013"             # <<<<<<<<<<<<<<
- * 
+ *
  * from libcpp.vector cimport vector
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_date, __pyx_kp_s_Dec_12_2013) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
 
   /* "zeo/netstorage.pyx":95
- * 
+ *
  *     @classmethod
  *     def read_from_CIF(cls, filename, rad_flag=True, rad_file=None):             # <<<<<<<<<<<<<<
  *         """
@@ -8102,7 +8102,7 @@ PyMODINIT_FUNC PyInit_netstorage(void)
 
   /* "zeo/netstorage.pyx":94
  *     #            rel_point.vals[2])
- * 
+ *
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def read_from_CIF(cls, filename, rad_flag=True, rad_file=None):
  *         """
@@ -8115,7 +8115,7 @@ PyMODINIT_FUNC PyInit_netstorage(void)
   PyType_Modified(__pyx_ptype_3zeo_10netstorage_AtomNetwork);
 
   /* "zeo/netstorage.pyx":134
- * 
+ *
  *     @classmethod
  *     def read_from_ARC(cls, filename, rad_flag=True, rad_file=None):             # <<<<<<<<<<<<<<
  *         """
@@ -8126,7 +8126,7 @@ PyMODINIT_FUNC PyInit_netstorage(void)
 
   /* "zeo/netstorage.pyx":133
  *         return atmnet
- * 
+ *
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def read_from_ARC(cls, filename, rad_flag=True, rad_file=None):
  *         """
@@ -8139,7 +8139,7 @@ PyMODINIT_FUNC PyInit_netstorage(void)
   PyType_Modified(__pyx_ptype_3zeo_10netstorage_AtomNetwork);
 
   /* "zeo/netstorage.pyx":173
- * 
+ *
  *     @classmethod
  *     def read_from_CSSR(cls, filename, rad_flag=True, rad_file=None):             # <<<<<<<<<<<<<<
  *         """
@@ -8150,7 +8150,7 @@ PyMODINIT_FUNC PyInit_netstorage(void)
 
   /* "zeo/netstorage.pyx":172
  *         return atmnet
- * 
+ *
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def read_from_CSSR(cls, filename, rad_flag=True, rad_file=None):
  *         """
@@ -8163,7 +8163,7 @@ PyMODINIT_FUNC PyInit_netstorage(void)
   PyType_Modified(__pyx_ptype_3zeo_10netstorage_AtomNetwork);
 
   /* "zeo/netstorage.pyx":213
- * 
+ *
  *     @classmethod
  *     def read_from_V1(cls, filename, rad_flag=True, rad_file=None):             # <<<<<<<<<<<<<<
  *         """
@@ -8174,7 +8174,7 @@ PyMODINIT_FUNC PyInit_netstorage(void)
 
   /* "zeo/netstorage.pyx":212
  *         return atmnet
- * 
+ *
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def read_from_V1(cls, filename, rad_flag=True, rad_file=None):
  *         """
@@ -8187,7 +8187,7 @@ PyMODINIT_FUNC PyInit_netstorage(void)
   PyType_Modified(__pyx_ptype_3zeo_10netstorage_AtomNetwork);
 
   /* "zeo/netstorage.pyx":565
- * 
+ *
  *     @classmethod
  *     def perform_voronoi_decomposition(cls, atmnet, saveVorCells=False):             # <<<<<<<<<<<<<<
  *         """
@@ -8198,7 +8198,7 @@ PyMODINIT_FUNC PyInit_netstorage(void)
 
   /* "zeo/netstorage.pyx":564
  *             raise ValueError
- * 
+ *
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def perform_voronoi_decomposition(cls, atmnet, saveVorCells=False):
  *         """
@@ -8212,7 +8212,7 @@ PyMODINIT_FUNC PyInit_netstorage(void)
 
   /* "zeo/netstorage.pyx":601
  *         return vornet
- * 
+ *
  * def substitute_atoms(atmnet, substituteSeed, radialFlag):             # <<<<<<<<<<<<<<
  *     """
  *     Attempt to substitute every other Si atom with Al atom.

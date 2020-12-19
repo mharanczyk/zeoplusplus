@@ -25,7 +25,7 @@ double rnd() {return double(rand())/RAND_MAX;}
 int main() {
 	int i;
 	double pos[particles*4],*posp=pos;
-	
+
 	for(i=0;i<particles;i++) {
 		*(posp++)=x_min+rnd()*(x_max-x_min);
 		*(posp++)=y_min+rnd()*(y_max-y_min);

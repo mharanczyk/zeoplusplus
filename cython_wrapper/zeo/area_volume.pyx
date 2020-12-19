@@ -1,10 +1,10 @@
 from libcpp.string cimport string
 
 from zeo.netstorage cimport AtomNetwork, ATOM_NETWORK
-import zeo.high_accuracy  
+import zeo.high_accuracy
 
-def volume(atmnet, channel_radius, probe_radius, 
-        mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None, 
+def volume(atmnet, channel_radius, probe_radius,
+        mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,
         exclude_pockets=True, low_dist_range=-1, high_dist_range=-1):
     """
     Calculates the volume of channels and pockets in a given strucutre.
@@ -52,7 +52,7 @@ def volume(atmnet, channel_radius, probe_radius,
         tmp_atmnet = atmnet.copy()
         c_atmnet_ptr = (<AtomNetwork?>tmp_atmnet).thisptr
 
-    vol_str = calcAV(c_atmnet_ptr, c_org_atmnet_ptr, high_accuracy, 
+    vol_str = calcAV(c_atmnet_ptr, c_org_atmnet_ptr, high_accuracy,
             channel_radius, probe_radius, mc_sampling_no, exclude_pockets,
             low_dist_range, high_dist_range)
     #print vol_str
@@ -67,8 +67,8 @@ def volume(atmnet, channel_radius, probe_radius,
     #        fields = line.split(" ")
     #        print fields[1], fields[3]
 
-def surface_area(atmnet, channel_radius, probe_radius, 
-        mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None, 
+def surface_area(atmnet, channel_radius, probe_radius,
+        mc_sampling_no, high_accuracy=False, high_accuracy_atmnet=None,
         exclude_pockets=True, extended_output=False):
 
     """

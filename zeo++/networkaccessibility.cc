@@ -1,6 +1,6 @@
 
-/* 
-  Here are functions that determine accessibility of points 
+/*
+  Here are functions that determine accessibility of points
 
 */
 
@@ -97,7 +97,7 @@ END DEBUG */
 
 // cout << "Accessibility setup: no channels = " << n_channels << " and no pockets = " << n_pockets << "/n";
 
-} 
+}
 
 
 /* Remove nodes that will not be used for analysis */
@@ -126,7 +126,7 @@ if(answer.first == false && answer.second == false) return true; else return fal
 
 }
 
-/* checks if thr provided point on a surface of atomID is accessible */ 
+/* checks if thr provided point on a surface of atomID is accessible */
 pair <bool,bool> AccessibilityClass::isSPointInsideAtomAndNotAccessible(Point samplingPoint, int atomID){
 double mindist_domod;
 return isPointInsideAtomAndNotAccessible(samplingPoint, mindist_domod, atomID);
@@ -163,7 +163,7 @@ pair <bool,bool> AccessibilityClass::isPointInsideAtomAndNotAccessible(Point sam
   if(highAccuracyFlag == false)
     {
     // old check from Thomas code (pre-high accuracy)
- 
+
     // If point in Voronoi cell of different atom, probe-atom overlap occurs because of d^2-r^2 criterion.
     if(minAtomID != atomID)
       overlaps = true;
@@ -183,7 +183,7 @@ pair <bool,bool> AccessibilityClass::isPointInsideAtomAndNotAccessible(Point sam
 
 
  double minDist = calcEuclideanDistance(smplPoint[0], smplPoint[1], smplPoint[2], curAtom.x, curAtom.y, curAtom.z);
- if(minDist < curAtom.radius - 0.00000001) 
+ if(minDist < curAtom.radius - 0.00000001)
    overlaps = true;
 
 
@@ -191,7 +191,7 @@ pair <bool,bool> AccessibilityClass::isPointInsideAtomAndNotAccessible(Point sam
    {
    curAtom = orgAtomNet.atoms[analyzedAtomNet.IDmapping[minAtomID]];
    minDist = orgAtomNet.calcDistance(smplPoint[0], smplPoint[1], smplPoint[2], &curAtom);
-   if(minDist < curAtom.radius - 0.00000001) 
+   if(minDist < curAtom.radius - 0.00000001)
      overlaps = true;
    };
 
@@ -207,7 +207,7 @@ pair <bool,bool> AccessibilityClass::isPointInsideAtomAndNotAccessible(Point sam
 
 
  // If the point is outside of atoms
- // The routine then checks if the point is in accessible or inaccessible volume/surface 
+ // The routine then checks if the point is in accessible or inaccessible volume/surface
 
  curAtom = analyzedAtomNet.atoms[minAtomID];  // making sure we look at the correct atom net (hiAcc or regular)
 
@@ -246,7 +246,7 @@ pair <bool,bool> AccessibilityClass::isPointInsideAtomAndNotAccessible(Point sam
                // making the path not viable
              }
              else {
-               // Angle is at least 90 degrees and so the line segment interesects only once, 
+               // Angle is at least 90 degrees and so the line segment interesects only once,
                // thereby representing a viable path
                foundNode = true;
                tempNodeID = vcell.getNodeID(k);
@@ -256,7 +256,7 @@ pair <bool,bool> AccessibilityClass::isPointInsideAtomAndNotAccessible(Point sam
            }
     }
 
-    // Sampling failed due to lying on Voronoi cell face and numerical inaccurarcy. 
+    // Sampling failed due to lying on Voronoi cell face and numerical inaccurarcy.
     // Record failure, resample and notify user later
     if(!foundNode){
        resampleCount++;
@@ -271,7 +271,7 @@ return pair<bool,bool> (inside,overlaps);
 }
 
 // ///////////////////////////////////////////////////////
-// 
+//
 //
 //
 /* BELOW ARE NON-INFLATED VERSIONS OF FUNCTIONS */
@@ -360,7 +360,7 @@ END DEBUG */
 
 // cout << "Accessibility setup: no channels = " << n_channels << " and no pockets = " << n_pockets << "/n";
 
-} 
+}
 
 
 /* Remove nodes that will not be used for analysis */
@@ -389,7 +389,7 @@ if(answer.first == false && answer.second == false) return true; else return fal
 
 }
 
-/* checks if thr provided point on a surface of atomID is accessible */ 
+/* checks if thr provided point on a surface of atomID is accessible */
 pair <bool,bool> AccessibilityClassNINF::isSPointInsideAtomAndNotAccessible(Point samplingPoint, int atomID){
 return isPointInsideAtomAndNotAccessible(samplingPoint, atomID);
 }
@@ -425,7 +425,7 @@ pair <bool,bool> AccessibilityClassNINF::isPointInsideAtomAndNotAccessible(Point
   if(highAccuracyFlag == false)
     {
     // old check from Thomas code (pre-high accuracy)
- 
+
     // If point in Voronoi cell of different atom, probe-atom overlap occurs because of d^2-r^2 criterion.
     if(minAtomID != atomID)
       overlaps = true;
@@ -445,7 +445,7 @@ pair <bool,bool> AccessibilityClassNINF::isPointInsideAtomAndNotAccessible(Point
 
 
  double minDist = calcEuclideanDistance(smplPoint[0], smplPoint[1], smplPoint[2], curAtom.x, curAtom.y, curAtom.z);
- if(minDist < curAtom.radius + r_probe - 0.00000001) 
+ if(minDist < curAtom.radius + r_probe - 0.00000001)
    overlaps = true;
 
 
@@ -453,7 +453,7 @@ pair <bool,bool> AccessibilityClassNINF::isPointInsideAtomAndNotAccessible(Point
    {
    curAtom = orgAtomNet->atoms[analyzedAtomNet->IDmapping[minAtomID]];
    minDist = orgAtomNet->calcDistance(smplPoint[0], smplPoint[1], smplPoint[2], &curAtom);
-   if(minDist < curAtom.radius + r_probe - 0.00000001) 
+   if(minDist < curAtom.radius + r_probe - 0.00000001)
      overlaps = true;
    };
 
@@ -467,7 +467,7 @@ pair <bool,bool> AccessibilityClassNINF::isPointInsideAtomAndNotAccessible(Point
 
 
  // If the point is outside of atoms
- // The routine then checks if the point is in accessible or inaccessible volume/surface 
+ // The routine then checks if the point is in accessible or inaccessible volume/surface
 
  curAtom = analyzedAtomNet->atoms[minAtomID];  // making sure we look at the correct atom net (hiAcc or regular)
 
@@ -506,7 +506,7 @@ pair <bool,bool> AccessibilityClassNINF::isPointInsideAtomAndNotAccessible(Point
                // making the path not viable
              }
              else {
-               // Angle is at least 90 degrees and so the line segment interesects only once, 
+               // Angle is at least 90 degrees and so the line segment interesects only once,
                // thereby representing a viable path
                foundNode = true;
                tempNodeID = vcell.getNodeID(k);
@@ -516,7 +516,7 @@ pair <bool,bool> AccessibilityClassNINF::isPointInsideAtomAndNotAccessible(Point
            }
     }
 
-    // Sampling failed due to lying on Voronoi cell face and numerical inaccurarcy. 
+    // Sampling failed due to lying on Voronoi cell face and numerical inaccurarcy.
     // Record failure, resample and notify user later
     if(!foundNode){
        resampleCount++;
@@ -567,7 +567,7 @@ void AccessibilityClassNINF::segmentPoresBasedOnRadius(double seg_r){
 
  cout << "Additional segmentation: n_segments = " << n_segments << "\n";
 
-} 
+}
 
 
 /* Performs segmentation of the Vornet based on segments read from a provided file
@@ -591,14 +591,14 @@ bool AccessibilityClassNINF::segmentPoresBasedOnFile(string filename){
 
     segmentMapping.resize(vornet.nodes.size(), -1);
 
-    // Read and store information about sphere defining segments 
+    // Read and store information about sphere defining segments
     while(!input.eof()){
       double a,b,c, r;
       int id;
 
       input >> a >> b >> c >> id >> r;
 
-      if(input.eof()) 
+      if(input.eof())
         break;
 
       r = r*0.5;
@@ -608,7 +608,7 @@ bool AccessibilityClassNINF::segmentPoresBasedOnFile(string filename){
          {
          if(vornet.nodes.at(i).active == true)
            {
-           if(orgAtomNet->calcDistanceXYZABC(vornet.nodes.at(i).x, vornet.nodes.at(i).y ,vornet.nodes.at(i).z, a,b,c) <= r) 
+           if(orgAtomNet->calcDistanceXYZABC(vornet.nodes.at(i).x, vornet.nodes.at(i).y ,vornet.nodes.at(i).z, a,b,c) <= r)
              {
              // node is within segment sphere
              if(segmentMapping[i] != -1 && segmentMapping[i] != id)
@@ -638,7 +638,7 @@ bool AccessibilityClassNINF::segmentPoresBasedOnFile(string filename){
 
 
 
-/* Performs segmentation of the Vornet based on molecules present in the unit cell 
+/* Performs segmentation of the Vornet based on molecules present in the unit cell
    These segments are defined by the volume bounding the molecules as defined in Ismael's code
     */
 bool AccessibilityClassNINF::segmentPoresBasedOnMoleculesPresent(string filename){
@@ -660,7 +660,7 @@ bool AccessibilityClassNINF::segmentPoresBasedOnMoleculesPresent(string filename
 
     segmentMapping.resize(vornet.nodes.size(), -1);
 
-    // Read and store information about sphere defining segments 
+    // Read and store information about sphere defining segments
     while(!input.eof()){
       double a,b,c, r;
       int id;
@@ -707,7 +707,7 @@ bool AccessibilityClassNINF::segmentPoresBasedOnMoleculesPresent(string filename
 
 
 
-/* analyzed connectivity between segments to get PLDs 
+/* analyzed connectivity between segments to get PLDs
  * segments are defined by voids larger than specified r */
 void AccessibilityClassNINF::calculatePLDbasedOnRadius(double seg_r){
 
@@ -717,7 +717,7 @@ void AccessibilityClassNINF::calculatePLDbasedOnRadius(double seg_r){
 
 } // ends calculatePLDbasedOnRadius()
 
-/* analyzed connectivity between segments to get PLDs 
+/* analyzed connectivity between segments to get PLDs
  * segments are defined by a list of spheres in a file  */
 void AccessibilityClassNINF::calculatePLDbasedOnFile(string segment_filename){
 
@@ -728,7 +728,7 @@ void AccessibilityClassNINF::calculatePLDbasedOnFile(string segment_filename){
 } // ends calculatePLDbasedOnRadius()
 
 
-/* analyzes connectivity between segments  to get PLDs 
+/* analyzes connectivity between segments  to get PLDs
  * segments are defined by the segments of the void space defined by molecules present in the system  */
 void AccessibilityClassNINF::calculatePLDbasedOnMoleculesPresent(string structure_filename){
 
@@ -741,7 +741,7 @@ void AccessibilityClassNINF::calculatePLDbasedOnMoleculesPresent(string structur
 /* analyze connectivity between segments to get PLD */
 void AccessibilityClassNINF::calculatePLD(){
 
- if(n_segments < 2) 
+ if(n_segments < 2)
    { // exit is there are no pre-defined segments
    cerr << "Number of segments used as seed for flood fill algorithm is lower than 2\n";
    return;
@@ -763,7 +763,7 @@ void AccessibilityClassNINF::calculatePLD(){
    vector< pair<int,int> > restrEdge;
    restrEdge.resize(n_segments, dummy_pair);
 
-   for(int i=0; i < n_segments; i++) 
+   for(int i=0; i < n_segments; i++)
      {
      PLDtable.push_back(restrDiam);
      PLDEdgeTable.push_back(restrEdge);
@@ -780,7 +780,7 @@ void AccessibilityClassNINF::calculatePLD(){
 }
 
 /* prints PLD table into the provided output */
-void AccessibilityClassNINF::reportPLD(ostream &output){ 
+void AccessibilityClassNINF::reportPLD(ostream &output){
 
  output <<  n_segments << " segments\n";
 
@@ -817,7 +817,7 @@ void AccessibilityClassNINF::getPLDvisData(vector<Point> *NodeFracCoord, vector<
    // initial segment mapping (prints nodes initially assigned to semgents)
    for(unsigned int i=0; i<vornet.nodes.size(); i++)
      {
-     if(segmentMapping[i]>=0) 
+     if(segmentMapping[i]>=0)
        {
        NodeFracCoord->push_back(orgAtomNet->xyz_to_abc(vornet.nodes.at(i).x, vornet.nodes.at(i).y, vornet.nodes.at(i).z));
        NodeSegmentIDs->push_back(segmentMapping[i]);
@@ -858,7 +858,7 @@ void AccessibilityClassNINF::getPLDvisData(vector<Point> *NodeFracCoord, vector<
      if(PLDtable[i].at(j)> 0.0)
        { // segments i and j are connected
        int node1 = PLDEdgeTable.at(i).at(j).first;
-       int node2 = PLDEdgeTable.at(i).at(j).second;  
+       int node2 = PLDEdgeTable.at(i).at(j).second;
        for(unsigned int k=0; k<vornet.edges.size(); k++){
        int count=0;
        if((vornet.edges.at(k).from==node1&&vornet.edges.at(k).to==node2)||(vornet.edges.at(k).from==node2&&vornet.edges.at(k).to==node1))
@@ -870,7 +870,7 @@ void AccessibilityClassNINF::getPLDvisData(vector<Point> *NodeFracCoord, vector<
          nd2 = nd2 + vornet.v_a.scale(vornet.edges.at(k).delta_uc_x) + vornet.v_b.scale(vornet.edges.at(k).delta_uc_y) + vornet.v_c.scale(vornet.edges.at(k).delta_uc_z);
 
          XYZ nd = midpoint(nd1, nd2);
-         
+
          NodeFracCoord->push_back(orgAtomNet->xyz_to_abc(nd.x, nd.y, nd.z));
          NodeSegmentIDs->push_back(0); // no ID for edge
          NodeSegmentValue->push_back(PLDtable[i].at(j));
@@ -883,7 +883,7 @@ void AccessibilityClassNINF::getPLDvisData(vector<Point> *NodeFracCoord, vector<
 
  if(reqvisdata == "DFSPHERES"){
    // display spheres in between connected cages
-   // this is a temp function without PBC 
+   // this is a temp function without PBC
    for(int i=0; i<n_segments; i++)
    for(int j=i+1; j<n_segments; j++)
      {
@@ -911,4 +911,3 @@ void AccessibilityClassNINF::getPLDvisData(vector<Point> *NodeFracCoord, vector<
 
 
 }
-

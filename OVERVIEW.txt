@@ -15,14 +15,10 @@ Output(functions to handle I/O)
 
 
 
- 
+
 Each Material has:
 
 -Coordinates of atoms (basically the atom net)
 -optional High Accuracy (sphere approx.) copy
 -voronoi objects
 -surface area/AV/PSD objects
-
-
-
-

@@ -1,6 +1,6 @@
 """
-Cython file defining methods for AtomNetwork and VoronoiNetowrk 
-declared in netstorage.pxd file. 
+Cython file defining methods for AtomNetwork and VoronoiNetowrk
+declared in netstorage.pxd file.
 """
 
 __author__ = "Bharat Medasani"
@@ -46,7 +46,7 @@ cdef class Atom:
 
     property radius:
         def __get__(self): return self.thisptr.radius
-        def __set__(self, radius): 
+        def __set__(self, radius):
             print ("This value is not supposed to be modified")
             self.thisptr.radius = radius
 
@@ -57,7 +57,7 @@ cdef class AtomNetwork:
     """
     #Cython wrapper for Zeo++ ATOM_NETWORK class.
     #Contains a pointer to ATOM_NETWORK and a flag denoting whether radius
-    #for each atomic species is non-zero. 
+    #for each atomic species is non-zero.
     def __cinit__(self):
         self.thisptr = new ATOM_NETWORK()
 
@@ -82,22 +82,22 @@ cdef class AtomNetwork:
     #    cdef double y = cpoint_ptr.vals[1]
     #    cdef double z = cpoint_ptr.vals[2]
     #    cdef CPoint abs_point = self.thisptr.abc_to_xyz(x,y,z)
-    #    return Point(abs_point.vals[0], abs_point.vals[1], 
+    #    return Point(abs_point.vals[0], abs_point.vals[1],
     #            abs_point.vals[2])
 
     #def absolute_to_relative(self, point):
     #    cdef CPoint* cpoint_ptr = (<Point?>point).thisptr
     #    cdef CPoint rel_point = self.thisptr.xyz_to_abc(abs_point)
-    #    return Point(rel_point.vals[0], rel_point.vals[1], 
+    #    return Point(rel_point.vals[0], rel_point.vals[1],
     #            rel_point.vals[2])
 
     @classmethod
     def read_from_CIF(cls, filename, rad_flag=True, rad_file=None):
         """
-        Static method to create and populate the AtomNetwork with 
+        Static method to create and populate the AtomNetwork with
         atom data from a CIF file.
         Arguments:
-            filename: 
+            filename:
                 Input CIF file name.
             rad_flag (optional):
                 Flag denoting whether atomic radii are non-zero.
@@ -133,10 +133,10 @@ cdef class AtomNetwork:
     @classmethod
     def read_from_ARC(cls, filename, rad_flag=True, rad_file=None):
         """
-        Static method to create and populate the AtomNetwork with 
+        Static method to create and populate the AtomNetwork with
         atom data from a ARC file.
         Arguments:
-            filename: 
+            filename:
                 Input ARC file name.
             rad_flag (optional):
                 Flag denoting whether atomic radii are non-zero.
@@ -172,10 +172,10 @@ cdef class AtomNetwork:
     @classmethod
     def read_from_CSSR(cls, filename, rad_flag=True, rad_file=None):
         """
-        Static method to create and populate the AtomNetwork with 
+        Static method to create and populate the AtomNetwork with
         atom data from a CSSR file.
         Arguments:
-            filename: 
+            filename:
                 Input CSSR file name.
             rad_flag (optional):
                 Flag denoting whether atomic radii are non-zero.
@@ -212,10 +212,10 @@ cdef class AtomNetwork:
     @classmethod
     def read_from_V1(cls, filename, rad_flag=True, rad_file=None):
         """
-        Static method to create and populate the AtomNetwork with 
+        Static method to create and populate the AtomNetwork with
         atom data from a V1 file.
         Arguments:
-            filename: 
+            filename:
                 Input V1 file name.
             rad_flag (optional):
                 Flag denoting whether atomic radii are non-zero.
@@ -251,7 +251,7 @@ cdef class AtomNetwork:
         """
         Writes the atom data in AtomNetwork to a CSSR file.
         Arguments:
-            filename: 
+            filename:
                 Output CSSR file name.
         """
         if isinstance(filename, unicode):
@@ -266,7 +266,7 @@ cdef class AtomNetwork:
         """
         Writes the atom data in AtomNetwork to a CIF file.
         Arguments:
-            filename: 
+            filename:
                 Output CIF file name.
         """
         if isinstance(filename, unicode):
@@ -281,7 +281,7 @@ cdef class AtomNetwork:
         """
         Writes the atom data in AtomNetwork to a V1 file.
         Arguments:
-            filename: 
+            filename:
                 Output V1 file name.
         """
         if isinstance(filename, unicode):
@@ -292,12 +292,12 @@ cdef class AtomNetwork:
         if not writeToV1(c_filename, self.thisptr):
             raise IOError
 
-    def write_to_XYZ(self, filename, supercell_flag, 
+    def write_to_XYZ(self, filename, supercell_flag,
                      is_duplicate_perimeter_atoms):
         """
         Writes the atom data in AtomNetwork to an XYZ file.
         Arguments:
-            filename: 
+            filename:
                 Output XYZ file name.
             supercell_flag:
                 Flag denoting whether to write 2x2x2 supercell.
@@ -309,7 +309,7 @@ cdef class AtomNetwork:
 
         #Calls Zeo++ writeToXYZ function defined in networkio.cc.
         cdef char* c_filename = filename
-        if not writeToXYZ(c_filename, self.thisptr, supercell_flag, 
+        if not writeToXYZ(c_filename, self.thisptr, supercell_flag,
                 is_duplicate_perimeter_atoms):
             raise IOError
 
@@ -317,7 +317,7 @@ cdef class AtomNetwork:
         """
         Writes the boundary of unit cell within the AtomNetwork to a VTK file.
         Arguments:
-            filename: 
+            filename:
                 Output VTK file name.
         """
         if isinstance(filename, unicode):
@@ -332,7 +332,7 @@ cdef class AtomNetwork:
         """
         Writes the atom data in AtomNetwork to a .mop file.
         Arguments:
-            filename: 
+            filename:
                 Output MOPAC file name.
         """
         if isinstance(filename, unicode):
@@ -344,8 +344,8 @@ cdef class AtomNetwork:
 
     def calculate_free_sphere_parameters(self, filename):
         """
-        Computes the diameters of the largest included sphere, free sphere 
-        and included sphere along free sphere path. 
+        Computes the diameters of the largest included sphere, free sphere
+        and included sphere along free sphere path.
         Arguments:
             filename:
                 Name of file where the diameters are stored.
@@ -360,21 +360,21 @@ cdef class AtomNetwork:
 
     def perform_voronoi_decomposition(self, saveVorCells=True):
         """
-        Performs weighted voronoi decomposition of atoms in the AtomNetwork 
+        Performs weighted voronoi decomposition of atoms in the AtomNetwork
         to analyze void space and generate voronoi nodes, edges and faces.
         Arguments:
-            saveVorCells (optional): 
+            saveVorCells (optional):
                 Flag to denote whether to save the VorCells.
                 Reserved for future use, so ignore this.
         Returns:
             Instance of VoronoiNetwork
         """
         #Calls Zeo++ performVoronoiDecomp function defined in network.cc.
-        vornet = VoronoiNetwork()  
+        vornet = VoronoiNetwork()
         cdef vector[VOR_CELL] vcells
         cdef vector[BASIC_VCELL] bvcells
         #print self.rad_flag
-        if not performVoronoiDecomp(self.rad_flag, self.thisptr, 
+        if not performVoronoiDecomp(self.rad_flag, self.thisptr,
                 vornet.thisptr, &vcells, saveVorCells, &bvcells):
             raise ValueError # Change it to appropriate error
         cdef int N
@@ -401,7 +401,7 @@ cdef class AtomNetwork:
         face_centers = []
         cdef vector[VOR_FACE] vfaces
         cdef vector[CPoint] vertices
-        cdef CPoint* cpoint_ptr 
+        cdef CPoint* cpoint_ptr
         #cdef map[int, int] id_maps
         cdef vector[int] node_ids
         face_node_ids = set()
@@ -476,7 +476,7 @@ cdef class VoronoiNode:
 
     property radius:
         def __get__(self): return self.thisptr.rad_stat_sphere
-        def __set__(self, rad): 
+        def __set__(self, rad):
             print ("This value is not supposed to be modified")
             self.thisptr.rad_stat_sphere = rad
 
@@ -487,7 +487,7 @@ cdef class VoronoiNetwork:
     """
     #Cython wrapper for Zeo++ VORONOI_NETWORK class.
     #Contains a pointer to ATOM_NETWORK and a flag denoting whether radisu
-    #for each atomic species is non-zero. 
+    #for each atomic species is non-zero.
     def __cinit__(self):
         self.thisptr = new VORONOI_NETWORK()
 
@@ -514,11 +514,11 @@ cdef class VoronoiNetwork:
         newvornet.thisptr = &newcvornet
         return newvornet
 
-    def analyze_writeto_XYZ(self, name, double probeRad, atmnet, 
+    def analyze_writeto_XYZ(self, name, double probeRad, atmnet,
             int shift_x=0, int shift_y=0, int shift_z=0):
         """
-        Create diagrams of 1) Voronoi network and 2) accessible Voronoi 
-        network, and write the diagrams in VTK files and the Voronoi 
+        Create diagrams of 1) Voronoi network and 2) accessible Voronoi
+        network, and write the diagrams in VTK files and the Voronoi
         networks in XYZ files. Useful for visualizing the Voronoi network.
         Args:
             name:
@@ -539,7 +539,7 @@ cdef class VoronoiNetwork:
 
         cdef ATOM_NETWORK* c_atmnetptr = (<AtomNetwork?>atmnet).thisptr
         cdef char* cname = name
-        visVoro(name, probeRad, shift_x, shift_y, shift_z, self.thisptr, 
+        visVoro(name, probeRad, shift_x, shift_y, shift_z, self.thisptr,
                 c_atmnetptr)
 
     def write_to_XYZ(self, filename, double cutoff_radius=0):
@@ -557,29 +557,29 @@ cdef class VoronoiNetwork:
             filename = (<unicode>filename).encode('utf8')
 
         cdef char* c_filename = filename
-        if not writeVornetToXYZ(c_filename, self.thisptr, 
+        if not writeVornetToXYZ(c_filename, self.thisptr,
                 cutoff_radius):
             raise ValueError
 
     @classmethod
     def perform_voronoi_decomposition(cls, atmnet, saveVorCells=False):
         """
-        Performs weighted voronoi decomposition of atoms in the AtomNetwork 
+        Performs weighted voronoi decomposition of atoms in the AtomNetwork
         to analyze void space and generate voronoi nodes, edges and faces.
         Arguments:
-            saveVorCells (optional): 
+            saveVorCells (optional):
                 Flag to denote whether to save the VorCells.
                 Reserved for future use, so ignore this.
         Returns:
             Instance of VoronoiNetwork
         """
         #Calls Zeo++ performVoronoiDecomp function defined in network.cc.
-        vornet = VoronoiNetwork()  
+        vornet = VoronoiNetwork()
         cdef ATOM_NETWORK* c_atmnetptr = (<AtomNetwork?>atmnet).thisptr
         cdef vector[VOR_CELL] vcells
         cdef vector[BASIC_VCELL] bvcells
         #print self.rad_flag
-        if not performVoronoiDecomp(atmnet.rad_flag, c_atmnetptr, 
+        if not performVoronoiDecomp(atmnet.rad_flag, c_atmnetptr,
                 vornet.thisptr, &vcells, saveVorCells, &bvcells):
             raise ValueError # Change it to appropriate error
         #cdef int N
@@ -601,23 +601,23 @@ cdef class VoronoiNetwork:
 def substitute_atoms(atmnet, substituteSeed, radialFlag):
     """
     Attempt to substitute every other Si atom with Al atom.
-    AtomNetwork may only consist of Si and O atoms, where each Si atom 
-    must be bonded to exactly 4 oxygen atoms and each oxygen atom must 
+    AtomNetwork may only consist of Si and O atoms, where each Si atom
+    must be bonded to exactly 4 oxygen atoms and each oxygen atom must
     be bonded to exactly 2 Si atoms. Raises exception if the substitution
-    is not successful. 
+    is not successful.
     Args:
         atmnet:
             zeo.netstorage.AtomNetwork
         substiuteSeed:
-            Boolean flag to specify whether the seeded Si atom is 
-            substituted or not. Since only 2 configurations are possible 
-            if the structure is consistent, changing this parameter enables 
-            generation of all configurations. 
+            Boolean flag to specify whether the seeded Si atom is
+            substituted or not. Since only 2 configurations are possible
+            if the structure is consistent, changing this parameter enables
+            generation of all configurations.
         radialFlag:
             Boolean flag to specify whether atomic sizes are to be used.
     Returns:
         If successful, returns AtomNetwork instance with Si replaced with Al
-        and the number of substitutions. 
+        and the number of substitutions.
     """
     cdef int substitutionNo[1]
     atmnet_copy = AtomNetwork()
@@ -627,6 +627,3 @@ def substitute_atoms(atmnet, substituteSeed, radialFlag):
         raise ValueError
     subNo = substitutionNo[0]
     return atmnet_copy, subNo
-
-
-

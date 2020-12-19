@@ -196,12 +196,12 @@ void ATOM_NETWORK::initialize(){
   tempd=(cos(talpha)-cosg*cosb)/sing;
   v_a.x=a;
   v_a.y=0.0;
-  v_a.z=0.0;  
-  v_b.x=b*cosg; 
+  v_a.z=0.0;
+  v_b.x=b*cosg;
   if(fabs(v_b.x) < TOLERANCE)
-    v_b.x=0;  
+    v_b.x=0;
   v_b.y=b*sing;
-  v_b.z=0.0;  
+  v_b.z=0.0;
   v_c.x=c*cosb;
   if(fabs(v_c.x) < TOLERANCE)
     v_c.x = 0;
@@ -232,10 +232,10 @@ TRIPLET ATOM_NETWORK::getSmallestSupercell(double diam) {
     int na = 1+ (diam/a);
     int nb = 1+ (diam/b);
     int nc = 1+ (diam/c);
-    
+
     int fewest_cells = -1; //no supercell yet successful
     TRIPLET smallest_supercell(-1,-1,-1);
-    
+
     //2) search all possible supercell sizes to find the smallest one satisfying
     // the minimum image convention for this radius
     TRIPLET lb(na, nb, nc);
@@ -286,7 +286,7 @@ const Point ATOM_NETWORK::abc_to_xyz(double a, double b, double c) const {
      if(fabs(xyzCoords.y) < 0.00001) xyzCoords.y = 0;
      if(fabs(xyzCoords.z) < 0.00001) xyzCoords.z = 0;
      */
-    
+
     // Use only non-zero elements in computation
     double xt = a*v_a.x+b*v_b.x+c*v_c.x;
     double yt = b*v_b.y+c*v_c.y;
@@ -324,7 +324,7 @@ const Point ATOM_NETWORK::xyz_to_abc(double xi, double yi, double zi) const{
      if(fabs(abcCoords.y) < 0.0001) abcCoords.y = 0;
      if(fabs(abcCoords.z) < 0.0001) abcCoords.z = 0;
      */
-    
+
     // Use only non-zero elements in computation
     double xt = xi*invUCVectors[0][0]+yi*invUCVectors[0][1]+zi*invUCVectors[0][2];
     double yt = yi*invUCVectors[1][1]+zi*invUCVectors[1][2];
@@ -443,7 +443,7 @@ const Point ATOM_NETWORK::shiftXYZInUC(Point xyzCoords) {
 const Point ATOM_NETWORK::minimizePointDistance(Point origPoint, double dx, double dy, double dz){
     Point abc_one  = xyz_to_abc(origPoint);
     Point abc_two  = xyz_to_abc(dx, dy, dz);
-    
+
     double minDa = DBL_MAX, minDb = DBL_MAX, minDc = DBL_MAX, best_a = DBL_MAX, best_b = DBL_MAX, best_c = DBL_MAX;
     getDistCalc().closest_periodic_image(abc_two[0], abc_two[1], abc_two[2], abc_one[0], abc_one[1], abc_one[2],
                                          minDa, minDb, minDc, best_a, best_b, best_c);
@@ -499,28 +499,28 @@ vector<double> ATOM_NETWORK::find_tetrahedra(string element) {
 
 /* Returns Tetrahedrality index for a tetrahedron defined by four atoms */
 double ATOM_NETWORK::CalculateTetrahedrality4Atoms(const ATOM& atm1, const ATOM& atm2, const ATOM& atm3, const ATOM& atm4) const {
-    
+
     vector <double> edges; // tetrahedra edges' lengths
     double d_mean=0.0; // mean value
     double Tindex=0.0;
-    
+
     edges.push_back(calcDistance(atm1,atm2));
     edges.push_back(calcDistance(atm1,atm3));
     edges.push_back(calcDistance(atm1,atm4));
     edges.push_back(calcDistance(atm2,atm3));
     edges.push_back(calcDistance(atm2,atm4));
     edges.push_back(calcDistance(atm3,atm4));
-    
+
     for(int i=0;i<6;i++) d_mean+=edges[i];
-    
+
     d_mean=d_mean/6.0;
-    
+
     for(int i=0;i<5;i++) {
         for(int j=i+1;j<6;j++) {
             Tindex+=((edges[i]-edges[j])*(edges[i]-edges[j]))/(15.0*d_mean*d_mean);
         }
     }
-    
+
     return Tindex;
 }
 
@@ -560,10 +560,10 @@ std::string ATOM_NETWORK::returnChemicalFormula(){
  int na = 1+ (diam/atmnet->a);
  int nb = 1+ (diam/atmnet->b);
  int nc = 1+ (diam/atmnet->c);
- 
+
  int fewest_cells = -1; //no supercell yet successful
  TRIPLET smallest_supercell(-1,-1,-1);
- 
+
  //2) search all possible supercell sizes to find the smallest one satisfying
  // the minimum image convention for this radius
  TRIPLET lb(na, nb, nc);
@@ -637,8 +637,8 @@ VOR_NODE::VOR_NODE(double myX, double myY, double myZ,
 /// Voronoi network constructor
 VORONOI_NETWORK::VORONOI_NETWORK (){}
 VORONOI_NETWORK::VORONOI_NETWORK(const XYZ& inp_va, const XYZ& inp_vb, const XYZ& inp_vc,
-                                 const vector<VOR_NODE>& inp_nodes, 
-                                 const vector<VOR_EDGE>& inp_edges): 
+                                 const vector<VOR_NODE>& inp_nodes,
+                                 const vector<VOR_EDGE>& inp_edges):
     edges(inp_edges), nodes(inp_nodes), v_a(inp_va), v_b(inp_vb), v_c(inp_vc){}
 
 /// Copy constructor for VORONOI_NETWORK
@@ -664,21 +664,21 @@ void VORONOI_NETWORK::copy(VORONOI_NETWORK *newNet){
  for(unsigned int i = 0; i < nodeIDs.size(); i++){
  includeNodes[nodeIDs[i]] = true;
  }
- 
+
  vector<VOR_NODE> newNodes = vector<VOR_NODE>();
  for(unsigned int i = 0; i < oldNet->nodes.size(); i++){
  newNodes.push_back(oldNet->nodes[i]);
  }
- 
+
  vector<VOR_EDGE> newEdges = vector<VOR_EDGE>();
- 
+
  for(unsigned int i = 0; i < oldNet->edges.size(); i++){
  VOR_EDGE edge = oldNet->edges[i];
  if(includeNodes[edge.from] && includeNodes[edge.to]){
  newEdges.push_back(edge);
  }
  }
- 
+
  newNet->nodes = newNodes;
  newNet->edges = newEdges;
  newNet->v_a = oldNet->v_a;
@@ -697,12 +697,12 @@ const VORONOI_NETWORK VORONOI_NETWORK::filterEdges(vector<int> nodeIDs)
     for(unsigned int i = 0; i < nodeIDs.size(); i++){
         includeNodes[nodeIDs[i]] = true;
     }
-    
+
     vector<VOR_NODE> newNodes = vector<VOR_NODE>();
     for(unsigned int i = 0; i < nodes.size(); i++){
         newNodes.push_back(nodes[i]);
     }
-    
+
     vector<VOR_EDGE> newEdges = vector<VOR_EDGE>();
     for(unsigned int i = 0; i < edges.size(); i++){
         VOR_EDGE edge = edges[i];
@@ -710,7 +710,7 @@ const VORONOI_NETWORK VORONOI_NETWORK::filterEdges(vector<int> nodeIDs)
             newEdges.push_back(edge);
         }
     }
-    
+
     return VORONOI_NETWORK(v_a, v_b, v_c, newNodes, newEdges);
 }
 
@@ -719,7 +719,7 @@ VORONOI_NETWORK filterVoronoiNetwork(const VORONOI_NETWORK* vornet, double minRa
     // Add all nodes whose radius is greater than the provided minimum to a list
     map<int,int> idMappings;
     vector<VOR_NODE> newNodes;
-    
+
     int i = 0;
     int idCount = 0;
     vector<VOR_NODE>::const_iterator nodeIter = vornet->nodes.begin();
@@ -729,14 +729,14 @@ VORONOI_NETWORK filterVoronoiNetwork(const VORONOI_NETWORK* vornet, double minRa
             idMappings.insert(pair<int,int> (i, idCount));
             idCount++;
         }
-    
+
     // Add all edges whose radius is greater than the provided minimum to a list
     vector<VOR_EDGE> newEdges;
-    
+
     vector<VOR_EDGE>::const_iterator edgeIter = vornet->edges.begin();
     for(;edgeIter != vornet->edges.end(); edgeIter++)
-        if((edgeIter->rad_moving_sphere > minRadius) && 
-                    (idMappings.find(edgeIter->from) != idMappings.end()) && 
+        if((edgeIter->rad_moving_sphere > minRadius) &&
+                    (idMappings.find(edgeIter->from) != idMappings.end()) &&
                     (idMappings.find(edgeIter->to) != idMappings.end())){
             int from = idMappings.find(edgeIter->from)->second;
             int to = idMappings.find(edgeIter->to)->second;
@@ -746,9 +746,9 @@ VORONOI_NETWORK filterVoronoiNetwork(const VORONOI_NETWORK* vornet, double minRa
                                         edgeIter->delta_uc_z, edgeIter->length)
                               );
         }
-    
+
     return VORONOI_NETWORK(vornet->v_a, vornet->v_b, vornet->v_c, newNodes, newEdges);
-    
+
 }
 
 /** Copies all edges and nodes within the provided VORONOI_NETWORK
@@ -760,7 +760,7 @@ void filterVoronoiNetwork(VORONOI_NETWORK *vornet, VORONOI_NETWORK *newVornet, d
     vector<VOR_NODE> newNodes;
     int i = 0;
     int idCount = 0;
-    
+
     // Add all nodes whose radius is greater than the provided minimum to a list
     while(nodeIter != vornet->nodes.end()){
         if(nodeIter->rad_stat_sphere > minRadius){
@@ -771,13 +771,13 @@ void filterVoronoiNetwork(VORONOI_NETWORK *vornet, VORONOI_NETWORK *newVornet, d
         i++;
         nodeIter++;
     }
-    
+
     // Copy nodes that met requirement
     newVornet->nodes = newNodes;
-    
+
     vector<VOR_EDGE>::iterator edgeIter = vornet->edges.begin();
     vector<VOR_EDGE> newEdges;
-    
+
     // Add all edges whose radius is greater than the provided minimum to a list
     while(edgeIter != vornet->edges.end()){
         if((edgeIter->rad_moving_sphere > minRadius) && (
@@ -795,10 +795,10 @@ void filterVoronoiNetwork(VORONOI_NETWORK *vornet, VORONOI_NETWORK *newVornet, d
         }
         edgeIter++;
     }
-    
+
     // Copy edges that met requirement
     newVornet->edges = newEdges;
-    
+
     // Copy unitcell vectors to new network
     newVornet->v_a = vornet->v_a;
     newVornet->v_b = vornet->v_b;
@@ -817,20 +817,20 @@ const VORONOI_NETWORK VORONOI_NETWORK::prune(const double& minRadius)
         edgeIter != edges.end(); edgeIter++) {
         if(edgeIter->rad_moving_sphere > minRadius){
             //VOR_EDGE newEdge = *edgeIter;
-            
+
             // further check: keep edges only if they connect accessible nodes
             if( nodes[edgeIter->from].rad_stat_sphere > minRadius && nodes[edgeIter->to].rad_stat_sphere > minRadius )
                 newEdges.push_back(*edgeIter);
-            
+
         }
     };
-    
+
     vector<VOR_NODE> newNodes = nodes;
     for(unsigned int i = 0; i < nodes.size(); i++)
     {
         if(nodes[i].rad_stat_sphere > minRadius) newNodes[i].active = true; else newNodes[i].active = false;
     };
-    
+
     return VORONOI_NETWORK(v_a, v_b, v_c, newNodes, newEdges);
 }
 
@@ -843,10 +843,10 @@ const VORONOI_NETWORK VORONOI_NETWORK::prune(const double& minRadius)
  VORONOI_NETWORK *newVornet,
  double minRadius){
  newVornet->nodes = vornet->nodes;
- 
+
  vector<VOR_EDGE>::iterator edgeIter = vornet->edges.begin();
  vector<VOR_EDGE> newEdges;
- 
+
  // Add all edges whose radius is greater than the provided minimum to a list
  while(edgeIter != vornet->edges.end()){
  if(edgeIter->rad_moving_sphere > minRadius){
@@ -862,10 +862,10 @@ const VORONOI_NETWORK VORONOI_NETWORK::prune(const double& minRadius)
  }
  edgeIter++;
  }
- 
+
  // Copy edges that met requirement
  newVornet->edges = newEdges;
- 
+
  // Copy unitcell vectors to new network
  newVornet->v_a = vornet->v_a;
  newVornet->v_b = vornet->v_b;
@@ -881,12 +881,12 @@ const VORONOI_NETWORK VORONOI_NETWORK::prune(const double& minRadius)
 void pruneVoronoiNetworkfromEdgeList(VORONOI_NETWORK *vornet,
                                      VORONOI_NETWORK *newVornet,
                                      vector <int> ids){
-    
+
     newVornet->nodes = vornet->nodes;
-    
+
     vector<VOR_EDGE>::iterator edgeIter = vornet->edges.begin();
     vector<VOR_EDGE> newEdges;
-    
+
     // Add all edges whose are not connected to specified nodes
     while(edgeIter != vornet->edges.end()){
         int flag=0;
@@ -894,7 +894,7 @@ void pruneVoronoiNetworkfromEdgeList(VORONOI_NETWORK *vornet,
             // if edge connects to node of specified id, flag it
             if(edgeIter->from==ids[i]||edgeIter->to==ids[i]) flag++;
         };
-        
+
         if(flag==0){ // only keep unflagged edges
             VOR_EDGE newEdge;
             newEdge.from = edgeIter->from;
@@ -908,8 +908,8 @@ void pruneVoronoiNetworkfromEdgeList(VORONOI_NETWORK *vornet,
         }
         edgeIter++;
     }
-    
-    
+
+
     newVornet->edges = newEdges;
     newVornet->v_a = vornet->v_a;
     newVornet->v_b = vornet->v_b;
@@ -929,7 +929,7 @@ bool substituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
                      bool substituteSeed, int *numSubstitutions, bool radial){
     int numAtoms = origNet->numAtoms;
     double max_bond_length = 1.95;
-    
+
     vector< vector<int> > bonds = vector< vector<int> >(numAtoms, vector<int>());
     for(int i = 0; i < numAtoms; i++){
         ATOM atom_one = origNet->atoms[i];
@@ -947,7 +947,7 @@ bool substituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             }
         }
     }
-    
+
     for(int i = 0; i < numAtoms; i++){
         if(origNet->atoms[i].type.compare("Si") == 0){
             if(bonds[i].size() != 4){
@@ -971,7 +971,7 @@ bool substituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             return false;
         }
     }
-    
+
     int firstSiID = -1;
     for(int i = 0; i < numAtoms; i++){
         if(origNet->atoms[i].type.compare("Si") == 0){
@@ -979,29 +979,29 @@ bool substituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             break;
         }
     }
-    
+
     if(firstSiID == -1){
         cerr << "Error: Atom substitution failed because structure does not "
         "contain any Si atoms \n";
         return false;
     }
-    
+
     vector<bool> atomProc = vector<bool>(numAtoms, false); // Whether atom has been processed
     vector<bool> atomSubs = vector<bool>(numAtoms, false); // Whether atom has been substituted
     int numProc = 0; // Number of processed atoms
-    
+
     vector< pair<int, bool> > atomsToProcess; // Stack of atom/substituion info
     vector<int> fromIDs; // Stack of where each atom/subst came from
-    
+
     pair<int, bool> seed(firstSiID, substituteSeed);
     atomsToProcess.push_back(seed);  // Seed with the first Si atom and not substituting it
     fromIDs.push_back(-1); // Starting node
-    
+
     while(atomsToProcess.size() != 0){
         pair<int, bool> atomInfo = atomsToProcess.back(); atomsToProcess.pop_back();
         int id = atomInfo.first; bool subst = atomInfo.second;
         int fromID = fromIDs.back(); fromIDs.pop_back();
-        
+
         // Atom previously processed. Ensure that atom substitution agrees with previous results for Si atoms
         if(atomProc[id] ){
             if((origNet->atoms[id].type.compare("Si") == 0) && (atomSubs[id] != subst)){
@@ -1015,7 +1015,7 @@ bool substituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             numProc++;
             // Mark atom as processed
             atomProc[id] = true;
-            
+
             // If oxygen, should not be substituted but reverse substituion state for next set of Si atoms
             if(origNet->atoms[id].type.compare("O") == 0){
                 atomSubs[id] = false;
@@ -1032,7 +1032,7 @@ bool substituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
                 << "Occurred for atom " << id << "\n";
                 return false;
             }
-            
+
             // Added bonded atoms to stack with appropriate subsitution state
             for(unsigned int j = 0; j < bonds[id].size(); j++){
                 if(bonds[id][j] != fromID){
@@ -1042,13 +1042,13 @@ bool substituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             }
         }
     }
-    
+
     if(numProc != numAtoms){
         cerr << "Atom network substituion failed because not all atoms are interconnected" << "\n"
         << "Visited " << numProc << " out of " << numAtoms << " atoms " << "\n";
         return false;
     }
-    
+
     // Perform final consistency check
     for(int i = 0; i < numAtoms; i++){
         // Just check pair of atoms bonded to each oxygen
@@ -1062,10 +1062,10 @@ bool substituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             }
         }
     }
-    
+
     // Copy original information
     origNet->copy(newNet);
-    
+
     // Change atoms that should be subsituted
     *numSubstitutions = 0;
     for(int i = 0; i < numAtoms; i++){
@@ -1075,7 +1075,7 @@ bool substituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             (*numSubstitutions)++;
         }
     }
-    
+
     // Successful substitution
     return true;
 }
@@ -1102,7 +1102,7 @@ bool fracSubstituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
                          int *numSubstitutions, double *fracSub, bool radial){
     int numAtoms = origNet->numAtoms;
     double max_bond_length = 1.95;
-    
+
     if(frac > 0.5){
         cerr << "Fractional atomic network substitution failed because the fraction can not exceed 0.5" << "\n";
         return false;
@@ -1111,7 +1111,7 @@ bool fracSubstituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
         cerr << "Fractional atomic network substitution failed because of invalid negative fraction " << frac << "\n";
         return false;
     }
-    
+
     vector< vector<int> > bonds = vector< vector<int> >(numAtoms, vector<int>());
     for(int i = 0; i < numAtoms; i++){
         ATOM atom_one = origNet->atoms[i];
@@ -1128,9 +1128,9 @@ bool fracSubstituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             }
         }
     }
-    
+
     int numSi = 0;
-    
+
     for(int i = 0; i < numAtoms; i++){
         if(origNet->atoms[i].type.compare("Si") == 0){
             if(bonds[i].size() != 4){
@@ -1156,7 +1156,7 @@ bool fracSubstituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             return false;
         }
     }
-    
+
     int firstSiID = -1;
     for(int i = 0; i < numAtoms; i++){
         if(origNet->atoms[i].type.compare("Si") == 0){
@@ -1164,29 +1164,29 @@ bool fracSubstituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             break;
         }
     }
-    
+
     if(firstSiID == -1){
         cerr << "Error: Fractional atomic network substitution failed because "
         "structure does not contain any Si atoms \n";
         return false;
     }
-    
+
     vector<bool> atomProc = vector<bool>(numAtoms, false); // Whether atom has been processed
     vector<bool> atomSubs = vector<bool>(numAtoms, false); // Whether atom has been substituted
     int numProc = 0; // Number of processed atoms
-    
+
     vector< pair<int, bool> > atomsToProcess; // Stack of atom/substituion info
     vector<int> fromIDs; // Stack of where each atom/subst came from
-    
+
     pair<int, bool> seed(firstSiID, substituteSeed);
     atomsToProcess.push_back(seed);  // Seed with the first Si atom and not substituting it
     fromIDs.push_back(-1); // Starting node
-    
+
     while(atomsToProcess.size() != 0){
         pair<int, bool> atomInfo = atomsToProcess.back(); atomsToProcess.pop_back();
         int id = atomInfo.first; bool subst = atomInfo.second;
         int fromID = fromIDs.back(); fromIDs.pop_back();
-        
+
         // Atom previously processed.
         // Ensure that atom substitution agrees with previous results for Si atoms
         if(atomProc[id] ){
@@ -1201,7 +1201,7 @@ bool fracSubstituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             numProc++;
             // Mark atom as processed
             atomProc[id] = true;
-            
+
             // If oxygen, should not be substituted but reverse substituion state for next set of Si atoms
             if(origNet->atoms[id].type.compare("O") == 0){
                 atomSubs[id] = false;
@@ -1219,7 +1219,7 @@ bool fracSubstituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
                 << "Occurred for atom " << id << "\n";
                 return false;
             }
-            
+
             // Added bonded atoms to stack with appropriate subsitution state
             for(unsigned int j = 0; j < bonds[id].size(); j++){
                 if(bonds[id][j] != fromID){
@@ -1229,14 +1229,14 @@ bool fracSubstituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             }
         }
     }
-    
+
     if(numProc != numAtoms){
         cerr << "Fractional atom network substituion failed because not all atoms "
         "are interconnected" << "\n" << "Visited " << numProc << " out of "
         << numAtoms << " atoms " << "\n";
         return false;
     }
-    
+
     // Perform final consistency check
     for(int i = 0; i < numAtoms; i++){
         // Just check pair of atoms bonded to each oxygen
@@ -1251,15 +1251,15 @@ bool fracSubstituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             }
         }
     }
-    
+
     // Copy original information
     origNet->copy(newNet);
-    
+
     int totalSubs = nearestInt(frac*numSi); // How many substituions to actually perform
     *fracSub = (1.0*totalSubs)/numSi;        // Store the actual substitution fraction
-    
+
     srand(randSeed); // Seed random number generator
-    
+
     // Record all originally substituted atoms
     vector<pair<int, int> > subIDs;
     for(int i = 0; i < numAtoms; i++){
@@ -1267,17 +1267,17 @@ bool fracSubstituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             subIDs.push_back(pair<int,int> (rand(), i));
         }
     }
-    
+
     sort(subIDs.begin(), subIDs.end(), comparePairs); // Sort the pairs by their random values
-    
+
     // Change atoms that should be substituted
     for(*numSubstitutions = 0; *numSubstitutions < totalSubs; (*numSubstitutions)++){
         int id = subIDs[*numSubstitutions].second;
         newNet->atoms[id].type   = "Al";
         newNet->atoms[id].radius = lookupRadius("Al", radial);
     }
-    
-    
+
+
     // Change Oxygen type if O atom connected to Al
     for(int i=0; i < numAtoms; i++){
         if(origNet->atoms[i].type.compare("O") == 0)
@@ -1289,9 +1289,9 @@ bool fracSubstituteAtoms(ATOM_NETWORK *origNet, ATOM_NETWORK *newNet,
             };
         };
     };
-    
-    
-    
+
+
+
     // Successful substitution
     return true;
 }
@@ -1313,7 +1313,7 @@ bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet,
                                 int &numSubstitutions, double &fracSub, bool radial){
     int numAtoms = origNet.numAtoms;
     double max_bond_length = 1.95;
-    
+
     if(frac > 0.50){
         cerr << "Fractional atomic network substitution failed because the fraction "
         "can not exceed 0.5" << "\n";
@@ -1324,7 +1324,7 @@ bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet,
         "negative fraction " << frac << "\n";
         return false;
     }
-    
+
     vector< vector<int> > bonds = vector< vector<int> >(numAtoms, vector<int>());
     for(int i = 0; i < numAtoms; i++){
         ATOM atom_one = origNet.atoms[i];
@@ -1342,9 +1342,9 @@ bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet,
             }
         }
     }
-    
+
     int numSi = 0;
-    
+
     for(int i = 0; i < numAtoms; i++){
         if(origNet.atoms[i].type.compare("Si") == 0){
             if(bonds[i].size() != 4){
@@ -1370,7 +1370,7 @@ bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet,
             return false;
         }
     } // analysis of the input structure completed
-    
+
     // save IDs of Si atoms in SiatomsIDs vector
     vector <int> SiatomsIDs;
     for(int i = 0; i < numAtoms; i++){
@@ -1378,36 +1378,36 @@ bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet,
             SiatomsIDs.push_back(i);
         }
     }
-    
-    
+
+
     int totalSubs = nearestInt(frac*numSi); // How many substituions to actually perform
     fracSub = (1.0*totalSubs)/numSi;        // Store the actual substitution fraction
-    
+
     srand(randSeed); // Seed random number generator
-    
+
     // Record all Si atoms (each of them can be substituted)
     vector<pair<int, int> > subIDs;
     for(int i = 0; i < numSi; i++){
         subIDs.push_back(pair<int,int> (rand(), i));
     }
-    
+
     sort(subIDs.begin(), subIDs.end(), comparePairs); // Sort the pairs by their random values
-    
+
     vector<bool> atomSubs = vector<bool>(numAtoms, false); // Whether atom has been substituted
-    
+
     // Change atoms that should be substituted
     for(numSubstitutions = 0; numSubstitutions < totalSubs; numSubstitutions++){
         atomSubs[SiatomsIDs[subIDs[numSubstitutions].second]]=true;
     } // now atomsSubs points all Si atoms substituted in the intial step
-    
-    
+
+
     // Verify if the random distribution of Al atoms satisfy the condition not to have two neighboring Al atoms (Lowenstein's rule)
     // Fix if neccessary
     int counter=0;
     int problematicAl=-1;
-    
+
     int max_try=10000; // number of swaps when trying to find a configuration satisfying Lowenstein's rule
-    
+
     do{
         problematicAl=-1;
         // Step 1: identify atom with problems
@@ -1420,7 +1420,7 @@ bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet,
                 {
                     if(bonds[bonds[i][j]][0]==i) {nlist.push_back(bonds[bonds[i][j]][1]);} else {nlist.push_back(bonds[bonds[i][j]][0]);};
                 }
-                
+
                 if(atomSubs[nlist[0]]||atomSubs[nlist[1]]||atomSubs[nlist[2]]||atomSubs[nlist[3]]) // if any of neighbors is Al, move Al from position i
                 {
                     problematicAl=i; // Al atom i needs to be this shifted;
@@ -1428,12 +1428,12 @@ bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet,
                 }
             }
         }
-        
+
         // Step 2: identify a suitable place for Al atom
         int suitableSi=-1;
         if(problematicAl>-1)
         {
-            
+
             for(int i = 0; i < numAtoms; i++){
                 if(origNet.atoms[i].type.compare("Si") == 0 && atomSubs[i]==false)
                 {
@@ -1447,8 +1447,8 @@ bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet,
                             nlist.push_back(bonds[bonds[i][j]][0]);
                         };
                     }
-                    
-                    if(!atomSubs[nlist[0]] && !atomSubs[nlist[1]] && 
+
+                    if(!atomSubs[nlist[0]] && !atomSubs[nlist[1]] &&
                        !atomSubs[nlist[2]]&&!atomSubs[nlist[3]]) // if all of neighbors are Si, position i can be used
                     {
                         suitableSi=i; // Si atom i can be replaced with Al;
@@ -1457,15 +1457,15 @@ bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet,
                 }
             }
         } // end of Step 2
-        
+
         // Step 3: Swap 1 & 2
         if(problematicAl>-1&&suitableSi>-1)
         {
             atomSubs[problematicAl]=false;
             atomSubs[suitableSi]=true;
         }else{
-            
-            if(problematicAl>-1) 
+
+            if(problematicAl>-1)
             {
                 cerr << "Cannot fix a random Al distribution by swapping Al atoms" << "\n";
                 return false;
@@ -1474,22 +1474,22 @@ bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet,
         // Step 4: increase counter
         counter++;
     }while(problematicAl>-1&&counter<max_try*numSi);
-    
-    
+
+
     if(counter==(max_try*numSi))
     {
         cerr << "Could not fix the initial Al distribution in " << max_try*numSi << "steps\n";
         return false;
     }
-    
-    
-    
+
+
+
     // Now update the original structure according to the generate distribution of Al atoms
-    
+
     // Copy original information
     origNet.copy(&newNet);
-    
-    
+
+
     // Change atoms that should be substituted
     for(int i = 0; i < numAtoms; i++){
         if(atomSubs[i]){
@@ -1497,9 +1497,9 @@ bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet,
             newNet.atoms[i].radius = lookupRadius("Al", radial);
         }
     }
-    
-    
-    
+
+
+
     // Change Oxygen type if O atom connected to Al
     for(int i=0; i < numAtoms; i++){
         if(origNet.atoms[i].type.compare("O") == 0)
@@ -1508,10 +1508,10 @@ bool fracSubstituteAtoms_Maciek(ATOM_NETWORK &origNet, ATOM_NETWORK &newNet,
             {
                 newNet.atoms[i].type   = "O_Al";
             };
-        };  
+        };
     };
-    
-    
+
+
     // Successful substitution
     return true;
 }
@@ -1576,7 +1576,7 @@ int getNodeID(Point pt, ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet){
             }
         }
     }
-    
+
     cerr << "Warning : When identifying Voronoi node, the distance exceeded the threshold of " << threshold << "\n"
     << "Occurred during analysis of " << atmnet->name << "\n"
     << "Closest node was within " << minDist << "\n"
@@ -1702,7 +1702,7 @@ void create_unit_cell_from_vectors(vector<XYZ> *vecs, ATOM_NETWORK *cell) {
   }
   vector<int> assignments, scales;
   vector<bool> is_assigned;
-  for(int i=0; i<num_vecs; i++) { 
+  for(int i=0; i<num_vecs; i++) {
     if(i<2) {
       assignments.push_back(-1);
       scales.push_back(1);
@@ -2504,7 +2504,7 @@ void parse_atom(vector<string> *token, int first_index, ATOM_NETWORK *cell, int 
     } else {
       printf("NET WARNING: dummy edge was expected for 2c atom with index %d, but file ended instead\n", (*atom_index));
       //exit(EXIT_FAILURE);
-    }    
+    }
   }
   cell->vertices.push_back(v);
   cell->vertex_symmetry_operators.push_back(0); //the vertices read from file are the basic ones, before any symmetry operator (or you could say after operator 0, which does nothing)
@@ -2943,7 +2943,7 @@ fprintf(cif, "_symmetry_space_group_name_H-M\t\tP-1\n");
 //  fprintf(cif, "_symmetry_Int_Tables_number\t\t%d\n", cell->sym_ID);
   fprintf(cif, "_symmetry_Int_Tables_number\t\t1\n");
   fprintf(cif, "_symmetry_cell_setting\t\t");
-  
+
   //Determine the Crystal System
   if (cell->alpha == 90 && cell->beta == 90 && cell->gamma == 90){
     if (cell->a == cell->b || cell->b == cell->c || cell->a == cell->c){
@@ -2964,7 +2964,7 @@ fprintf(cif, "_symmetry_space_group_name_H-M\t\tP-1\n");
   else{
     fprintf(cif, "Triclinic\n\n");
   }
-  
+
   fprintf(cif, "loop_\n");
   fprintf(cif, "_symmetry_equiv_pos_as_xyz\n");
 fprintf(cif, "'+x,+y,+z'\n\n"); //can we do something smarter here?
@@ -2988,7 +2988,7 @@ fprintf(cif, "'+x,+y,+z'\n\n"); //can we do something smarter here?
         XYZ quarter_edge = ((edge-v.abc).scale(1.0/4.0))+v.abc;
 //        fprintf(cif, "%d\t%d\t%.6f\t%.6f\t%.6f\n", count, count, quarter_edge.x, quarter_edge.y, quarter_edge.z);
         fprintf(cif, "%s\t%s\t%.6f\t%.6f\t%.6f\n", "H", "H", quarter_edge.x, quarter_edge.y, quarter_edge.z);
-        count++;        
+        count++;
       }
     }
   }
@@ -3162,5 +3162,3 @@ void read_xyz(FILE *input, MOLECULE *mol, const char *filename) {
     }
   }
 }
-
-

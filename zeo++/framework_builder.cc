@@ -27,7 +27,7 @@ using namespace std;
 #include "zeo_consts.h"
 
 //global, const, struct
-string global_net; 
+string global_net;
 const bool write_old_ml_file = false; //just for debugging, writes out ratio of different building blocks in the structure in an old format
 const int MIN_DIM = 2;
 typedef struct {int seconds; int microseconds;} seconds_microseconds;
@@ -105,7 +105,7 @@ printf("\n");
       mol_names.push_back(m);
     }
   }
-  
+
 /*------------------------------
          NET HANDLING
 ------------------------------*/
@@ -211,7 +211,7 @@ printf("\n");
     int old_basic_ID = full_cell.vertex_basic_indices.at(i);
     full_cell.vertex_basic_indices.at(i) = new_IDs_for_old_basic_vertex_IDs.at(old_basic_ID);
   }
-  
+
   //identify the two-way connections in the full_cell
   vector<CONNECTION> two_way_connections;
   bool disconnected_net = find_two_way_connections(&full_cell, &two_way_connections);
@@ -281,7 +281,7 @@ printf("\n");
   }
 
   //replace "V" with a number in the xyz output files? this will color-code vertices based on their connectivity
-  bool rename_vertices_by_connectivity = true;  
+  bool rename_vertices_by_connectivity = true;
 
   //write unit cell to vtk file
   string basic_uc_name = prefix+"_net_unit_cell.vtk";
@@ -474,7 +474,7 @@ if(verbose) {
           //which kinds of net segmentation can we deal with, or are valid?
           if(num_full_vertices_here<num_mols_here) { //no matter what we do, there are just not enough full vertices for the number of molecules provided
             printf("ERROR: too many molecules (%d) were provided to fit to the %d vertices (after symmetry operations) with %d sites; there is no segmentation of the net that will allow a framework to be constructed\nNOTE: it may be possible to construct this model by providing a supercell of the net instead\n", num_mols_here, num_full_vertices_here, i);
-            exit(EXIT_FAILURE);          
+            exit(EXIT_FAILURE);
           } else if(num_basic_vertices_here!=1) { //e.g., if there are two n-c vertices and three n-c molecules, it is not clear how to do a segmentation
             printf("ERROR: currently net segmentation is not handled for anything other than 1 (%d) symmetrically unique vertices - this may be introduced in a later release\n", num_basic_vertices_here);
             exit(EXIT_FAILURE);
@@ -638,7 +638,7 @@ printf("\n");
       if(assembly_method==0) printf(" net-"); else printf(" connection-");
       printf("based assembly method\n");
 
-      //write out number of each component 
+      //write out number of each component
       if(write_old_ml_file) {
         FILE *ml_ratio_verbose = fopen((net_name+".ml").c_str(), "w"); //for debugging etc.
         if(ml_ratio_verbose==NULL) {
@@ -844,7 +844,7 @@ if(verbose)printf("\ttrying connection-based assembly method: based on connectin
           if(!b_periodicity) {
             this_framework.b = layer_separation_A;
             num_override++;
-          } 
+          }
           if(!c_periodicity) {
             this_framework.c = layer_separation_A;
             num_override++;
@@ -983,4 +983,3 @@ seconds_microseconds get_time_difference(struct timeval start, struct timeval en
   }
   return difference;
 }
-

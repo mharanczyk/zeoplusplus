@@ -69,7 +69,7 @@ template<> struct packet_traits<float>  : default_packet_traits
     Vectorizable = 1,
     AlignedOnScalar = 1,
     size = 4,
-   
+
     HasDiv  = 1,
     // FIXME check the Has*
     HasSin  = 0,
@@ -360,7 +360,7 @@ template<> EIGEN_STRONG_INLINE int predux_min<Packet4i>(const Packet4i& a)
   a_hi = vget_high_s32(a);
   min = vpmin_s32(a_lo, a_hi);
   min = vpmin_s32(min, min);
-  
+
   return vget_lane_s32(min, 0);
 }
 
@@ -410,7 +410,7 @@ PALIGN_NEON(0,Packet4i,vextq_s32)
 PALIGN_NEON(1,Packet4i,vextq_s32)
 PALIGN_NEON(2,Packet4i,vextq_s32)
 PALIGN_NEON(3,Packet4i,vextq_s32)
-    
+
 #undef PALIGN_NEON
 
 } // end namespace internal

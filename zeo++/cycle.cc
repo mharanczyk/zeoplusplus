@@ -36,7 +36,7 @@ CYCLE::CYCLE() {length = 0;}
 
 /* Function to compute girth of voronoi network with integer weights
  * Args:
- *  Input: 
+ *  Input:
  *      inp_vor: Pointer to input voronoi network
  *      range_flag: Denotes wether the weights have value other than 1
  *      range: Max. value of weights. weights = {1,2,...,range}
@@ -55,7 +55,7 @@ void edge_finder(const VORONOI_NETWORK* vornet, int node_index, vector<int>* edg
     int i = 0;
     VeCit it = vornet->edges.begin();
     for (; it != vornet->edges.end(); ++i, ++it){
-        if (it->from == node_index || it->to == node_index) 
+        if (it->from == node_index || it->to == node_index)
             edge_indices->push_back(i);
     }
     return;
@@ -99,12 +99,12 @@ bool compute_cycle(DIJKSTRA_NETWORK* dnet, vector<CYCLE> *cycles,
         CnIt cit = it->connections.begin();
         for (; cit != it->connections.end(); ++cit) cit->max_radius = 1;
     }
-    
+
     if (!cycle_length) {        // Shortest length cycle
         int girth = 0;
         for (int i = 0; i < dnet->nodes.size(); ++i){
             int short_cycle_length = 0;  //Shortest cycle length for this node
-            
+
             DIJKSTRA_NODE origNode = dnet->nodes.at(i);
             CnIt it = origNode.connections.begin();
             int conn_ind = 0;
@@ -112,18 +112,18 @@ bool compute_cycle(DIJKSTRA_NETWORK* dnet, vector<CYCLE> *cycles,
                 int path_length = 0;
                 int orgNodeId = it->from;
                 int endNodeId = it->to;
-                
+
                 map<int, int> visitedNodeDisplacement;
                 vector<pair<int,int> > stack;
                 stack.push_back(pair<int, int> (i, 0));
                 visitedNodeDisplacement.insert(pair<int,int>(i,0));
-                
+
                 while (stack.size() != 0) {
                     // Remove the top-most node in stack
                     pair<int,int> nodeInfo = stack.back();
                     DIJKSTRA_NODE currNode = dnet->nodes.at(nodeInfo.first);
                     stack.pop_back();
-                    
+
                     CnIt cit = currNode.connections.begin();
                     int conn_ind = 0;
                     for (; cit != currNode.connections.end(); ++cit, ++conn_ind){
@@ -133,18 +133,18 @@ bool compute_cycle(DIJKSTRA_NETWORK* dnet, vector<CYCLE> *cycles,
                         CONN reverse_conn = *it;
                         reverse_conn.from = it->to;
                         reverse_conn.to = it->from;
-                        
+
                         CnIt rev_cit;
                         rev_cit = find(dnet->nodes[it->to].connections.begin(),
                                        dnet->nodes[it->to].connections.end(),
                                        reverse_conn);
                         assert (rev_cit != dnet->nodes[it->to].connections.end());
                         rev_cit->max_radius = 0;
-                        
+
                         //Find the shortest path between the nodes of connection
-                        
-                        
-                        
+
+
+
                     }
                 }
             }
@@ -160,7 +160,7 @@ bool compute_cycle(DIJKSTRA_NETWORK* dnet, vector<CYCLE> *cycles,
 
 /* Function to compute a cycle of given length for each voronoi node
  * Args:
- *  Input: 
+ *  Input:
  *      vornet: Pointer to input voronoi network
  *      cycle_length: Length of cycle to be computed
  *                    If 0, minimum length cycle is computed
@@ -220,7 +220,7 @@ bool compute_4cycle(DIJKSTRA_NETWORK* dnet, vector<CYCLE> *cycles,
         //cout << "x: " << it->x << " y: " << it->y << " z: " <<  it->z << endl;
         ;
     }
-    
+
     for (int i = 0; i < dnet->nodes.size(); ++i){
         DIJKSTRA_NODE org_node = dnet->nodes.at(i);
         if (i == 0) cout << "org_node: "<< org_node.x << " " << org_node.y << " " << org_node.z << endl;
@@ -232,7 +232,7 @@ bool compute_4cycle(DIJKSTRA_NETWORK* dnet, vector<CYCLE> *cycles,
             int end_node_id = it->to;
             if (i == 0) cout << "end_node_id: " << end_node_id << endl;
             DIJKSTRA_NODE end_node = dnet->nodes.at(end_node_id);
-            
+
             if (end_node.active) continue;
 
             CnIt oit = it + 1;       //Check the other connections of begin node
@@ -243,7 +243,7 @@ bool compute_4cycle(DIJKSTRA_NETWORK* dnet, vector<CYCLE> *cycles,
 		if (i==0) cout << "    inter_node_id: " << inter_node_id << endl;
                 DIJKSTRA_NODE inter_node = dnet->nodes.at(inter_node_id);
                 if (inter_node.active) continue;
-                for (CnIt iit = inter_node.connections.begin(); iit != inter_node.connections.end(); ++iit) 
+                for (CnIt iit = inter_node.connections.begin(); iit != inter_node.connections.end(); ++iit)
                     if (i==0) cout << "        to: "<< iit->to << endl;
                 CnIt eit = end_node.connections.begin();
                 int econn_ind=0;
@@ -278,7 +278,7 @@ bool compute_4cycle(DIJKSTRA_NETWORK* dnet, vector<CYCLE> *cycles,
 
 /* Function to compute a cycle of given length for each voronoi node
  * Args:
- *  Input: 
+ *  Input:
  *      vornet: Pointer to input voronoi network
  *      cycle_length: Length of cycle to be computed
  *                    If 0, minimum length cycle is computed
@@ -319,7 +319,7 @@ void centroid(const CYCLE* const cycle, XYZ* center, vector<int>* node_ids)
 /* Function to compute the voronoi face centers
  * Arguments:
  *  atmnet (Input) : Unit cell containing atoms/ions in ATOM_NETWORK class
- *  face_centers: (Output), pointer to vector of XYZ objects holding the 
+ *  face_centers: (Output), pointer to vector of XYZ objects holding the
  *                coordinates of centroids of voronoi faces
  */
 void face_center(ATOM_NETWORK* atmnet, vector<XYZ>* face_centers)

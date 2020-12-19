@@ -559,8 +559,8 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNetwork;
 struct __pyx_obj_3zeo_12graphstorage_DijkstraNetwork;
 
 /* "zeo/geometry.pxd":24
- * 
- * 
+ *
+ *
  * cdef class Xyz:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ XYZ class defined in geometry.h
@@ -572,8 +572,8 @@ struct __pyx_obj_3zeo_8geometry_Xyz {
 
 
 /* "zeo/geometry.pxd":32
- * 
- * 
+ *
+ *
  * cdef class Point:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ Point class defined in geometry.h
@@ -585,11 +585,11 @@ struct __pyx_obj_3zeo_8geometry_Point {
 
 
 /* "zeo/voronoicell.pxd":39
- * 
- * 
+ *
+ *
  * cdef class VorFace:             # <<<<<<<<<<<<<<
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorFace {
   PyObject_HEAD
@@ -599,10 +599,10 @@ struct __pyx_obj_3zeo_11voronoicell_VorFace {
 
 /* "zeo/voronoicell.pxd":42
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  * cdef class VorCell:             # <<<<<<<<<<<<<<
  *     cdef VOR_CELL* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorCell {
   PyObject_HEAD
@@ -612,7 +612,7 @@ struct __pyx_obj_3zeo_11voronoicell_VorCell {
 
 /* "zeo/voronoicell.pxd":45
  *     cdef VOR_CELL* thisptr
- * 
+ *
  * cdef class BasicVCell:             # <<<<<<<<<<<<<<
  *     cdef BASIC_VCELL* thisptr
  */
@@ -624,7 +624,7 @@ struct __pyx_obj_3zeo_11voronoicell_BasicVCell {
 
 /* "netstorage.pxd":120
  *             VORONOI_NETWORK* vornet, ATOM_NETWORK* atmnet)
- * 
+ *
  * cdef class Atom:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM class.
@@ -637,7 +637,7 @@ struct __pyx_obj_3zeo_10netstorage_Atom {
 
 /* "netstorage.pxd":126
  *     cdef ATOM* thisptr
- * 
+ *
  * cdef class AtomNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM_NETWORK class.
@@ -651,7 +651,7 @@ struct __pyx_obj_3zeo_10netstorage_AtomNetwork {
 
 /* "netstorage.pxd":135
  *     cdef bint rad_flag
- * 
+ *
  * cdef class VoronoiNode:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VOR_NODE class.
@@ -664,7 +664,7 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNode {
 
 /* "netstorage.pxd":141
  *     cdef VOR_NODE* thisptr
- * 
+ *
  * cdef class VoronoiNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VORONOI_NETWORK class.
@@ -676,8 +676,8 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNetwork {
 
 
 /* "zeo/graphstorage.pxd":34
- * 
- * 
+ *
+ *
  * cdef class DijkstraNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ DIJKSTRA_NETWORK class.
@@ -1077,7 +1077,7 @@ static PyObject *__pyx_pf_3zeo_12graphstorage_15DijkstraNetwork_2from_VoronoiNet
  *         return dijkstranet
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1099,7 +1099,7 @@ static void __pyx_pf_3zeo_12graphstorage_15DijkstraNetwork_4__dealloc__(struct _
  *         return dijkstranet
  *     def __dealloc__(self):
  *         del self.thisptr             # <<<<<<<<<<<<<<
- * 
+ *
  */
   delete __pyx_v_self->thisptr;
 
@@ -1108,7 +1108,7 @@ static void __pyx_pf_3zeo_12graphstorage_15DijkstraNetwork_4__dealloc__(struct _
  *         return dijkstranet
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
   /* function exit code */
@@ -1382,7 +1382,7 @@ PyMODINIT_FUNC PyInit_graphstorage(void)
   /* "zeo/graphstorage.pyx":1
  * # distutils: language = c++             # <<<<<<<<<<<<<<
  * # distutils: sources = ../graphstorage.cc
- * 
+ *
  */
   __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);

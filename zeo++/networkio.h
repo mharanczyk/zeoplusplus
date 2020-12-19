@@ -13,7 +13,7 @@
     pointers. */
 void parseFilename(const char * fileName, char *name, char *extension);
 
-/** Ensures that the provided file is of type .cuc, .cssr or .v1 or .cif. 
+/** Ensures that the provided file is of type .cuc, .cssr or .v1 or .cif.
  *  Otherwise, an error message is displayed and the program is
  *  aborted. */
 bool checkInputFile(char * filename);
@@ -47,7 +47,7 @@ bool readCUCFile(char *filename, ATOM_NETWORK *cell, bool radial);
 bool readCSSRFile(char *filename, ATOM_NETWORK *cell, bool radial);
 
 /** Read the information from the .obcssr file referred to by filename
- *     and store it within the provided ATOM_NETWORK. 
+ *     and store it within the provided ATOM_NETWORK.
  *     obcssr is Open Babel generated CSSR file */
 //void readCSSRFile(char *filename, ATOM_NETWORK *cell, bool radial);
 bool readOBCSSRFile(char *filename, ATOM_NETWORK *cell, bool radial);
@@ -62,14 +62,14 @@ bool readV1File(char *filename, ATOM_NETWORK *cell, bool radial);
 bool readDLPFile(char *filename, ATOM_NETWORK *cell, bool radial);
 
 
-/** Read the VORONOI_NETWORK information located in the provided input stream and 
+/** Read the VORONOI_NETWORK information located in the provided input stream and
  *  store it using the provided VORONOI_NETWORK pointer. The input stream must have a file format
  *  corresponding to a .net or .nt2 format. */
 void readNet(std::istream *input, VORONOI_NETWORK *vornet);
 
-/* Read the VORONOI_NETWORK located in the provided file and store 
- * it using the provided network pointer. The file must be in the .net/.nt2 
- * file format. */ 
+/* Read the VORONOI_NETWORK located in the provided file and store
+ * it using the provided network pointer. The file must be in the .net/.nt2
+ * file format. */
 //void readNetFile(char * filename, VORONOI_NETWORK *vornet);
 bool readNetFile(char * filename, VORONOI_NETWORK *vornet);
 

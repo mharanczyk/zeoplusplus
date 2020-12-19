@@ -1,6 +1,6 @@
 // Ellipsoidal wall example
 //
-// Author   : Simon Konstandin (UMM Mannheim) 
+// Author   : Simon Konstandin (UMM Mannheim)
 
 #include "voro++.hh"
 using namespace voro;
@@ -64,7 +64,7 @@ class wall_ellipsoid : public wall {
 
 			for (i=0;i<q;i++) {
 				xell[i]=x/(1+s[i]);
-				yell[i]=y/(1+s[i]);	
+				yell[i]=y/(1+s[i]);
 				zell[i]=z/(1+s[i]*aa);
 				d2[i]=(xell[i]-x)*(xell[i]-x)+(yell[i]-y)*(yell[i]-y)+(zell[i]-z)*(zell[i]-z);
 			}
@@ -89,7 +89,7 @@ int main() {
 	// Create the "initial shape" wall class and add it to the container
 	wall_ellipsoid we(1.5,5,0,0,0);
 	con.add_wall(we);
-	
+
 	// Randomly add particles into the container
 	for(i=0;i<particles;) {
 		x=x_min+rnd()*(x_max-x_min);

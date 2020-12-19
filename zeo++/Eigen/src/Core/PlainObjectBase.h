@@ -336,7 +336,7 @@ class PlainObjectBase : public internal::dense_xpr_base<Derived>::type
       * of rows and/or of columns, you can use conservativeResize(NoChange_t, Index) or
       * conservativeResize(Index, NoChange_t).
       *
-      * Matrices are resized relative to the top-left element. In case values need to be 
+      * Matrices are resized relative to the top-left element. In case values need to be
       * appended to the matrix they will be uninitialized.
       */
     EIGEN_STRONG_INLINE void conservativeResize(Index nbRows, Index nbCols)
@@ -389,7 +389,7 @@ class PlainObjectBase : public internal::dense_xpr_base<Derived>::type
       * of rows and/or of columns, you can use conservativeResize(NoChange_t, Index) or
       * conservativeResize(Index, NoChange_t).
       *
-      * Matrices are resized relative to the top-left element. In case values need to be 
+      * Matrices are resized relative to the top-left element. In case values need to be
       * appended to the matrix they will copied from \c other.
       */
     template<typename OtherDerived>
@@ -773,7 +773,7 @@ struct conservative_resize_like_impl<Derived,OtherDerived,true>
   : conservative_resize_like_impl<Derived,OtherDerived,false>
 {
   using conservative_resize_like_impl<Derived,OtherDerived,false>::run;
-  
+
   typedef typename Derived::Index Index;
   static void run(DenseBase<Derived>& _this, Index size)
   {

@@ -11,28 +11,28 @@ Email: mharanczyk@lbl.gov (Zeo++) and chr@alum.mit.edu (Voro++)
 
 ## About
 
-Zeo++ is a software package for high-throughput analysis of structure 
-and topology of crystalline porous materials. For a given material's 
-structure, the code calculates the geometrical parameters describing 
-pores. The tool is based on the Voronoi decomposition, which for 
-a given arrangement of atoms in a periodic domain provides a graph 
-representation of the void space. The resulting Voronoi network 
-is analyzed to obtain the diameter of the largest included sphere 
-and the largest free sphere, which are two geometrical parameters 
-that are frequently used to describe pore geometry. Accessibility 
-of nodes in the network is also determined for a given guest molecule 
-and the resulting information is later used to retrieve dimensionality 
-of channel systems as well as in Monte Carlo sampling of accessible 
+Zeo++ is a software package for high-throughput analysis of structure
+and topology of crystalline porous materials. For a given material's
+structure, the code calculates the geometrical parameters describing
+pores. The tool is based on the Voronoi decomposition, which for
+a given arrangement of atoms in a periodic domain provides a graph
+representation of the void space. The resulting Voronoi network
+is analyzed to obtain the diameter of the largest included sphere
+and the largest free sphere, which are two geometrical parameters
+that are frequently used to describe pore geometry. Accessibility
+of nodes in the network is also determined for a given guest molecule
+and the resulting information is later used to retrieve dimensionality
+of channel systems as well as in Monte Carlo sampling of accessible
 surfaces, volumes and pore size distributions.
-The code also offers some aids with structure analysis, e.g. MOF open 
-metal site detection, and simluations, e.g. generation of blocking spheres. 
+The code also offers some aids with structure analysis, e.g. MOF open
+metal site detection, and simluations, e.g. generation of blocking spheres.
 
 
 ## Compilation - Linux / Mac OS / Windows with Cygwin
 
 The code is written in ANSI C++, and compiles on many system architectures. The
 package contains the C++ source code of Zeo++ as well as Voro++ library.
-On Linux, Mac OS, and Windows (using Cygwin), the compilation and installed 
+On Linux, Mac OS, and Windows (using Cygwin), the compilation and installed
 can be carried out using GNU Make.
 
 #### Step by step compilation
@@ -56,20 +56,20 @@ cd ../zeo++
 make
 ```
 
-This will create `network` binary, the main Zeo++ binary. 
+This will create `network` binary, the main Zeo++ binary.
 Please view the Zeo++ website for instructions, review documentation/README or contact the authors to inquire about otherwise undocumented or custom features.
 
 ## Related programs
 
-No external dependencies are required to compile and run the code 
+No external dependencies are required to compile and run the code
 (except for the Voro++ library provided with the code), but several
 programs may be useful for analyzing the output:
 
 - VMD - molecular visualization package can be used to visualize some of
-  characteristics calculated by Zeo++, for example, Voronoi networks, 
+  characteristics calculated by Zeo++, for example, Voronoi networks,
   Monte Carlo-sampled surface areas and volumes etc. Zeo++ can be called
-  from within VMD vis TCl ZeoVis interface (not yet documented, if interested, 
-  please contact me at mharanczyk@lbl.gov) 
+  from within VMD vis TCl ZeoVis interface (not yet documented, if interested,
+  please contact me at mharanczyk@lbl.gov)
 
 - The freeware raytracer POV-Ray (available at www.povray.org) can be used for
   high-quality renderings of the Zeo++/VMD outputs.
@@ -88,20 +88,20 @@ useful, please email me at mharanczyk@lbl.gov. Also, if you plan to publish an
 academic paper using this software, please consider citing the following
 publications:
 
-- Thomas F. Willems, Chris H. Rycroft, Michael Kazi, Juan C. Meza, 
-  and Maciej Haranczyk, "Algorithms and tools for high-throughput 
-  geometry-based analysis of crystalline porous materials", 
+- Thomas F. Willems, Chris H. Rycroft, Michael Kazi, Juan C. Meza,
+  and Maciej Haranczyk, "Algorithms and tools for high-throughput
+  geometry-based analysis of crystalline porous materials",
   Microporous and Mesoporous Materials 149 (2012) 134-141
 
-- Richard L. Martin, Berend Smit, Maciej Haranczyk, "Addressing challenges 
+- Richard L. Martin, Berend Smit, Maciej Haranczyk, "Addressing challenges
   of identifying geometrically diverse sets of crystalline porous materials",
   Journal of Chemical Information and Modeling, DOI: 10.1021/ci200386x
 
 
-The first reference is the main Zeo++ reference describing the idea of 
-using Voronoi networks in analysis of porous materials. The second reference 
-describes extensions allowing sampling of structures from a database of 
-porous materials using divrsity-based selelction. 
+The first reference is the main Zeo++ reference describing the idea of
+using Voronoi networks in analysis of porous materials. The second reference
+describes extensions allowing sampling of structures from a database of
+porous materials using divrsity-based selelction.
 
 ## Copyright Notice
 
@@ -130,7 +130,7 @@ perform publicly and display publicly, and to permit others to do so.
 
 ## Acknowledgements
 
-This work was supported by the U.S. Department of Energy under 
-contract DE-AC02-05CH11231 and through SciDAC project #CSNEW918 
-entitled “Knowledge guided screening tools for identification 
+This work was supported by the U.S. Department of Energy under
+contract DE-AC02-05CH11231 and through SciDAC project #CSNEW918
+entitled “Knowledge guided screening tools for identification
 of porous materials for CO2 separations”.

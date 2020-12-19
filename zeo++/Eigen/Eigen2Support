@@ -32,7 +32,7 @@
   * \warning Eigen2 support is deprecated in Eigen 3.2.x and it will be removed in Eigen 3.3.
   *
   * This module provides a couple of deprecated functions improving the compatibility with Eigen2.
-  * 
+  *
   * To use it, define EIGEN2_SUPPORT before including any Eigen header
   * \code
   * #define EIGEN2_SUPPORT

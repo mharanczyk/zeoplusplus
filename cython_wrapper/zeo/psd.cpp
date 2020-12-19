@@ -561,8 +561,8 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNode;
 struct __pyx_obj_3zeo_10netstorage_VoronoiNetwork;
 
 /* "zeo/geometry.pxd":24
- * 
- * 
+ *
+ *
  * cdef class Xyz:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ XYZ class defined in geometry.h
@@ -574,8 +574,8 @@ struct __pyx_obj_3zeo_8geometry_Xyz {
 
 
 /* "zeo/geometry.pxd":32
- * 
- * 
+ *
+ *
  * cdef class Point:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ Point class defined in geometry.h
@@ -587,11 +587,11 @@ struct __pyx_obj_3zeo_8geometry_Point {
 
 
 /* "zeo/voronoicell.pxd":39
- * 
- * 
+ *
+ *
  * cdef class VorFace:             # <<<<<<<<<<<<<<
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorFace {
   PyObject_HEAD
@@ -601,10 +601,10 @@ struct __pyx_obj_3zeo_11voronoicell_VorFace {
 
 /* "zeo/voronoicell.pxd":42
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  * cdef class VorCell:             # <<<<<<<<<<<<<<
  *     cdef VOR_CELL* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorCell {
   PyObject_HEAD
@@ -614,7 +614,7 @@ struct __pyx_obj_3zeo_11voronoicell_VorCell {
 
 /* "zeo/voronoicell.pxd":45
  *     cdef VOR_CELL* thisptr
- * 
+ *
  * cdef class BasicVCell:             # <<<<<<<<<<<<<<
  *     cdef BASIC_VCELL* thisptr
  */
@@ -626,7 +626,7 @@ struct __pyx_obj_3zeo_11voronoicell_BasicVCell {
 
 /* "netstorage.pxd":120
  *             VORONOI_NETWORK* vornet, ATOM_NETWORK* atmnet)
- * 
+ *
  * cdef class Atom:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM class.
@@ -639,7 +639,7 @@ struct __pyx_obj_3zeo_10netstorage_Atom {
 
 /* "netstorage.pxd":126
  *     cdef ATOM* thisptr
- * 
+ *
  * cdef class AtomNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM_NETWORK class.
@@ -653,7 +653,7 @@ struct __pyx_obj_3zeo_10netstorage_AtomNetwork {
 
 /* "netstorage.pxd":135
  *     cdef bint rad_flag
- * 
+ *
  * cdef class VoronoiNode:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VOR_NODE class.
@@ -666,7 +666,7 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNode {
 
 /* "netstorage.pxd":141
  *     cdef VOR_NODE* thisptr
- * 
+ *
  * cdef class VoronoiNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VORONOI_NETWORK class.
@@ -903,7 +903,7 @@ static PyObject *__pyx_codeobj__3;
 
 /* "zeo/psd.pyx":5
  * from netstorage cimport AtomNetwork
- * 
+ *
  * def calc_pore_size_distribution(atmnet,  channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, hist_file, high_accuracy=False, exclude_pockets=False,
  *         points_file="", node_radii_file="", sphere_dist_file="",
@@ -937,7 +937,7 @@ static PyObject *__pyx_pw_3zeo_3psd_1calc_pore_size_distribution(PyObject *__pyx
     PyObject* values[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
 
     /* "zeo/psd.pyx":6
- * 
+ *
  * def calc_pore_size_distribution(atmnet,  channel_radius, probe_radius,
  *         mc_sampling_no, hist_file, high_accuracy=False, exclude_pockets=False,             # <<<<<<<<<<<<<<
  *         points_file="", node_radii_file="", sphere_dist_file="",
@@ -1084,7 +1084,7 @@ static PyObject *__pyx_pw_3zeo_3psd_1calc_pore_size_distribution(PyObject *__pyx
 
   /* "zeo/psd.pyx":5
  * from netstorage cimport AtomNetwork
- * 
+ *
  * def calc_pore_size_distribution(atmnet,  channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, hist_file, high_accuracy=False, exclude_pockets=False,
  *         points_file="", node_radii_file="", sphere_dist_file="",
@@ -1225,7 +1225,7 @@ static PyObject *__pyx_pf_3zeo_3psd_calc_pore_size_distribution(CYTHON_UNUSED Py
  *               channel_radius,  probe_radius, mc_sampling_no, exclude_pockets,
  *               chist_file, cpnt_file, cnd_file, csph_file, vis_flag,             # <<<<<<<<<<<<<<
  *               overlap_check_flag)
- * 
+ *
  */
   __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_v_vis_flag); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 46; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
@@ -1233,7 +1233,7 @@ static PyObject *__pyx_pf_3zeo_3psd_calc_pore_size_distribution(CYTHON_UNUSED Py
  *               channel_radius,  probe_radius, mc_sampling_no, exclude_pockets,
  *               chist_file, cpnt_file, cnd_file, csph_file, vis_flag,
  *               overlap_check_flag)             # <<<<<<<<<<<<<<
- * 
+ *
  */
   __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_v_overlap_check_flag); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
@@ -1248,7 +1248,7 @@ static PyObject *__pyx_pf_3zeo_3psd_calc_pore_size_distribution(CYTHON_UNUSED Py
 
   /* "zeo/psd.pyx":5
  * from netstorage cimport AtomNetwork
- * 
+ *
  * def calc_pore_size_distribution(atmnet,  channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, hist_file, high_accuracy=False, exclude_pockets=False,
  *         points_file="", node_radii_file="", sphere_dist_file="",
@@ -1270,7 +1270,7 @@ static PyObject *__pyx_pf_3zeo_3psd_calc_pore_size_distribution(CYTHON_UNUSED Py
 }
 
 /* "string.from_py":13
- * 
+ *
  * @cname("__pyx_convert_string_from_py_")
  * cdef string __pyx_convert_string_from_py_(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t length
@@ -1293,7 +1293,7 @@ static std::string __pyx_convert_string_from_py_(PyObject *__pyx_v_o) {
  *     cdef Py_ssize_t length
  *     cdef char* data = __Pyx_PyObject_AsStringAndSize(o, &length)             # <<<<<<<<<<<<<<
  *     return string(data, length)
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_AsStringAndSize(__pyx_v_o, (&__pyx_v_length)); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_data = __pyx_t_1;
@@ -1302,14 +1302,14 @@ static std::string __pyx_convert_string_from_py_(PyObject *__pyx_v_o) {
  *     cdef Py_ssize_t length
  *     cdef char* data = __Pyx_PyObject_AsStringAndSize(o, &length)
  *     return string(data, length)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = std::string(__pyx_v_data, __pyx_v_length);
   goto __pyx_L0;
 
   /* "string.from_py":13
- * 
+ *
  * @cname("__pyx_convert_string_from_py_")
  * cdef string __pyx_convert_string_from_py_(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t length
@@ -1385,7 +1385,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/psd.pyx":5
  * from netstorage cimport AtomNetwork
- * 
+ *
  * def calc_pore_size_distribution(atmnet,  channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, hist_file, high_accuracy=False, exclude_pockets=False,
  *         points_file="", node_radii_file="", sphere_dist_file="",
@@ -1504,7 +1504,7 @@ PyMODINIT_FUNC PyInit_psd(void)
 
   /* "zeo/psd.pyx":5
  * from netstorage cimport AtomNetwork
- * 
+ *
  * def calc_pore_size_distribution(atmnet,  channel_radius, probe_radius,             # <<<<<<<<<<<<<<
  *         mc_sampling_no, hist_file, high_accuracy=False, exclude_pockets=False,
  *         points_file="", node_radii_file="", sphere_dist_file="",
@@ -1515,10 +1515,10 @@ PyMODINIT_FUNC PyInit_psd(void)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "zeo/psd.pyx":2
- * 
+ *
  * from libcpp.string cimport string             # <<<<<<<<<<<<<<
  * from netstorage cimport AtomNetwork
- * 
+ *
  */
   __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
@@ -1526,7 +1526,7 @@ PyMODINIT_FUNC PyInit_psd(void)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "string.from_py":13
- * 
+ *
  * @cname("__pyx_convert_string_from_py_")
  * cdef string __pyx_convert_string_from_py_(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t length

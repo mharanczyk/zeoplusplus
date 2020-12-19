@@ -10,7 +10,7 @@
 #ifndef EIGEN_SPARSEMATRIXBASE_H
 #define EIGEN_SPARSEMATRIXBASE_H
 
-namespace Eigen { 
+namespace Eigen {
 
 /** \ingroup SparseCore_Module
   *
@@ -43,7 +43,7 @@ template<typename Derived> class SparseMatrixBase
                      >::type PacketReturnType;
 
     typedef SparseMatrixBase StorageBaseType;
-    
+
     template<typename OtherDerived>
     Derived& operator=(const EigenBase<OtherDerived> &other)
     {
@@ -95,7 +95,7 @@ template<typename Derived> class SparseMatrixBase
           */
 
       IsRowMajor = Flags&RowMajorBit ? 1 : 0,
-      
+
       InnerSizeAtCompileTime = int(IsVectorAtCompileTime) ? int(SizeAtCompileTime)
                              : int(IsRowMajor) ? int(ColsAtCompileTime) : int(RowsAtCompileTime),
 
@@ -182,7 +182,7 @@ template<typename Derived> class SparseMatrixBase
 
     SparseMatrixBase() : m_isRValue(false) { /* TODO check flags */ }
 
-    
+
     template<typename OtherDerived>
     Derived& operator=(const ReturnByValue<OtherDerived>& other)
     {
@@ -367,7 +367,7 @@ template<typename Derived> class SparseMatrixBase
     const typename SparseDenseProductReturnType<Derived,OtherDerived>::Type
     operator*(const MatrixBase<OtherDerived> &other) const
     { return typename SparseDenseProductReturnType<Derived,OtherDerived>::Type(derived(), other.derived()); }
-    
+
      /** \returns an expression of P H P^-1 where H is the matrix represented by \c *this */
     SparseSymmetricPermutationProduct<Derived,Upper|Lower> twistedBy(const PermutationMatrix<Dynamic,Dynamic,Index>& perm) const
     {

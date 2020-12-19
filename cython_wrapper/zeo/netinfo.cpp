@@ -831,7 +831,7 @@ static PyObject *__pyx_codeobj__17;
 static PyObject *__pyx_codeobj__19;
 
 /* "zeo/netinfo.pyx":8
- * 
+ *
  * #Python definitions for the cdefinitions in .pxd file
  * def initializeRadTable():             # <<<<<<<<<<<<<<
  *     """
@@ -862,13 +862,13 @@ static PyObject *__pyx_pf_3zeo_7netinfo_initializeRadTable(CYTHON_UNUSED PyObjec
  *     Populate the atomic radius table with Zeo++ default values
  *     """
  *     zeo_initializeRadTable()             # <<<<<<<<<<<<<<
- * 
+ *
  * def initializeCovRadTable():
  */
   initializeRadTable();
 
   /* "zeo/netinfo.pyx":8
- * 
+ *
  * #Python definitions for the cdefinitions in .pxd file
  * def initializeRadTable():             # <<<<<<<<<<<<<<
  *     """
@@ -884,7 +884,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_initializeRadTable(CYTHON_UNUSED PyObjec
 
 /* "zeo/netinfo.pyx":14
  *     zeo_initializeRadTable()
- * 
+ *
  * def initializeCovRadTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the covalent tradius table with Zeo++ default values
@@ -914,14 +914,14 @@ static PyObject *__pyx_pf_3zeo_7netinfo_2initializeCovRadTable(CYTHON_UNUSED PyO
  *     Populate the covalent tradius table with Zeo++ default values
  *     """
  *     zeo_initializeCovRadTable()             # <<<<<<<<<<<<<<
- * 
+ *
  * def initializeMassTable():
  */
   initializeCovRadTable();
 
   /* "zeo/netinfo.pyx":14
  *     zeo_initializeRadTable()
- * 
+ *
  * def initializeCovRadTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the covalent tradius table with Zeo++ default values
@@ -936,7 +936,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_2initializeCovRadTable(CYTHON_UNUSED PyO
 
 /* "zeo/netinfo.pyx":20
  *     zeo_initializeCovRadTable()
- * 
+ *
  * def initializeMassTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the atomic mass table with Zeo++ default values
@@ -966,14 +966,14 @@ static PyObject *__pyx_pf_3zeo_7netinfo_4initializeMassTable(CYTHON_UNUSED PyObj
  *     Populate the atomic mass table with Zeo++ default values
  *     """
  *     zeo_initializeMassTable()             # <<<<<<<<<<<<<<
- * 
+ *
  * def initializeAtomCharacterTable():
  */
   initializeMassTable();
 
   /* "zeo/netinfo.pyx":20
  *     zeo_initializeCovRadTable()
- * 
+ *
  * def initializeMassTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the atomic mass table with Zeo++ default values
@@ -988,7 +988,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_4initializeMassTable(CYTHON_UNUSED PyObj
 
 /* "zeo/netinfo.pyx":26
  *     zeo_initializeMassTable()
- * 
+ *
  * def initializeAtomCharacterTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the Atom symbol table with Zeo++ default values
@@ -1018,14 +1018,14 @@ static PyObject *__pyx_pf_3zeo_7netinfo_6initializeAtomCharacterTable(CYTHON_UNU
  *     Populate the Atom symbol table with Zeo++ default values
  *     """
  *     zeo_initializeAtomCharacterTable()             # <<<<<<<<<<<<<<
- * 
+ *
  * def initializeAtomicNumberTable():
  */
   initializeAtomCharacterTable();
 
   /* "zeo/netinfo.pyx":26
  *     zeo_initializeMassTable()
- * 
+ *
  * def initializeAtomCharacterTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the Atom symbol table with Zeo++ default values
@@ -1040,7 +1040,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_6initializeAtomCharacterTable(CYTHON_UNU
 
 /* "zeo/netinfo.pyx":32
  *     zeo_initializeAtomCharacterTable()
- * 
+ *
  * def initializeAtomicNumberTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the atomic number table with Zeo++ default values
@@ -1070,14 +1070,14 @@ static PyObject *__pyx_pf_3zeo_7netinfo_8initializeAtomicNumberTable(CYTHON_UNUS
  *     Populate the atomic number table with Zeo++ default values
  *     """
  *     zeo_initializeAtomicNumberTable()             # <<<<<<<<<<<<<<
- * 
+ *
  * def readRadTable(filename):
  */
   initializeAtomicNumberTable();
 
   /* "zeo/netinfo.pyx":32
  *     zeo_initializeAtomCharacterTable()
- * 
+ *
  * def initializeAtomicNumberTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the atomic number table with Zeo++ default values
@@ -1092,7 +1092,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_8initializeAtomicNumberTable(CYTHON_UNUS
 
 /* "zeo/netinfo.pyx":38
  *     zeo_initializeAtomicNumberTable()
- * 
+ *
  * def readRadTable(filename):             # <<<<<<<<<<<<<<
  *     """
  *     Read atomic radii values from input file and replace the default values
@@ -1131,7 +1131,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_10readRadTable(CYTHON_UNUSED PyObject *_
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -1165,7 +1165,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_10readRadTable(CYTHON_UNUSED PyObject *_
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename             # <<<<<<<<<<<<<<
  *     zeo_readRadTable(c_filename)
- * 
+ *
  */
   __pyx_t_4 = __Pyx_PyObject_AsString(__pyx_v_filename); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(0, 44, __pyx_L1_error)
   __pyx_v_c_filename = __pyx_t_4;
@@ -1174,14 +1174,14 @@ static PyObject *__pyx_pf_3zeo_7netinfo_10readRadTable(CYTHON_UNUSED PyObject *_
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  *     zeo_readRadTable(c_filename)             # <<<<<<<<<<<<<<
- * 
+ *
  * def readMassTable(filename):
  */
   readRadTable(__pyx_v_c_filename);
 
   /* "zeo/netinfo.pyx":38
  *     zeo_initializeAtomicNumberTable()
- * 
+ *
  * def readRadTable(filename):             # <<<<<<<<<<<<<<
  *     """
  *     Read atomic radii values from input file and replace the default values
@@ -1203,7 +1203,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_10readRadTable(CYTHON_UNUSED PyObject *_
 
 /* "zeo/netinfo.pyx":47
  *     zeo_readRadTable(c_filename)
- * 
+ *
  * def readMassTable(filename):             # <<<<<<<<<<<<<<
  *     """
  *     Read atomic mass values from input file and replace the default values
@@ -1242,7 +1242,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_12readMassTable(CYTHON_UNUSED PyObject *
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -1276,7 +1276,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_12readMassTable(CYTHON_UNUSED PyObject *
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename             # <<<<<<<<<<<<<<
  *     zeo_readMassTable(c_filename)
- * 
+ *
  */
   __pyx_t_4 = __Pyx_PyObject_AsString(__pyx_v_filename); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(0, 53, __pyx_L1_error)
   __pyx_v_c_filename = __pyx_t_4;
@@ -1285,14 +1285,14 @@ static PyObject *__pyx_pf_3zeo_7netinfo_12readMassTable(CYTHON_UNUSED PyObject *
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  *     zeo_readMassTable(c_filename)             # <<<<<<<<<<<<<<
- * 
+ *
  * def lookupRadius(element):
  */
   readMassTable(__pyx_v_c_filename);
 
   /* "zeo/netinfo.pyx":47
  *     zeo_readRadTable(c_filename)
- * 
+ *
  * def readMassTable(filename):             # <<<<<<<<<<<<<<
  *     """
  *     Read atomic mass values from input file and replace the default values
@@ -1314,7 +1314,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_12readMassTable(CYTHON_UNUSED PyObject *
 
 /* "zeo/netinfo.pyx":56
  *     zeo_readMassTable(c_filename)
- * 
+ *
  * def lookupRadius(element):             # <<<<<<<<<<<<<<
  *     """"
  *     Args:
@@ -1348,7 +1348,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_14lookupRadius(CYTHON_UNUSED PyObject *_
  *     """
  *     radius = zeo_lookupRadius(element, True)             # <<<<<<<<<<<<<<
  *     return radius
- * 
+ *
  */
   __pyx_t_1 = __pyx_convert_string_from_py_std__in_string(__pyx_v_element); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 66, __pyx_L1_error)
   __pyx_v_radius = lookupRadius(__pyx_t_1, 1);
@@ -1357,7 +1357,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_14lookupRadius(CYTHON_UNUSED PyObject *_
  *     """
  *     radius = zeo_lookupRadius(element, True)
  *     return radius             # <<<<<<<<<<<<<<
- * 
+ *
  * def lookupCovRadius(element):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -1369,7 +1369,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_14lookupRadius(CYTHON_UNUSED PyObject *_
 
   /* "zeo/netinfo.pyx":56
  *     zeo_readMassTable(c_filename)
- * 
+ *
  * def lookupRadius(element):             # <<<<<<<<<<<<<<
  *     """"
  *     Args:
@@ -1388,10 +1388,10 @@ static PyObject *__pyx_pf_3zeo_7netinfo_14lookupRadius(CYTHON_UNUSED PyObject *_
 
 /* "zeo/netinfo.pyx":69
  *     return radius
- * 
+ *
  * def lookupCovRadius(element):             # <<<<<<<<<<<<<<
  *     return zeo_lookupCovRadius(element)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1416,10 +1416,10 @@ static PyObject *__pyx_pf_3zeo_7netinfo_16lookupCovRadius(CYTHON_UNUSED PyObject
   __Pyx_RefNannySetupContext("lookupCovRadius", 0);
 
   /* "zeo/netinfo.pyx":70
- * 
+ *
  * def lookupCovRadius(element):
  *     return zeo_lookupCovRadius(element)             # <<<<<<<<<<<<<<
- * 
+ *
  * def lookupMass(element):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -1432,10 +1432,10 @@ static PyObject *__pyx_pf_3zeo_7netinfo_16lookupCovRadius(CYTHON_UNUSED PyObject
 
   /* "zeo/netinfo.pyx":69
  *     return radius
- * 
+ *
  * def lookupCovRadius(element):             # <<<<<<<<<<<<<<
  *     return zeo_lookupCovRadius(element)
- * 
+ *
  */
 
   /* function exit code */
@@ -1451,10 +1451,10 @@ static PyObject *__pyx_pf_3zeo_7netinfo_16lookupCovRadius(CYTHON_UNUSED PyObject
 
 /* "zeo/netinfo.pyx":72
  *     return zeo_lookupCovRadius(element)
- * 
+ *
  * def lookupMass(element):             # <<<<<<<<<<<<<<
  *     return zeo_lookupMass(element)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1479,10 +1479,10 @@ static PyObject *__pyx_pf_3zeo_7netinfo_18lookupMass(CYTHON_UNUSED PyObject *__p
   __Pyx_RefNannySetupContext("lookupMass", 0);
 
   /* "zeo/netinfo.pyx":73
- * 
+ *
  * def lookupMass(element):
  *     return zeo_lookupMass(element)             # <<<<<<<<<<<<<<
- * 
+ *
  * def lookupAtomicNumber(element):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -1495,10 +1495,10 @@ static PyObject *__pyx_pf_3zeo_7netinfo_18lookupMass(CYTHON_UNUSED PyObject *__p
 
   /* "zeo/netinfo.pyx":72
  *     return zeo_lookupCovRadius(element)
- * 
+ *
  * def lookupMass(element):             # <<<<<<<<<<<<<<
  *     return zeo_lookupMass(element)
- * 
+ *
  */
 
   /* function exit code */
@@ -1514,10 +1514,10 @@ static PyObject *__pyx_pf_3zeo_7netinfo_18lookupMass(CYTHON_UNUSED PyObject *__p
 
 /* "zeo/netinfo.pyx":75
  *     return zeo_lookupMass(element)
- * 
+ *
  * def lookupAtomicNumber(element):             # <<<<<<<<<<<<<<
  *     return zeo_lookupAtomicNumber(element)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1542,10 +1542,10 @@ static PyObject *__pyx_pf_3zeo_7netinfo_20lookupAtomicNumber(CYTHON_UNUSED PyObj
   __Pyx_RefNannySetupContext("lookupAtomicNumber", 0);
 
   /* "zeo/netinfo.pyx":76
- * 
+ *
  * def lookupAtomicNumber(element):
  *     return zeo_lookupAtomicNumber(element)             # <<<<<<<<<<<<<<
- * 
+ *
  * def isMetal(element):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -1558,10 +1558,10 @@ static PyObject *__pyx_pf_3zeo_7netinfo_20lookupAtomicNumber(CYTHON_UNUSED PyObj
 
   /* "zeo/netinfo.pyx":75
  *     return zeo_lookupMass(element)
- * 
+ *
  * def lookupAtomicNumber(element):             # <<<<<<<<<<<<<<
  *     return zeo_lookupAtomicNumber(element)
- * 
+ *
  */
 
   /* function exit code */
@@ -1577,7 +1577,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_20lookupAtomicNumber(CYTHON_UNUSED PyObj
 
 /* "zeo/netinfo.pyx":78
  *     return zeo_lookupAtomicNumber(element)
- * 
+ *
  * def isMetal(element):             # <<<<<<<<<<<<<<
  *     return zeo_isMetal(element)
  */
@@ -1604,7 +1604,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_22isMetal(CYTHON_UNUSED PyObject *__pyx_
   __Pyx_RefNannySetupContext("isMetal", 0);
 
   /* "zeo/netinfo.pyx":79
- * 
+ *
  * def isMetal(element):
  *     return zeo_isMetal(element)             # <<<<<<<<<<<<<<
  */
@@ -1618,7 +1618,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_22isMetal(CYTHON_UNUSED PyObject *__pyx_
 
   /* "zeo/netinfo.pyx":78
  *     return zeo_lookupAtomicNumber(element)
- * 
+ *
  * def isMetal(element):             # <<<<<<<<<<<<<<
  *     return zeo_isMetal(element)
  */
@@ -1635,7 +1635,7 @@ static PyObject *__pyx_pf_3zeo_7netinfo_22isMetal(CYTHON_UNUSED PyObject *__pyx_
 }
 
 /* "string.from_py":13
- * 
+ *
  * @cname("__pyx_convert_string_from_py_std__in_string")
  * cdef string __pyx_convert_string_from_py_std__in_string(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t length
@@ -1655,7 +1655,7 @@ static std::string __pyx_convert_string_from_py_std__in_string(PyObject *__pyx_v
  *     cdef Py_ssize_t length
  *     cdef char* data = __Pyx_PyObject_AsStringAndSize(o, &length)             # <<<<<<<<<<<<<<
  *     return string(data, length)
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_AsStringAndSize(__pyx_v_o, (&__pyx_v_length)); if (unlikely(__pyx_t_1 == NULL)) __PYX_ERR(1, 15, __pyx_L1_error)
   __pyx_v_data = __pyx_t_1;
@@ -1664,14 +1664,14 @@ static std::string __pyx_convert_string_from_py_std__in_string(PyObject *__pyx_v
  *     cdef Py_ssize_t length
  *     cdef char* data = __Pyx_PyObject_AsStringAndSize(o, &length)
  *     return string(data, length)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = std::string(__pyx_v_data, __pyx_v_length);
   goto __pyx_L0;
 
   /* "string.from_py":13
- * 
+ *
  * @cname("__pyx_convert_string_from_py_std__in_string")
  * cdef string __pyx_convert_string_from_py_std__in_string(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t length
@@ -1740,7 +1740,7 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
   /* "zeo/netinfo.pyx":8
- * 
+ *
  * #Python definitions for the cdefinitions in .pxd file
  * def initializeRadTable():             # <<<<<<<<<<<<<<
  *     """
@@ -1750,7 +1750,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netinfo.pyx":14
  *     zeo_initializeRadTable()
- * 
+ *
  * def initializeCovRadTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the covalent tradius table with Zeo++ default values
@@ -1759,7 +1759,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netinfo.pyx":20
  *     zeo_initializeCovRadTable()
- * 
+ *
  * def initializeMassTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the atomic mass table with Zeo++ default values
@@ -1768,7 +1768,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netinfo.pyx":26
  *     zeo_initializeMassTable()
- * 
+ *
  * def initializeAtomCharacterTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the Atom symbol table with Zeo++ default values
@@ -1777,7 +1777,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netinfo.pyx":32
  *     zeo_initializeAtomCharacterTable()
- * 
+ *
  * def initializeAtomicNumberTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the atomic number table with Zeo++ default values
@@ -1786,7 +1786,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netinfo.pyx":38
  *     zeo_initializeAtomicNumberTable()
- * 
+ *
  * def readRadTable(filename):             # <<<<<<<<<<<<<<
  *     """
  *     Read atomic radii values from input file and replace the default values
@@ -1798,7 +1798,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netinfo.pyx":47
  *     zeo_readRadTable(c_filename)
- * 
+ *
  * def readMassTable(filename):             # <<<<<<<<<<<<<<
  *     """
  *     Read atomic mass values from input file and replace the default values
@@ -1810,7 +1810,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netinfo.pyx":56
  *     zeo_readMassTable(c_filename)
- * 
+ *
  * def lookupRadius(element):             # <<<<<<<<<<<<<<
  *     """"
  *     Args:
@@ -1822,10 +1822,10 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netinfo.pyx":69
  *     return radius
- * 
+ *
  * def lookupCovRadius(element):             # <<<<<<<<<<<<<<
  *     return zeo_lookupCovRadius(element)
- * 
+ *
  */
   __pyx_tuple__12 = PyTuple_Pack(1, __pyx_n_s_element); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
@@ -1834,10 +1834,10 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netinfo.pyx":72
  *     return zeo_lookupCovRadius(element)
- * 
+ *
  * def lookupMass(element):             # <<<<<<<<<<<<<<
  *     return zeo_lookupMass(element)
- * 
+ *
  */
   __pyx_tuple__14 = PyTuple_Pack(1, __pyx_n_s_element); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
@@ -1846,10 +1846,10 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netinfo.pyx":75
  *     return zeo_lookupMass(element)
- * 
+ *
  * def lookupAtomicNumber(element):             # <<<<<<<<<<<<<<
  *     return zeo_lookupAtomicNumber(element)
- * 
+ *
  */
   __pyx_tuple__16 = PyTuple_Pack(1, __pyx_n_s_element); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__16);
@@ -1858,7 +1858,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netinfo.pyx":78
  *     return zeo_lookupAtomicNumber(element)
- * 
+ *
  * def isMetal(element):             # <<<<<<<<<<<<<<
  *     return zeo_isMetal(element)
  */
@@ -1973,7 +1973,7 @@ PyMODINIT_FUNC PyInit_netinfo(void)
   #endif
 
   /* "zeo/netinfo.pyx":8
- * 
+ *
  * #Python definitions for the cdefinitions in .pxd file
  * def initializeRadTable():             # <<<<<<<<<<<<<<
  *     """
@@ -1986,7 +1986,7 @@ PyMODINIT_FUNC PyInit_netinfo(void)
 
   /* "zeo/netinfo.pyx":14
  *     zeo_initializeRadTable()
- * 
+ *
  * def initializeCovRadTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the covalent tradius table with Zeo++ default values
@@ -1998,7 +1998,7 @@ PyMODINIT_FUNC PyInit_netinfo(void)
 
   /* "zeo/netinfo.pyx":20
  *     zeo_initializeCovRadTable()
- * 
+ *
  * def initializeMassTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the atomic mass table with Zeo++ default values
@@ -2010,7 +2010,7 @@ PyMODINIT_FUNC PyInit_netinfo(void)
 
   /* "zeo/netinfo.pyx":26
  *     zeo_initializeMassTable()
- * 
+ *
  * def initializeAtomCharacterTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the Atom symbol table with Zeo++ default values
@@ -2022,7 +2022,7 @@ PyMODINIT_FUNC PyInit_netinfo(void)
 
   /* "zeo/netinfo.pyx":32
  *     zeo_initializeAtomCharacterTable()
- * 
+ *
  * def initializeAtomicNumberTable():             # <<<<<<<<<<<<<<
  *     """
  *     Populate the atomic number table with Zeo++ default values
@@ -2034,7 +2034,7 @@ PyMODINIT_FUNC PyInit_netinfo(void)
 
   /* "zeo/netinfo.pyx":38
  *     zeo_initializeAtomicNumberTable()
- * 
+ *
  * def readRadTable(filename):             # <<<<<<<<<<<<<<
  *     """
  *     Read atomic radii values from input file and replace the default values
@@ -2046,7 +2046,7 @@ PyMODINIT_FUNC PyInit_netinfo(void)
 
   /* "zeo/netinfo.pyx":47
  *     zeo_readRadTable(c_filename)
- * 
+ *
  * def readMassTable(filename):             # <<<<<<<<<<<<<<
  *     """
  *     Read atomic mass values from input file and replace the default values
@@ -2058,7 +2058,7 @@ PyMODINIT_FUNC PyInit_netinfo(void)
 
   /* "zeo/netinfo.pyx":56
  *     zeo_readMassTable(c_filename)
- * 
+ *
  * def lookupRadius(element):             # <<<<<<<<<<<<<<
  *     """"
  *     Args:
@@ -2070,10 +2070,10 @@ PyMODINIT_FUNC PyInit_netinfo(void)
 
   /* "zeo/netinfo.pyx":69
  *     return radius
- * 
+ *
  * def lookupCovRadius(element):             # <<<<<<<<<<<<<<
  *     return zeo_lookupCovRadius(element)
- * 
+ *
  */
   __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3zeo_7netinfo_17lookupCovRadius, NULL, __pyx_n_s_zeo_netinfo); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2082,10 +2082,10 @@ PyMODINIT_FUNC PyInit_netinfo(void)
 
   /* "zeo/netinfo.pyx":72
  *     return zeo_lookupCovRadius(element)
- * 
+ *
  * def lookupMass(element):             # <<<<<<<<<<<<<<
  *     return zeo_lookupMass(element)
- * 
+ *
  */
   __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3zeo_7netinfo_19lookupMass, NULL, __pyx_n_s_zeo_netinfo); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2094,10 +2094,10 @@ PyMODINIT_FUNC PyInit_netinfo(void)
 
   /* "zeo/netinfo.pyx":75
  *     return zeo_lookupMass(element)
- * 
+ *
  * def lookupAtomicNumber(element):             # <<<<<<<<<<<<<<
  *     return zeo_lookupAtomicNumber(element)
- * 
+ *
  */
   __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3zeo_7netinfo_21lookupAtomicNumber, NULL, __pyx_n_s_zeo_netinfo); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2106,7 +2106,7 @@ PyMODINIT_FUNC PyInit_netinfo(void)
 
   /* "zeo/netinfo.pyx":78
  *     return zeo_lookupAtomicNumber(element)
- * 
+ *
  * def isMetal(element):             # <<<<<<<<<<<<<<
  *     return zeo_isMetal(element)
  */
@@ -2126,7 +2126,7 @@ PyMODINIT_FUNC PyInit_netinfo(void)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "string.from_py":13
- * 
+ *
  * @cname("__pyx_convert_string_from_py_std__in_string")
  * cdef string __pyx_convert_string_from_py_std__in_string(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t length

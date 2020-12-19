@@ -46,7 +46,7 @@ int main() {
 	c_loop_all cl(con);
 	vector<int> f_vert;
 	vector<double> v;
-	voronoicell c;	
+	voronoicell c;
 	if(cl.start()) do if(con.compute_cell(c,cl)) {
 		cl.pos(x,y,z);id=cl.pid();
 		printf("Particle %d:\n",id);

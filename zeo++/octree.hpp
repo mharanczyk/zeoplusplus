@@ -4,7 +4,7 @@
 #include "network.h"
 
 #define MAXOBJECTSPERNODE 8
-#define MAXOCTREEDEPTH 10 
+#define MAXOCTREEDEPTH 10
 #define MINBOXSIZE 0.1
 
 typedef Point Vector

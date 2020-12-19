@@ -9,8 +9,8 @@
 	the index if it finds a match, otherwise -1 **/
 int strCmpList(std::vector<std::string> list,std::string str);
 
-/** Function that will split a string based on the 
-	delimiters used if there are two delimeters in a 
+/** Function that will split a string based on the
+	delimiters used if there are two delimeters in a
 	row it will skip them **/
 std::vector<std::string> split(std::string line, std::string delimeter);
 

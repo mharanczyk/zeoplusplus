@@ -18,7 +18,7 @@ using namespace voro;
 
 /* Compute in which unit cells the Voronoi cells that constitute the unit cell lie. Store the resulting information using the provided
  * vector references.*/
-void compute_images(double in_bx, double in_bxy, double in_by, double in_bxz, double in_byz, double in_bz,  
+void compute_images(double in_bx, double in_bxy, double in_by, double in_bxz, double in_byz, double in_bz,
 		    vector<int> &i_vals, vector<int> &j_vals, vector<int> &k_vals){
 
   unitcell uc(in_bx, in_bxy, in_by, in_bxz, in_byz, in_bz);
@@ -31,7 +31,7 @@ void compute_images(double in_bx, double in_bxy, double in_by, double in_bxz, do
     j_vals.push_back(ijk_vals[j+1]);
     k_vals.push_back(ijk_vals[j+2]);
   }
-  
+
 }
 
 /* Convert coordinates relative to the unit cell vectors into xyz coordinates and
@@ -54,7 +54,7 @@ void MIN_PER_DISTANCE::abc_to_xyz(double a, double b, double c, double &x, doubl
   y = b*by+c*byz;
   z = c*bz;
 }
-   
+
 MIN_PER_DISTANCE::MIN_PER_DISTANCE(){}
 
 MIN_PER_DISTANCE::MIN_PER_DISTANCE(double va_x, double vb_x, double vb_y, double vc_x, double vc_y, double vc_z) {
@@ -62,23 +62,23 @@ MIN_PER_DISTANCE::MIN_PER_DISTANCE(double va_x, double vb_x, double vb_y, double
   ivals = vector<int>(); jvals = vector<int>(); kvals = vector<int>();
   compute_images(bx, bxy, by, bxz, byz, bz, ivals, jvals, kvals);
 }
-  
+
 /* Returns the minimum periodic distance between the two points whose coordinates are relative to the
  *  unit cell vectors. Also stores the minimum displacment vector between the two points using the provided references.*/
 double MIN_PER_DISTANCE::minimum_periodic_distance(double a1, double b1, double c1, double a2, double b2, double c2, double &minDa, double &minDb, double &minDc){
   double va_a = a1, va_b = b1, va_c = c1;
   double vb_a = a2, vb_b = b2, vb_c = c2;
   double vc_a = 0.5, vc_b = 0.5, vc_c = 0.5;
-  
+
   double vd_a = vb_a - va_a + vc_a;
   double vd_b = vb_b - va_b + vc_b;
   double vd_c = vb_c - va_c + vc_c;
   double ve_a = trans_to_origuc(vd_a);
   double ve_b = trans_to_origuc(vd_b);
   double ve_c = trans_to_origuc(vd_c);
-  
+
   double minDist = DBL_MAX;
-  
+
   for(unsigned int index = 0; index < ivals.size(); index++){
     double vi_a = ivals[index], vi_b = jvals[index], vi_c = kvals[index];
     double da = vc_a - (ve_a+vi_a);
@@ -100,21 +100,21 @@ double MIN_PER_DISTANCE::minimum_periodic_distance(double a1, double b1, double 
 
 /* Rich edit: returns the closest periodic image of point 2 to point 1, whose coordinates are relative to the
  *  unit cell vectors. Also stores the minimum displacment vector between the two points using the provided references.*/
-void MIN_PER_DISTANCE::closest_periodic_image(double a1, double b1, double c1, double a2, double b2, double c2, 
+void MIN_PER_DISTANCE::closest_periodic_image(double a1, double b1, double c1, double a2, double b2, double c2,
 					      double &minDa, double &minDb, double &minDc, double &return_a, double &return_b, double &return_c){
   double va_a = a1, va_b = b1, va_c = c1;
   double vb_a = a2, vb_b = b2, vb_c = c2;
   double vc_a = 0.5, vc_b = 0.5, vc_c = 0.5;
-  
+
   double vd_a = vb_a - va_a + vc_a;
   double vd_b = vb_b - va_b + vc_b;
   double vd_c = vb_c - va_c + vc_c;
   double ve_a = trans_to_origuc(vd_a);
   double ve_b = trans_to_origuc(vd_b);
   double ve_c = trans_to_origuc(vd_c);
-  
+
   double minDist = DBL_MAX;
-  
+
   for(unsigned int index = 0; index < ivals.size(); index++){
     double vi_a = ivals[index], vi_b = jvals[index], vi_c = kvals[index];
     double da = vc_a - (ve_a+vi_a);

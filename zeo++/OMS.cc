@@ -5,7 +5,7 @@
 // Routines for single molecule analysis
 //
 // Author   : Ismael Gómez García
-// Email    : 
+// Email    :
 // Date     : November 27th 2015
 
 #include "OMS.h"
@@ -16,33 +16,33 @@ void TransformToSpherical(double *TargetMolecule)
 
 	double x_coord, y_coord, z_coord;
 	double Aux;
-	
+
 	// Save the coordinates in order to avoid overwritting
 	x_coord = TargetMolecule[X_COORD];
 	y_coord = TargetMolecule[Y_COORD];
 	z_coord = TargetMolecule[Z_COORD];
 
-	
+
 
 	// Calculate the phi coordinate (interval [0, 2*PI] )
 	TargetMolecule[PHI_COORD] = atan2(y_coord, x_coord);
 	if (TargetMolecule[PHI_COORD] < 0)
-		TargetMolecule[PHI_COORD] = 2*PI + TargetMolecule[PHI_COORD]; 
+		TargetMolecule[PHI_COORD] = 2*PI + TargetMolecule[PHI_COORD];
 
 	// Calcuate the theta coordinate (interval [0, PI] )
 	Aux = sqrt( x_coord*x_coord + y_coord*y_coord );
 	TargetMolecule[THETA_COORD] = atan2(Aux, z_coord);
 	if (TargetMolecule[THETA_COORD] < 0)
-		TargetMolecule[THETA_COORD] = PI + TargetMolecule[THETA_COORD]; 
-	
-	
+		TargetMolecule[THETA_COORD] = PI + TargetMolecule[THETA_COORD];
+
+
 
 	// Calculate the radius (not really necessary)
 	//SphericalCoordinates[R_COORD] = sqrt
 
 }
 
-void Sort(	double **MoleculeCoordinates, 
+void Sort(	double **MoleculeCoordinates,
 		int Criterion,
 		int Size)
 {
@@ -52,7 +52,7 @@ void Sort(	double **MoleculeCoordinates,
 
 	for (i = 0 ; i < Size-1; i++)
 		for (j = 0 ; j < Size - i - 1; j++)
-			if (MoleculeCoordinates[j][Criterion] > MoleculeCoordinates[j+1][Criterion]) 
+			if (MoleculeCoordinates[j][Criterion] > MoleculeCoordinates[j+1][Criterion])
 			{
 				Swap = MoleculeCoordinates[j];
 				MoleculeCoordinates[j] = MoleculeCoordinates[j+1];
@@ -72,7 +72,7 @@ bool LinearlyDependent (double *Vector1, double *Vector2)
 
 	v1 = v1.cross(v2);
 
-	//cout << "Checking LD: \n" << Vector1[0] << Vector1[1] << Vector1[2] << "\n" << Vector2[0] << Vector2[1] << Vector2[2] << "\n" << v1 << "\n";	
+	//cout << "Checking LD: \n" << Vector1[0] << Vector1[1] << Vector1[2] << "\n" << Vector2[0] << Vector2[1] << Vector2[2] << "\n" << v1 << "\n";
 
 	//if (v1(0) == 0 && v1(1) == 0 && v2(0) == 0)
 	if ( v1(0)*v1(0)+v1(1)*v1(1)+v1(2)*v1(2) == 0)
@@ -81,7 +81,7 @@ bool LinearlyDependent (double *Vector1, double *Vector2)
 		return true;
 	}
 
-	
+
 	return false;
 
 
@@ -106,7 +106,7 @@ double PlaneSide (double *Vector1, double *Vector2, double *Point)
 	Vector3d v1(Vector1[X_COORD], Vector1[Y_COORD], Vector1[Z_COORD]);
 	Vector3d v2(Vector2[X_COORD], Vector2[Y_COORD], Vector2[Z_COORD]);
 	Vector3d n(Vector1[X_COORD], Vector1[Y_COORD], Vector1[Z_COORD]);
-	
+
 	n = n.cross(v2);
 
 
@@ -120,11 +120,11 @@ double PlaneSide (double *Vector1, double *Vector2, double *Point)
 	// Each column contains one vector, so the system solved returns the coordinates of the point in the system v1,v2,n
 	for (int i = 0; i < DIM; i++)
 		for (int j=0; j<DIM; j++)
-			if (i == 0)			
+			if (i == 0)
 				A(j,i) = v1(j);
-			else if (i == 1) 
+			else if (i == 1)
 				A(j,i) = v2(j);
-			else 	
+			else
 				A(j,i) = n(j);
 
 	//cout << "A\n" << A << "\n";
@@ -161,7 +161,7 @@ bool IsExposedMolecule (vector < vector <double> > MoleculeCoordinates  )
 
 	double **TranslatedCoordinates = (double **) malloc((NPoints-1)*sizeof(double *));
 	double *OriginCoordinates = (double *) malloc (DIM*sizeof(double));
-	
+
 	int i,j,k;
 
 	double Aux;
@@ -207,17 +207,17 @@ bool IsExposedMolecule (vector < vector <double> > MoleculeCoordinates  )
 			PlaneFound = true;
 			// For every point except the two composing the plane, compute
 			if (!LinearlyDependent(TranslatedCoordinates[i], TranslatedCoordinates[j]))
-			{		
+			{
 				for (k = 0; k < NPoints-1; k++)
-					if (k != i && k != j ) 
+					if (k != i && k != j )
 					{
 						Lambda = PlaneSide (TranslatedCoordinates[i], TranslatedCoordinates[j], TranslatedCoordinates[k]);
 
 						//cout << "k: " << k << "\nLambda: " << Lambda << "\n";
-			
+
 						S_lambda = Sign(Lambda);
 
-						// Update S_lambda_old only the first time that the point is not in the plane				
+						// Update S_lambda_old only the first time that the point is not in the plane
 						if (Lambda != 0 && S_lambda_old == 0)
 							S_lambda_old = Sign(Lambda);
 
@@ -240,8 +240,8 @@ bool IsExposedMolecule (vector < vector <double> > MoleculeCoordinates  )
 			if (PlaneFound)
 				return true;
 		}
-						
-					
+
+
 
 	return false;
 
@@ -251,7 +251,7 @@ bool IsExposedMolecule (vector < vector <double> > MoleculeCoordinates  )
 double PlaneAngle (double *Vector1, double *Vector2, double *Point)
 {
 
-	
+
 	double Angle;
 
 	// Elements for system resolution
@@ -263,18 +263,18 @@ double PlaneAngle (double *Vector1, double *Vector2, double *Point)
 	Vector3d v1(Vector1[X_COORD], Vector1[Y_COORD], Vector1[Z_COORD]);
 	Vector3d v2(Vector2[X_COORD], Vector2[Y_COORD], Vector2[Z_COORD]);
 	Vector3d n(Vector1[X_COORD], Vector1[Y_COORD], Vector1[Z_COORD]);
-	
+
 	n = n.cross(v2);
 
 	/**** Fill the matrix ****/
 	// Each column contains one vector, so the system solved returns the coordinates of the point in the system v1,v2,n
 	for (int i = 0; i < DIM; i++)
 		for (int j=0; j<DIM; j++)
-			if (i == 0)			
+			if (i == 0)
 				A(j,i) = v1(j);
-			else if (i == 1) 
+			else if (i == 1)
 				A(j,i) = v2(j);
-			else 	
+			else
 				A(j,i) = n(j);
 
 	//cout << "A\n" << A << "\n";
@@ -289,9 +289,9 @@ double PlaneAngle (double *Vector1, double *Vector2, double *Point)
 
 //cout << "Compute angle from " << n.norm() << " and " << b.norm() << "\n";
 	Angle = asin(n.norm()/b.norm());
-	
+
 	/**** Return the value of the third element (lambda parameter of the normal) ****/
-	return Angle;	
+	return Angle;
 
 
 
@@ -305,7 +305,7 @@ double PlaneAngle (double *Vector1, double *Vector2, double *Point)
 	// Vectors defining the plane
 	Vector3d v2(Vector2[X_COORD], Vector2[Y_COORD], Vector2[Z_COORD]);
 	Vector3d PlaneNormal(Vector1[X_COORD], Vector1[Y_COORD], Vector1[Z_COORD]);
-	
+
 	PlaneNormal = PlaneNormal.cross(v2);
 
 	PVMod = sqrt(	VectorToPoint(0)*VectorToPoint(0) + VectorToPoint(1)*VectorToPoint(1) + VectorToPoint(2)*VectorToPoint(2) );
@@ -328,7 +328,7 @@ cout << "Compute angle from " << PNMod/PVMod << "\n";
 
 	double **TranslatedCoordinates = (double **) malloc((NPoints-1)*sizeof(double *));
 	double *OriginCoordinates = (double *) malloc (DIM*sizeof(double));
-	
+
 	int i,j,k;
 
 	// Angles
@@ -356,7 +356,7 @@ cout << "Compute angle from " << PNMod/PVMod << "\n";
 			TranslatedCoordinates[i-1][j] = MoleculeCoordinates.at(i).at(j) - OriginCoordinates[j];
 	}
 
-	
+
 	for (i = 0; i < NPoints-1; i++)
 		for (j = i+1; j < NPoints-1; j++)
 		{
@@ -372,28 +372,28 @@ cout << "Compute angle from " << PNMod/PVMod << "\n";
 			Exposure = 0.;
 			// For every point except the two composing the plane, compute
 			if (!LinearlyDependent(TranslatedCoordinates[i], TranslatedCoordinates[j]))
-			{		
+			{
 				for (k = 0; k < NPoints-1; k++)
-					if (k != i && k != j ) 
+					if (k != i && k != j )
 					{
 						// Compute the side of the plane
 						Lambda = PlaneSide (TranslatedCoordinates[i], TranslatedCoordinates[j], TranslatedCoordinates[k]);
-									
+
 						S_lambda = Sign(Lambda);
 
 						//cout << "k: " << k << " Lambda " << Lambda << "\n";
 
-						// Update S_lambda_old only the first time that the point is not in the plane				
+						// Update S_lambda_old only the first time that the point is not in the plane
 						if (Lambda != 0 && S_lambda_old == 0)
 							S_lambda_old = Sign(Lambda);
 
-						// If the sign changes anytime, check the angle 
+						// If the sign changes anytime, check the angle
 						if (S_lambda != S_lambda_old)
 						{
 							Theta = PlaneAngle(TranslatedCoordinates[i], TranslatedCoordinates[j], TranslatedCoordinates[k]);
 
 							//cout << "\nTheta: " << Theta << "\tThreshold: "  << Threshold << "\n";
-							
+
 							// If the absolute value exceeds the threshold, stop this iteration
 							if (abs(Theta) > Threshold)
 							{
@@ -419,8 +419,8 @@ cout << "Compute angle from " << PNMod/PVMod << "\n";
 				return true;
 				//return Exposure;
 		}
-						
-					
+
+
 
 	//return -Threshold;
 	return false;
@@ -435,7 +435,7 @@ bool IsExposedMoleculeThreshold (vector < vector <double> > MoleculeCoordinates,
 
 	double **TranslatedCoordinates = (double **) malloc((NPoints-1)*sizeof(double *));
 	double *OriginCoordinates = (double *) malloc (DIM*sizeof(double));
-	
+
 	int i,j,k;
 
 	// Angles
@@ -482,10 +482,10 @@ bool IsExposedMoleculeThreshold (vector < vector <double> > MoleculeCoordinates,
 
 			// For every point except the two composing the plane, compute
 			if (!LinearlyDependent(TranslatedCoordinates[i], TranslatedCoordinates[j]))
-			{	
+			{
 				// POINTS ITERATION: Compare the points with the plane selected in previous iterations
 				for (k = 0; k < NPoints-1; k++)
-					if (k != i && k != j ) 
+					if (k != i && k != j )
 					{
 						// Compute the side of the plane
 						Lambda = PlaneSide (TranslatedCoordinates[i], TranslatedCoordinates[j], TranslatedCoordinates[k]);
@@ -493,18 +493,18 @@ bool IsExposedMoleculeThreshold (vector < vector <double> > MoleculeCoordinates,
 
 						S_lambda = Sign(Lambda);
 
-						// Store the angles at both sides of the plane 
+						// Store the angles at both sides of the plane
 						// The exposure angle is the minimum of both
 						if (S_lambda > 0)
 						{
 							Theta = PlaneAngle(TranslatedCoordinates[i], TranslatedCoordinates[j], TranslatedCoordinates[k]);
-							if (Theta > Exposure_pos)							
+							if (Theta > Exposure_pos)
 								Exposure_pos = Theta;
 						}
 						if (S_lambda < 0)
 						{
 							Theta = PlaneAngle(TranslatedCoordinates[i], TranslatedCoordinates[j], TranslatedCoordinates[k]);
-							if (Theta > Exposure_neg)							
+							if (Theta > Exposure_neg)
 								Exposure_neg = Theta;
 						}
 
@@ -517,11 +517,11 @@ bool IsExposedMoleculeThreshold (vector < vector <double> > MoleculeCoordinates,
 
 			}
 
-			
+
 
 		}
-						
-					
+
+
 	// Maximum angle formed by a point not contained within the same side of the rest of the points
 	return false;
 
@@ -533,12 +533,12 @@ bool IsExposedMoleculeThreshold (vector < vector <double> > MoleculeCoordinates,
 double DegreeOfExposure(vector < vector <double> > MoleculeCoordinates)
 {
 
-	
+
 	int NPoints = (int) MoleculeCoordinates.size();
 
 	double **TranslatedCoordinates = (double **) malloc((NPoints-1)*sizeof(double *));
 	double *OriginCoordinates = (double *) malloc (DIM*sizeof(double));
-	
+
 	int i,j,k;
 
 	// Angles
@@ -581,13 +581,13 @@ double DegreeOfExposure(vector < vector <double> > MoleculeCoordinates)
 
 			Exposure_pos = 0.;
 			Exposure_neg = 0.;
-				
+
 			// For every point except the two composing the plane, compute
 			if (!LinearlyDependent(TranslatedCoordinates[i], TranslatedCoordinates[j]))
-			{	
+			{
 				// POINTS ITERATION: Compare the points with the plane selected in previous iterations
 				for (k = 0; k < NPoints-1; k++)
-					if (k != i && k != j ) 
+					if (k != i && k != j )
 					{
 						// Compute the side of the plane
 						Lambda = PlaneSide (TranslatedCoordinates[i], TranslatedCoordinates[j], TranslatedCoordinates[k]);
@@ -595,18 +595,18 @@ double DegreeOfExposure(vector < vector <double> > MoleculeCoordinates)
 
 						S_lambda = Sign(Lambda);
 
-						// Store the angles at both sides of the plane 
+						// Store the angles at both sides of the plane
 						// The exposure angle is the minimum of both
 						if (S_lambda > 0)
 						{
 							Theta = PlaneAngle(TranslatedCoordinates[i], TranslatedCoordinates[j], TranslatedCoordinates[k]);
-							if (Theta > Exposure_pos)							
+							if (Theta > Exposure_pos)
 								Exposure_pos = Theta;
 						}
 						if (S_lambda < 0)
 						{
 							Theta = PlaneAngle(TranslatedCoordinates[i], TranslatedCoordinates[j], TranslatedCoordinates[k]);
-							if (Theta > Exposure_neg)							
+							if (Theta > Exposure_neg)
 								Exposure_neg = Theta;
 						}
 
@@ -619,24 +619,18 @@ double DegreeOfExposure(vector < vector <double> > MoleculeCoordinates)
 
 				if (Exposure_plane < Exposure)
 				{
-					//cout << "Exposure updated: " << Exposure << "\n";			
+					//cout << "Exposure updated: " << Exposure << "\n";
 					Exposure = Exposure_plane;
 				}
 			}
 
-			
+
 
 		}
-						
-					
+
+
 	// Maximum angle formed by a point not contained within the same side of the rest of the points
 	return Exposure;
 
 
 }
-
-
-
-
-
-

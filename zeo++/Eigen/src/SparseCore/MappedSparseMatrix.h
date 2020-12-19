@@ -10,7 +10,7 @@
 #ifndef EIGEN_MAPPED_SPARSEMATRIX_H
 #define EIGEN_MAPPED_SPARSEMATRIX_H
 
-namespace Eigen { 
+namespace Eigen {
 
 /** \class MappedSparseMatrix
   *
@@ -50,7 +50,7 @@ class MappedSparseMatrix
     inline Index cols() const { return IsRowMajor ? m_innerSize : m_outerSize; }
     inline Index innerSize() const { return m_innerSize; }
     inline Index outerSize() const { return m_outerSize; }
-    
+
     bool isCompressed() const { return true; }
 
     //----------------------------------------

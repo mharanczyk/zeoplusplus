@@ -35,7 +35,7 @@ It carries out a number of find_voronoi_cell calls for a slice through the
 cube, creating a file with vectors from each sample point to the particle whose
 Voronoi cell contains the point. The results can be visualized in Gnuplot with
 
-splot 'find_voro_cell_v.gnu' w l t 'Voronoi cells', 'find_voro_cell.vec' w vec t 'Voronoi cell vectors', 'find_voro_cell_p.gnu' w p u 2:3:4 t 'Particles' 
+splot 'find_voro_cell_v.gnu' w l t 'Voronoi cells', 'find_voro_cell.vec' w vec t 'Voronoi cell vectors', 'find_voro_cell_p.gnu' w p u 2:3:4 t 'Particles'
 
 The example also uses the find_voronoi_cell routine to estimate the size of
 each Voronoi cell. It scans a grid covering the entire container, making

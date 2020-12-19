@@ -2,7 +2,7 @@
 # distutils: sources = ../networkstorage.cc
 """
 Cython decloarations file for Zeo++ network storage section.
-Declares Zeo++ ATOM_NETWORK, VORONOI_NETWORK classes and the associated 
+Declares Zeo++ ATOM_NETWORK, VORONOI_NETWORK classes and the associated
 python wrappers AtomNetwork, VoronoiNetwork.
 """
 __author__ = "Bharat Kumar Medasani"
@@ -22,7 +22,7 @@ cdef extern from "../../networkstorage.h":
         #string type
         #int specialID
         double mass
-        double charge 
+        double charge
 
     cdef cppclass ATOM_NETWORK:
         ATOM_NETWORK() except +
@@ -45,7 +45,7 @@ cdef extern from "../../networkstorage.h":
     cdef cppclass VOR_EDGE:
         VOR_EDGE() except +
         VOR_EDGE(int, int, double, int, int, int, double)
-        int origin "from" 
+        int origin "from"
         int ending "to"
         double rad_moving_sphere
         double length
@@ -61,8 +61,8 @@ cdef extern from "../../networkstorage.h":
     cdef bint c_substituteAtoms "substituteAtoms"(ATOM_NETWORK*, ATOM_NETWORK*,
             bint, int*, bint)
 
-    cdef bint c_fracSubstituteAtoms "fracSubstituteAtoms"(ATOM_NETWORK*, 
-            ATOM_NETWORK*, bint, double, 
+    cdef bint c_fracSubstituteAtoms "fracSubstituteAtoms"(ATOM_NETWORK*,
+            ATOM_NETWORK*, bint, double,
             int, int*, double*, bint)
 
 cdef extern from '../../networkio.h':
@@ -102,7 +102,7 @@ cdef extern from '../../networkio.h':
 # At present  the return value of performVoronoiDecomp is void*
 # Compile it after void* is changed to bool in the original source file
 cdef extern from "../../network.h":
-    cdef bint performVoronoiDecomp(bint, ATOM_NETWORK*, VORONOI_NETWORK*, 
+    cdef bint performVoronoiDecomp(bint, ATOM_NETWORK*, VORONOI_NETWORK*,
             vector[VOR_CELL]*, bint, vector[BASIC_VCELL]*)
 
     cdef void calculateFreeSphereParameters(VORONOI_NETWORK*, char*, bint)
@@ -124,7 +124,7 @@ cdef class Atom:
     cdef ATOM* thisptr
 
 cdef class AtomNetwork:
-    """ 
+    """
     Cython wrapper class for Zeo++ ATOM_NETWORK class.
     Contains a pointer to ATOM_NETWORK and a flag denoting whether radius
     for each atomic species is non-zero.
@@ -139,7 +139,7 @@ cdef class VoronoiNode:
     cdef VOR_NODE* thisptr
 
 cdef class VoronoiNetwork:
-    """ 
+    """
     Cython wrapper class for Zeo++ VORONOI_NETWORK class.
     """
     cdef VORONOI_NETWORK* thisptr

@@ -20,20 +20,20 @@ double calcDensity(ATOM_NETWORK *atmnet){
   vector<ATOM>::iterator iter = atmnet->atoms.begin();
   double massSum = 0;
   while(iter != atmnet->atoms.end()){
-    massSum += iter->mass; 
+    massSum += iter->mass;
     iter++;
   }
   return  massSum/(AVOGRADOS_NUMBER*volume)*1.0e24; // Units of g/cm^3
 }
 
 
-/* Print the coordinates collected in MC sampling to the provides string 
- * This is the new version of the function that writes the output in all 
+/* Print the coordinates collected in MC sampling to the provides string
+ * This is the new version of the function that writes the output in all
  * fromats of interests */
-void NEWreportPoints(ostream &output, ATOM_NETWORK *atmnet, vector<Point> *axsPoints, vector<int> *axsPChIDs, 
+void NEWreportPoints(ostream &output, ATOM_NETWORK *atmnet, vector<Point> *axsPoints, vector<int> *axsPChIDs,
                                                          vector<Point> *inaxsPoints, vector<int> *inaxsPPIDs,
                                                          string type)
-{ 
+{
  if(type=="ZEOVIS")
    {
    output << "{color green}" << "\n";
@@ -47,7 +47,7 @@ void NEWreportPoints(ostream &output, ATOM_NETWORK *atmnet, vector<Point> *axsPo
      Point coords = atmnet->abc_to_xyz(inaxsPoints->at(i));
      output << "{point {" <<  coords[0] << " " << coords[1] << " " << coords[2] << "}}" << "\n";
      };
-   } 
+   }
  else if(type=="VISIT")
   {
   for(unsigned int i = 0; i < axsPoints->size(); i++){
@@ -77,19 +77,19 @@ void NEWreportPoints(ostream &output, ATOM_NETWORK *atmnet, vector<Point> *axsPo
   };
 
 
-} // 
+} //
 
 
-/* Print the coordinates collected in MC sampling with additional column (value vector) to the provides string 
- * This is the new version of the function that writes the output in all 
+/* Print the coordinates collected in MC sampling with additional column (value vector) to the provides string
+ * This is the new version of the function that writes the output in all
  * fromats of interests */
-void NEWreportPointsValue(ostream &output, ATOM_NETWORK *atmnet, vector<Point> *axsPoints, vector<int> *axsPChIDs, 
+void NEWreportPointsValue(ostream &output, ATOM_NETWORK *atmnet, vector<Point> *axsPoints, vector<int> *axsPChIDs,
                                                          vector<double> *value, string type)
-{ 
+{
  if(type=="ZEOVIS")
    {
    cout << "ZEOVIS not supported. Not saving anything.\n";
-   } 
+   }
  else if(type=="VISIT")
   {
   for(unsigned int i = 0; i < axsPoints->size(); i++){
@@ -111,7 +111,7 @@ void NEWreportPointsValue(ostream &output, ATOM_NETWORK *atmnet, vector<Point> *
   };
 
 
-} // 
+} //
 
 
 
@@ -127,7 +127,7 @@ void reportPoints(ostream &output, vector<Point> axsPoints, vector<Point> inaxsP
     Point coords = axsPoints.at(i);
     output << "{point { " << coords[0] << " " << coords[1] << " " << coords[2] << "}}" << "\n";
   }
-  
+
   output << "{color red}" << "\n";
   for(unsigned int i = 0; i < inaxsPoints.size(); i++){
     Point coords = inaxsPoints.at(i);
@@ -140,7 +140,7 @@ void reportResampledPoints(ostream &output, vector< pair<int, Point> > resampled
    for(unsigned int i = 0; i < resampledInfo.size(); i++){
     Point coords = resampledInfo[i].second;
     output << "set rpoints(" << i << ") {" <<  coords[0] << " " << coords[1] << " " << coords[2] << "} " << "\n";
-    output << "set rcenters(" << i << ") " << resampledInfo[i].first << "\n"; 
+    output << "set rcenters(" << i << ") " << resampledInfo[i].first << "\n";
   }
 }
 
@@ -206,7 +206,7 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
   srand(randSeed);
 
   vector<Point> axsPoints = vector<Point> (); // stores accessible points
-  vector<int> axsPointsChannelIDs; // stores the corresponding channel IDs 
+  vector<int> axsPointsChannelIDs; // stores the corresponding channel IDs
   vector<Point> inaxsPoints = vector<Point> (); // inaccessible points
   vector<int> inaxsPointsPocketIDs; // stores the corresponding pocket IDs
 
@@ -245,7 +245,7 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
     if(accessAnalysis.needToResample() == true) i--; // the sampled point could not be analyzed in isVPointInsideAtomAndNotAccessible() function, resampling needed
 
     if(inside == false && excludePockets == false) overlaps = false; // if ignore inacceible pockets, treat the point as accessible (unless inside atom)
-     
+
     //domod start: store also inside points
     if(inside){
        count_inside++;
@@ -253,14 +253,14 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
        Point coords = atmnet->abc_to_xyz(abcCoords);
        insidePoints.push_back(coords);
        };
-    //domod end 
- 
+    //domod end
+
     // Store sampled points that did not overlap with an atom but were inaccessible for later visualization
     if(accessAnalysis.needToResample() == false && !inside && overlaps){
       mindist_inaxs.push_back(mindist_domod);                              //domod: store the mindistance with an atom
       count_inaxs++;
       pair <int,int> CoP = accessAnalysis.lastChannelOrPocket();
-      if(CoP.first!=-1) 
+      if(CoP.first!=-1)
         {
         cout << "Error: CoP.first!=-1 in pocket, consult source code provider\n";
         } else {
@@ -277,9 +277,9 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
     // Store accessible points for later visualization
     if(accessAnalysis.needToResample() == false && !overlaps) {
       mindist_axs.push_back(mindist_domod);
-      count++;     
+      count++;
       pair <int,int> CoP = accessAnalysis.lastChannelOrPocket();
-      if(CoP.second!=-1) 
+      if(CoP.second!=-1)
         {
         cout << "Error: CoP.second!=-1 in channel, consult source code provider\n";
         } else {
@@ -295,14 +295,14 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
           count_outside_range++;
           inaxsPoints.push_back(coords);
         }
-      } else 
+      } else
       {
-      axsPoints.push_back(coords); 
+      axsPoints.push_back(coords);
       axsPointsChannelIDs.push_back(CoP.first);
       };
     }
   }; // ends a for loop over all sampled points
-  
+
   // Write the necessary commands to the output stream
   // necessary to visualize the sampling
   if(visualize){
@@ -336,7 +336,7 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
   }
 
   // Write blocknig spheres based on current sampling points if blocking routine
-  // has been requested 
+  // has been requested
   if(blockingMode)
     {
     //report points in fractonal coordinates (Liverpool format used in visualization)
@@ -361,15 +361,15 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
   int resampleCount =  accessAnalysis.getResampleCount();
   if(resampleCount != 0){
     cerr << "\n" << "\n"
-	 << "Warning: Resampled " << resampleCount << " points out of " << numSamples 
+	 << "Warning: Resampled " << resampleCount << " points out of " << numSamples
 	 << " when analyzing " << atmnet->name << "\n"
-	 << "\n" << "\n"; 
+	 << "\n" << "\n";
   }
 
 
 
 
-  //domod start: Further calculation of probe occupiable volume 
+  //domod start: Further calculation of probe occupiable volume
   //
   //
 
@@ -385,7 +385,7 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
   if (r_probe > 0.0)
       {
 	  bool alreadyfound = false;
-          printf("ProbeOccupiableLoopStart: atoms: %d count: %d count_inaxs: %d count_inside: %d count_narrow: %d\n", 
+          printf("ProbeOccupiableLoopStart: atoms: %d count: %d count_inaxs: %d count_inside: %d count_narrow: %d\n",
                             orgatmnet->numAtoms, count_domod, count_domod_inaxs, count_domod_inside, count_domod_narrow); //domodebug
           //printf("DOMODEBUG domod loop \n"); //domodebug
 	  //printf("%f %f %f %f %f %f %f %f %f\n",orgatmnet->ucVectors[0][0],orgatmnet->ucVectors[0][1],orgatmnet->ucVectors[0][2],
@@ -394,10 +394,10 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
           for (int i=0; i<count_inside; i++)
               {
 	 	alreadyfound=false;
-		//first make a loop to check again easily if the sample point is close to an atom: 
+		//first make a loop to check again easily if the sample point is close to an atom:
                 //it is faster because we have less atoms than sample points and we discard all the "really inside" points
                 //!!! The purpose of the first loop is only to speed up the calculation to avoid the loop with all the in/accessible points in the small volume
-                 
+
  for (int j=0; j<(orgatmnet->numAtoms); j++)  //LOOP1: check if it is close to an atom.
                       {
                          ATOM curAtom = orgatmnet->atoms[j];
@@ -416,11 +416,11 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
                                   //printf("DOMODEBUG inside |samplepoint: %6.3f %6.3f %6.3f\n",insidePoints[i][0],insidePoints[i][1],insidePoints[i][2]); //domodebug
                                   break;
                               }
-	         }  
+	         }
 
                  if (!alreadyfound)
-                 { 
-                   for (int j=0; j<count; j++)   //LOOP2: check if it is close to an accessible point 
+                 {
+                   for (int j=0; j<count; j++)   //LOOP2: check if it is close to an accessible point
                        {
                            double minDist = orgatmnet->calcDistanceXYZ(
                                              insidePoints[i][0],
@@ -443,7 +443,7 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
                  }
 
                  if (!alreadyfound)
-                 {                                              
+                 {
                    for (int j=0; j<count_inaxs; j++)  //LOOP3: check if it is close to an inaccessible point (NB: accessible point have priority in case of they are both in an accessible and non accessible volume)
                        {
                            double minDist = orgatmnet->calcDistanceXYZ(
@@ -468,18 +468,18 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
                        }
 	         }
                  if (!alreadyfound)
-                 {  
+                 {
                  narrowPoints.push_back(insidePoints[i]);
                  //narrowPoints[count_domod_narrow][1]=insidePoints[i][1];
                  //narrowPoints[count_domod_narrow][2]=insidePoints[i][2];
                  count_domod_inside--;
                  count_domod_narrow++;
-                 //printf("DOMODEBUG narrow |samplepoint: %6.3f %6.3f %6.3f\n",insidePoints[i][0],insidePoints[i][1],insidePoints[i][2]); //domodebug                 
+                 //printf("DOMODEBUG narrow |samplepoint: %6.3f %6.3f %6.3f\n",insidePoints[i][0],insidePoints[i][1],insidePoints[i][2]); //domodebug
                  }
 
               }
-          printf("ProbeOccupiableLoopEnd: atoms: %d count: %d count_inaxs: %d count_inside: %d count_narrow: %d\n", 
-                            orgatmnet->numAtoms, count_domod, count_domod_inaxs, count_domod_inside, count_domod_narrow); //domodebug         
+          printf("ProbeOccupiableLoopEnd: atoms: %d count: %d count_inaxs: %d count_inside: %d count_narrow: %d\n",
+                            orgatmnet->numAtoms, count_domod, count_domod_inaxs, count_domod_inside, count_domod_narrow); //domodebug
       }
 
 
@@ -508,9 +508,9 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
   myfile << count_domod_inaxs+(orgatmnet->numAtoms) << "\n";
   myfile << "CELL: " << orgatmnet->a << " " << orgatmnet->b << " " << orgatmnet->c << " " << orgatmnet->alpha << " " << orgatmnet->beta << " " << orgatmnet->gamma << " #non accessible points\n";
   for (int i=0; i<count_domod_inaxs; i++) {
-     if (i<count_inaxs)  
+     if (i<count_inaxs)
        myfile << "He " << inaxsPoints[i][0] << " " << inaxsPoints[i][1] << " " << inaxsPoints[i][2] << "\n";         //before
-     else  
+     else
        myfile << "Ne " << inaxsPoints[i][0] << " " << inaxsPoints[i][1] << " " << inaxsPoints[i][2] << "\n";         //after
   }
   for (int i=0; i<orgatmnet->numAtoms; i++) {
@@ -542,19 +542,19 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
   //-------------------------------------
   myfile.open ("see_all.xyz");
   myfile << count_domod+count_domod_inaxs+count_domod_narrow+(orgatmnet->numAtoms) << "\n";
-  myfile << "CELL: " << orgatmnet->a << " " << orgatmnet->b << " " << orgatmnet->c << " " << orgatmnet->alpha << " " << orgatmnet->beta << " " << orgatmnet->gamma 
+  myfile << "CELL: " << orgatmnet->a << " " << orgatmnet->b << " " << orgatmnet->c << " " << orgatmnet->alpha << " " << orgatmnet->beta << " " << orgatmnet->gamma
          << " #He: AX_before, Ne: AX_after, Ar: NAX_before, Kr: NAX_after, Xe: narrow\n";
   for (int i=0; i<count_domod; i++) {
-     if (i<count)  
-       myfile << "He " << axsPoints[i][0] << " " << axsPoints[i][1] << " " << axsPoints[i][2] << "\n";         
-     else  
-       myfile << "Ne " << axsPoints[i][0] << " " << axsPoints[i][1] << " " << axsPoints[i][2] << "\n";         
+     if (i<count)
+       myfile << "He " << axsPoints[i][0] << " " << axsPoints[i][1] << " " << axsPoints[i][2] << "\n";
+     else
+       myfile << "Ne " << axsPoints[i][0] << " " << axsPoints[i][1] << " " << axsPoints[i][2] << "\n";
   }
   for (int i=0; i<count_domod_inaxs; i++) {
-     if (i<count_inaxs)  
-       myfile << "Ar " << inaxsPoints[i][0] << " " << inaxsPoints[i][1] << " " << inaxsPoints[i][2] << "\n";         
-     else  
-       myfile << "Kr " << inaxsPoints[i][0] << " " << inaxsPoints[i][1] << " " << inaxsPoints[i][2] << "\n";         
+     if (i<count_inaxs)
+       myfile << "Ar " << inaxsPoints[i][0] << " " << inaxsPoints[i][1] << " " << inaxsPoints[i][2] << "\n";
+     else
+       myfile << "Kr " << inaxsPoints[i][0] << " " << inaxsPoints[i][1] << " " << inaxsPoints[i][2] << "\n";
   }
   for (int i=0; i<count_domod_narrow; i++) {
      myfile << "Xe " << narrowPoints[i][0] << " " << narrowPoints[i][1] << " " << narrowPoints[i][2] << "\n";
@@ -571,7 +571,7 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
  }; // Ends If(ProbeOccupiableflag = true)
 
   // Final analysis
- 
+
   double volumeFraction, origVolume, av;
 
   if(ProbeOccupiableFlag == false)
@@ -648,11 +648,11 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
     output << "\n";
 
 
-    output << "PROBE_OCCUPIABLE_VOL_CALC: filename| density(g/cm3)| probe rad| N points| probe ctr A fract| probe ctr NA fract| A fract| NA fract| narrow fract |ovlp fract.\n";  
-    output << "PROBE_OCCUPIABLE___RESULT: " 
+    output << "PROBE_OCCUPIABLE_VOL_CALC: filename| density(g/cm3)| probe rad| N points| probe ctr A fract| probe ctr NA fract| A fract| NA fract| narrow fract |ovlp fract.\n";
+    output << "PROBE_OCCUPIABLE___RESULT: "
            << filename                                      << "\t"
            << rho_crystal                                   << "\t"
-           << r_probe                                       << "\t" 
+           << r_probe                                       << "\t"
            << numSamples                                    << "\t"
            << (double)count/(double)numSamples              << "\t"
            << (double)count_inaxs/(double)numSamples        << "\t"
@@ -695,14 +695,14 @@ double NEWcalcAV(MATERIAL *Mat, double r_probe, int numSamples, double low_dist_
   Mat->AVprobeRadius = r_probe;
 
   // Cleaning structures in case of previous runs
-  Mat->AVcount = 0; 
-  Mat->AVcount_inaxs = 0; 
-  Mat->AVcount_within_range = 0; 
+  Mat->AVcount = 0;
+  Mat->AVcount_inaxs = 0;
+  Mat->AVcount_within_range = 0;
   Mat->AVcount_outside_range = 0;
-  Mat->AVaxsPoints.clear(); 
-  Mat->AVaxsPointsChannelIDs.clear(); 
-  Mat->AVinaxsPoints.clear(); 
-  Mat->AVinaxsPointsPocketIDs.clear(); 
+  Mat->AVaxsPoints.clear();
+  Mat->AVaxsPointsChannelIDs.clear();
+  Mat->AVinaxsPoints.clear();
+  Mat->AVinaxsPointsPocketIDs.clear();
   Mat->AVcount_inChannel.clear();
   Mat->AVcount_inPocket.clear();
 
@@ -757,12 +757,12 @@ double NEWcalcAV(MATERIAL *Mat, double r_probe, int numSamples, double low_dist_
     if(Mat->accessAnalysis.needToResample() == true) i--; // the sampled point could not be analyzed in isVPointInsideAtomAndNotAccessible() function, resampling needed
 
     if(inside == false && excludePockets == false) overlaps = false; // if ignore inacceible pockets, treat the point as accessible (unless inside atom)
-      
+
     // Store sampled points that did not overlap with an atom but were inaccessible for later visualization
     if(Mat->accessAnalysis.needToResample() == false && !inside && overlaps){
       count_inaxs++;
       pair <int,int> CoP = Mat->accessAnalysis.lastChannelOrPocket();
-      if(CoP.first!=-1) 
+      if(CoP.first!=-1)
         {
         cout << "Error: CoP.first!=-1 in pocket, consult source code provider\n";
         } else {
@@ -779,9 +779,9 @@ double NEWcalcAV(MATERIAL *Mat, double r_probe, int numSamples, double low_dist_
 
     // Store accessible points for later visualization
     if(Mat->accessAnalysis.needToResample() == false && !overlaps) {
-      count++;     
+      count++;
       pair <int,int> CoP = Mat->accessAnalysis.lastChannelOrPocket();
-      if(CoP.second!=-1) 
+      if(CoP.second!=-1)
         {
         cout << "Error: CoP.second!=-1 in channel, consult source code provider\n";
         } else {
@@ -799,9 +799,9 @@ double NEWcalcAV(MATERIAL *Mat, double r_probe, int numSamples, double low_dist_
           count_outside_range++;
           Mat->AVinaxsPoints.push_back(coords);
         }
-      } else 
+      } else
       {
-      Mat->AVaxsPoints.push_back(coords); 
+      Mat->AVaxsPoints.push_back(coords);
       Mat->AVaxsPointsChannelIDs.push_back(CoP.first);
       };
     }
@@ -827,7 +827,7 @@ double NEWcalcAV(MATERIAL *Mat, double r_probe, int numSamples, double low_dist_
 } // ends NEWcalcAV
 
 /*  framgents of calcAV for saving outputs
-  
+
   // Write the necessary commands to the output stream
   // necessary to visualize the sampling
   if(visualize){
@@ -861,7 +861,7 @@ double NEWcalcAV(MATERIAL *Mat, double r_probe, int numSamples, double low_dist_
   }
 
   // Write blocknig spheres based on current sampling points if blocking routine
-  // has been requested 
+  // has been requested
   if(blockingMode)
     {
     //report points in fractonal coordinates (Liverpool format used in visualization)
@@ -993,7 +993,7 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
   // Create a temporary copy of the atomic network in which each atom's radius has been increased by the probe radius
   ATOM_NETWORK newAtomNet;
   atmnet->copy(&newAtomNet);
-  for(int i = 0; i < newAtomNet.numAtoms; i++){ newAtomNet.atoms[i].radius += r_probe; }  
+  for(int i = 0; i < newAtomNet.numAtoms; i++){ newAtomNet.atoms[i].radius += r_probe; }
 
   // Calculate and store the Voronoi network for this new atomic network
   VORONOI_NETWORK vornet;
@@ -1048,14 +1048,14 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
       overlaps = true;
 
     bool inside = overlaps;
-    
+
     // If necessary, check Voronoi nodes of cell to determine accessibility of point
     if(!overlaps && excludePockets){
       BASIC_VCELL vcell = vorcells[minAtomID];
       Point circCenter = Point(curAtom.x, curAtom.y, curAtom.z);
       double samplingRadius = minDist;
       Point sampleRay = Point(samplingPoint[0]-curAtom.x, samplingPoint[1]-curAtom.y, samplingPoint[2]-curAtom.z);
-      
+
       // Scan the nodes in the Voronoi cell to find if line can be drawn from the node to the sampling point
       bool foundNode = false;
       if(vcell.getNumNodes() == 0){
@@ -1067,7 +1067,7 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
 	exit(1);
       }
       for(int k = 0; k < vcell.getNumNodes(); k++){
-	      Point nodePoint = vcell.getNodeCoord(k);  
+	      Point nodePoint = vcell.getNodeCoord(k);
 	      bool nodeInsideSphere = (calcEuclideanDistance(nodePoint[0], nodePoint[1], nodePoint[2], circCenter[0], circCenter[1], circCenter[2]) < samplingRadius);
 	      if(!nodeInsideSphere){
 	        Point otherRay = samplingPoint.subtract(nodePoint);
@@ -1077,7 +1077,7 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
 	          // making the path not viable
 	        }
 	        else {
-	          // Angle is at least 90 degrees and so the line segment interesects only once, 
+	          // Angle is at least 90 degrees and so the line segment interesects only once,
 	          // thereby representing a viable path
 	          foundNode = true;
 	          overlaps = !accessInfo.at(vcell.getNodeID(k));
@@ -1086,7 +1086,7 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
 	      }
       }
 
-      // Sampling failed due to lying on Voronoi cell face and numerical inaccurarcy. 
+      // Sampling failed due to lying on Voronoi cell face and numerical inaccurarcy.
       // Record failure, resample and notify user later
       if(!foundNode){
 	      resampleCount++;
@@ -1094,7 +1094,7 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
 	      i--;
       }
     }
-      
+
     // Store sampled points that did not overlap with an atom but were inaccessible for later visualization
     if(!inside && overlaps){
       count_inaxs++;
@@ -1107,7 +1107,7 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
 
     // Store accessible points for later visualization
     if(!overlaps) {
-      count++;     
+      count++;
       Point abcCoords = Point(aPoint, bPoint, cPoint);
       Point coords = atmnet->abc_to_xyz(abcCoords);
       if(within_range) {
@@ -1118,10 +1118,10 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
           count_outside_range++;
           inaxsPoints.push_back(coords);
         }
-      } else axsPoints.push_back(coords); 
+      } else axsPoints.push_back(coords);
     }
   }
-  
+
   // Write the necessary commands to the output stream
   // necessary to visualize the sampling
   if(visualize){
@@ -1156,9 +1156,9 @@ double calcAV(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy, 
   // Warn user if points were resampled
   if(resampleCount != 0){
     cerr << "\n" << "\n"
-	 << "Warning: Resampled " << resampleCount << " points out of " << numSamples 
+	 << "Warning: Resampled " << resampleCount << " points out of " << numSamples
 	 << " when analyzing " << atmnet->name << "\n"
-	 << "\n" << "\n"; 
+	 << "\n" << "\n";
   }
 
   double volumeFraction = count*1.0/numSamples;
@@ -1203,7 +1203,7 @@ void determineAccessibility(ATOM_NETWORK *atmnet, double r_probe_chan, double r_
   // Create a temporary copy of the atomic network in which each atom's radius has been increased by the probe radius
   ATOM_NETWORK newAtomNet;
   atmnet->copy(&newAtomNet);
-  for(int i = 0; i < newAtomNet.numAtoms; i++){ newAtomNet.atoms[i].radius += r_probe; }  
+  for(int i = 0; i < newAtomNet.numAtoms; i++){ newAtomNet.atoms[i].radius += r_probe; }
 
   // Calculate and store the Voronoi network for this new atomic network
   VORONOI_NETWORK vornet;
@@ -1250,14 +1250,14 @@ void determineAccessibility(ATOM_NETWORK *atmnet, double r_probe_chan, double r_
 
     double minDist = calcEuclideanDistance(samplingPoint[0], samplingPoint[1], samplingPoint[2], curAtom.x, curAtom.y, curAtom.z);
     if(minDist < r_probe + curAtom.radius - 0.00000001) overlaps = true;
-    
+
     // If necessary, check Voronoi nodes of cell to determine accessibility of point
     if(!overlaps && excludePockets){
       BASIC_VCELL vcell = vorcells[minAtomID];
       Point circCenter = Point(curAtom.x, curAtom.y, curAtom.z);
       double samplingRadius = minDist;
       Point sampleRay = Point(samplingPoint[0]-curAtom.x, samplingPoint[1]-curAtom.y, samplingPoint[2]-curAtom.z);
-      
+
       // Scan the nodes in the Voronoi cell to find if line can be drawn from the node to the sampling point
       bool foundNode = false;
       if(vcell.getNumNodes() == 0){
@@ -1269,7 +1269,7 @@ void determineAccessibility(ATOM_NETWORK *atmnet, double r_probe_chan, double r_
 	      exit(1);
       }
       for(int k = 0; k < vcell.getNumNodes(); k++){
-	      Point nodePoint = vcell.getNodeCoord(k);  
+	      Point nodePoint = vcell.getNodeCoord(k);
 	      bool nodeInsideSphere = (calcEuclideanDistance(nodePoint[0], nodePoint[1], nodePoint[2], circCenter[0], circCenter[1], circCenter[2]) < samplingRadius);
 	      if(!nodeInsideSphere){
 	        Point otherRay = samplingPoint.subtract(nodePoint);
@@ -1280,7 +1280,7 @@ void determineAccessibility(ATOM_NETWORK *atmnet, double r_probe_chan, double r_
       	    // making the path not viable
 	        }
 	        else {
-	          // Angle is at least 90 degrees and so the line segment interesects only once, 
+	          // Angle is at least 90 degrees and so the line segment interesects only once,
 	          // thereby representing a viable path
 	          foundNode = true;
 	          overlaps = !accessInfo.at(vcell.getNodeID(k));
@@ -1289,7 +1289,7 @@ void determineAccessibility(ATOM_NETWORK *atmnet, double r_probe_chan, double r_
 	      }
       }
 
-      // Sampling failed due to lying on Voronoi cell face and numerical inaccurarcy. 
+      // Sampling failed due to lying on Voronoi cell face and numerical inaccurarcy.
       // Record failure, resample and notify user later
       if(!foundNode){
 	      resampleCount++;
@@ -1307,9 +1307,9 @@ void determineAccessibility(ATOM_NETWORK *atmnet, double r_probe_chan, double r_
   // Warn user if points were resampled
   if(resampleCount != 0){
     cerr << "\n" << "\n"
-    << "Warning: Resampled " << resampleCount << " points (preset coords, not random samples) out of " << pointSet->nodes.size()  
+    << "Warning: Resampled " << resampleCount << " points (preset coords, not random samples) out of " << pointSet->nodes.size()
     << " when analyzing " << atmnet->name << "\n"
-    << "\n" << "\n"; 
+    << "\n" << "\n";
   }
 
   //FREE MEMORY
@@ -1330,8 +1330,8 @@ void visVoro(char* name, double probeRad, int skel_a, int skel_b, int skel_c, VO
 
   int num_nonaccessible = 0;
   nonaccessInfo.resize(accessInfo.size(),false);
-  for(unsigned int i = 0; i < accessInfo.size(); i++) 
-    if(vornet->nodes.at(i).rad_stat_sphere>probeRad&&accessInfo.at(i)==0) 
+  for(unsigned int i = 0; i < accessInfo.size(); i++)
+    if(vornet->nodes.at(i).rad_stat_sphere>probeRad&&accessInfo.at(i)==0)
        {
        num_nonaccessible++;
        nonaccessInfo[i]=true;
@@ -1526,7 +1526,7 @@ void getLocalSubstructures(char* name, double probeRad, double local_substructur
       container_periodic_poly *rad_con = (container_periodic_poly *)performVoronoiDecomp(true, &simplified_atmnet, &simplified_vornet, simplified_cells, false, simplified_bvcells);
       delete rad_con;
     } else {
-      container_periodic *no_rad_con = (container_periodic *)performVoronoiDecomp (false, &simplified_atmnet, &simplified_vornet, simplified_cells, false, simplified_bvcells); 
+      container_periodic *no_rad_con = (container_periodic *)performVoronoiDecomp (false, &simplified_atmnet, &simplified_vornet, simplified_cells, false, simplified_bvcells);
       delete no_rad_con;
     }
     cout << "Finished simplified Voronoi decomposition" << "\n";
@@ -1724,8 +1724,8 @@ double calcASA(ATOM_NETWORK *hiaccatmnet, ATOM_NETWORK *orgatmnet, bool highAccu
       // Convert spherical coordinates to xyz coordinates
       double xpoint = sin(phi)*cos(theta); //Don't need abs(sin(phi)) becase phi is from 0 to PI
       double ypoint = sin(phi)*sin(theta);
-      double zpoint = cosphi;	
-      
+      double zpoint = cosphi;
+
       // Scale the point to lie on a radius of r_probe + r_atom#i
       xpoint *= (atmnet->atoms[i].radius + r_probe);
       ypoint *= (atmnet->atoms[i].radius + r_probe);
@@ -1785,7 +1785,7 @@ double calcASA(ATOM_NETWORK *hiaccatmnet, ATOM_NETWORK *orgatmnet, bool highAccu
 //      if(accessAnalysis.needToResample() == false && !overlaps)
 //        count++;
     }
-   
+
     // SA per atom (in accessible space and in inaccessible pockets)
     double SAperAtom = (1.0*count)/numSamples * 4.0 * PI * pow((atmnet->atoms.at(i).radius + r_probe),2);
     double SAperAtom_inaxs = (1.0*count_inaxs)/numSamples * 4.0 * PI * pow((atmnet->atoms.at(i).radius + r_probe),2);
@@ -1842,7 +1842,7 @@ double calcASA(ATOM_NETWORK *hiaccatmnet, ATOM_NETWORK *orgatmnet, bool highAccu
   }
 
 
-  double ucVolume    = calcDeterminant(atmnet->ucVectors);   
+  double ucVolume    = calcDeterminant(atmnet->ucVectors);
   double saPerVolume = (totalSA/ucVolume)*pow(10.0,4.0); // Units of m^2/cm^3
   double saPerMass   = saPerVolume/rho_crystal;          // Units of m^2/g
 
@@ -1867,7 +1867,7 @@ double calcASA(ATOM_NETWORK *hiaccatmnet, ATOM_NETWORK *orgatmnet, bool highAccu
 
     for(int i = 0; i < atmnet->numAtoms; i++)
        {
-       if(isMetal(atmnet->atoms[i].type) == true) 
+       if(isMetal(atmnet->atoms[i].type) == true)
          {
          metalFrac+= histogramSAperAtom.at(i).first;
          metalFrac_inaxs += histogramSAperAtom.at(i).second;
@@ -1897,13 +1897,13 @@ double calcASA(ATOM_NETWORK *hiaccatmnet, ATOM_NETWORK *orgatmnet, bool highAccu
     output << "\n";
     };
 
-    
+
     // Warn user if points were resampled
   int resampleCount =  accessAnalysis.getResampleCount();
   if(resampleCount != 0){
     cerr << "\n" << "\n"
-  	 << "Warning: Resampled " << resampleCount << " points out of " << atmnet->numAtoms*numSamples 
-	 << "\n" << "\n"; 
+  	 << "Warning: Resampled " << resampleCount << " points out of " << atmnet->numAtoms*numSamples
+	 << "\n" << "\n";
   }
   accessAnalysis.deconstruct();
   return totalSA;
@@ -1936,7 +1936,7 @@ double NEWcalcASA(MATERIAL *Mat, double r_probe, int sampleDensity){
   atmnet = Mat->accessAnalysis.orgAtomNet;
 
 
-  // commenting out removeOverlappedNodes() but not really sure it affects results. This function 
+  // commenting out removeOverlappedNodes() but not really sure it affects results. This function
   // modifies the voronoi network so, if executed, may have effect on other functions, e.g. ones
   // triggered by -vol
   // accessAnalysis.removeOverlappedNodes();
@@ -1988,8 +1988,8 @@ double NEWcalcASA(MATERIAL *Mat, double r_probe, int sampleDensity){
       // Convert spherical coordinates to xyz coordinates
       double xpoint = sin(phi)*cos(theta); //Don't need abs(sin(phi)) becase phi is from 0 to PI
       double ypoint = sin(phi)*sin(theta);
-      double zpoint = cosphi;	
-      
+      double zpoint = cosphi;
+
       // Scale the point to lie on a radius of r_probe + r_atom#i
       xpoint *= (atmnet->atoms[i].radius + r_probe);
       ypoint *= (atmnet->atoms[i].radius + r_probe);
@@ -2050,7 +2050,7 @@ double NEWcalcASA(MATERIAL *Mat, double r_probe, int sampleDensity){
 //      if(accessAnalysis.needToResample() == false && !overlaps)
 //        count++;
     }
-   
+
     // SA per atom (in accessible space and in inaccessible pockets)
     double SAperAtom = (1.0*count)/numSamples * 4.0 * PI * pow((atmnet->atoms.at(i).radius + r_probe),2);
     double SAperAtom_inaxs = (1.0*count_inaxs)/numSamples * 4.0 * PI * pow((atmnet->atoms.at(i).radius + r_probe),2);
@@ -2112,13 +2112,13 @@ double NEWcalcASA(MATERIAL *Mat, double r_probe, int sampleDensity){
   */ // ends writing vis files
 
   cout << "Total number of ASA MC samples = " << Mat->ASAnumSamples << "\n";
-    
+
     // Warn user if points were resampled
   int resampleCount =  Mat->accessAnalysis.getResampleCount();
   if(resampleCount != 0){
     cerr << "\n" << "\n"
   	 << "Warning: Resampled " << resampleCount << " points out of " << Mat->ASAnumSamples
-	 << "\n" << "\n"; 
+	 << "\n" << "\n";
   }
   return Mat->ASAtotal;
 }  // ends calcASA function
@@ -2131,7 +2131,7 @@ void NEWcalcASAprint(MATERIAL *Mat, ostream &output, char *filename) {
 
   bool ExtendedOutputFlag = false;
 
-  double ucVolume    = calcDeterminant(Mat->atmnet.ucVectors);   
+  double ucVolume    = calcDeterminant(Mat->atmnet.ucVectors);
   double rho_crystal = calcDensity(&(Mat->atmnet));
   double saPerVolume = (Mat->ASAtotal/ucVolume)*pow(10.0,4.0); // Units of m^2/cm^3
   double saPerMass   = saPerVolume/rho_crystal;          // Units of m^2/g
@@ -2154,7 +2154,7 @@ void NEWcalcASAprint(MATERIAL *Mat, ostream &output, char *filename) {
 
     for(int i = 0; i < Mat->atmnet.numAtoms; i++)
        {
-       if(isMetal(Mat->atmnet.atoms[i].type) == true) 
+       if(isMetal(Mat->atmnet.atoms[i].type) == true)
          {
          metalFrac+= Mat->ASAhistogramSAperAtom.at(i).first;
          metalFrac_inaxs += Mat->ASAhistogramSAperAtom.at(i).second;
@@ -2206,7 +2206,7 @@ double calcASA(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy,
   // Create a temporary copy of the atomic network in which each atom's radius has been increased by the probe radius
   ATOM_NETWORK newAtomNet;
   atmnet->copy(&newAtomNet);
-  for(int i = 0; i < newAtomNet.numAtoms; i++){ newAtomNet.atoms[i].radius += r_probe; }  
+  for(int i = 0; i < newAtomNet.numAtoms; i++){ newAtomNet.atoms[i].radius += r_probe; }
 
   // Calculate and store the Voronoi network for this new atomic network
   VORONOI_NETWORK vornet;
@@ -2249,8 +2249,8 @@ double calcASA(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy,
       // Convert spherical coordinates to xyz coordinates
       double xpoint = sin(phi)*cos(theta); //Don't need abs(sin(phi)) becase phi is from 0 to PI
       double ypoint = sin(phi)*sin(theta);
-      double zpoint = cosphi;	
-      
+      double zpoint = cosphi;
+
       // Scale the point to lie on a radius of r_probe + r_atom#i
       xpoint *= (atmnet->atoms[i].radius + r_probe);
       ypoint *= (atmnet->atoms[i].radius + r_probe);
@@ -2268,7 +2268,7 @@ double calcASA(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgatmnet, bool highAccuracy,
 
       double atomX, atomY, atomZ; // Coordinates of atom closest to point as calculated in the next line
 
-      int minID; 
+      int minID;
       bool foundCell = new_rad_con->find_voronoi_cell(samplingPoint[0], samplingPoint[1], samplingPoint[2], atomX, atomY, atomZ, minID);
       if(!foundCell){
 	cerr << "Error: Unable to find Voronoi cell for sampled point in ASA calculation." << "\n"
@@ -2299,7 +2299,7 @@ bool inside = overlaps; // Only want to visualize points that are not inside sam
       if(!overlaps && excludePockets){
 	Point circCenter   = Point(curAtom.x, curAtom.y, curAtom.z);
 	Point sampleRay    = Point(xpoint, ypoint, zpoint);
-                                                                                
+
 	// Select the relevant Voronoi cell
 	bool foundNode = false;
 	BASIC_VCELL vcell = vorcells[i];
@@ -2311,7 +2311,7 @@ bool inside = overlaps; // Only want to visualize points that are not inside sam
 	       << "Exiting..." << "\n";
 	  exit(1);
 	}
-     
+
 	// Scan the nodes in the Voronoi cell to find if a line can be drawn from the node to the sampling point
 	for(int k = 0; k < vcell.getNumNodes(); k++){
 	  Point nodePoint = vcell.getNodeCoord(k);
@@ -2322,17 +2322,17 @@ bool inside = overlaps; // Only want to visualize points that are not inside sam
 	    // making the path not viable
 	  }
 	  else {
-	    // Angle is at least 90 degrees and so the line segment interesects only once, 
+	    // Angle is at least 90 degrees and so the line segment interesects only once,
 	    // thereby representing a viable path
 	    foundNode = true;
-	    
+
 	    // Access status of node determines sampled point's accessibility
 	    overlaps = !accessInfo.at(vcell.getNodeID(k));
 	    break;
 	  }
 	}
 
-	// Sampling failed due to lying on Voronoi cell face and numerical inaccurarcy. 
+	// Sampling failed due to lying on Voronoi cell face and numerical inaccurarcy.
 	// Record failure, resample and notify user after calculation is finished
 	if(!foundNode){
 	  resampleCount++;
@@ -2357,7 +2357,7 @@ bool inside = overlaps; // Only want to visualize points that are not inside sam
       if(!overlaps)
         count++;
     }
-   
+
     // SA per atom (in accessible space and in inaccessible pockets)
     double SAperAtom = (1.0*count)/numSamples * 4.0 * PI * pow((atmnet->atoms.at(i).radius + r_probe),2);
     double SAperAtom_inaxs = (1.0*count_inaxs)/numSamples * 4.0 * PI * pow((atmnet->atoms.at(i).radius + r_probe),2);
@@ -2403,7 +2403,7 @@ bool inside = overlaps; // Only want to visualize points that are not inside sam
   }
 
 
-  double ucVolume    = calcDeterminant(atmnet->ucVectors);   
+  double ucVolume    = calcDeterminant(atmnet->ucVectors);
   double saPerVolume = (totalSA/ucVolume)*pow(10.0,4.0); // Units of m^2/cm^3
   double saPerMass   = saPerVolume/rho_crystal;          // Units of m^2/g
 
@@ -2427,7 +2427,7 @@ bool inside = overlaps; // Only want to visualize points that are not inside sam
 
     for(int i = 0; i < atmnet->numAtoms; i++)
        {
-       if(isMetal(atmnet->atoms[i].type) == true) 
+       if(isMetal(atmnet->atoms[i].type) == true)
          {
          metalFrac+= histogramSAperAtom.at(i).first;
          metalFrac_inaxs += histogramSAperAtom.at(i).second;
@@ -2439,12 +2439,12 @@ bool inside = overlaps; // Only want to visualize points that are not inside sam
 
     output << "Metal fraction in ASA and NASA: " << metalFrac << "   " << metalFrac_inaxs << "/n";
   };
-    
+
     // Warn user if points were resampled
   if(resampleCount != 0){
     cerr << "\n" << "\n"
-  	 << "Warning: Resampled " << resampleCount << " points out of " << atmnet->numAtoms*numSamples 
-	 << "\n" << "\n"; 
+  	 << "Warning: Resampled " << resampleCount << " points out of " << atmnet->numAtoms*numSamples
+	 << "\n" << "\n";
   }
   delete new_rad_con;
   return totalSA;
@@ -2504,26 +2504,26 @@ bool accessiblePoint(Point sample_pnt,container_periodic_poly *new_rad_con, doub
 	 << "Exiting..." << "\n";
     exit(1);
   }
-  
+
   ATOM curAtom = atmnet->atoms[minAtomID];
-  
+
   // Adjust sampling point so that it lies within the Voronoi cell of interest constructed previously
   sample_pnt = (sample_pnt.add(Point(curAtom.x, curAtom.y, curAtom.z).subtract(Point(newAtomX, newAtomY, newAtomZ))));
-  
+
   double minDist = calcEuclideanDistance(sample_pnt[0], sample_pnt[1], sample_pnt[2], curAtom.x, curAtom.y, curAtom.z);
-  
+
   if(minDist < r_probe + curAtom.radius - threshold)
     overlaps = true;
-  
+
   bool inside = overlaps;
-  
+
   // If necessary, check Voronoi nodes of cell to determine accessibility of point
   if(!overlaps && excludePockets){
     BASIC_VCELL vcell = vorcells[minAtomID];
     Point circCenter = Point(curAtom.x, curAtom.y, curAtom.z);
     double samplingRadius = minDist;
     Point samplePoint = Point(sample_pnt[0]-curAtom.x, sample_pnt[1]-curAtom.y, sample_pnt[2]-curAtom.z);
-    
+
     // Scan the nodes in the Voronoi cell to find if line can be drawn from the node to the sampling point
     bool foundNode = false;
     if(vcell.getNumNodes() == 0){
@@ -2535,7 +2535,7 @@ bool accessiblePoint(Point sample_pnt,container_periodic_poly *new_rad_con, doub
       exit(1);
     }
     for(int k = 0; k < vcell.getNumNodes(); k++){
-      Point nodePoint = vcell.getNodeCoord(k);  
+      Point nodePoint = vcell.getNodeCoord(k);
       bool nodeInsideSphere = (calcEuclideanDistance(nodePoint, circCenter) < samplingRadius);
       if(!nodeInsideSphere){
 	if(samplePoint*(sample_pnt-nodePoint) > 0) {
@@ -2543,21 +2543,21 @@ bool accessiblePoint(Point sample_pnt,container_periodic_poly *new_rad_con, doub
 	  // making the path not viable
 	}
 	else {
-	  // Angle is at least 90 degrees and so the line segment interesects only once, 
+	  // Angle is at least 90 degrees and so the line segment interesects only once,
 	  // thereby representing a viable path
 	  foundNode = true;
 	  overlaps = !accessInfo.at(vcell.getNodeID(k));
 	  break;
 	}
       }
-    } 
+    }
     if (foundNode == true){
       return !overlaps;
     }
     else {
       cerr << "Error: No node found for associted point in Vorcell" << sample_pnt << endl;
-    }  
-  } 
+    }
+  }
   return false;
 }
 */
@@ -2565,7 +2565,7 @@ bool accessiblePoint(Point sample_pnt,container_periodic_poly *new_rad_con, doub
 
 
 
-/** Blocking function 
+/** Blocking function
     Given a set of accessible and inaccessible points, generate blocking spheres and save to output stream
     Input arguments have vectors: coordinates of points (separate accesible and inaccessible) and vectors with pore IDs (to idnetify to which channel/pocket a point belongs)
     currently points are in factional coordinates
@@ -2630,7 +2630,7 @@ void blockPockets(ATOM_NETWORK *atmnet, ostream &output, vector<Point> axsPoints
       //3) begin a loop - while there are points in selected_points, we need to do more blocking
       int num_selected_points = selected_points.size();
       while(num_selected_points>0) {
-        if(debug) printf("DEBUG: there are %d points left to be blocked in pore with ID %d; No. spheres so far = %d\n", 
+        if(debug) printf("DEBUG: there are %d points left to be blocked in pore with ID %d; No. spheres so far = %d\n",
                                                   num_selected_points, i, spheres_vector.size());
         int most_dense_index = get_most_dense_index(atmnet, &selected_points);
         Point most_dense = selected_points.at(most_dense_index); //find most dense point in the remaining point cloud
@@ -2655,8 +2655,8 @@ void blockPockets(ATOM_NETWORK *atmnet, ostream &output, vector<Point> axsPoints
         double radius = 0;
         if(closest_channel<0) radius = furthest_same_pocket + probeRad + sphere_radius_overshoot; //no channels - we can safely have a single sphere, inflated by probeRad to cover the void space here
 //        else if(furthest_same_pocket<closest_channel) radius = min(furthest_same_pocket + probeRad + sphere_radius_overshoot, closest_channel - (probeRad + sphere_radius_overshoot)); //there are channels, but none are closer than the furthest point in this pocket, so we can extend the sphere to cover everything; try and inflate the sphere by probeRad to ensure the void space is blocked, but not if this would cause anything within probeRad of an accessible MC point to be blocked
-        else if(furthest_same_pocket<closest_channel) 
-                     {radius = furthest_same_pocket + sphere_radius_overshoot; 
+        else if(furthest_same_pocket<closest_channel)
+                     {radius = furthest_same_pocket + sphere_radius_overshoot;
                       radius = radius + min( probeRad, 0.5*(closest_channel-furthest_same_pocket));}  //there are channels, but none are closer than the furthest point in this pocket, so we can extend the sphere to cover everything; try and inflate the sphere by probeRad to ensure the void space is blocked, but not if this would cause anything within probeRad of an accessible MC point to be blocked
         else radius = max(sphere_radius_overshoot, closest_channel - (probeRad + sphere_radius_overshoot)); //else there are channels closer than the furthest pocket MC point, and we have to accommodate them
 
@@ -2770,13 +2770,3 @@ int get_most_dense_index(ATOM_NETWORK *atmnet, vector<Point> *points_vector) { /
 */
 	return most_dense_index;
 }
-
-
-
-
-
-
-
-
-
-

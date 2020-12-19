@@ -2,14 +2,14 @@
  * information about the faces, edges and nodes in each cell and one that only
  * stores information about the node coordinates. The first definition, VOR_CELL, is used
  * when visualization is important. The other, BASIC_VCELL, is used in surface area/volume
- * calculations to decrease overhead time. 
+ * calculations to decrease overhead time.
  *
  * The file also contains all of the functions required to visualize an ATOM_NETWORK
  * and VORONOI_NETWORK using the ZeoVis tool.
  */
 
 
-/** Class used to store the node ids and coordinates of the vertices 
+/** Class used to store the node ids and coordinates of the vertices
  *  that comprise a face of a Voronoi cell. The class orders the vertices
  *  in clockwise or counter-clockwise fashion and keeps track of the edges
  *  that outline it.
@@ -42,7 +42,7 @@ public:
 
   /* Store the provided vertices and their ids.  */
   VOR_FACE(std::vector<Point> vertices, std::vector<int> vertexIDs);
-  
+
   /* Returns a vector of pairs of integers and Points, where each entry represents
   *  the pair (node id, node coordinates).*/
   std::vector< std::pair<int,Point> > getNodes();
@@ -51,13 +51,13 @@ public:
    * of each edge that outlines the face.   */
   std::vector< std::pair<Point, Point> > getEdgeCoords();
 
-  /* Using the provided ouput stream, write the geometric objects that would fill the Voronoi 
+  /* Using the provided ouput stream, write the geometric objects that would fill the Voronoi
    * face when drawn.   */
   void writeVMDFilled(std::fstream &output);
 };
 
-/* Class used to reconstruct Voronoi cells from their constituent faces.  Used to write configuration files for 
- * ZeoVis visualization tool. 
+/* Class used to reconstruct Voronoi cells from their constituent faces.  Used to write configuration files for
+ * ZeoVis visualization tool.
  */
 class VOR_CELL {
 public:
@@ -75,11 +75,11 @@ public:
   /* Add the provided coordinate and its corresponding node id if
   *  no such vertex has been previously added.*/
   void addNode(int nodeID, Point coord);
-  
+
   /* Add the edge that spans the two points if it has not yet been added.*/
   void addEdge(Point from, Point to);
 
-  /* Add the face to the VOR_CELL. Adds all edges and vertices that have not yet been added 
+  /* Add the face to the VOR_CELL. Adds all edges and vertices that have not yet been added
   *  to the cell.*/
   void addFace(VOR_FACE face);
 
@@ -88,12 +88,12 @@ public:
   std::vector<Point> getNodeCoords(int nodeID);
 
   /* Using the underlying list of faces, write the set of commands necessary
-  *  to fill the VOR_CELL's exterior to the provided output stream. Labels 
+  *  to fill the VOR_CELL's exterior to the provided output stream. Labels
   *  the corresponding commands as faces(n).*/
   void writeVMDFilled(std::fstream &output, int n);
- 
-  /* Using the set of nodes and edges, write the set of commands necessary to 
-  *  draw the outline of the VOR_CELL to the provided output stream. Labels 
+
+  /* Using the set of nodes and edges, write the set of commands necessary to
+  *  draw the outline of the VOR_CELL to the provided output stream. Labels
   *  the corresponding commands as vorcells(n)*/
   void writeVMDOutlined(std::fstream &output, int n);
 
@@ -103,7 +103,7 @@ public:
 };
 
 
-/* Simple class used to store the positions and ids 
+/* Simple class used to store the positions and ids
 ** of the nodes that comprise a Voronoi cell.
 */
 class BASIC_VCELL{
@@ -111,12 +111,12 @@ class BASIC_VCELL{
     std::vector<int> nodeIDs;
 public:
   BASIC_VCELL();
-  
+
   BASIC_VCELL (std::vector<Point> myNodeCoords, std::vector<int> myNodeIDs);
   int getNumNodes();
 
   Point getNodeCoord(int index);
-  
+
   int getNodeID(int index);
 
   /* Removes the nodes from the cell which would overlap with a sphere center around
@@ -132,8 +132,8 @@ public:
  */
 void writeVMDUC(std::fstream &output, ATOM_NETWORK *atmnet);
 
-/* Writes the commands to the provided output stream necessary to display 
- * the entire Voronoi network. Labels the Voronoi network as vornets(0). 
+/* Writes the commands to the provided output stream necessary to display
+ * the entire Voronoi network. Labels the Voronoi network as vornets(0).
  */
 void writeVornet(std::fstream &output, ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet);
 
@@ -144,13 +144,13 @@ void writeVornet(std::fstream &output, ATOM_NETWORK *atmnet, VORONOI_NETWORK *vo
 void writeVMDAtomsAndNodes(std::fstream &output, ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet);
 
 /* Writes the commands to the provided output stream for ZeoVis
- * that establishes the number of each component as well as 
+ * that establishes the number of each component as well as
  * unitcell vector information.
  */
 void writeVMDEnvVars(std::fstream &output,  ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet);
 
-/* Writes all of the information necessary to properly visualize the Voronoi and atom network in ZeoVis to the 
- * file referred to by filename. Information includes atoms, nodes, the unitcell, the voronoi network, 
+/* Writes all of the information necessary to properly visualize the Voronoi and atom network in ZeoVis to the
+ * file referred to by filename. Information includes atoms, nodes, the unitcell, the voronoi network,
  *  voronoi cells (outlined and filled) and environment variables.
  */
 void writeZeoVisFile(char *filename, std::vector<VOR_CELL> *cells, ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet);

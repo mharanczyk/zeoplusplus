@@ -38,7 +38,7 @@ def compute_centroid_4cycles(vornet):
         while iit != ids.end():
             id_set.add(deref(iit))
             inc(iit)
-        
+
         centroid_list.append({'ids':id_set, 'coords':new_xyz})
         inc(it)
 
@@ -46,10 +46,8 @@ def compute_centroid_4cycles(vornet):
 
 def compute_face_centers(atmnet):
     """
-    Compute the face centers of the voronoi network 
+    Compute the face centers of the voronoi network
     """
     cdef ATOM_NETWORK* c_atmnet_ptr = (<AtomNetwork?>atmnet).thisptr
     cdef vector[XYZ] points
     face_center(c_atmnet_ptr, &points)
-
-

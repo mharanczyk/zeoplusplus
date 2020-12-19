@@ -7,7 +7,7 @@
 #include "voro++.hh"
 using namespace voro;
 
-// Set up 
+// Set up
 const double bx=4;
 const double bxy=0,by=2;
 const double bxz=1,byz=0,bz=3;
@@ -25,7 +25,7 @@ int main() {
 	int i;
 	double x,y,z;
 
-	// Create a parallelepiped with  
+	// Create a parallelepiped with
 	container_periodic con(bx,bxy,by,bxz,byz,bz,nx,ny,nz,8);
 
 	// Randomly add particles into the container

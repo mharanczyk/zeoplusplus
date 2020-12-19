@@ -20,4 +20,3 @@
 ## Version 0.1 (December 24, 2011)
 
 * Initial version just after obtaining the license
-

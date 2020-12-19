@@ -35,4 +35,4 @@ cdef class BasicVCell:
         pass
 
     def __dealloc__(self):
-        del self.thisptr 
+        del self.thisptr

@@ -11,7 +11,7 @@
 #include "graphstorage.h"
 
 /** Data structure used to represent the path taken when traversing
- *  a DIJKSTRA_NETWORK. 
+ *  a DIJKSTRA_NETWORK.
  */
 class PATH {
  public:
@@ -23,7 +23,7 @@ class PATH {
   bool toSink;                        // True iff next node to be visited is a sink node
   std::vector<int> visitedIDs;             // IDs of all visited nodes
   std::set<int> visitedSourceIDs;          // IDs of visited source nodes
- 
+
   /* Create an empty PATH with invalid length and radii. */
   PATH();
 
@@ -44,10 +44,10 @@ class PATH {
 bool hasLowerMaxR(PATH n1, PATH n2);
 
 
-/* Data structure used when studying paths across a DIJKSTRA_NETWORK in 
- * one of the unit cell directions. Source nodes are identified as the 
+/* Data structure used when studying paths across a DIJKSTRA_NETWORK in
+ * one of the unit cell directions. Source nodes are identified as the
  * terminus of a connection with a -1 in the direction of interest. Connections
- * are also classified in a similar manner as source connections (-1 change in uc in d.o.i.), 
+ * are also classified in a similar manner as source connections (-1 change in uc in d.o.i.),
  * sink connections (+1 in d.o.i.) or a regular (0 in d.o.i.).
  */
 class TRAVERSAL_NETWORK{
@@ -61,7 +61,7 @@ class TRAVERSAL_NETWORK{
 
   /** Construct a traversal network in the direction (dx,dy,dz) using the provided source ids, sink
    *  ids, and classified connections. */
-  TRAVERSAL_NETWORK(int dx, int dy, int dz, std::vector<int> srcIDs, std::vector< std::vector<CONN> > regConns, 
+  TRAVERSAL_NETWORK(int dx, int dy, int dz, std::vector<int> srcIDs, std::vector< std::vector<CONN> > regConns,
 		    std::vector< std::vector<CONN> > srcConns, std::vector< std::vector<CONN> > sinkConns, DIJKSTRA_NETWORK * dnetwork);
 
   /** Construct a TRAVERSAL_ NETWORK in the direction (dx,dy,dz) relative to the unit cell vectors.
@@ -75,19 +75,19 @@ class TRAVERSAL_NETWORK{
   void print(std::ostream &out);
 
   /* Returns a pair containing a bool and the maximum sized PATH a particle
-   * can take to traverse this portion of the network. The bool is true iff the PATH is 
+   * can take to traverse this portion of the network. The bool is true iff the PATH is
    * periodically viable (node #N to node #N).*/
   std::pair<bool,PATH> findMaxFreeSphere(std::map<int,int> *idAliases, std::set<int> *sourceNodes);
-  
+
   /* Returns a pair containing the maximum radius of a free sphere that can
-   *  traverse the portion of the network and the corresponding optimal PATH. No 
+   *  traverse the portion of the network and the corresponding optimal PATH. No
    *  check is made as to whether it is periodically viable (node #N to node #N).*/
   PATH findMaxFreeSphere();
 };
 
 
 /* Returns the maximum diameter of a sphere that can be inside of the
-   VORONOI_NETWORK .*/ 
+   VORONOI_NETWORK .*/
 double findMaxIncludedSphere(VORONOI_NETWORK *vornet);
 
 
@@ -103,7 +103,7 @@ bool compareNodeData(std::pair<int, double> d1, std::pair<int, double> d2);
    and returns the result in the form of a 2D vector.
  */
 std::vector< std::vector<double> > calculateNodeOverlap(ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet);
-  
+
 
   /* Divide the set of node ids into subsets representing individual cages.
    * Returns the results in the form of a vector of sets,
@@ -134,22 +134,22 @@ public:
   Point  getCenter();
   std::vector<int> getNodeIDs();
   void writeToVMD(int cageIndex, std::fstream &output);
-}; 
+};
 
  // Defined in area_and_volume.cc
  double calcDensity(ATOM_NETWORK *);
 
- 
+
  /* Identify the cages present in Voronoi network for the given probe size. If the
-  * visualization option is specified, commands necessary to visualize the cages in 
-  * ZeoVis is written to the provided file stream. Otherwise, the cages are classifed 
+  * visualization option is specified, commands necessary to visualize the cages in
+  * ZeoVis is written to the provided file stream. Otherwise, the cages are classifed
   * according to radius and the relevant cage sizes and volume is output using the file stream.
   */
-void identifyCages(ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet, DIJKSTRA_NETWORK *dnet, double probeRadius, bool visualize, std::fstream &output, std::vector<CAGE> &cages); 
+void identifyCages(ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet, DIJKSTRA_NETWORK *dnet, double probeRadius, bool visualize, std::fstream &output, std::vector<CAGE> &cages);
 
 
 
 void simplifyCageNetwork(ATOM_NETWORK *atmnet, VORONOI_NETWORK *vornet, DIJKSTRA_NETWORK *dnet, double probe_radius);
- 
+
 
 #endif

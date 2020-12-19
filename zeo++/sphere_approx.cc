@@ -1,4 +1,4 @@
-//Sphere clusters 
+//Sphere clusters
 //Author: Marielle Pinheiro
 //March 28, 2013
 //Create class AtomCluster that will replace a large atom with a cluster
@@ -61,7 +61,7 @@ AtomCluster::AtomCluster(double x, double y, double z) {
 
 
 /* function that updates information about replaced atoms (small particle information is updated:
-   mass update, moving to UC, calculation of fractional coordiantes) and copied to a new ATOM 
+   mass update, moving to UC, calculation of fractional coordiantes) and copied to a new ATOM
    vector provided by a pointer */
 void AtomCluster::copyReplacementAtoms(ATOM_NETWORK *atmnet, int atomID, std::vector <ATOM> *newatoms){
 
@@ -111,7 +111,7 @@ void AtomCluster::replaceAtomByCluster(string cluster_type, double large_atom_ra
                 plusMinus_axes(shift, 8);
         }
 
-//Type: FCC = 4 cubes (33 spheres) 
+//Type: FCC = 4 cubes (33 spheres)
 	if (cluster_type == "FCC" || cluster_type == "ACC"){
 
 		//fills vector with spheres positioned at origin
@@ -138,7 +138,7 @@ void AtomCluster::replaceAtomByCluster(string cluster_type, double large_atom_ra
 
 //Type: AQC = Axes, quadrants, cube (27 spheres)
 //	Spheres along +- axes, 45 degrees from xy, xz, yz axes,
-//	and cube with edges aligned to axes 
+//	and cube with edges aligned to axes
 	else if (cluster_type == "AQC"){
 		for (int i = 0; i<27; i++){
 			atom_vector.push_back(center);
@@ -290,7 +290,7 @@ void AtomCluster::plusMinus_yz(double y, double z, int i){
 
 //For specified vector shift (+-x, +-y, +-z)
 void AtomCluster::plusMinus_all(double x, double y, double z, int i){
-	atom_vector.at(i) = translate_sphere(atom_vector.at(i), x, y, z, 1, 1, 1); 
+	atom_vector.at(i) = translate_sphere(atom_vector.at(i), x, y, z, 1, 1, 1);
 	atom_vector.at(i+1) = translate_sphere(atom_vector.at(i+1), x, y, z, -1, 1, 1);
 	atom_vector.at(i+2) = translate_sphere(atom_vector.at(i+2), x, y, z, 1, -1, 1);
 	atom_vector.at(i+3) = translate_sphere(atom_vector.at(i+3), x, y, z, 1, 1, -1);
@@ -425,7 +425,7 @@ ATOM AtomCluster::calc_center(vector <ATOM> old_coords, int i_0, int i_1, int i_
 	double x = (x_sum/n)-origin.x;
 	double y = (y_sum/n)-origin.y;
 	double z = (z_sum/n)-origin.z;
-	
+
 	double norm = sqrt(x*x + y*y + z*z);
 	double scaled_shift = shift/norm;
 
@@ -441,18 +441,18 @@ ATOM AtomCluster::calc_center(vector <ATOM> old_coords, int i_0, int i_1, int i_
 void AtomCluster::calc_centerSpheres(double shift, int i){
 
 	ATOM new_center;
-//Top and bottom 4 (w/ z vertices) 
-//Uses existing coordinates from icosidodecahedron 
-//Pentagon 1: (0, 0, T), (1/2, +- T/2, (1+T)/2), ((1+T)/2, +-1/2, T/2) 
+//Top and bottom 4 (w/ z vertices)
+//Uses existing coordinates from icosidodecahedron
+//Pentagon 1: (0, 0, T), (1/2, +- T/2, (1+T)/2), ((1+T)/2, +-1/2, T/2)
 	new_center = calc_center(atom_vector, i+4, i+6, i+8, i+22, i+24, shift);
 	atom_vector.push_back(new_center);
-//Pentagon 2: (0, 0, T), (-1/2, +- T/2, (1+T)/2), (-(1+T)/2, +-1/2, T/2) 
+//Pentagon 2: (0, 0, T), (-1/2, +- T/2, (1+T)/2), (-(1+T)/2, +-1/2, T/2)
 	new_center = calc_center(atom_vector, i+4, i+7, i+10, i+23, i+26, shift);
 	atom_vector.push_back(new_center);
-//Pentagon 3: (0, 0, -T), (1/2, +- T/2, -(1+T)/2), ((1+T)/2, +-1/2, -T/2) 
+//Pentagon 3: (0, 0, -T), (1/2, +- T/2, -(1+T)/2), ((1+T)/2, +-1/2, -T/2)
 	new_center = calc_center(atom_vector, i+5, i+9, i+12, i+25, i+28, shift);
 	atom_vector.push_back(new_center);
-//Pentagon 4: (0, 0, -T), (-1/2, +- T/2, -(1+T)/2), (-(1+T)/2, +-1/2, -T/2) 
+//Pentagon 4: (0, 0, -T), (-1/2, +- T/2, -(1+T)/2), (-(1+T)/2, +-1/2, -T/2)
 	new_center = calc_center(atom_vector, i+5, i+11, i+13, i+27, i+29, shift);
 	atom_vector.push_back(new_center);
 
@@ -470,7 +470,7 @@ void AtomCluster::calc_centerSpheres(double shift, int i){
 	new_center = calc_center(atom_vector, i+3, i+12, i+13, i+20, i+21, shift);
 	atom_vector.push_back(new_center);
 
-//Middle 4 (w/ x vertices) 
+//Middle 4 (w/ x vertices)
 //Pentagon 9: (T, 0, 0), (T/2, (1+T)/2, +-1/2), ((1+T)/2, 1/2, +-T/2)
 	new_center = calc_center(atom_vector, i, i+14, i+17, i+22, i+25, shift);
 	atom_vector.push_back(new_center);
@@ -483,7 +483,7 @@ void AtomCluster::calc_centerSpheres(double shift, int i){
 //Pentagon 12: (-T, 0, 0), (-T/2, -(1+T)/2, +-1/2), (-(1+T)/2, -1/2, +-T/2)
 	new_center = calc_center(atom_vector, i+1, i+18, i+21, i+26, i+29, shift);
 	atom_vector.push_back(new_center);
-	
+
 }
 
 //Rhombicosidodecahedron, 60 vertices
@@ -511,7 +511,7 @@ void AtomCluster::translate_rhombi(double shift, int i){
 	plusMinus_yz(scaled_square, scaled_plus, i+56);
 }
 
-//Generates spheres in a spiral 
+//Generates spheres in a spiral
 void AtomCluster::sphere_spiral(double n, double shift){
         double golden_angle = PI * (3.0-sqrt(5));
 
@@ -552,7 +552,7 @@ void AtomCluster::print_xyz_coords(FILE *output){
 
 
 
-/* Function that analyzes distribution of atomic radii and execute replacement of large atoms 
+/* Function that analyzes distribution of atomic radii and execute replacement of large atoms
    with clusters of small ones */
 void setupHighAccuracyAtomNetwork(ATOM_NETWORK *atmnet, std::string AccSetting){
 
@@ -568,14 +568,14 @@ void setupHighAccuracyAtomNetwork(ATOM_NETWORK *atmnet, std::string AccSetting){
      if( atmnet->atoms.at(i).radius > maxr) maxr = atmnet->atoms.at(i).radius;
     };
    };
- 
+
  cout << "Radii analysis: the smallest atom r = " << minr << " while the largest atoms r = " << maxr << ".\n";
 
 
  if(minr < SPHERE_APPROX_MIN_R || maxr > SPHERE_APPROX_MAX_R)
    {
    cerr << "HIGH ACCURACY CANNOT BE APPLIED!\n"
-        << "The current version of high accuracy routine is using parameters derived from analysis of \n" 
+        << "The current version of high accuracy routine is using parameters derived from analysis of \n"
         << "CCDC database. The radii defined for the current system are outside of predefined range.\n"
         << "If you are a pro-user, change the source code (sphere_approx.cc) or contact the authors.\n"
         << "Exiting the -ha routines without any changes..." << "\n";
@@ -648,7 +648,7 @@ void setupHighAccuracyAtomNetwork(ATOM_NETWORK *atmnet, std::string AccSetting){
         if(atmnet->atoms.at(i).radius/minr < LARGE_RATIO)
           {
           AccSetting = "S30";
-          } else{ 
+          } else{
           AccSetting = "S50";
           };
         AtomCluster cluster(atmnet->atoms[i], minr);
@@ -668,14 +668,3 @@ void setupHighAccuracyAtomNetwork(ATOM_NETWORK *atmnet, std::string AccSetting){
  }; // ends if statement checking if minr and maxr are within the accaptable range
 
 } // ends setupHighAccuracyAtomNetwork()
-
-
-
-
-
-
-
-
-
-
-

@@ -9,4 +9,3 @@ cdef class Channel:
 
 
 #def fincChannelsinDijkstraNett(i
-

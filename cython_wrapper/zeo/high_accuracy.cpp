@@ -674,8 +674,8 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNode;
 struct __pyx_obj_3zeo_10netstorage_VoronoiNetwork;
 
 /* "zeo/geometry.pxd":24
- * 
- * 
+ *
+ *
  * cdef class Xyz:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ XYZ class defined in geometry.h
@@ -687,8 +687,8 @@ struct __pyx_obj_3zeo_8geometry_Xyz {
 
 
 /* "zeo/geometry.pxd":32
- * 
- * 
+ *
+ *
  * cdef class Point:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ Point class defined in geometry.h
@@ -700,11 +700,11 @@ struct __pyx_obj_3zeo_8geometry_Point {
 
 
 /* "zeo/voronoicell.pxd":39
- * 
- * 
+ *
+ *
  * cdef class VorFace:             # <<<<<<<<<<<<<<
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorFace {
   PyObject_HEAD
@@ -714,10 +714,10 @@ struct __pyx_obj_3zeo_11voronoicell_VorFace {
 
 /* "zeo/voronoicell.pxd":42
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  * cdef class VorCell:             # <<<<<<<<<<<<<<
  *     cdef VOR_CELL* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorCell {
   PyObject_HEAD
@@ -727,7 +727,7 @@ struct __pyx_obj_3zeo_11voronoicell_VorCell {
 
 /* "zeo/voronoicell.pxd":45
  *     cdef VOR_CELL* thisptr
- * 
+ *
  * cdef class BasicVCell:             # <<<<<<<<<<<<<<
  *     cdef BASIC_VCELL* thisptr
  */
@@ -739,7 +739,7 @@ struct __pyx_obj_3zeo_11voronoicell_BasicVCell {
 
 /* "zeo/netstorage.pxd":120
  *             VORONOI_NETWORK* vornet, ATOM_NETWORK* atmnet)
- * 
+ *
  * cdef class Atom:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM class.
@@ -752,7 +752,7 @@ struct __pyx_obj_3zeo_10netstorage_Atom {
 
 /* "zeo/netstorage.pxd":126
  *     cdef ATOM* thisptr
- * 
+ *
  * cdef class AtomNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM_NETWORK class.
@@ -766,7 +766,7 @@ struct __pyx_obj_3zeo_10netstorage_AtomNetwork {
 
 /* "zeo/netstorage.pxd":135
  *     cdef bint rad_flag
- * 
+ *
  * cdef class VoronoiNode:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VOR_NODE class.
@@ -779,7 +779,7 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNode {
 
 /* "zeo/netstorage.pxd":141
  *     cdef VOR_NODE* thisptr
- * 
+ *
  * cdef class VoronoiNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VORONOI_NETWORK class.
@@ -1228,7 +1228,7 @@ static PyObject *__pyx_pf_3zeo_13high_accuracy_high_accuracy_atmnet(CYTHON_UNUSE
  *         accuracy_setting = (<unicode>accuracy_setting).encode('utf8')
  *     cdef string acc_set = accuracy_setting
  */
-  __pyx_t_3 = PyUnicode_Check(__pyx_v_accuracy_setting); 
+  __pyx_t_3 = PyUnicode_Check(__pyx_v_accuracy_setting);
   __pyx_t_2 = (__pyx_t_3 != 0);
   if (__pyx_t_2) {
 
@@ -1262,7 +1262,7 @@ static PyObject *__pyx_pf_3zeo_13high_accuracy_high_accuracy_atmnet(CYTHON_UNUSE
  *         accuracy_setting = (<unicode>accuracy_setting).encode('utf8')
  *     cdef string acc_set = accuracy_setting             # <<<<<<<<<<<<<<
  *     setupHighAccuracyAtomNetwork(c_atmnetptr, acc_set)
- * 
+ *
  */
   __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_v_accuracy_setting); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 28, __pyx_L1_error)
   __pyx_v_acc_set = __pyx_t_5;
@@ -1271,8 +1271,8 @@ static PyObject *__pyx_pf_3zeo_13high_accuracy_high_accuracy_atmnet(CYTHON_UNUSE
  *         accuracy_setting = (<unicode>accuracy_setting).encode('utf8')
  *     cdef string acc_set = accuracy_setting
  *     setupHighAccuracyAtomNetwork(c_atmnetptr, acc_set)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   setupHighAccuracyAtomNetwork(__pyx_v_c_atmnetptr, __pyx_v_acc_set);
 
@@ -1299,7 +1299,7 @@ static PyObject *__pyx_pf_3zeo_13high_accuracy_high_accuracy_atmnet(CYTHON_UNUSE
 }
 
 /* "string.from_py":13
- * 
+ *
  * @cname("__pyx_convert_string_from_py_std__in_string")
  * cdef string __pyx_convert_string_from_py_std__in_string(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t length
@@ -1319,7 +1319,7 @@ static std::string __pyx_convert_string_from_py_std__in_string(PyObject *__pyx_v
  *     cdef Py_ssize_t length
  *     cdef char* data = __Pyx_PyObject_AsStringAndSize(o, &length)             # <<<<<<<<<<<<<<
  *     return string(data, length)
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_AsStringAndSize(__pyx_v_o, (&__pyx_v_length)); if (unlikely(__pyx_t_1 == NULL)) __PYX_ERR(1, 15, __pyx_L1_error)
   __pyx_v_data = __pyx_t_1;
@@ -1328,14 +1328,14 @@ static std::string __pyx_convert_string_from_py_std__in_string(PyObject *__pyx_v
  *     cdef Py_ssize_t length
  *     cdef char* data = __Pyx_PyObject_AsStringAndSize(o, &length)
  *     return string(data, length)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = std::string(__pyx_v_data, __pyx_v_length);
   goto __pyx_L0;
 
   /* "string.from_py":13
- * 
+ *
  * @cname("__pyx_convert_string_from_py_std__in_string")
  * cdef string __pyx_convert_string_from_py_std__in_string(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t length
@@ -1559,7 +1559,7 @@ PyMODINIT_FUNC PyInit_high_accuracy(void)
   #endif
 
   /* "zeo/high_accuracy.pyx":4
- * 
+ *
  * _accuracy_kw = {
  *         "OCC","FCC","ACC","AQC","DDH","TIH","ICH","ICC","RIH","S4","S10","S20",             # <<<<<<<<<<<<<<
  *         "S30","S40","S50","S100","S500","S1000","S10000","DEF","HI","MED","LOW"
@@ -1607,7 +1607,7 @@ PyMODINIT_FUNC PyInit_high_accuracy(void)
 
   /* "zeo/high_accuracy.pyx":1
  * from zeo.netstorage cimport AtomNetwork, ATOM_NETWORK             # <<<<<<<<<<<<<<
- * 
+ *
  * _accuracy_kw = {
  */
   __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -1616,7 +1616,7 @@ PyMODINIT_FUNC PyInit_high_accuracy(void)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "string.from_py":13
- * 
+ *
  * @cname("__pyx_convert_string_from_py_std__in_string")
  * cdef string __pyx_convert_string_from_py_std__in_string(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t length

@@ -1,4 +1,4 @@
-/** 
+/**
   * In zeojob.* files, there are functions to control execution of Zeo++ jobs
   *
   * Initial code by M. Haranczyk, Feb 2014
@@ -60,7 +60,7 @@ class zeoJob {
    nMCsamplesScaleFactorFlag = false;
    nMCsamplesScaleFactor = 1.0;
    nMCAVsampleDensity = MCAVppA3; // use defauls from zeo_consts.h
-   nMCASAsampleDensity = MCASAppA2; 
+   nMCASAsampleDensity = MCASAppA2;
    };
 
   /* Deconstructor */
@@ -90,7 +90,7 @@ class zeoJob {
 
 
    /* Pre-process the argument list:
-    * Search for commands that affect Voronoi decomposition beforehand */  
+    * Search for commands that affect Voronoi decomposition beforehand */
    for(int i = 0; i < numCommands; i++){
      vector<string> command = commands[i];
      if(command[0].compare("-r") == 0){
@@ -130,7 +130,7 @@ class zeoJob {
        Material.VisFlag = true;
      }
      else if(commands[i][0].compare("-block") == 0){
-       Material.AVrequestBlockingPockets = true; 
+       Material.AVrequestBlockingPockets = true;
      }
      else if(commands[i][0].compare("-psd") == 0){
        Material.AVrequestPSD = true;
@@ -147,16 +147,16 @@ class zeoJob {
      else if(commands[i][0].compare("-sqf") == 0){
        nMCsamplesScaleFactor = strtod(commands[i][1].data(), NULL);
        nMCsamplesScaleFactorFlag = true;
-       nMCAVsampleDensity = (int)(nMCAVsampleDensity * nMCsamplesScaleFactor); 
+       nMCAVsampleDensity = (int)(nMCAVsampleDensity * nMCsamplesScaleFactor);
        nMCASAsampleDensity = (int)(nMCASAsampleDensity * nMCsamplesScaleFactor);
        if(nMCAVsampleDensity < 1 || nMCASAsampleDensity < 1)
          {
          error = true;
-         cerr << "Density of MC samples below 1. Please use larger value with -sqf argument. Current density for AV = " 
+         cerr << "Density of MC samples below 1. Please use larger value with -sqf argument. Current density for AV = "
               << nMCAVsampleDensity << " and ASA = " << nMCASAsampleDensity <<".\n";
          };
      }
-   }; // ends loop over all commands 
+   }; // ends loop over all commands
 
    /* Pre-process the argument list to make sure all arguemtns are specified */
    if(probeRadiusFlag == false){
@@ -171,7 +171,7 @@ class zeoJob {
           command[0].compare("-test") == 0 ||
           command[0].compare("-vol") == 0 ||
           command[0].compare("-sa") == 0 ||
-          command[0].compare("-visVoro") == 0 || 
+          command[0].compare("-visVoro") == 0 ||
           command[0].compare("-pld") == 0 ||
           command[0].compare("-pldf") == 0||
           command[0].compare("-pldmol") == 0)
@@ -192,7 +192,7 @@ class zeoJob {
          cerr << command[0] << " option depends on accessible volume calculation. Please add \"-vol nS\" (where nS is the number of MC samples per cubic Ang).\n";
          };
      };
-   }   
+   }
 
    /* Load structure */
    //Read input file information into the ATOM_NETWORK
@@ -242,9 +242,9 @@ class zeoJob {
      loadMass(Material.useMass, &(Material.atmnet)); // assigns masses to atoms (assigns 0s in useMass flag = false)
 
      // High accuracy options - if the system contains particles of different radii, the employed radical
-     // Voronoi decomposition may not be accurate. it can be, however, improved if large particles are 
-     // replaced by clusters of smaller one (idea taken from Carolyn Philiphs/Chris Rycroft). 
-     Material.atmnet.copy(&(Material.orgAtomnet)); // keep a copy of original atomnet 
+     // Voronoi decomposition may not be accurate. it can be, however, improved if large particles are
+     // replaced by clusters of smaller one (idea taken from Carolyn Philiphs/Chris Rycroft).
+     Material.atmnet.copy(&(Material.orgAtomnet)); // keep a copy of original atomnet
                                                    //(if high accuracy is not set, this is the same as analyzed network)
      if(Material.radial && Material.highAccuracy)
        {
@@ -252,7 +252,7 @@ class zeoJob {
        // calling the following function will modify atmnet - replace large atoms with clusters of small ones
        setupHighAccuracyAtomNetwork(&(Material.atmnet), Material.AccSetting);
        };
-     // please note that orgAtomnet is empty unless highAccuracy flag is set !! 
+     // please note that orgAtomnet is empty unless highAccuracy flag is set !!
 
    }; // ends if(!error)
 
@@ -278,11 +278,11 @@ class zeoJob {
      *    NOTES for execution()
      *
      *
-     *  -ha option becomes default, as a consequence Material.atmnet 
+     *  -ha option becomes default, as a consequence Material.atmnet
      *             becomes modified (sphere approx). Please use Material.orgAtomnet
      *             to access original atom network (as read from the input file)
      *
-     *  -Voronoi decomposition is now run only per request, please make sure to 
+     *  -Voronoi decomposition is now run only per request, please make sure to
      *             execute Material.runVoroFlat()
      *
      */
@@ -452,7 +452,7 @@ class zeoJob {
           }
           analyze_accessible_voronoi_pre_segment(&(Material.vornet), probeRadius, &accessInfo, name, bin_directory); //this line generates and outputs Voronoi holograms with bins from a specified directory
         }
-        analyze_accessible_voronoi_pre_segment(&(Material.vornet), probeRadius, &accessInfo, name); //this line generates and outputs Voronoi holograms with default bins 
+        analyze_accessible_voronoi_pre_segment(&(Material.vornet), probeRadius, &accessInfo, name); //this line generates and outputs Voronoi holograms with default bins
       }
       else if(command[0].compare("-chan") == 0 || command[0].compare("-zchan") == 0){
         bool visualize = false;
@@ -487,7 +487,7 @@ class zeoJob {
                 if(maxdidfdif.second.first>df) df = maxdidfdif.second.first;
                 if(maxdidfdif.second.second>dif) dif = maxdidfdif.second.second;
                 }
-          output << filename << " summary(Max_of_columns_above)   " << di << " " << df << "  " << dif << 
+          output << filename << " summary(Max_of_columns_above)   " << di << " " << df << "  " << dif <<
                                 "  probe_rad: " << probeRadius << "  probe_diam: " << 2*probeRadius << "\n";
           }else{
           for(unsigned int i = 0; i < channels.size(); i++){
@@ -549,14 +549,14 @@ class zeoJob {
         */
         output.close();
       } // ends -poreinfo
-      else if(command[0].compare("-poreinfoSummary")==0){  // analyzes a series of .poreinfo files  
+      else if(command[0].compare("-poreinfoSummary")==0){  // analyzes a series of .poreinfo files
         string filename_output =  processFilename(command, name, ".poreinfoSummary", 1, 2);
         if(filename_output.empty()) {error=true; break;}
         string filename_InputData = string(command[1]);
         analyzePoreInfoFiles(&(Material.atmnet), filename_InputData, filename_output);
       }
 
-      else if(command[0].compare("-test")==0){  // test new functionality   
+      else if(command[0].compare("-test")==0){  // test new functionality
         //string filename_output =  processFilename(command, name, ".poreinfoSummary", 1, 2);
         //if(filename_output.empty()) {error=true; break;}
         //string filename_InputData = string(command[1]);
@@ -580,10 +580,10 @@ class zeoJob {
            output.close();
            };
         // additional calculations for accessible/inaccessible points from AV calc
-        if(Material.AVrequestBlockingPockets == true) 
+        if(Material.AVrequestBlockingPockets == true)
            {
            string filename_block = basefilename + ".block";
-           output.open(filename_block.data(), fstream::out); 
+           output.open(filename_block.data(), fstream::out);
            Material.AVblockPockets(output);
            output.close();
            };
@@ -665,8 +665,8 @@ class zeoJob {
         int numSubs = 0;
         double subFrac = 0.0;
         // Change either parameter to generate other possible configurations
-        int  randSeed = 105543297; // Random number generator seed. 
-        bool subSeed = false;      // Substitute first Si when creating initial 50/50 configuration 
+        int  randSeed = 105543297; // Random number generator seed.
+        bool subSeed = false;      // Substitute first Si when creating initial 50/50 configuration
         if(frac < 0 || frac > 0.5){
            cerr << "Error: Frac argument needs to be a number from the range of (0,0.5>\n" << "/n";
            } else
@@ -683,7 +683,7 @@ class zeoJob {
       else if(command[0].compare("-fsubM") == 0){
       /* Maciek's version of substitution */
       /* This function has two modifications w.r.t -fsub. It allows chaging random seed to generate different configurations
-         and removes topology check which ensured that every other atom is Si (in some cases achieving the requested Al fraction 
+         and removes topology check which ensured that every other atom is Si (in some cases achieving the requested Al fraction
          will not be possible. */
       /* usage: -fsubM fraction random_seed(0 for default) outname */
         string filename = processFilename(command, name, "_fsub.cssr", 2, 3);
@@ -696,14 +696,14 @@ class zeoJob {
         double subFrac = 0.0;
 
         // Change either parameter to generate other possible configurations
-        int  randSeed = 105543297; // Random number generator seed. 
+        int  randSeed = 105543297; // Random number generator seed.
 
         if(rsd!=0)
             {
             randSeed = rsd; // this is a quick fix to renerate random structures
             cout << "Overriding default random seed with " << rsd << endl;
             };
-        bool subSeed = false;      // Substitute first Si when creating initial 50/50 configuration 
+        bool subSeed = false;      // Substitute first Si when creating initial 50/50 configuration
         bool success = fracSubstituteAtoms_Maciek((Material.orgAtomnet), newNetwork, subSeed, frac, randSeed, numSubs, subFrac, true);
         if(!success){
           cerr << "Error: Atom substitution unsucessful." << "\n"
@@ -732,7 +732,7 @@ class zeoJob {
         printf("\n");
       } // ends -findTetrahedra
 
-      //flag to write to terminal the size of supercell required in order to satisfy 'minimum image convention' (correct terminology?) 
+      //flag to write to terminal the size of supercell required in order to satisfy 'minimum image convention' (correct terminology?)
       // - how many cells in each axis required so that no sphere of a given radius overlaps with itself periodically
       else if(command[0].compare("-cellmulti") == 0) {
         if(command.size()!=2) {

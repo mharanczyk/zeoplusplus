@@ -57,7 +57,7 @@ double lookupRadius(std::string atomType, bool radial);
 double lookupCovRadius(std::string atomType);
 
 /** Return the mass for the corresponding atom name. */
-double lookupMass(std::string atomType); 
+double lookupMass(std::string atomType);
 
 /** Return the atomic number for the corresponding symbol */
 int lookupAtomicNumber(std::string atomType);

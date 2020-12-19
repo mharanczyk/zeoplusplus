@@ -165,4 +165,3 @@ float get_similarity(float ***array_i, float ***array_j, const int NUM_BINS, con
 	}
 	return similarity;
 }
-

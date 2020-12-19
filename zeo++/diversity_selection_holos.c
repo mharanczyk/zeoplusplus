@@ -72,7 +72,7 @@ main(int argc, char *argv[]) {
 		is_valid[i] = 0;
 		hologram_array[i].num_entries = 0;
 	}
-	
+
 	//loop over lines in file and update stats
   int status = 0;
 	for(i=0; i<num_structures; i++) {
@@ -319,4 +319,3 @@ main(int argc, char *argv[]) {
 	//end program
 	printf("Program complete.\n\n");
 }
-

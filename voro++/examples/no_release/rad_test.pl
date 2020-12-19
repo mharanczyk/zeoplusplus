@@ -8,7 +8,7 @@ foreach $f (0..200) {
 		s/FRAME/rad_test_out\/fr$f.pov/;
 		print B;
 	}
-	
+
 	close A;
 	close B;
 	system "povray +H600 +W800 +A0.01 -J +R5 +Ofr_$f.png temp.pov";

@@ -8,7 +8,7 @@
 # will be outputted, along with the standard deviation.
 $tries=3;
 
-# The flags to pass for code optimization 
+# The flags to pass for code optimization
 $opt="-O3";
 
 foreach $r (@range) {

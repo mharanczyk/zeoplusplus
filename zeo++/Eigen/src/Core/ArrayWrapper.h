@@ -10,7 +10,7 @@
 #ifndef EIGEN_ARRAYWRAPPER_H
 #define EIGEN_ARRAYWRAPPER_H
 
-namespace Eigen { 
+namespace Eigen {
 
 /** \class ArrayWrapper
   * \ingroup Core_Module
@@ -120,8 +120,8 @@ class ArrayWrapper : public ArrayBase<ArrayWrapper<ExpressionType> >
     template<typename Dest>
     inline void evalTo(Dest& dst) const { dst = m_expression; }
 
-    const typename internal::remove_all<NestedExpressionType>::type& 
-    nestedExpression() const 
+    const typename internal::remove_all<NestedExpressionType>::type&
+    nestedExpression() const
     {
       return m_expression;
     }
@@ -242,8 +242,8 @@ class MatrixWrapper : public MatrixBase<MatrixWrapper<ExpressionType> >
       m_expression.const_cast_derived().template writePacket<LoadMode>(index, val);
     }
 
-    const typename internal::remove_all<NestedExpressionType>::type& 
-    nestedExpression() const 
+    const typename internal::remove_all<NestedExpressionType>::type&
+    nestedExpression() const
     {
       return m_expression;
     }

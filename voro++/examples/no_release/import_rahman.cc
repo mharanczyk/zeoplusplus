@@ -22,16 +22,16 @@ double rnd() {return double(rand())/RAND_MAX;}
 int main() {
 	int i;
 	double x,y,z;
-    	
+
 	// Creating Box and allcating 100 particles within each block
-	
+
 	container con(x_min,x_max,y_min,y_max,z_min,z_max,n_x,n_y,n_z,
 			false,false,false,100);
 
 	// Set up particle order class
 	particle_order po;
 
-	// Add particles into the Box	
+	// Add particles into the Box
 	for(i=1;i<particles;i++) {
 		x=x_min+rnd()*(x_max-x_min);
 		y=y_min+rnd()*(y_max-y_min);

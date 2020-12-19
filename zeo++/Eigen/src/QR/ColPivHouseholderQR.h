@@ -11,7 +11,7 @@
 #ifndef EIGEN_COLPIVOTINGHOUSEHOLDERQR_H
 #define EIGEN_COLPIVOTINGHOUSEHOLDERQR_H
 
-namespace Eigen { 
+namespace Eigen {
 
 /** \ingroup QR_Module
   *
@@ -22,11 +22,11 @@ namespace Eigen {
   * \param MatrixType the type of the matrix of which we are computing the QR decomposition
   *
   * This class performs a rank-revealing QR decomposition of a matrix \b A into matrices \b P, \b Q and \b R
-  * such that 
+  * such that
   * \f[
   *  \mathbf{A} \, \mathbf{P} = \mathbf{Q} \, \mathbf{R}
   * \f]
-  * by using Householder transformations. Here, \b P is a permutation matrix, \b Q a unitary matrix and \b R an 
+  * by using Householder transformations. Here, \b P is a permutation matrix, \b Q a unitary matrix and \b R an
   * upper triangular matrix.
   *
   * This decomposition performs column pivoting in order to be rank-revealing and improve
@@ -56,11 +56,11 @@ template<typename _MatrixType> class ColPivHouseholderQR
     typedef typename internal::plain_row_type<MatrixType>::type RowVectorType;
     typedef typename internal::plain_row_type<MatrixType, RealScalar>::type RealRowVectorType;
     typedef HouseholderSequence<MatrixType,typename internal::remove_all<typename HCoeffsType::ConjugateReturnType>::type> HouseholderSequenceType;
-    
+
   private:
-    
+
     typedef typename PermutationType::Index PermIndexType;
-    
+
   public:
 
     /**
@@ -99,12 +99,12 @@ template<typename _MatrixType> class ColPivHouseholderQR
       *
       * This constructor computes the QR factorization of the matrix \a matrix by calling
       * the method compute(). It is a short cut for:
-      * 
+      *
       * \code
       * ColPivHouseholderQR<MatrixType> qr(matrix.rows(), matrix.cols());
       * qr.compute(matrix);
       * \endcode
-      * 
+      *
       * \sa compute()
       */
     ColPivHouseholderQR(const MatrixType& matrix)
@@ -148,7 +148,7 @@ template<typename _MatrixType> class ColPivHouseholderQR
     HouseholderSequenceType householderQ(void) const;
     HouseholderSequenceType matrixQ(void) const
     {
-      return householderQ(); 
+      return householderQ();
     }
 
     /** \returns a reference to the matrix where the Householder QR decomposition is stored
@@ -158,14 +158,14 @@ template<typename _MatrixType> class ColPivHouseholderQR
       eigen_assert(m_isInitialized && "ColPivHouseholderQR is not initialized.");
       return m_qr;
     }
-    
-    /** \returns a reference to the matrix where the result Householder QR is stored 
-     * \warning The strict lower part of this matrix contains internal values. 
+
+    /** \returns a reference to the matrix where the result Householder QR is stored
+     * \warning The strict lower part of this matrix contains internal values.
      * Only the upper triangular part should be referenced. To get it, use
      * \code matrixR().template triangularView<Upper>() \endcode
-     * For rank-deficient matrices, use 
-     * \code 
-     * matrixR().topLeftCorner(rank(), rank()).template triangularView<Upper>() 
+     * For rank-deficient matrices, use
+     * \code
+     * matrixR().topLeftCorner(rank(), rank()).template triangularView<Upper>()
      * \endcode
      */
     const MatrixType& matrixR() const
@@ -173,7 +173,7 @@ template<typename _MatrixType> class ColPivHouseholderQR
       eigen_assert(m_isInitialized && "ColPivHouseholderQR is not initialized.");
       return m_qr;
     }
-    
+
     ColPivHouseholderQR& compute(const MatrixType& matrix);
 
     /** \returns a const reference to the column permutation matrix */
@@ -295,9 +295,9 @@ template<typename _MatrixType> class ColPivHouseholderQR
 
     inline Index rows() const { return m_qr.rows(); }
     inline Index cols() const { return m_qr.cols(); }
-    
+
     /** \returns a const reference to the vector of Householder coefficients used to represent the factor \c Q.
-      * 
+      *
       * For advanced uses only.
       */
     const HCoeffsType& hCoeffs() const { return m_hCoeffs; }
@@ -370,12 +370,12 @@ template<typename _MatrixType> class ColPivHouseholderQR
       *          diagonal coefficient of R.
       */
     RealScalar maxPivot() const { return m_maxpivot; }
-    
+
     /** \brief Reports whether the QR factorization was succesful.
       *
-      * \note This function always returns \c Success. It is provided for compatibility 
+      * \note This function always returns \c Success. It is provided for compatibility
       * with other factorization routines.
-      * \returns \c Success 
+      * \returns \c Success
       */
     ComputationInfo info() const
     {
@@ -384,12 +384,12 @@ template<typename _MatrixType> class ColPivHouseholderQR
     }
 
   protected:
-    
+
     static void check_template_parameters()
     {
       EIGEN_STATIC_ASSERT_NON_INTEGER(Scalar);
     }
-    
+
     MatrixType m_qr;
     HCoeffsType m_hCoeffs;
     PermutationType m_colsPermutation;
@@ -429,12 +429,12 @@ template<typename MatrixType>
 ColPivHouseholderQR<MatrixType>& ColPivHouseholderQR<MatrixType>::compute(const MatrixType& matrix)
 {
   check_template_parameters();
-  
+
   using std::abs;
   Index rows = matrix.rows();
   Index cols = matrix.cols();
   Index size = matrix.diagonalSize();
-  
+
   // the column permutation is stored as int indices, so just to be sure:
   eigen_assert(cols<=NumTraits<int>::highest());
 

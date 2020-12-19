@@ -19,7 +19,7 @@ const double z_min=-5,z_max=5;
 const int n_x=6,n_y=6,n_z=6;
 
 int main() {
-	
+
 	// Construct container
 	container con(-5,5,-5,5,0,10,6,6,6,false,false,false,8);
 

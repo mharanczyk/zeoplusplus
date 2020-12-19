@@ -632,7 +632,7 @@ void read_incon(string filename, vector<ATOM> *atom_vector) {
         a.radius = get_rad(a.type);
 if(verbose) printf("atom %s assigned radius %.3f\n", a.type.c_str(), a.radius);
         delete[] name;
-        delete[] dummy;    
+        delete[] dummy;
         atom_vector->push_back(a);
       }
     } else {
@@ -644,7 +644,7 @@ if(verbose) printf("atom %s assigned radius %.3f\n", a.type.c_str(), a.radius);
   if(!done_reading_atoms) {
     printf("ERROR: finished reading data but did not finishing parsing atom info correctly - managed to read %d atoms\n", (int)(atom_vector->size()));
     exit(EXIT_FAILURE);
-  }  
+  }
 }
 
 void read_xyz(string filename, vector<ATOM> *atom_vector) {
@@ -693,7 +693,7 @@ void read_xyz(string filename, vector<ATOM> *atom_vector) {
       }
       char ch2[MAX_CHAR_ARRAY_LENGTH] = "";
       str.copy(ch2, str.size()-pos, pos);
-      char *name = new char[MAX_CHAR_ARRAY_LENGTH];      
+      char *name = new char[MAX_CHAR_ARRAY_LENGTH];
       status = sscanf(ch2, "%s %lf %lf %lf", name, &a.x, &a.y, &a.z);
       string name_string = string(name);
       a.label = name_string;
@@ -991,7 +991,7 @@ public:
   double magnitude();
   XYZ scale(double factor);
   XYZ unit();
-  XYZ operator-(XYZ other); 
+  XYZ operator-(XYZ other);
   XYZ operator+(XYZ other);
 };
 */
@@ -1027,7 +1027,7 @@ XYZ XYZ::cross_product(XYZ other){
 }
 
 double XYZ::dot_product(XYZ other){
-  return x*other.x + y*other.y + z*other.z; 
+  return x*other.x + y*other.y + z*other.z;
 }
 
 XYZ XYZ::scale(double factor){
@@ -1039,11 +1039,11 @@ XYZ XYZ::unit(){
 }
 
 XYZ XYZ::operator-(XYZ other){
-   return XYZ(x-other.x, y-other.y, z-other.z); 
+   return XYZ(x-other.x, y-other.y, z-other.z);
 }
 
 XYZ XYZ::operator+(XYZ other){
-   return XYZ(x + other.x, y + other.y, z + other.z); 
+   return XYZ(x + other.x, y + other.y, z + other.z);
 }
 
 XYZ get_vector_from_to(XYZ start, XYZ end) {return end-start;}
@@ -1062,4 +1062,3 @@ XYZ project_onto_line(XYZ initial, XYZ line_start, XYZ line_end) {
   return projection;
 }
 */
-

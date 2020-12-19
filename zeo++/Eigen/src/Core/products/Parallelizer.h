@@ -10,7 +10,7 @@
 #ifndef EIGEN_PARALLELIZER_H
 #define EIGEN_PARALLELIZER_H
 
-namespace Eigen { 
+namespace Eigen {
 
 namespace internal {
 
@@ -132,10 +132,10 @@ void parallelize_gemm(const Functor& func, Index rows, Index cols, bool transpos
     Index i = omp_get_thread_num();
     // Note that the actual number of threads might be lower than the number of request ones.
     Index actual_threads = omp_get_num_threads();
-    
+
     Index blockCols = (cols / actual_threads) & ~Index(0x3);
     Index blockRows = (rows / actual_threads) & ~Index(0x7);
-    
+
     Index r0 = i*blockRows;
     Index actualBlockRows = (i+1==actual_threads) ? rows-r0 : blockRows;
 

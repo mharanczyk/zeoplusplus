@@ -1,10 +1,10 @@
-/* Distance grid functions 
+/* Distance grid functions
 *  Added by Marielle Pinheiro, Richard Martin and Maciej Haranczyk
 *  Fall 2012/Winter 2013
 *
 *  Distance grids are used for analysis and visualization
 *  Grids are written in two formats: BOV (for Visit) and Gaussian cube (for VMD)
-*  
+*
 *  BOV distance grids are written in a number of ways depending on distance function definition
 *  the latter is done to test Voronoi approximation and it commented out in the official release
 *
@@ -13,7 +13,7 @@
 *  BOV Grid example, general scenario
 *  The variables in this scenario assume that we will have information
 *  found in cssr files: Unit cell dimensions a, b, c, and unit cell
-*  angles alpha, beta, gamma. 
+*  angles alpha, beta, gamma.
 *  F: for location p, sphere center s--> d(s,p) < d(s,x_i) - r_i
 *  G: for location p, sphere center s--> [d(s,p)]^2 < [d(s,x_i)]^2 - (r_i)^2
 *  H: for location p, sphere center s--> sqrt(G+r_bar^2)-r_bar, where r_bar is some standard atom radius (below 1.35)
@@ -40,21 +40,21 @@ using namespace std;
 
 
 /* BOV grid function was originally written by Richard Martin for another project (Int. J. High Perf Comput Appl 26 347-357 2012)
-*  therefore it uses slightly different convention for box definition. Therefore you notice conversion of variables in the following 
+*  therefore it uses slightly different convention for box definition. Therefore you notice conversion of variables in the following
 *  lines of code */
 void generateBOVGrid(ATOM_NETWORK *atmnet, string name_f_dist, string name_g_dist, string name_h_dist, string name_f_bov, string name_g_bov, string name_h_bov) {
 
 //-----declare large 3D array as a 3D pointer (i.e., ***) - we have to declare it as pointers otherwise we cannot declare an arbitrarily large grid - but if the grid is too large, you may not have enough RAM to store it, so watch the system monitor!
   double ***grid_distance;
 
-//-----set the extent of the grid. If we know coordinate H (i.e. the coordinate in the abc plane that has all non-0 coordinates) we will know the maximum extent. 
+//-----set the extent of the grid. If we know coordinate H (i.e. the coordinate in the abc plane that has all non-0 coordinates) we will know the maximum extent.
 //For my purposes, I defined a cube in terms of corners. A, B, and C correspond to defined unit cell vectors.
 //D is the bottom corner between the B and C axes. E is the top corner between the A and C axes.
 //F is the top corner between the B and C axes. G is the outermost corner. The innermost corner is simply (0, 0, 0).
 
-  double origin_x = 0; 
-  double origin_y = 0; 
-  double origin_z = 0; 
+  double origin_x = 0;
+  double origin_y = 0;
+  double origin_z = 0;
   double Ax  = atmnet->v_a.x;
   double Bx = atmnet->v_b.x;
   double By  = atmnet->v_b.y;
@@ -95,11 +95,11 @@ void generateBOVGrid(ATOM_NETWORK *atmnet, string name_f_dist, string name_g_dis
 
 
 //-----set size that grid will take, i.e. the number of grid points in each dimension
-  
+
   double tempXgrid = XGridDist/GRIDRES; double tempYgrid = YGridDist/GRIDRES; double tempZgrid = ZGridDist/GRIDRES;
 
   int x_grid_steps = ceil(tempXgrid);
-  int y_grid_steps = ceil(tempYgrid); 
+  int y_grid_steps = ceil(tempYgrid);
   int z_grid_steps = ceil(tempZgrid);
 
   double shiftInX = x_grid_steps - tempXgrid;
@@ -127,21 +127,21 @@ void generateBOVGrid(ATOM_NETWORK *atmnet, string name_f_dist, string name_g_dis
 	for(int i=0; i<x_grid_steps; i++) {
 		for(int j=0; j<y_grid_steps; j++) {
 			for(int k=0; k<z_grid_steps; k++) {
-				grid_distance[i][j][k] = calculate_distance_function(atmnet, i,j,k, xMin, yMin, 0, xGridRes, yGridRes, zGridRes, x_grid_steps, y_grid_steps, z_grid_steps, 'f'); 
+				grid_distance[i][j][k] = calculate_distance_function(atmnet, i,j,k, xMin, yMin, 0, xGridRes, yGridRes, zGridRes, x_grid_steps, y_grid_steps, z_grid_steps, 'f');
 			}
 		}
 	}
 
 //-----Print structure_f.distances and structure_f.bov
   printf("Printing F grid.\n\n");
-  FILE *file_distances_f, *file_bov_f; 
+  FILE *file_distances_f, *file_bov_f;
   char* distance_filename_f = new char [100];
-  strcpy(distance_filename_f, name_f_dist.c_str()); 
+  strcpy(distance_filename_f, name_f_dist.c_str());
   file_distances_f = fopen(distance_filename_f,"w");
   write_distances(file_distances_f, grid_distance, x_grid_steps, y_grid_steps, z_grid_steps);
-  fclose(file_distances_f); 
+  fclose(file_distances_f);
   char* bov_filename_f = new char [100];
-  strcpy(bov_filename_f, name_f_bov.c_str()); 
+  strcpy(bov_filename_f, name_f_bov.c_str());
   file_bov_f = fopen(bov_filename_f,"w");
   write_bov(file_bov_f, distance_filename_f, x_grid_steps, y_grid_steps, z_grid_steps, xMin, yMin, zMin, XGridDist, YGridDist, ZGridDist);
   fclose(file_bov_f);
@@ -152,21 +152,21 @@ void generateBOVGrid(ATOM_NETWORK *atmnet, string name_f_dist, string name_g_dis
 	for(int i=0; i<x_grid_steps; i++) {
 		for(int j=0; j<y_grid_steps; j++) {
 			for(int k=0; k<z_grid_steps; k++) {
-				grid_distance[i][j][k] = calculate_distance_function(atmnet, i,j,k, xMin, yMin, 0, xGridRes, yGridRes, zGridRes, x_grid_steps, y_grid_steps, z_grid_steps, 'g'); 
+				grid_distance[i][j][k] = calculate_distance_function(atmnet, i,j,k, xMin, yMin, 0, xGridRes, yGridRes, zGridRes, x_grid_steps, y_grid_steps, z_grid_steps, 'g');
 			}
 		}
 	}
 
 //-----Print structure_g.distances and structure_g.bov
   printf("Printing G grid.\n\n");
-  FILE *file_distances_g, *file_bov_g; 
+  FILE *file_distances_g, *file_bov_g;
   char* distance_filename_g = new char [100];
-  strcpy(distance_filename_g, name_g_dist.c_str()); 
+  strcpy(distance_filename_g, name_g_dist.c_str());
   file_distances_g = fopen(distance_filename_g,"w");
   write_distances(file_distances_g, grid_distance, x_grid_steps, y_grid_steps, z_grid_steps);
-  fclose(file_distances_g); 
+  fclose(file_distances_g);
   char* bov_filename_g = new char [100];
-  strcpy(bov_filename_g, name_g_bov.c_str()); 
+  strcpy(bov_filename_g, name_g_bov.c_str());
   file_bov_g = fopen(bov_filename_g,"w");
   write_bov(file_bov_g, distance_filename_g, x_grid_steps, y_grid_steps, z_grid_steps, xMin, yMin, zMin, XGridDist, YGridDist, ZGridDist);
   fclose(file_bov_g);
@@ -179,7 +179,7 @@ void generateBOVGrid(ATOM_NETWORK *atmnet, string name_f_dist, string name_g_dis
 	for(int i=0; i<x_grid_steps; i++) {
 		for(int j=0; j<y_grid_steps; j++) {
 			for(int k=0; k<z_grid_steps; k++) {
-				grid_distance[i][j][k] = calculate_distance_function(atmnet, i,j,k, xMin, yMin, 0, xGridRes, yGridRes, zGridRes, x_grid_steps, y_grid_steps, z_grid_steps, 'h'); 
+				grid_distance[i][j][k] = calculate_distance_function(atmnet, i,j,k, xMin, yMin, 0, xGridRes, yGridRes, zGridRes, x_grid_steps, y_grid_steps, z_grid_steps, 'h');
 			}
 		}
 	}
@@ -188,14 +188,14 @@ void generateBOVGrid(ATOM_NETWORK *atmnet, string name_f_dist, string name_g_dis
 //-----Print structure_h.distances and structure_h.bov
 
   printf("Printing H grid.\n\n");
-  FILE *file_distances_h, *file_bov_h; 
+  FILE *file_distances_h, *file_bov_h;
   char* distance_filename_h = new char [100];
-  strcpy(distance_filename_h, name_h_dist.c_str()); 
+  strcpy(distance_filename_h, name_h_dist.c_str());
   file_distances_h = fopen(distance_filename_h,"w");
   write_distances(file_distances_h, grid_distance, x_grid_steps, y_grid_steps, z_grid_steps);
-  fclose(file_distances_h); 
+  fclose(file_distances_h);
   char* bov_filename_h = new char [100];
-  strcpy(bov_filename_h, name_h_bov.c_str()); 
+  strcpy(bov_filename_h, name_h_bov.c_str());
   file_bov_h = fopen(bov_filename_h,"w");
   write_bov(file_bov_h, distance_filename_h, x_grid_steps, y_grid_steps, z_grid_steps, xMin, yMin, zMin, XGridDist, YGridDist, ZGridDist);
   fclose(file_bov_h);
@@ -457,11 +457,11 @@ void GaussianCube::loadHistogramData(std::string inputfilename){
 
  // reading in datapoints (expect points in "Liverpool format" (fractional coordinates)
 
- int n = 0; // number of points 
+ int n = 0; // number of points
  double a,b,c;
  int code;
  int pocketID;
- string ptStatus; 
+ string ptStatus;
  while(!input.eof())
     {
     input >> a;
@@ -479,7 +479,7 @@ void GaussianCube::loadHistogramData(std::string inputfilename){
     // analysis of the read-in data
     a = trans_to_origuc(a);
     b = trans_to_origuc(b);
-    c = trans_to_origuc(c);    
+    c = trans_to_origuc(c);
 
     // projecting into a grid
 
@@ -528,7 +528,7 @@ void GaussianCube::loadHistogramDataPerFrame(std::string listfilename){
       };
 
     nfiles++;
- 
+
     fstream input;
     input.open(inputfilename.c_str());
     if(input.is_open()==false){
@@ -537,10 +537,10 @@ void GaussianCube::loadHistogramDataPerFrame(std::string listfilename){
 
     // reading in datapoints (expect points in "Liverpool format" (fractional coordinates)
 
-    int n = 0; // number of points 
+    int n = 0; // number of points
     double a,b,c;
     int code;
-    string ptStatus; 
+    string ptStatus;
     int pocketID;
     while(!input.eof())
        {
@@ -559,7 +559,7 @@ void GaussianCube::loadHistogramDataPerFrame(std::string listfilename){
        // analysis of the read-in data
        a = trans_to_origuc(a);
        b = trans_to_origuc(b);
-       c = trans_to_origuc(c);    
+       c = trans_to_origuc(c);
 
        // projecting into a grid
 
@@ -597,7 +597,7 @@ void GaussianCube::loadHistogramDataPerFrame(std::string listfilename){
 
 
 
-/* calculates distnace grid based on positions of atoms 
+/* calculates distnace grid based on positions of atoms
    but also supplies with information if space is accessible to a probe
    nonaccessible volume is highlighted by negative distance
 */
@@ -630,7 +630,7 @@ void GaussianCube::calculateDistanceGridWithAccessibilityInfo(ATOM_NETWORK *atmn
 
 //       dist = accessAnalysis.lastMinDist();
 //       if(inside == false && overlaps == true) dist = dist * -1.0;
-  
+
        if(inside == true)
          {
          dist = 0.0;
@@ -644,7 +644,3 @@ void GaussianCube::calculateDistanceGridWithAccessibilityInfo(ATOM_NETWORK *atmn
        };
 
 } // ends calculateDistanceGrid()
-
-
-
-

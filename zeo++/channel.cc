@@ -31,18 +31,18 @@ PORE::PORE(vector<int> nodeIDs, DIJKSTRA_NETWORK *dnet, int dim, int basisVecs[3
     reverseIDMappings = map<int,int> ();
     nodes = vector<DIJKSTRA_NODE> ();
     connections = vector<CONN> ();
-    
+
     // Reindex the nodes to facilitate storage
     for(unsigned int i = 0; i < nodeIDs.size(); i++){
         idMappings.insert(pair<int,int>(nodeIDs.at(i),i));
         reverseIDMappings.insert(pair<int,int>(i,nodeIDs.at(i)));
     }
-    
+
     // Iterate over all nodes in list
     for(unsigned int i = 0; i < nodeIDs.size(); i++){
         DIJKSTRA_NODE oldNode = dnet->nodes.at(nodeIDs.at(i));
         DIJKSTRA_NODE newNode = DIJKSTRA_NODE(i, oldNode.x, oldNode.y, oldNode.z, oldNode.max_radius);
-        
+
         // Include connection only if end node is in pore
         // Reindex connection start and end ids
         for(unsigned int j = 0; j < oldNode.connections.size(); j++){
@@ -57,12 +57,12 @@ PORE::PORE(vector<int> nodeIDs, DIJKSTRA_NETWORK *dnet, int dim, int basisVecs[3
         }
         nodes.push_back(newNode);
     }
-    
+
     basis[0][0] = basisVecs[0][0];  basis[0][1] = basisVecs[0][1];  basis[0][2] = basisVecs[0][2];
     basis[1][0] = basisVecs[1][0];  basis[1][1] = basisVecs[1][1];  basis[1][2] = basisVecs[1][2];
     basis[2][0] = basisVecs[2][0];  basis[2][1] = basisVecs[2][1];  basis[2][2] = basisVecs[2][2];
     dimensionality = dim;
-    
+
     // Store unit cell vectors
     v_a = dnet->v_a;
     v_b = dnet->v_b;
@@ -73,7 +73,7 @@ PORE::PORE(vector<int> nodeIDs, DIJKSTRA_NETWORK *dnet, int dim, int basisVecs[3
 /* Provides a vector with IDs of Voronoi nodes correcponding to the current pore */
 vector <int> PORE::nodeIds(){
     vector <int> list;
-    
+
     for(unsigned int i=0; i<reverseIDMappings.size(); i++)
     {
         list.push_back(reverseIDMappings.find(i)->second);
@@ -100,25 +100,25 @@ void PORE::findChannelsAndPockets(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStor
     const int ACCESSIBLE   =  1;
     const int INACCESSIBLE =  0;
     const int UNKNOWN      = -1;
-    
+
     vector<DELTA_POS> directions = vector<DELTA_POS> ();
-    
+
     // Initialize the status of each node as UNKNOWN
     vector<int> accessStatuses = vector<int> (dnet->nodes.size(), UNKNOWN);
     unsigned int nodeIndex = 0;
-    
+
     // Get and Print basic info
     int noAccDijkNodes = 0; // number of active Dijkstra nodes (ones with radius > 0)
     int noAccDijkNodesAssigned = 0; // number of active Dijkstra nodes already assigned to pores.
     for(unsigned int i = 0; i < dnet->nodes.size(); i++)
     {
         if(dnet->nodes.at(i).active == true) noAccDijkNodes++;
-        
+
         //debug line
         //cout << "id,active " << i << "   " << dnet->nodes.at(i).active << endl;
     };
     cout << "\nFinding channels and pockets in Dijkstra network of " << dnet->nodes.size() << " node(s). " << noAccDijkNodes << " are expected to compose pores." << endl;
-    
+
     // Iterate over all nodes
     while(nodeIndex != accessStatuses.size()){
         //Skip node if access status already determined
@@ -126,13 +126,13 @@ void PORE::findChannelsAndPockets(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStor
             nodeIndex++;
             continue;
         }
-        
+
         // Start out with 0-dimensional pore w/o any basis vectors
         int dim = 0;
         int basis [3][3] = {{0,0,0},
 			{0,0,0},
 			{0,0,0}};
-        
+
         // Place starting node on stack with (0,0,0) displacement
         int accessStatus = UNKNOWN;
         DELTA_POS displacement = DELTA_POS(0,0,0);
@@ -140,20 +140,20 @@ void PORE::findChannelsAndPockets(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStor
         vector<pair<int,DELTA_POS> > stack;
         stack.push_back(pair<int,DELTA_POS> (nodeIndex,displacement));
         visitedNodeDisplacement.insert(pair<int,DELTA_POS>(nodeIndex, displacement));
-        
+
         while(stack.size() != 0){
             // Remove top-most node
             pair<int,DELTA_POS> nodeInfo = stack.back();
             DIJKSTRA_NODE currentNode = dnet->nodes.at(nodeInfo.first);
             stack.pop_back();
-            
+
             // Follow all edges leading to adjoining nodes
             vector<CONN>::iterator connIter = currentNode.connections.begin();
             while(connIter != currentNode.connections.end()){
                 int to = connIter->to;
                 DELTA_POS newDisplacement = nodeInfo.second + connIter->deltaPos;
                 int localAccessStatus = accessStatuses.at(to);
-                
+
                 if(localAccessStatus == UNKNOWN){
                     map<int,DELTA_POS>::iterator visitedNode = visitedNodeDisplacement.find(to);
                     if(visitedNode != visitedNodeDisplacement.end()){
@@ -165,8 +165,8 @@ void PORE::findChannelsAndPockets(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStor
                             // Nodes are ACCESSIBLE b/c same node visited in different unit cell
                             accessStatus = ACCESSIBLE;
                             DELTA_POS direction = newDisplacement - visitedNode->second;
-                            
-                            
+
+
                             /******* Start of Michael's code ******/
                             if(dim == 0){
                                 basis[0][0] = direction.x;
@@ -176,7 +176,7 @@ void PORE::findChannelsAndPockets(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStor
                             }
                             else if (dim == 1){
                                 double v;
-                                
+
                                 if (basis[0][0] != 0) v = 1.0*direction.x/basis[0][0];
                                 else if (basis[1][0] != 0) v = 1.0*direction.y/basis[1][0];
                                 else if (basis[2][0] != 0) v = 1.0*direction.z/basis[2][0];
@@ -184,7 +184,7 @@ void PORE::findChannelsAndPockets(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStor
                                     cerr << "Error: Pore basis vector is zero vector. Exiting..." << "\n";
                                     exit(1);
                                 }
-                                
+
                                 if(!(basis[0][0]*v == direction.x && basis[1][0]*v == direction.y &&
                                      basis[2][0]*v == direction.z)){
                                     basis[0][1] = direction.x;
@@ -224,17 +224,17 @@ void PORE::findChannelsAndPockets(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStor
                 connIter++;
             }
         }
-        
+
         // All connected nodes are inaccessible if their status is still UNKNOWN
         if((stack.size() == 0) && (accessStatus == UNKNOWN))
             accessStatus = INACCESSIBLE;
-        
+
         // Record the access status for each node in the cycle and create
         // a list of the node ids for channel identification
         map<int,DELTA_POS>::iterator resultIter = visitedNodeDisplacement.begin();
         vector<int> listOfIDs = vector<int> ();
         while(resultIter != visitedNodeDisplacement.end()){
-            
+
             int nodeID = resultIter->first;
             if(accessStatuses.at(nodeID) != UNKNOWN){
                 // Each node should only have its accessibility determined once
@@ -251,7 +251,7 @@ void PORE::findChannelsAndPockets(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStor
             resultIter++;
         }
         nodeIndex++;
-        
+
         // Create CHANNEL from ACCESSIBLE nodes
         if(accessStatus == ACCESSIBLE){
             pores->push_back(PORE(listOfIDs, dnet, dim, basis));
@@ -269,7 +269,7 @@ void PORE::findChannelsAndPockets(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStor
                 noAccDijkNodesAssigned += listOfIDs.size();
             };
         };
-        
+
         //more debug
         bool flg;
         for(unsigned int i=0;i<listOfIDs.size();i++)
@@ -287,7 +287,7 @@ void PORE::findChannelsAndPockets(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStor
     for(unsigned int i = 0; i < accessStatuses.size(); i++){
         infoStorage -> at(i) = (accessStatuses.at(i) == ACCESSIBLE);
     }
-    
+
     // Print summary
     int nchannel=0,npocket=0;
     for(unsigned int i = 0; i<pores->size(); i++)
@@ -310,7 +310,7 @@ void PORE::findChannelsAndPockets(VORONOI_NETWORK *vornet, double minRadius,
     //VORONOI_NETWORK newNetwork;
     //pruneVoronoiNetwork(vornet, &newNetwork, minRadius);
     VORONOI_NETWORK newNetwork = vornet->prune(minRadius);
-    
+
     //Build graph data structure
     DIJKSTRA_NETWORK dnet;
     DIJKSTRA_NETWORK::buildDijkstraNetwork(&newNetwork, &dnet);
@@ -319,7 +319,7 @@ void PORE::findChannelsAndPockets(VORONOI_NETWORK *vornet, double minRadius,
 
 
 /** Calculates center of mass and internal void radii (distance between the center of mass and its nearest atom)
- *  This function attempts pore reconstruction in cases where pores cross the cell boundaries. 
+ *  This function attempts pore reconstruction in cases where pores cross the cell boundaries.
  */
 pair <XYZ, double> PORE::getCenterOfMass(){
 
@@ -383,7 +383,7 @@ pair <XYZ, double> PORE::getCenterOfMass(){
 
 
 
-/**  This function attempts pore reconstruction in cases where pores cross the cell boundaries. 
+/**  This function attempts pore reconstruction in cases where pores cross the cell boundaries.
  *   It returns a vector of vectors with pore XYZ coordinates
  *   */
  vector< pair <int,XYZ> > PORE::getReconstructedPore(){
@@ -418,7 +418,7 @@ pair <XYZ, double> PORE::getCenterOfMass(){
 
 /* DEBUGGING: Check if reconstructured nodes become duplicate atoms
 
- cout << "DEBUG: Pore/molecule size after reconstruction (XYZ coords) " << reconstructedNodeCoords.size() << endl;  
+ cout << "DEBUG: Pore/molecule size after reconstruction (XYZ coords) " << reconstructedNodeCoords.size() << endl;
 */
 
  if(dimensionality>0) cout << "Calling PORE::getReconstructedPore for a pore with dim>0, it was not intended. DO NOT TRUST\n";
@@ -486,7 +486,7 @@ pair <XYZ, double> PORE::getCenterOfMass(){
 
        XYZ deltapos(double(unitCells[i].x), double(unitCells[i].y), double(unitCells[i].z));
 
-       reconstructedCopies[i].at(j).second = reconstructedCopies[i].at(j).second - v_a.scale(deltapos.x) - v_b.scale(deltapos.y) - v_c.scale(deltapos.z) ; 
+       reconstructedCopies[i].at(j).second = reconstructedCopies[i].at(j).second - v_a.scale(deltapos.x) - v_b.scale(deltapos.y) - v_c.scale(deltapos.z) ;
 
        };
     };
@@ -502,14 +502,14 @@ pair <XYZ, double> PORE::getCenterOfMass(){
 /* Prints information about the pore to the provided output stream, including nuber of nodes, the largest included sphere,
  positions and radii of all nodes */
 void PORE::printPoreSummary(ostream &out, ATOM_NETWORK *atmNet){
-    
+
     vector <double> poresummary;
     getSimplifiedPocketInfo(atmNet, &poresummary);
-    
+
     out << nodes.size() << "  " << poresummary[0] << "  " << poresummary[1] << "  " << poresummary[2] << "  " << poresummary[3] << "  " << poresummary[4] << "\n";
-    
+
     //  out << nodes.size() << "  " << getIncludedSphereDiameter()  << "\n";
-    
+
     for(unsigned int i = 0; i< nodes.size(); i++){
         //    nodes.at(i).print();
         Point pt = atmNet->xyz_to_abc(nodes.at(i).x, nodes.at(i).y, nodes.at(i).z);
@@ -525,28 +525,28 @@ void PORE::printPoreSummary(ostream &out, ATOM_NETWORK *atmNet){
 void CHANNEL::print(ostream &out, bool dispNodeInfo){
     out << "Channel info:" << "\n";
     out << "     # Nodes: " << nodes.size() << "\n";
-    
+
     if(dispNodeInfo){
         out << "     Original Node IDs: ";
         for(unsigned int i = 0; i < nodes.size(); i++){
             out << reverseIDMappings.find(i)->second << " ";
         }
         out << "\n";
-        
+
         out << "     New Node IDs: ";
         for(unsigned int i = 0; i < nodes.size(); i++){
             out << i << " ";
         }
         out << "\n";
-        
+
         out << "  New Node info: " << "\n";
         for(unsigned int i = 0; i< nodes.size(); i++){
             nodes.at(i).print();
         }
     }
-    
+
     out << "     # Unit cells:" << unitCells.size() << "\n";
-    
+
     for(unsigned int i = 0; i < unitCells.size(); i++){
         DELTA_POS position = unitCells.at(i);
         vector<int> ucNode = ucNodes.at(i);
@@ -614,7 +614,7 @@ void PORE::reconstruct(){
     vector<bool> haveVisited = vector<bool>(nodes.size(),false);
     vector<DELTA_POS> displacements = vector<DELTA_POS>(nodes.size());
     unsigned int visitCount = 0;
-    
+
     //Search through the PORE, emphasizing nodes located in the current unit
     //cell or in previously visited unit cells. Record the unit cell within which
     //each node is encountered
@@ -622,7 +622,7 @@ void PORE::reconstruct(){
     HEAP< pair<int,DELTA_POS> > stack (compareNodes);
     stack.insert(pair<int,DELTA_POS> (0, DELTA_POS(0,0,0))); // Pick the first node as the starting point
     DELTA_POS curPos = DELTA_POS(0,0,0);
-    
+
     // Continue reconstruction until all nodes have been visited
     while(visitCount < nodes.size()){
         if(stack.size() == 0){
@@ -630,24 +630,24 @@ void PORE::reconstruct(){
             << "Please contact the source code provided with this message." << "\n"
             << "Exiting..." << "\n"
             << "Nnodes = " << nodes.size() << "  visitCount= " << visitCount << "\n";
-            
+
             exit(1);
         }
-        
+
         pair<int,DELTA_POS> best = stack.pop();
-        
+
         if(!haveVisited.at(best.first)){
             visitCount++;
             haveVisited.at(best.first) = true;
             displacements.at(best.first) = best.second;
-            
+
             // If changed unit cell, need to restructure heap
             if(!best.second.equals(curPos)){
                 comparer.setPosition(best.second);
                 stack.reHeapify();
                 curPos = best.second;
             }
-            
+
             // Add all the nodes from the current node to the stack that
             // have not yet been visited
             DIJKSTRA_NODE curNode = nodes.at(best.first);
@@ -660,9 +660,9 @@ void PORE::reconstruct(){
             }
         }
     }
-    
+
     map<DELTA_POS, vector<int> ,  bool(*)(DELTA_POS,DELTA_POS)> results (fn_pt);
-    
+
     //Store the list of nodes and unit cells in a usable format
     for(unsigned int i = 0; i < nodes.size(); i++){
         map<DELTA_POS, vector<int> >::iterator iter = results.find(displacements.at(i));
@@ -673,7 +673,7 @@ void PORE::reconstruct(){
         else
             iter->second.push_back(i);
     }
-    
+
     // Copy the unit cells visited and their corresponding node ids to intrinsic
     // data structures
     map<DELTA_POS, vector<int> >::iterator rIter = results.begin();
@@ -695,26 +695,26 @@ void CHANNEL::writeToVMD(int n, fstream &output){
     else{
         output << "set channels(" << n << ") {" << "\n"
         << "{color $channelColors(" << n << ")}" << "\n";
-        
+
         // Draw the components located in each unit cell
         for(unsigned int i = 0; i < unitCells.size(); i++){
             vector<int> nodeIDs = ucNodes.at(i);
             DELTA_POS disp = unitCells.at(i);
-            
+
             // Iterate over all nodes in the unit cell
             for(unsigned int j = 0; j < nodeIDs.size(); j++){
                 DIJKSTRA_NODE curNode = nodes.at(nodeIDs.at(j));
-                
+
                 // Find node coordinates
                 double xCoord = curNode.x + v_a.x*disp.x + v_b.x*disp.y + v_c.x*disp.z;
                 double yCoord = curNode.y + v_a.y*disp.x + v_b.y*disp.y + v_c.y*disp.z;
                 double zCoord = curNode.z + v_a.z*disp.x + v_b.z*disp.y + v_c.z*disp.z;
-                
+
                 // Command used to draw node
                 output << "{sphere {" << xCoord <<  " " << yCoord << " " << zCoord
                 << "} radius $nodeRadii(" << nodeIDs.at(j) <<") resolution $sphere_resolution}"
                 << "\n";
-                
+
                 // Iterate over all connections stemming from the current node
                 for(unsigned int k = 0; k < curNode.connections.size(); k++){
                     CONN curConn = curNode.connections.at(k);
@@ -722,12 +722,12 @@ void CHANNEL::writeToVMD(int n, fstream &output){
                     int dx = disp.x + curConn.deltaPos.x;
                     int dy = disp.y + curConn.deltaPos.y;
                     int dz = disp.z + curConn.deltaPos.z;
-                    
+
                     // Find end of edge coordinates
                     double newX = otherNode.x + v_a.x*dx + v_b.x*dy + v_c.x*dz;
                     double newY = otherNode.y + v_a.y*dx + v_b.y*dy + v_c.y*dz;
                     double newZ = otherNode.z + v_a.z*dx + v_b.z*dy + v_c.z*dz;
-                    
+
                     // Command used to draw edge
                     output << "{line {" << xCoord << " " << yCoord << " " << zCoord << "} {"
                     << newX << " " << newY << " " << newZ<< "}}" <<  "\n";
@@ -751,25 +751,25 @@ void CHANNEL::writeToVMD(string type, int n, fstream &output){
     else{
         output << "set " << type << "s(" << n << ") {" << "\n"
         << "{color $" << type << "Colors(" << n << ")}" << "\n";
-        
+
         // Draw the components located in each unit cell
         for(unsigned int i = 0; i < unitCells.size(); i++){
             vector<int> nodeIDs = ucNodes.at(i);
             DELTA_POS disp = unitCells.at(i);
-            
+
             // Iterate over all nodes in the unit cell
             for(unsigned int j = 0; j < nodeIDs.size(); j++){
                 DIJKSTRA_NODE curNode = nodes.at(nodeIDs.at(j));
-                
+
                 // Find node coordinates
                 double xCoord = curNode.x + v_a.x*disp.x + v_b.x*disp.y + v_c.x*disp.z;
                 double yCoord = curNode.y + v_a.y*disp.x + v_b.y*disp.y + v_c.y*disp.z;
                 double zCoord = curNode.z + v_a.z*disp.x + v_b.z*disp.y + v_c.z*disp.z;
-                
+
                 // Command used to draw node
                 output << "{sphere {" << xCoord <<  " " << yCoord << " " << zCoord
                 << "} radius $nodeRadii(" << nodeIDs.at(j) <<") resolution $sphere_resolution}" << "\n";
-                
+
                 // Iterate over all connections stemming from the current node
                 for(unsigned int k = 0; k < curNode.connections.size(); k++){
                     CONN curConn = curNode.connections.at(k);
@@ -777,12 +777,12 @@ void CHANNEL::writeToVMD(string type, int n, fstream &output){
                     int dx = disp.x + curConn.deltaPos.x;
                     int dy = disp.y + curConn.deltaPos.y;
                     int dz = disp.z + curConn.deltaPos.z;
-                    
+
                     // Find end of edge coordinates
                     double newX = otherNode.x + v_a.x*dx + v_b.x*dy + v_c.x*dz;
                     double newY = otherNode.y + v_a.y*dx + v_b.y*dy + v_c.y*dz;
                     double newZ = otherNode.z + v_a.z*dx + v_b.z*dy + v_c.z*dz;
-                    
+
                     // Command used to draw edge
                     output << "{line {" << xCoord << " " << yCoord << " " << zCoord << "} {"
                     << newX << " " << newY << " " << newZ<< "}}" <<  "\n";
@@ -819,7 +819,7 @@ CHANNEL::CHANNEL(PORE *p){
 void CHANNEL::findChannels(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStorage,
                            vector<CHANNEL> *channels)
 {
-    
+
     vector <PORE> pores;
     findChannelsAndPockets(dnet, infoStorage, &pores);
     for(unsigned int i = 0; i<pores.size(); i++)
@@ -837,13 +837,13 @@ void CHANNEL::findChannels(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStorage,
  const int ACCESSIBLE   =  1;
  const int INACCESSIBLE =  0;
  const int UNKNOWN      = -1;
- 
+
  vector<DELTA_POS> directions = vector<DELTA_POS> ();
- 
+
  // Initialize the status of each node as UNKNOWN
  vector<int> accessStatuses = vector<int> (dnet->nodes.size(), UNKNOWN);
  unsigned int nodeIndex = 0;
- 
+
  // Iterate over all nodes
  while(nodeIndex != accessStatuses.size()){
  //Skip node if access status already determined
@@ -851,13 +851,13 @@ void CHANNEL::findChannels(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStorage,
  nodeIndex++;
  continue;
  }
- 
+
  // Start out with 0-dimensional channel w/o any basis vectors
  int dim = 0;
  int basis [3][3] = {{0,0,0},
  {0,0,0},
  {0,0,0}};
- 
+
  // Place starting node on stack with (0,0,0) displacement
  int accessStatus = UNKNOWN;
  DELTA_POS displacement = DELTA_POS(0,0,0);
@@ -865,20 +865,20 @@ void CHANNEL::findChannels(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStorage,
  vector<pair<int,DELTA_POS> > stack;
  stack.push_back(pair<int,DELTA_POS> (nodeIndex,displacement));
  visitedNodeDisplacement.insert(pair<int,DELTA_POS>(nodeIndex, displacement));
- 
+
  while(stack.size() != 0){
  // Remove top-most node
  pair<int,DELTA_POS> nodeInfo = stack.back();
  DIJKSTRA_NODE currentNode = dnet->nodes.at(nodeInfo.first);
  stack.pop_back();
- 
+
  // Follow all edges leading to adjoining nodes
  vector<CONN>::iterator connIter = currentNode.connections.begin();
  while(connIter != currentNode.connections.end()){
  int to = connIter->to;
  DELTA_POS newDisplacement = nodeInfo.second + connIter->deltaPos;
  int localAccessStatus = accessStatuses.at(to);
- 
+
  if(localAccessStatus == UNKNOWN){
  map<int,DELTA_POS>::iterator visitedNode = visitedNodeDisplacement.find(to);
  if(visitedNode != visitedNodeDisplacement.end()){
@@ -890,8 +890,8 @@ void CHANNEL::findChannels(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStorage,
  // Nodes are ACCESSIBLE b/c same node visited in different unit cell
  accessStatus = ACCESSIBLE;
  DELTA_POS direction = newDisplacement - visitedNode->second;
- 
- 
+
+
  // ******* Start of Michael's code ******
  if(dim == 0){
  basis[0][0] = direction.x;
@@ -901,7 +901,7 @@ void CHANNEL::findChannels(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStorage,
  }
  else if (dim == 1){
  double v;
- 
+
  if (basis[0][0] != 0) v = 1.0*direction.x/basis[0][0];
  else if (basis[1][0] != 0) v = 1.0*direction.y/basis[1][0];
  else if (basis[2][0] != 0) v = 1.0*direction.z/basis[2][0];
@@ -909,7 +909,7 @@ void CHANNEL::findChannels(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStorage,
  cerr << "Error: Channel basis vector is zero vector. Exiting..." << "\n";
  exit(1);
  }
- 
+
  if(!(basis[0][0]*v == direction.x && basis[1][0]*v == direction.y &&
  basis[2][0]*v == direction.z)){
  basis[0][1] = direction.x;
@@ -949,17 +949,17 @@ void CHANNEL::findChannels(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStorage,
  connIter++;
  }
  }
- 
+
  // All connected nodes are inaccessible if their status is still UNKNOWN
  if((stack.size() == 0) && (accessStatus == UNKNOWN))
  accessStatus = INACCESSIBLE;
- 
+
  // Record the access status for each node in the cycle and create
  // a list of the node ids for channel identification
  map<int,DELTA_POS>::iterator resultIter = visitedNodeDisplacement.begin();
  vector<int> listOfIDs = vector<int> ();
  while(resultIter != visitedNodeDisplacement.end()){
- 
+
  int nodeID = resultIter->first;
  if(accessStatuses.at(nodeID) != UNKNOWN){
  // Each node should only have its accessibility determined once
@@ -976,7 +976,7 @@ void CHANNEL::findChannels(DIJKSTRA_NETWORK *dnet, vector<bool> *infoStorage,
  resultIter++;
  }
  nodeIndex++;
- 
+
  // Create CHANNEL from ACCESSIBLE nodes
  if(accessStatus == ACCESSIBLE){
  channels->push_back(CHANNEL(listOfIDs, dnet, dim, basis));
@@ -1020,7 +1020,7 @@ void CHANNEL::findChannels(VORONOI_NETWORK *vornet, double minRadius,
  //VORONOI_NETWORK newNetwork;
  //pruneVoronoiNetwork(vornet, &newNetwork, minRadius);
  VORONOI_NETWORK newNetwork = vornet->prune(minRadius);
- 
+
  //Build graph data structure
  DIJKSTRA_NETWORK dnet;
  DIJKSTRA_NETWORK::buildDijkstraNetwork(&newNetwork, &dnet);
@@ -1036,7 +1036,7 @@ void CHANNEL::findBoundingAtoms(ATOM_NETWORK *atmnet, vector<BASIC_VCELL> &vcell
                                 vector<int> &atomIDs)
 {
     atomIDs.clear();
-    
+
     for(unsigned int i = 0; i < vcells.size(); i++){
         BASIC_VCELL cell = vcells[i];
         for(int j = 0; j < cell.getNumNodes(); j++){
@@ -1055,9 +1055,9 @@ void PORE::buildDijkstraNetwork(DIJKSTRA_NETWORK *dnet){
     //  vector<VOR_NODE> ::iterator niter = vornet->nodes.begin();
     //    int i = 0;
     dnet->nodes.clear();
-    
+
     dnet->nodes=nodes;
-    
+
     // Add copies of all nodes to the network
 	//   while(niter != vornet->nodes.end()){
 	//       DIJKSTRA_NODE node = DIJKSTRA_NODE(i, niter->x, niter->y, niter->z, niter->rad_stat_sphere);
@@ -1087,13 +1087,13 @@ void PORE::buildDijkstraNetwork(DIJKSTRA_NETWORK *dnet){
 /* It is a rather inefficient algorithm that calculates the largest
  * free sphere for each Voronoi node */
 pair<double, pair<double,double> > CHANNEL::findFreeIncludedSphereDiameter(){
-    
+
     pair<double, pair<double,double> > maxdidfdif;
     maxdidfdif.first=0;
     maxdidfdif.second.first=0;
     maxdidfdif.second.second=0;
-    
-    
+
+
     for(int i=0;i<nodes.size();i++)
     {
         // loop over all the nodes in the current channel
@@ -1107,7 +1107,7 @@ pair<double, pair<double,double> > CHANNEL::findFreeIncludedSphereDiameter(){
             if(didfdif.first > maxdidfdif.first) maxdidfdif.first = didfdif.first;
         };
     };
-    
+
     return maxdidfdif;
 }
 
@@ -1116,11 +1116,11 @@ vector<DIJKSTRA_NODE> *compareConnections_ptr;
 
 /* Function for sorting heap in findFreeSphereDiameter */
 bool compareConnections(pair<int,int> C1, pair<int,int> C2){
-    
+
     return (compareConnections_ptr->at(C1.first).connections.at(C1.second).
             max_radius<compareConnections_ptr->at(C2.first).connections.
             at(C2.second).max_radius);
-    
+
 }
 
 
@@ -1136,105 +1136,105 @@ pair <double, pair<double,double> > CHANNEL::findFreeIncludedSphereDiameterforNo
     //Define three access types
     const int ACCESSED   =  1;
     const int UNKNOWN      = -1;
-    
+
     // Make a local copy of nodes vector as it will be modified
     vector<DIJKSTRA_NODE> lnodes = nodes;
-    
+
     // Initialize the unit cell position of each node
     vector<DELTA_POS> directions = vector<DELTA_POS> (lnodes.size(), DELTA_POS(0,0,0));
-    
+
     // Initialize the status of each node as UNKNOWN
     vector<int> accessStatuses = vector<int> (lnodes.size(), UNKNOWN);
     unsigned int nodeIndex = 0;
-    
+
     double maxdi,di,df;
-    
-    
+
+
     // In case of early termination, be ready to return the current node Di
     maxdidfdif.first = 2.0 * lnodes.at(nodeid).max_radius; // .first is use to store the current Di for the current (nodeid) node
-    
+
     // Test if it is worth to run the funtion (e.g. starting node's radius is smaller than the current Df)
     if(lnodes.at(nodeid).max_radius < maxdidfdif.second.first/2.0)
     {
         return maxdidfdif; // if not, just return the current best numbers (maxdidfdif)
     };
-    
+
     // Start analysis for node of id = nodeid
-    
+
     nodeIndex = nodeid;
-    
+
     // accept the initial node
     maxdi = lnodes.at(nodeIndex).max_radius; // (it is not really the max but will be analyzed to get max)
     di=lnodes.at(nodeIndex).max_radius;
     df=lnodes.at(nodeIndex).max_radius;
-    
+
     accessStatuses[nodeIndex] = ACCESSED;
-    
+
     directions[nodeIndex] = DELTA_POS(0,0,0);
-    
+
     compareConnections_ptr = &lnodes;
     HEAP< pair<int,int> > stack(compareConnections);
-    
+
     // loop over all connections and add them to stack
     for(unsigned int i=0; i<lnodes[nodeIndex].connections.size(); i++)
     {
         if(lnodes[nodeIndex].connections.at(i).max_radius > lnodes.at(lnodes[nodeIndex].connections.at(i).to).max_radius)
             lnodes[nodeIndex].connections.at(i).max_radius = lnodes.at(lnodes[nodeIndex].connections.at(i).to).max_radius;
-        
+
         stack.insert(pair<int,int>(nodeIndex,i));
     };
-    
+
     stack.reHeapify();
-    
+
     bool flag=true;
-    
+
     while(stack.size() != 0&&flag){
         //loop with Dijkstra-like propagation
-        
+
         // select the path with largest opening
         pair<int,int> best = stack.pop();
-        
+
         int best_node = lnodes[best.first].connections[best.second].to;
-        
+
         if(accessStatuses[best_node]==UNKNOWN)
         {
             // going to accept the best_node and update di and df
             // update df and di
             if(lnodes[best.first].connections.at(best.second).max_radius<df) df=lnodes[best.first].connections.at(best.second).max_radius;
-            
+
             if(lnodes.at(best_node).max_radius > di) di = lnodes.at(best_node).max_radius;
-            
+
             // termine early if the current Df is smaller than the current record
-            
+
             if(df * 2.0 < maxdidfdif.second.first)
             {
-                return maxdidfdif; // if not, just return the current best numbers (maxdidfdif) 
+                return maxdidfdif; // if not, just return the current best numbers (maxdidfdif)
             };
-            
-            
+
+
             // check new connections, add to heap or terminane
-            
-            accessStatuses[best_node]=ACCESSED; 
+
+            accessStatuses[best_node]=ACCESSED;
             directions[best_node]=directions[best.first];
             directions[best_node]=directions[best_node] + (lnodes[best.first].connections.at(best.second).deltaPos);
-            
+
             // going to add new connections to the heap
             for(unsigned int i=0; i<lnodes[best_node].connections.size(); i++)
             {
                 if(lnodes[best_node].connections.at(i).max_radius > lnodes.at(lnodes[best_node].connections.at(i).to).max_radius)
                     lnodes[best_node].connections.at(i).max_radius = lnodes.at(lnodes[best_node].connections.at(i).to).max_radius;
-                
+
                 if(lnodes[best_node].connections[i].to!=best.first)
                     stack.insert(pair<int,int>(best_node,i));
-            };	
-            stack.reHeapify(); 
+            };
+            stack.reHeapify();
         }
-        
+
         else if(accessStatuses[best_node]==ACCESSED){
             //selected connection leads to a node that is on stact
             //need to check in which unit cell it is
-            
-            
+
+
             if(!(directions[best_node]).equals(directions[best.first] + lnodes[best.first].connections.at(best.second).deltaPos))
             {
                 // if nodes are in different unit cells, a loop is found, the resulting df can be calculated
@@ -1245,25 +1245,25 @@ pair <double, pair<double,double> > CHANNEL::findFreeIncludedSphereDiameterforNo
             // otherwise do nothing
             // need to make sure heap is correct
         }
-        
+
         else{
             //
             // need this section ?
             //
         };
-        
+
     };
-    
+
     // change radii to diameter
     df=df*2.0;
     di=di*2.0;
     maxdi=maxdi*2.0;
-    
+
     pair <double, pair<double,double> > resultdidfdif;
     resultdidfdif.first=maxdi;
     resultdidfdif.second.first=df;
     resultdidfdif.second.second=di;
-    
+
     return resultdidfdif;
 }
 
@@ -1271,9 +1271,9 @@ pair <double, pair<double,double> > CHANNEL::findFreeIncludedSphereDiameterforNo
 /* Get the largest included sphere diamter for pocket */
 
 double PORE::getIncludedSphereDiameter(){
-    
+
     double maxdi;
-    
+
     for(unsigned int i=0; i<nodes.size(); i++)
     {
         if(i==0)
@@ -1284,40 +1284,40 @@ double PORE::getIncludedSphereDiameter(){
             if(nodes.at(i).max_radius > maxdi) maxdi = nodes.at(i).max_radius;
         };
     };
-    
+
     maxdi=maxdi*2.0;
-    
+
     return maxdi;
-    
+
 }
 
 
 
 /* Return the largest free and included sphere diameters (df and dif) for a path between two nodes within the current
  * pore. Return -1 in nodes are not connected.
- * Node1 and Node2 are indexes provied w.r.t. the original network. Use idMapping inside this function to obtain local indexes 
+ * Node1 and Node2 are indexes provied w.r.t. the original network. Use idMapping inside this function to obtain local indexes
  * for the considered PORE
  */
- 
+
 pair <double, double> PORE::getFreeIncludedSphereDiameterforNodePair(int node1, int node2){
     //Define three access types
     const int ACCESSED   =  1;
     const int UNKNOWN      = -1;
 
     // flag that is used to terminate the search
-    
+
     bool node2FoundFlag = false;
 
     // Make a local copy of nodes vector as it will be modified
     vector<DIJKSTRA_NODE> lnodes = nodes;
-    
+
     // Initialize the unit cell position of each node
     vector<DELTA_POS> directions = vector<DELTA_POS> (lnodes.size(), DELTA_POS(0,0,0));
-    
+
     // Initialize the status of each node as UNKNOWN
     vector<int> accessStatuses = vector<int> (lnodes.size(), UNKNOWN);
     unsigned int nodeIndex = 0;
-    
+
     double di,df;
 
     if(node1 == node2 || node1 < 0 || node2 < 0){
@@ -1329,106 +1329,106 @@ pair <double, double> PORE::getFreeIncludedSphereDiameterforNodePair(int node1, 
 
     node1 = idMappings.find(node1)->second;
     node2 = idMappings.find(node2)->second;
-    
+
     // Start analysis for node of id = nodeid
-    
+
     nodeIndex = node1; // node1 is w.r.t pore node index (use PORE reverseMapping to retrieve original node
-    
+
     // accept the initial node
     di=lnodes.at(nodeIndex).max_radius;
     df=lnodes.at(nodeIndex).max_radius;
-    
+
     accessStatuses[nodeIndex] = ACCESSED;
-    
+
     directions[nodeIndex] = DELTA_POS(0,0,0);
-    
+
     compareConnections_ptr = &lnodes;
     HEAP< pair<int,int> > stack(compareConnections);
-    
+
     // loop over all connections and add them to stack
     for(unsigned int i=0; i<lnodes[nodeIndex].connections.size(); i++)
     {
         if(lnodes[nodeIndex].connections.at(i).max_radius > lnodes.at(lnodes[nodeIndex].connections.at(i).to).max_radius)
             lnodes[nodeIndex].connections.at(i).max_radius = lnodes.at(lnodes[nodeIndex].connections.at(i).to).max_radius;
-        
+
         stack.insert(pair<int,int>(nodeIndex,i));
     };
-    
+
     stack.reHeapify();
-    
+
     bool flag=true;
-    
+
     while(stack.size() != 0&&flag){
         //loop with Dijkstra-like propagation
-        
+
         // select the path with largest opening
         pair<int,int> best = stack.pop();
-        
+
         int best_node = lnodes[best.first].connections[best.second].to;
-        
+
         if(accessStatuses[best_node]==UNKNOWN)
         {
             // going to accept the best_node and update di and df
             // update df and di
             if(lnodes[best.first].connections.at(best.second).max_radius<df) df=lnodes[best.first].connections.at(best.second).max_radius;
-            
+
             if(lnodes.at(best_node).max_radius > di) di = lnodes.at(best_node).max_radius;
 
-            // in the desired node is reached, and the loop 
-            
+            // in the desired node is reached, and the loop
+
             if(best_node == node2)
               {
-              node2FoundFlag = true; 
+              node2FoundFlag = true;
               flag = true; // stop flag set
               break;
               };
-            
+
             // otherwise continue
 
             // check new connections, add to heap or terminane
-            
-            accessStatuses[best_node]=ACCESSED; 
+
+            accessStatuses[best_node]=ACCESSED;
             directions[best_node]=directions[best.first];
             directions[best_node]=directions[best_node] + (lnodes[best.first].connections.at(best.second).deltaPos);
-            
+
             // going to add new connections to the heap
             for(unsigned int i=0; i<lnodes[best_node].connections.size(); i++)
             {
                 if(lnodes[best_node].connections.at(i).max_radius > lnodes.at(lnodes[best_node].connections.at(i).to).max_radius)
                     lnodes[best_node].connections.at(i).max_radius = lnodes.at(lnodes[best_node].connections.at(i).to).max_radius;
-                
+
                 if(lnodes[best_node].connections[i].to!=best.first)
                     stack.insert(pair<int,int>(best_node,i));
-            };	
-            stack.reHeapify(); 
+            };
+            stack.reHeapify();
         }
-        
+
         else if(accessStatuses[best_node]==ACCESSED){
             //selected connection leads to a node that is on stact
             //need to check in which unit cell it is
-            
-            
+
+
             if(!(directions[best_node]).equals(directions[best.first] + lnodes[best.first].connections.at(best.second).deltaPos))
             {
-                // if nodes are in different unit cells (a loop is found); just update df and continue 
+                // if nodes are in different unit cells (a loop is found); just update df and continue
                 if(df>nodes[best.first].connections.at(best.second).max_radius) df=nodes[best.first].connections.at(best.second).max_radius;
             };
             // otherwise do nothing
             // need to make sure heap is correct (which should be true as nothing was added)
         }
-        
+
         else{
             //
             // need this section ?
             //
         };
-        
+
     };
-    
+
     // change radii to diameter
     df=df*2.0;
     di=di*2.0;
-    
+
     if(node2FoundFlag == false)
       {
       df = -1;
@@ -1438,7 +1438,7 @@ pair <double, double> PORE::getFreeIncludedSphereDiameterforNodePair(int node1, 
     pair<double,double>  resultdfdif;
     resultdfdif.first=df;
     resultdfdif.second=di;
-    
+
     return resultdfdif;
 }
 
@@ -1447,11 +1447,11 @@ pair <double, double> PORE::getFreeIncludedSphereDiameterforNodePair(int node1, 
 
 /* Get information about the pocket: di, coordinates and encapsulating sphere radius */
 void PORE::getSimplifiedPocketInfo(ATOM_NETWORK *atmNet, std::vector <double> *pocketInfo){
-    
+
     double maxdi;
     double maxid = 0;
     pocketInfo->clear();
-    
+
     for(unsigned int i=0; i<nodes.size(); i++)
     {
         if(i==0)
@@ -1459,65 +1459,65 @@ void PORE::getSimplifiedPocketInfo(ATOM_NETWORK *atmNet, std::vector <double> *p
             maxdi = nodes.at(i).max_radius;
         }
         else{
-            if(nodes.at(i).max_radius > maxdi) 
+            if(nodes.at(i).max_radius > maxdi)
             {
                 maxdi = nodes.at(i).max_radius;
                 maxid = i;
             };
         };
     };
-    
+
     maxdi=maxdi*2.0;
-    
+
     pocketInfo->push_back(maxdi);
-    
+
     Point pt = atmNet->xyz_to_abc(nodes.at(maxid).x, nodes.at(maxid).y, nodes.at(maxid).z);
     pt = atmNet->shiftABCInUC(pt);
     pocketInfo->push_back(pt[0]); pocketInfo->push_back(pt[1]); pocketInfo->push_back(pt[2]);
-    
+
     double pocketR; // radii of pocket (sphere that encapsulates all nodes in the pocket)
-    
+
     pocketR = maxdi*0.5;
     for(unsigned int i=0; i<nodes.size(); i++)
     {
         double dist = calcEuclideanDistance(nodes.at(maxid).x, nodes.at(maxid).y, nodes.at(maxid).z, nodes.at(i).x, nodes.at(i).y, nodes.at(i).z);
         dist = dist + nodes.at(i).max_radius;
-        
+
         if(dist > pocketR) pocketR = dist;
-        
+
     };
-    
+
     pocketInfo->push_back(pocketR);
-    
+
 }
 
 
 
 /* Functions gets restrictions between provided sements of Voronoi network within the current PORE */
-/* It takes the original number of segments (to be specified by user) and a list of original Voronoi nodes and their segment assigments 
+/* It takes the original number of segments (to be specified by user) and a list of original Voronoi nodes and their segment assigments
    (that is w.r.t. to pre-channel detection) than analyzed segment connectivity within the currnet pore.
 */
 //void PORE::getRestrictingDiameters(int nSegments, vector<int> vorNetID, vector< vector<double> > *PLDtable){
-void PORE::getRestrictingDiameters(int nSegments, vector<int> vorNetID, vector< vector<double> > *PLDtable, vector< vector< pair<int,int> > > *PLDEdgeTable, 
+void PORE::getRestrictingDiameters(int nSegments, vector<int> vorNetID, vector< vector<double> > *PLDtable, vector< vector< pair<int,int> > > *PLDEdgeTable,
                                   vector<double> *segmentDi, vector<int> *segmentDiNodeID, vector <double> *segmentDiFinal, vector<int> *segmentDiFinalNodeID){
     //Define three access types
     const int ACCESSED   =  1;
     const int UNKNOWN      = -1;
 
     // flag that is used to terminate the search
-    
+
     bool node2FoundFlag = false;
 
     // Make a local copy of nodes vector as it will be modified
     vector<DIJKSTRA_NODE> lnodes = nodes;
-    
+
     // Initialize the unit cell position of each node
     vector<DELTA_POS> directions = vector<DELTA_POS> (lnodes.size(), DELTA_POS(0,0,0));
-    
+
     // Initialize the status of each node as UNKNOWN
     vector<int> accessStatuses = vector<int> (lnodes.size(), UNKNOWN);
     unsigned int nodeIndex = 0;
-    
+
     double di,df;
 
     if(nSegments < 1){
@@ -1529,7 +1529,7 @@ void PORE::getRestrictingDiameters(int nSegments, vector<int> vorNetID, vector< 
 //for(unsigned int i=0; i<vorNetID.size();i++) cout << vorNetID[i] << "  ";
 
 
-    // Need to translate IDs from the original Voronoi network to PORE ids 
+    // Need to translate IDs from the original Voronoi network to PORE ids
 
     vector <int> PoreNodesSegmentIDs; // will store segment ID for each node in the current PORE
 
@@ -1541,7 +1541,7 @@ void PORE::getRestrictingDiameters(int nSegments, vector<int> vorNetID, vector< 
        int VnodeID = reverseIDMappings.find(i)->second;
        if(vorNetID[VnodeID] >= 0)
          {
-         PoreNodesSegmentIDs[i] = vorNetID[VnodeID]; 
+         PoreNodesSegmentIDs[i] = vorNetID[VnodeID];
          nSegPresent++;
          };
 
@@ -1554,12 +1554,12 @@ void PORE::getRestrictingDiameters(int nSegments, vector<int> vorNetID, vector< 
 
     for(unsigned int i=0; i<nodes.size(); i++)
        {
-       if(PoreNodesSegmentIDs[i] > -1) 
+       if(PoreNodesSegmentIDs[i] > -1)
           {
-          accessStatuses[i] = ACCESSED;   
+          accessStatuses[i] = ACCESSED;
           directions[i] = DELTA_POS(0,0,0); // not sure about this line
-          
-          if(segmentDi->at(PoreNodesSegmentIDs[i]) < nodes.at(i).max_radius*2) 
+
+          if(segmentDi->at(PoreNodesSegmentIDs[i]) < nodes.at(i).max_radius*2)
              {
              segmentDi->at(PoreNodesSegmentIDs[i]) = nodes.at(i).max_radius*2;
              segmentDiNodeID->at(PoreNodesSegmentIDs[i]) = reverseIDMappings.find(i)->second;
@@ -1571,25 +1571,25 @@ void PORE::getRestrictingDiameters(int nSegments, vector<int> vorNetID, vector< 
 
 /* BUG BUG line (1ln) below, it probably clears segmentDiFinal too many times, moving to the above loop */
 //    for(int i=0; i<nSegments; i++) segmentDiFinal->at(i) = segmentDi->at(i); // copying current segments into Final
-    
+
 /* old stuff to be removed
     // Start analysis for node of id = nodeid
-    
+
     nodeIndex = node1; // node1 is w.r.t pore node index (use PORE reverseMapping to retrieve original node
-    
+
     // accept the initial node
     di=lnodes.at(nodeIndex).max_radius;
     df=lnodes.at(nodeIndex).max_radius;
-    
+
     accessStatuses[nodeIndex] = ACCESSED;
-    
+
     directions[nodeIndex] = DELTA_POS(0,0,0);
 
  ends old stuff */
-    
+
     compareConnections_ptr = &lnodes;
     HEAP< pair<int,int> > stack(compareConnections);
-    
+
     // loop over all connections and add them to stack
     for(unsigned int n=0;  n<nodes.size(); n++)
       {
@@ -1599,40 +1599,40 @@ void PORE::getRestrictingDiameters(int nSegments, vector<int> vorNetID, vector< 
           {
           if(lnodes[n].connections.at(i).max_radius > lnodes.at(lnodes[n].connections.at(i).to).max_radius)
               lnodes[n].connections.at(i).max_radius = lnodes.at(lnodes[n].connections.at(i).to).max_radius;
-        
+
           stack.insert(pair<int,int>(n,i));
           };
         };
       };
-    
+
     stack.reHeapify();
 
 //
 // Note: in the following blocks, we probably dont need directions[]
 // to be cleaned in the future
 
-    
+
     while(stack.size() != 0){
         //loop with Dijkstra-like propagation
-        
+
         // select the path with largest opening
         pair<int,int> best = stack.pop();
-        
+
         int best_node = lnodes[best.first].connections[best.second].to;
-        
+
         if(accessStatuses[best_node]==UNKNOWN)
         {
             // if the node (best_node) is not assigned to segment, assign it to the current segment (determined by node best.first)
             // check new connections, add to heap or terminane
-            
-            accessStatuses[best_node] = ACCESSED; 
+
+            accessStatuses[best_node] = ACCESSED;
             directions[best_node] = directions[best.first];
             directions[best_node] = directions[best_node] + (lnodes[best.first].connections.at(best.second).deltaPos);
             PoreNodesSegmentIDs[best_node] = PoreNodesSegmentIDs[best.first];
-           
-            if(nodes.at(best_node).max_radius * 2 > segmentDiFinal->at(PoreNodesSegmentIDs[best.first])) 
-               {   
-               segmentDiFinal->at(PoreNodesSegmentIDs[best.first]) = nodes.at(best_node).max_radius * 2; 
+
+            if(nodes.at(best_node).max_radius * 2 > segmentDiFinal->at(PoreNodesSegmentIDs[best.first]))
+               {
+               segmentDiFinal->at(PoreNodesSegmentIDs[best.first]) = nodes.at(best_node).max_radius * 2;
                segmentDiFinalNodeID->at(PoreNodesSegmentIDs[best.first]) = reverseIDMappings.find(best_node)->second;
                };
 
@@ -1641,14 +1641,14 @@ void PORE::getRestrictingDiameters(int nSegments, vector<int> vorNetID, vector< 
             {
                 if(lnodes[best_node].connections.at(i).max_radius > lnodes.at(lnodes[best_node].connections.at(i).to).max_radius)
                     lnodes[best_node].connections.at(i).max_radius = lnodes.at(lnodes[best_node].connections.at(i).to).max_radius;
-                
+
                 if(lnodes[best_node].connections[i].to!=best.first)
                     stack.insert(pair<int,int>(best_node,i));
-            };	
-//            stack.reHeapify(); 
+            };
+//            stack.reHeapify();
 //            I think reHeapify is not needed as heap.insert ensures proper sorting
         }
-        
+
         else if(accessStatuses[best_node]==ACCESSED){
             //selected connection leads to a node that is already assigned to a segment
 
@@ -1660,7 +1660,7 @@ void PORE::getRestrictingDiameters(int nSegments, vector<int> vorNetID, vector< 
 
 //begin debug
 //cout << "PLD table size: " << PLDtable->size() << "   " << PLDtable->at(PoreNodesSegmentIDs[best_node]).size() << "\n";
-//cout << "PoreNodesSegmentIDs[best_node]= " << PoreNodesSegmentIDs[best_node] << "   PoreNodesSegmentIDs[best.first]= " << PoreNodesSegmentIDs[best.first] << "\n"; 
+//cout << "PoreNodesSegmentIDs[best_node]= " << PoreNodesSegmentIDs[best_node] << "   PoreNodesSegmentIDs[best.first]= " << PoreNodesSegmentIDs[best.first] << "\n";
 //              if(PLDtable->size() > PoreNodesSegmentIDs[best_node] + 1 || PLDtable->at(PoreNodesSegmentIDs[best_node]).size() > PoreNodesSegmentIDs[best.first] + 1)
 //    {cout << "alarm...\n";
 //};
@@ -1670,44 +1670,38 @@ void PORE::getRestrictingDiameters(int nSegments, vector<int> vorNetID, vector< 
                 {
                 PLDtable->at(PoreNodesSegmentIDs[best_node]).at(PoreNodesSegmentIDs[best.first]) = 2*r;
                 PLDtable->at(PoreNodesSegmentIDs[best.first]).at(PoreNodesSegmentIDs[best_node]) = 2*r;
-                pair<int,int> p(reverseIDMappings.find(best_node)->second, reverseIDMappings.find(best.first)->second); 
+                pair<int,int> p(reverseIDMappings.find(best_node)->second, reverseIDMappings.find(best.first)->second);
                 PLDEdgeTable->at(PoreNodesSegmentIDs[best_node]).at(PoreNodesSegmentIDs[best.first]) = p;
                 PLDEdgeTable->at(PoreNodesSegmentIDs[best.first]).at(PoreNodesSegmentIDs[best_node]) = p;
                 }else{
                 //cerr << "Trying to store smaller diameter than already stored. This shouldnt happen. Check the code\n";
-                };              
+                };
               } else
               {
               // both nodes are of the same segment, do nothing
 
               };
-            
-           /* old stuff, probably to be removed  
+
+           /* old stuff, probably to be removed
             if(!(directions[best_node]).equals(directions[best.first] + lnodes[best.first].connections.at(best.second).deltaPos))
             {
-                // if nodes are in different unit cells (a loop is found); just update df and continue 
+                // if nodes are in different unit cells (a loop is found); just update df and continue
                 if(df>nodes[best.first].connections.at(best.second).max_radius) df=nodes[best.first].connections.at(best.second).max_radius;
             };
            */
         }
-        
+
         else{
             //
             // need this section ?
             //
         };
-        
+
     };
-   
+
    for(int i=0; i<nSegments; i++)
      {
      if(segmentDi->at(i)!=segmentDiFinal->at(i)) cerr << "Segment Di(" << segmentDi->at(i) << ") is different than Segment Di Final (" << segmentDiFinal->at(i) << ") for segment " << i << ".\n";
-     };  
+     };
 
 } // ends getRestrictingDiameters()
-
-
-
-
-
-

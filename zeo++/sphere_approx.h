@@ -14,7 +14,7 @@
 class AtomCluster {
 
   private:
-   double smallSphereRadius; //  defines the size of replacement sphere        
+   double smallSphereRadius; //  defines the size of replacement sphere
    ATOM   orgAtom; // original atom/to be replaced
   public:
 	//variables
@@ -23,7 +23,7 @@ class AtomCluster {
 	//constructor
 /* old to be delated
 	AtomCluster(XYZ point);
-	AtomCluster(double x, double y, double z); 
+	AtomCluster(double x, double y, double z);
 */
     AtomCluster(ATOM orgatm, double replacementSphereRadii);
 	//methods
@@ -56,7 +56,7 @@ class AtomCluster {
 
 
 
-/* Function that analyzes distribution of atomic radii and execute replacement of large atoms 
+/* Function that analyzes distribution of atomic radii and execute replacement of large atoms
    with clusters of small ones */
 void setupHighAccuracyAtomNetwork(ATOM_NETWORK *atmnet, std::string AccSetting);
 

@@ -603,7 +603,7 @@ if(verbose) printf("DEBUG: pushing the newly defined, unique loop\n");
                 }
               }
             }
-          } 
+          }
         }
       }
     }
@@ -673,5 +673,3 @@ void search_for_char(FILE *f, char target) {
 		exit(EXIT_FAILURE);
 	}
 }
-
-

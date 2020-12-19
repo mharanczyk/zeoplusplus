@@ -32,4 +32,3 @@ cdef class Cycle:
     Contains a pointer to CYCLE
     """
     cdef CYCLE* thisptr
-

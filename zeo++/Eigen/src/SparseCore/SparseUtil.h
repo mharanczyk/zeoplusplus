@@ -10,7 +10,7 @@
 #ifndef EIGEN_SPARSEUTIL_H
 #define EIGEN_SPARSEUTIL_H
 
-namespace Eigen { 
+namespace Eigen {
 
 #ifdef NDEBUG
 #define EIGEN_DBG_SPARSE(X)
@@ -84,7 +84,7 @@ template<typename Lhs, typename Rhs, bool Transpose> class SparseDenseOuterProdu
 
 template<typename Lhs, typename Rhs> struct SparseSparseProductReturnType;
 template<typename Lhs, typename Rhs,
-         int InnerSize = EIGEN_SIZE_MIN_PREFER_FIXED(internal::traits<Lhs>::ColsAtCompileTime,internal::traits<Rhs>::RowsAtCompileTime)> struct DenseSparseProductReturnType;         
+         int InnerSize = EIGEN_SIZE_MIN_PREFER_FIXED(internal::traits<Lhs>::ColsAtCompileTime,internal::traits<Rhs>::RowsAtCompileTime)> struct DenseSparseProductReturnType;
 template<typename Lhs, typename Rhs,
          int InnerSize = EIGEN_SIZE_MIN_PREFER_FIXED(internal::traits<Lhs>::ColsAtCompileTime,internal::traits<Rhs>::RowsAtCompileTime)> struct SparseDenseProductReturnType;
 template<typename MatrixType,int UpLo> class SparseSymmetricPermutationProduct;

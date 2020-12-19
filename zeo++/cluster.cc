@@ -1,6 +1,6 @@
-/* Clusters of voronoi nodes are analyzed and then compacted to a single 
- * voronoi node for each cluster. 
- * Different methods of pruning. 
+/* Clusters of voronoi nodes are analyzed and then compacted to a single
+ * voronoi node for each cluster.
+ * Different methods of pruning.
  * Useful in material science where the high symmetry voronoi nodes
  * are taken as interstitial sites
  * Author: Bharat Medasani
@@ -31,11 +31,11 @@ typedef vector<VOR_NODE>::const_iterator VnCit;
 typedef vector<DIJKSTRA_NODE>::iterator DnIt;
 //typedef vector<DIJKSTRA_NODE>::const_iterator DnCit;
 
-/* conn_comp 
+/* conn_comp
  * Compares two objects of CONN class defined in graphstorage.h
  * Ensure that from has same value in both conn objects for proper operation
  */
-bool edge_comp(const CONN& lhs, const CONN& rhs) 
+bool edge_comp(const CONN& lhs, const CONN& rhs)
 {
     if (lhs.from != rhs.from) throw 11;  // from nodes should be equal
     return lhs.length < rhs.length;
@@ -43,12 +43,12 @@ bool edge_comp(const CONN& lhs, const CONN& rhs)
 
 
 /* Sort the dijkstra network such that for each node all the connections
- * are arranged in order based on distance 
+ * are arranged in order based on distance
  */
 void dijkstra_sort(DIJKSTRA_NETWORK* dnet)
 {
     vector<DIJKSTRA_NODE>::iterator it = dnet->nodes.begin();
-    for ( ; it != dnet->nodes.end(); ++it) 
+    for ( ; it != dnet->nodes.end(); ++it)
         sort(it->connections.begin(), it->connections.end(), edge_comp);
     return;
 }
@@ -57,7 +57,7 @@ void dijkstra_sort(DIJKSTRA_NETWORK* dnet)
 pair<DnIt, DnIt> get_first_closer_nonassigned_node(const XYZ pt, const ATOM_NETWORK& atmnet,
         vector<DIJKSTRA_NODE> nodes, const float cutoff_dist)
 {
-    DnIt it = nodes.begin(); 
+    DnIt it = nodes.begin();
     for (; it != nodes.end(); ++it){
         double period_dist = atmnet.calcDistanceXYZ(it->x, it->y, it->z, pt.x, pt.y, pt.z);
         if (!it->active && period_dist < cutoff_dist) break;
@@ -66,10 +66,10 @@ pair<DnIt, DnIt> get_first_closer_nonassigned_node(const XYZ pt, const ATOM_NETW
 }
 
 
-/* Function to partition high accuracy voronoi graph into clusters that are close to 
+/* Function to partition high accuracy voronoi graph into clusters that are close to
  * voronoi nodes in low accuracy cluster.
  * Args:
- *  Input: 
+ *  Input:
  *      atmnet: ATOM_NETWORK
  *      cutoff_dist: Maximum distance from regular voronoi network node that belong to a cluster
  *  Output:
@@ -78,7 +78,7 @@ pair<DnIt, DnIt> get_first_closer_nonassigned_node(const XYZ pt, const ATOM_NETW
 vector< vector<XYZ> > cluster_partition(ATOM_NETWORK* atmnet, const float cutoff_dist)
 {
     //Algorithm:
-    
+
     // Partition a high accuracy voronoi net into clusters.
     ATOM_NETWORK ha_atmnet = *atmnet;
     string acc_setting = "S30";
@@ -96,14 +96,14 @@ vector< vector<XYZ> > cluster_partition(ATOM_NETWORK* atmnet, const float cutoff
 
     for (DnIt it = dnet.nodes.begin(); it != dnet.nodes.end(); ++it)
         it->active = false;
-    
+
     for (VnIt it = vornet.nodes.begin(); it != vornet.nodes.end(); ++it)
         cout << it->x << " " << it->y << " " << it->z << endl;
 
     vector <vector<XYZ> > clusters;
-    
+
     for (VnIt nodeit = vornet.nodes.begin(); nodeit != vornet.nodes.end(); ++nodeit) {
-        // Get the first non assigned high accuracy voronoi node within the 
+        // Get the first non assigned high accuracy voronoi node within the
         // cutoff distance to current low accuracy voronoi node
         XYZ low_acc_node_loc(nodeit->x, nodeit->y, nodeit->z);
         pair<DnIt, DnIt> p = get_first_closer_nonassigned_node(   // Highaccuracy dijkstra
@@ -135,17 +135,17 @@ vector< vector<XYZ> > cluster_partition(ATOM_NETWORK* atmnet, const float cutoff
                 double dist_to_low_acc_node = atmnet->calcDistanceXYZ(
                         nodeit->x, nodeit->y, nodeit->z,
                         to_node.x, to_node.y, to_node.z);
-                if (find(visited_ids.begin(), visited_ids.end(), to_nodeid) == visited_ids.end() 
+                if (find(visited_ids.begin(), visited_ids.end(), to_nodeid) == visited_ids.end()
                         && dist_to_low_acc_node < cutoff_dist)
-                    tovisit_ids.push_back(to_nodeid); 
+                    tovisit_ids.push_back(to_nodeid);
             }
         }
-        
+
         clusters.push_back(cluster);
         tovisit_ids.clear();
         visited_ids.clear();
         cluster.clear();
-        
+
     }
     // assert (clusters.size() == vornet.nodes.size());
 
@@ -172,8 +172,8 @@ vector<XYZ> cluster_aggregate(const vector< vector<XYZ> >& clusters, const ATOM_
             // Find the closest periodic of *it to centroid and add it to it.
             Point curr_pt = atmnet->xyz_to_abc(it->x, it->y, it->z);
             double tmp_x, tmp_y, tmp_z;    // C.P.I. of curr_pt w.r.t. centroid
-            distcalc.closest_periodic_image(c_pt.vals[0], c_pt.vals[1], c_pt.vals[2], 
-                                 curr_pt.vals[0], curr_pt.vals[1], curr_pt.vals[2], 
+            distcalc.closest_periodic_image(c_pt.vals[0], c_pt.vals[1], c_pt.vals[2],
+                                 curr_pt.vals[0], curr_pt.vals[1], curr_pt.vals[2],
                                  tmp_x, tmp_y, tmp_z);
             c_pt = c_pt + Point(tmp_x, tmp_y, tmp_z);
             ++count;
@@ -204,8 +204,8 @@ void cluster_aggregate(const vector< vector<XYZ> >& clusters, const ATOM_NETWORK
             // Find the closest periodic of *it to centroid and add it to it.
             Point curr_pt = atmnet->xyz_to_abc(it->x, it->y, it->z);
             double tmp_x, tmp_y, tmp_z;    // C.P.I. of curr_pt w.r.t. centroid
-            distcalc.closest_periodic_image(c_pt.vals[0], c_pt.vals[1], c_pt.vals[2], 
-                                 curr_pt.vals[0], curr_pt.vals[1], curr_pt.vals[2], 
+            distcalc.closest_periodic_image(c_pt.vals[0], c_pt.vals[1], c_pt.vals[2],
+                                 curr_pt.vals[0], curr_pt.vals[1], curr_pt.vals[2],
                                  tmp_x, tmp_y, tmp_z);
             c_pt = c_pt + Point(tmp_x, tmp_y, tmp_z);
             ++count;
@@ -221,7 +221,7 @@ void simplify_ha_vornet(ATOM_NETWORK* atmnet)
 {
     vector <vector<XYZ> > clusters =  cluster_partition(atmnet, 0.2);
     vector<XYZ> reduced_clusters = cluster_aggregate(clusters, atmnet);
-    
+
     vector<XYZ>::iterator it = reduced_clusters.begin();
     for (; it != reduced_clusters.end(); ++it) {
         it->print(cout);
@@ -244,7 +244,7 @@ void high_accuracy_vornodes_reduction(ATOM_NETWORK* atmnet, vector<XYZ>* vornode
 
 /* Function to compact voronoi network
  * Args:
- *  Input: 
+ *  Input:
  *      inp_vor: Pointer to input voronoi network
  *      cluster_rad: Maximum distance between nodes that belong to a cluster
  *                   Default is 0.5 Angstrom    // May be too high. Confirm
@@ -259,7 +259,7 @@ VORONOI_NETWORK cluster_reduce(const VORONOI_NETWORK* vornet, const float cutoff
     // For each cluster find the voronoi node with maximum circle of radius
     // Eliminate all other nodes in the cluster
     // Generate new edges linking the remaining voronoi node in the cluster to other clusters
-    
+
     // Partition the dijkstra net into clusters.
     DIJKSTRA_NETWORK dnet;
     DIJKSTRA_NETWORK::buildDijkstraNetwork(vornet, &dnet);
@@ -269,7 +269,7 @@ VORONOI_NETWORK cluster_reduce(const VORONOI_NETWORK* vornet, const float cutoff
     vector< vector<int> > clusters;
     while (nodeiter != dnet.nodes.end()) {
         if (!nodeiter->active){ // Node still not assigned to any cluster
-            // Check if the node belongs to any existing cluster by first checking if a 
+            // Check if the node belongs to any existing cluster by first checking if a
             // connecting node belongs to cluster and then test the distance to connecting node
             for (vector<CONN>::const_iterator conniter = nodeiter->connections.begin();
                     conniter != nodeiter->connections.end(); ++conniter){
@@ -304,13 +304,13 @@ VORONOI_NETWORK cluster_reduce(const VORONOI_NETWORK* vornet, const float cutoff
 /* Function to prune high accuracy voronoi network.
  * Removes the voronoi nodes within the higher radius atoms
  * Args:
- *  Input: 
+ *  Input:
  *      low_atm_net: Pointer to original atom network
  *      ha_atm_net: Pointer to high accuracy atom network
  *  Input/Output:
  *      ha_vor: Pointer to high accuracy voronoi network
  */
-void prune_high_accuracy_voronoi_network( VORONOI_NETWORK* ha_vor, 
+void prune_high_accuracy_voronoi_network( VORONOI_NETWORK* ha_vor,
                             ATOM_NETWORK* low_atm_net, ATOM_NETWORK* high_atm_net,
                             double delta, bool print)
 {
@@ -354,7 +354,7 @@ void prune_high_accuracy_voronoi_network( VORONOI_NETWORK* ha_vor,
         for (VnIt vnit = ha_vor->nodes.begin(); vnit != ha_vor->nodes.end();) {
             double x = vnit->x; double y = vnit->y; double z = vnit->z;
             double dist = low_atm_net->calcDistanceXYZABC(x, y, z, a1, b1, c1);
-            if (dist <= atm_rad-delta){       // Delete the voronoi node and associated edges 
+            if (dist <= atm_rad-delta){       // Delete the voronoi node and associated edges
                 int node_id = vnit - ha_vor->nodes.begin();
                 // Delete the edges with the node_id and decrement the node index when its
                 // greater than the id of deleted node
@@ -389,7 +389,7 @@ void prune_high_accuracy_voronoi_network( VORONOI_NETWORK* ha_vor,
 /* Function to identify the nearest high accuracy voronoi node that has a high radius.
  * Removes the voronoi nodes within the higher radius atoms
  * Args:
- *  Input: 
+ *  Input:
  *      ha_vornet: Pointer to high accuracy voronoi network
  *      vornet: Pointer to original voronoi network
  *      atm_net: Pointer to atom network
@@ -397,7 +397,7 @@ void prune_high_accuracy_voronoi_network( VORONOI_NETWORK* ha_vor,
  *  Output:
  *      red_vornet: Pointer to reduced voronoi network
  */
-void nearest_largest_diameter_ha_vornet(VORONOI_NETWORK* ha_vornet, VORONOI_NETWORK* vornet, 
+void nearest_largest_diameter_ha_vornet(VORONOI_NETWORK* ha_vornet, VORONOI_NETWORK* vornet,
         ATOM_NETWORK* atmnet, VORONOI_NETWORK* red_vornet, float cutoff)
 {
     cout << "vornet size " << ha_vornet->nodes.size() << endl;
@@ -436,24 +436,24 @@ void nearest_largest_diameter_ha_vornet(VORONOI_NETWORK* ha_vornet, VORONOI_NETW
     }
 
     /* Ignoring edges at the moment as they are not needed */
-    // Now that the voronoi nodes in reduced voronoi network are in the order 
+    // Now that the voronoi nodes in reduced voronoi network are in the order
     // of low accuracy vornet, generate the edges connecting the nodes in the order corresponding
-    // to that in the low accuracy voronoi network. 
+    // to that in the low accuracy voronoi network.
     // Adjust parameters of edges such as length, radius etc
 }
 
-/* Function to simplify the high accuracy voronoi network such that 
+/* Function to simplify the high accuracy voronoi network such that
  * the small spheres coordinating the vornodes originate from different
- * atoms in the original atom network.  
+ * atoms in the original atom network.
  * Args:
- *  Input: 
+ *  Input:
  *      ha_vornet: Pointer to high accuracy voronoi network
  *      ha_atment: Pointer to high accuracy atom network
  *  Output:
  *      red_vornet: Pointer to reduced voronoi network
  */
-void simplify_high_accuracy_vornet(VORONOI_NETWORK* ha_vornet, 
-                                   ATOM_NETWORK* ha_atmnet, 
+void simplify_high_accuracy_vornet(VORONOI_NETWORK* ha_vornet,
+                                   ATOM_NETWORK* ha_atmnet,
                                    VORONOI_NETWORK* red_vornet)
 {
     // Identify nodes that belong to unitcell crossing edges
@@ -465,9 +465,9 @@ void simplify_high_accuracy_vornet(VORONOI_NETWORK* ha_vornet,
         }
     }
     // Sort and remove duplicates
-    vector<int>::iterator vbeg = nodes_with_boundary_crossing_edges.begin(); 
-    vector<int>::iterator vend = nodes_with_boundary_crossing_edges.end(); 
-    int size = nodes_with_boundary_crossing_edges.size(); 
+    vector<int>::iterator vbeg = nodes_with_boundary_crossing_edges.begin();
+    vector<int>::iterator vend = nodes_with_boundary_crossing_edges.end();
+    int size = nodes_with_boundary_crossing_edges.size();
     sort(vbeg, vbeg+size);
     nodes_with_boundary_crossing_edges.erase( unique( vbeg, vend ), vend );
 
@@ -484,7 +484,7 @@ void simplify_high_accuracy_vornet(VORONOI_NETWORK* ha_vornet,
             for (vector<int>::iterator it = vit->atomIDs.begin(); it != vit->atomIDs.end(); ++it){
                 original_atmnet_ids.insert(id_map->at(*it));
             }
-            
+
             if (original_atmnet_ids.size() >= 4) {
                 red_vornet->nodes.push_back(*vit);
             }
@@ -494,16 +494,16 @@ void simplify_high_accuracy_vornet(VORONOI_NETWORK* ha_vornet,
 
 
 /* Function to prune the high accuracy voronoi network based on geometry
- * such that within a 0.1Ang^2 grid only one voronoi node is retained. 
- * Implemented that such that no two nodes are with 0.1 Ang distance 
+ * such that within a 0.1Ang^2 grid only one voronoi node is retained.
+ * Implemented that such that no two nodes are with 0.1 Ang distance
  * Args:
- *  Input: 
+ *  Input:
  *      ha_vornet: Pointer to high accuracy voronoi network
  *      ha_atment: Pointer to high accuracy atom network
  *  Output:
  *      red_vornet: Pointer to reduced voronoi network
  */
-void geometry_pruning(VORONOI_NETWORK* ha_vornet, ATOM_NETWORK* atmnet, 
+void geometry_pruning(VORONOI_NETWORK* ha_vornet, ATOM_NETWORK* atmnet,
                       float cutoff, VORONOI_NETWORK* red_vornet)
 {
     for (VnIt vh_it = ha_vornet->nodes.begin(); vh_it != ha_vornet->nodes.end(); ++vh_it){
@@ -519,7 +519,7 @@ void geometry_pruning(VORONOI_NETWORK* ha_vornet, ATOM_NETWORK* atmnet,
                 double x2 = vit->x;
                 double y2 = vit->y;
                 double z2 = vit->z;
-                double dist = atmnet->calcDistanceXYZ(x1,y1,z1,x2,y2,z2); 
+                double dist = atmnet->calcDistanceXYZ(x1,y1,z1,x2,y2,z2);
                 dists.push_back(dist);
             }
             sort(dists.begin(), dists.end());
@@ -533,17 +533,17 @@ void geometry_pruning(VORONOI_NETWORK* ha_vornet, ATOM_NETWORK* atmnet,
 
 }
 
-/* Function to prune the high accuracy voronoi network such that nodes within 
- * the original atoms are pruned. Nodes within 0.1Ang^2 from surface are 
- * retained. 
+/* Function to prune the high accuracy voronoi network such that nodes within
+ * the original atoms are pruned. Nodes within 0.1Ang^2 from surface are
+ * retained.
  * Args:
- *  Input: 
+ *  Input:
  *      ha_vornet: Pointer to high accuracy voronoi network
  *      atment: Pointer to original atom network
  *  Output:
  *      red_vornet: Pointer to reduced voronoi network
  */
-void ha_prune_within_atom(VORONOI_NETWORK* ha_vornet, ATOM_NETWORK* atmnet, 
+void ha_prune_within_atom(VORONOI_NETWORK* ha_vornet, ATOM_NETWORK* atmnet,
                       float cutoff, VORONOI_NETWORK* red_vornet)
 {
     for (VnIt vh_it = ha_vornet->nodes.begin(); vh_it != ha_vornet->nodes.end(); ++vh_it){
@@ -555,13 +555,13 @@ void ha_prune_within_atom(VORONOI_NETWORK* ha_vornet, ATOM_NETWORK* atmnet,
             double x1 = ait->x;
             double y1 = ait->y;
             double z1 = ait->z;
-            double dist = atmnet->calcDistanceXYZ(x1,y1,z1,x2,y2,z2); 
+            double dist = atmnet->calcDistanceXYZ(x1,y1,z1,x2,y2,z2);
             if (dist < ait->radius-cutoff) {
                 near_flag = true;
                 break;
             }
         }
-        if (not near_flag) 
+        if (not near_flag)
             red_vornet->nodes.push_back(*vh_it);
     }
 

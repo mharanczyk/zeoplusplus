@@ -9,13 +9,13 @@ cdef extern from "../../geometry.h":
     cdef cppclass XYZ:
         XYZ(double, double, double) except +
         double x, y, z
-        void scale (const double sc, XYZ*) 
+        void scale (const double sc, XYZ*)
 
     cdef cppclass CPoint "Point":
         CPoint(double, double, double) except +
         double vals[3]
         CPoint scale (const double) const
-        CPoint operator-(CPoint) 
+        CPoint operator-(CPoint)
         CPoint operator+(CPoint)
         CPoint operator*(CPoint)
 
@@ -35,4 +35,3 @@ cdef class Point:
     Contains a pointer to c_point.
     """
     cdef CPoint* thisptr
-

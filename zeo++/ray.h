@@ -31,7 +31,7 @@ class ray{
 };
 
 class Sphere{
- public:  
+ public:
 	Point center;
   double radius;
 	//Methods
@@ -39,7 +39,7 @@ class Sphere{
 };
 
 class Plane{
- public:	
+ public:
 	Point point;
 	Point normal;
 	//Methods
@@ -93,4 +93,3 @@ void reportNodes(std::ostream &output,std::vector<Sphere>& s);
 void reportHistogram(std::ostream& output,double binSize,int maxBins,std::vector<ray>& rays);
 
 #endif
-

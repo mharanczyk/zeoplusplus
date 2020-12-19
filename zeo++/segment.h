@@ -22,7 +22,7 @@ class SEGMENT_CONNECTION{
 
 class SEGMENT{
   int id;                            // SEGMENT id
-  CHANNEL *parent;                   // Pointer to parent 
+  CHANNEL *parent;                   // Pointer to parent
   map<int,int> idMappings;           // (node id, new index) pairs
   map<int,int> reverseIDMappings;    // (new index, node id) pairs
   vector<DIJKSTRA_NODE> nodes;       // List of nodes in SEGMENT indexed by new index
@@ -34,7 +34,7 @@ class SEGMENT{
       idMappings.insert(pair<int, int> (oldNode.id, i));
       reverseIDMappings.insert(pair<int,int>(i, oldNode.id));
     }
-   
+
   }
 
 };

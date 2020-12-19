@@ -563,8 +563,8 @@ struct __pyx_obj_3zeo_12graphstorage_DijkstraNetwork;
 struct __pyx_obj_3zeo_5cycle_Cycle;
 
 /* "zeo/geometry.pxd":24
- * 
- * 
+ *
+ *
  * cdef class Xyz:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ XYZ class defined in geometry.h
@@ -576,8 +576,8 @@ struct __pyx_obj_3zeo_8geometry_Xyz {
 
 
 /* "zeo/geometry.pxd":32
- * 
- * 
+ *
+ *
  * cdef class Point:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ Point class defined in geometry.h
@@ -589,11 +589,11 @@ struct __pyx_obj_3zeo_8geometry_Point {
 
 
 /* "zeo/voronoicell.pxd":39
- * 
- * 
+ *
+ *
  * cdef class VorFace:             # <<<<<<<<<<<<<<
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorFace {
   PyObject_HEAD
@@ -603,10 +603,10 @@ struct __pyx_obj_3zeo_11voronoicell_VorFace {
 
 /* "zeo/voronoicell.pxd":42
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  * cdef class VorCell:             # <<<<<<<<<<<<<<
  *     cdef VOR_CELL* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorCell {
   PyObject_HEAD
@@ -616,7 +616,7 @@ struct __pyx_obj_3zeo_11voronoicell_VorCell {
 
 /* "zeo/voronoicell.pxd":45
  *     cdef VOR_CELL* thisptr
- * 
+ *
  * cdef class BasicVCell:             # <<<<<<<<<<<<<<
  *     cdef BASIC_VCELL* thisptr
  */
@@ -628,7 +628,7 @@ struct __pyx_obj_3zeo_11voronoicell_BasicVCell {
 
 /* "zeo/netstorage.pxd":120
  *             VORONOI_NETWORK* vornet, ATOM_NETWORK* atmnet)
- * 
+ *
  * cdef class Atom:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM class.
@@ -641,7 +641,7 @@ struct __pyx_obj_3zeo_10netstorage_Atom {
 
 /* "zeo/netstorage.pxd":126
  *     cdef ATOM* thisptr
- * 
+ *
  * cdef class AtomNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM_NETWORK class.
@@ -655,7 +655,7 @@ struct __pyx_obj_3zeo_10netstorage_AtomNetwork {
 
 /* "zeo/netstorage.pxd":135
  *     cdef bint rad_flag
- * 
+ *
  * cdef class VoronoiNode:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VOR_NODE class.
@@ -668,7 +668,7 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNode {
 
 /* "zeo/netstorage.pxd":141
  *     cdef VOR_NODE* thisptr
- * 
+ *
  * cdef class VoronoiNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VORONOI_NETWORK class.
@@ -680,8 +680,8 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNetwork {
 
 
 /* "zeo/graphstorage.pxd":34
- * 
- * 
+ *
+ *
  * cdef class DijkstraNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ DIJKSTRA_NETWORK class.
@@ -693,8 +693,8 @@ struct __pyx_obj_3zeo_12graphstorage_DijkstraNetwork {
 
 
 /* "zeo/cycle.pxd":29
- * 
- * 
+ *
+ *
  * cdef class Cycle:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ CYCLE class.
@@ -972,8 +972,8 @@ static PyObject *__pyx_codeobj__2;
 static PyObject *__pyx_codeobj__4;
 
 /* "zeo/cycle.pyx":12
- * 
- * 
+ *
+ *
  * def compute_centroid_4cycles(vornet):             # <<<<<<<<<<<<<<
  *     """
  *     Computes the centroid of the 4 corners of quadrilateral voronoi face
@@ -1016,7 +1016,7 @@ static PyObject *__pyx_pf_3zeo_5cycle_compute_centroid_4cycles(CYTHON_UNUSED PyO
 
   /* "zeo/cycle.pyx":22
  *     """
- * 
+ *
  *     cdef VORONOI_NETWORK* c_vornet_ptr = (<VoronoiNetwork?>vornet).thisptr             # <<<<<<<<<<<<<<
  *     cdef vector[CYCLE] cycles
  *     cdef vector[int] ids
@@ -1027,19 +1027,19 @@ static PyObject *__pyx_pf_3zeo_5cycle_compute_centroid_4cycles(CYTHON_UNUSED PyO
 
   /* "zeo/cycle.pyx":26
  *     cdef vector[int] ids
- * 
+ *
  *     if not compute_4cycle(c_vornet_ptr, &cycles, False, 1):             # <<<<<<<<<<<<<<
  *         raise ValueError
- * 
+ *
  */
   __pyx_t_2 = ((!(compute_4cycle(__pyx_v_c_vornet_ptr, (&__pyx_v_cycles), 0, 1) != 0)) != 0);
   if (__pyx_t_2) {
 
     /* "zeo/cycle.pyx":27
- * 
+ *
  *     if not compute_4cycle(c_vornet_ptr, &cycles, False, 1):
  *         raise ValueError             # <<<<<<<<<<<<<<
- * 
+ *
  *     centroid_list = []
  */
     __Pyx_Raise(__pyx_builtin_ValueError, 0, 0, 0);
@@ -1048,7 +1048,7 @@ static PyObject *__pyx_pf_3zeo_5cycle_compute_centroid_4cycles(CYTHON_UNUSED PyO
 
   /* "zeo/cycle.pyx":29
  *         raise ValueError
- * 
+ *
  *     centroid_list = []             # <<<<<<<<<<<<<<
  *     cdef vector[CYCLE].iterator it = cycles.begin()
  *     cdef vector[int].iterator iit
@@ -1059,7 +1059,7 @@ static PyObject *__pyx_pf_3zeo_5cycle_compute_centroid_4cycles(CYTHON_UNUSED PyO
   __pyx_t_3 = 0;
 
   /* "zeo/cycle.pyx":30
- * 
+ *
  *     centroid_list = []
  *     cdef vector[CYCLE].iterator it = cycles.begin()             # <<<<<<<<<<<<<<
  *     cdef vector[int].iterator iit
@@ -1136,7 +1136,7 @@ static PyObject *__pyx_pf_3zeo_5cycle_compute_centroid_4cycles(CYTHON_UNUSED PyO
  *         while iit != ids.end():
  *             id_set.add(deref(iit))             # <<<<<<<<<<<<<<
  *             inc(iit)
- * 
+ *
  */
       __pyx_t_3 = __Pyx_PyInt_From_int((*__pyx_v_iit)); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 39; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
@@ -1147,7 +1147,7 @@ static PyObject *__pyx_pf_3zeo_5cycle_compute_centroid_4cycles(CYTHON_UNUSED PyO
  *         while iit != ids.end():
  *             id_set.add(deref(iit))
  *             inc(iit)             # <<<<<<<<<<<<<<
- * 
+ *
  *         centroid_list.append({'ids':id_set, 'coords':new_xyz})
  */
       (++__pyx_v_iit);
@@ -1155,10 +1155,10 @@ static PyObject *__pyx_pf_3zeo_5cycle_compute_centroid_4cycles(CYTHON_UNUSED PyO
 
     /* "zeo/cycle.pyx":42
  *             inc(iit)
- * 
+ *
  *         centroid_list.append({'ids':id_set, 'coords':new_xyz})             # <<<<<<<<<<<<<<
  *         inc(it)
- * 
+ *
  */
     __pyx_t_3 = PyDict_New(); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
@@ -1168,10 +1168,10 @@ static PyObject *__pyx_pf_3zeo_5cycle_compute_centroid_4cycles(CYTHON_UNUSED PyO
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
     /* "zeo/cycle.pyx":43
- * 
+ *
  *         centroid_list.append({'ids':id_set, 'coords':new_xyz})
  *         inc(it)             # <<<<<<<<<<<<<<
- * 
+ *
  *     return centroid_list
  */
     (++__pyx_v_it);
@@ -1179,9 +1179,9 @@ static PyObject *__pyx_pf_3zeo_5cycle_compute_centroid_4cycles(CYTHON_UNUSED PyO
 
   /* "zeo/cycle.pyx":45
  *         inc(it)
- * 
+ *
  *     return centroid_list             # <<<<<<<<<<<<<<
- * 
+ *
  * def compute_face_centers(atmnet):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -1190,8 +1190,8 @@ static PyObject *__pyx_pf_3zeo_5cycle_compute_centroid_4cycles(CYTHON_UNUSED PyO
   goto __pyx_L0;
 
   /* "zeo/cycle.pyx":12
- * 
- * 
+ *
+ *
  * def compute_centroid_4cycles(vornet):             # <<<<<<<<<<<<<<
  *     """
  *     Computes the centroid of the 4 corners of quadrilateral voronoi face
@@ -1213,7 +1213,7 @@ static PyObject *__pyx_pf_3zeo_5cycle_compute_centroid_4cycles(CYTHON_UNUSED PyO
 
 /* "zeo/cycle.pyx":47
  *     return centroid_list
- * 
+ *
  * def compute_face_centers(atmnet):             # <<<<<<<<<<<<<<
  *     """
  *     Compute the face centers of the voronoi network
@@ -1260,14 +1260,14 @@ static PyObject *__pyx_pf_3zeo_5cycle_2compute_face_centers(CYTHON_UNUSED PyObje
  *     cdef ATOM_NETWORK* c_atmnet_ptr = (<AtomNetwork?>atmnet).thisptr
  *     cdef vector[XYZ] points
  *     face_center(c_atmnet_ptr, &points)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   face_center(__pyx_v_c_atmnet_ptr, (&__pyx_v_points));
 
   /* "zeo/cycle.pyx":47
  *     return centroid_list
- * 
+ *
  * def compute_face_centers(atmnet):             # <<<<<<<<<<<<<<
  *     """
  *     Compute the face centers of the voronoi network
@@ -1421,8 +1421,8 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
   /* "zeo/cycle.pyx":12
- * 
- * 
+ *
+ *
  * def compute_centroid_4cycles(vornet):             # <<<<<<<<<<<<<<
  *     """
  *     Computes the centroid of the 4 corners of quadrilateral voronoi face
@@ -1434,7 +1434,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/cycle.pyx":47
  *     return centroid_list
- * 
+ *
  * def compute_face_centers(atmnet):             # <<<<<<<<<<<<<<
  *     """
  *     Compute the face centers of the voronoi network
@@ -1557,8 +1557,8 @@ PyMODINIT_FUNC PyInit_cycle(void)
   /*--- Execution code ---*/
 
   /* "zeo/cycle.pyx":12
- * 
- * 
+ *
+ *
  * def compute_centroid_4cycles(vornet):             # <<<<<<<<<<<<<<
  *     """
  *     Computes the centroid of the 4 corners of quadrilateral voronoi face
@@ -1570,7 +1570,7 @@ PyMODINIT_FUNC PyInit_cycle(void)
 
   /* "zeo/cycle.pyx":47
  *     return centroid_list
- * 
+ *
  * def compute_face_centers(atmnet):             # <<<<<<<<<<<<<<
  *     """
  *     Compute the face centers of the voronoi network

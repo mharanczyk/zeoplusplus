@@ -34,45 +34,45 @@ ZeoVis overview:
 
 			    segment- Component of a channel. Segments are added using the id_segment function after calling id_channel
 		 	    feature- Component of a channel. Features are added using the id_feature function after calling id_feature
-		 
+
 		 cage     - Cage structure within the void space. Cages are added to the environment using the id_cage function
-		 
+
 
 Indexing:
 	To facilitate the display of lots of elements, commands take of variety of possible indices. The simplest is just a single number,
 	which denotes the element referred to by the type and index. Instead, however, indices can also be a list of numbers representing all
 	the elements of the specified type contained in the list. The most comprehensive option is 'all', which refers to all elements of the given type
 
-	Ex: (The show command will be discussed below) 
+	Ex: (The show command will be discussed below)
 		show atom 1
 		show face {1 2 3}
-		show node all 
+		show node all
 
 
 Displaying elements:
 	To display elements within the zeovis framework, the primary function syntax is:
 
 	      	      show $type $indices
-	
+
 	This command will display the relevant elements within the original unit cell. In addition, elements can be displayed using periodic translation
 	using the command
-		      
+
 		      show_trans $da $db $dc $type $indices
-		      
+
 	The translations, however, must fall within the range -4 to 4. To display elements over a wide range of translations, the command
-	    
-		      show_range {$min_da $min_db $min_dc} {$max_da $max_db $max_dc} $type $indices  
+
+		      show_range {$min_da $min_db $min_dc} {$max_da $max_db $max_dc} $type $indices
 
         will show the relevant elements over the box with these two corner points.
 
 
 Hiding elements:
        To hide an already displayed element in the (0,0,0) unitcell, simply use the command
-       	       	  
+
 		  hide $type $indices
 
 	Translated versions can also be hidden using the command
-	
+
 		 hide_trans $da $db $dc $type $indices
 
 	To hide all periodic images of certain elements, the following command is useful:
@@ -84,10 +84,10 @@ Altering element properties:
 	 of any element. To do so, simply use the following syntax:
 
 	 	 color $new_color $type $indices
-		
+
 	If the element is already visible, its color will be automatically updated on screen. Occasionally, you may wish to go back to an element's
 	original color. To do so, simply use the syntax:
-	
+
 		reset color $type $indices
 
 	In addition to colors, some elements also have sizes. In particular, these correspond to the radii of atoms and nodes. To change their sizes,
@@ -97,7 +97,7 @@ Altering element properties:
 	       adjust_size $amount $type $indices
 	       scale $factor $type $indices
 	       reset size $type $indices
-	 
+
 
 Adding to the environment:
          Channels, cages, features and segments are all probe-size dependent features. As a result, ZeoVis allows on-the-fly identification of these
@@ -125,22 +125,21 @@ Sampling rays within unit cell:
 		 sample_ray_sphere $chanRad $probeRad $numSamples
 		 sample_ray_andrew_sphere $chanRad $probeRad $numSamples
 	 	 sample_ray_andrew_atom $chanRad $probeRad $numSamples
-	Rays will be displayed in different colors based on their length. Color options can be changed in ray.cc. 
+	Rays will be displayed in different colors based on their length. Color options can be changed in ray.cc.
 
 Coloring rays of range of lengths:
 	 Rays can be color-coded according to their lengths.
-	 
+
 		(not yet but soon) color_code_rays $minLength $maxLength
-		 
+
 Coloring nodes:
 	 Voronoi nodes can be color-coded according to their accessibility. To do so, use the command
-	 
+
 		color_code_nodes $probeRad
 
 	Accessible nodes to the probe will be green while inaccessible nodes will be red.
 
- 
+
 Undoing operations:
 	A sequence of operations can be back-stepped using the undo command. The command takes no arguments and, if possible,
 	undoes the last action for which undo applies. Not all actions, however, are undoable.
-

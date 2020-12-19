@@ -22,7 +22,7 @@ void invertMatrix(double matrix [3][3], double newMatrix[3][3]);
 /* tries to invert a matrix, returning whether or not it succeeded */
 bool tryInvertMatrix(double matrix [3][3], double newMatrix[3][3]);
 
-/** Simple class used to store a set of three double precision numbers and perform 
+/** Simple class used to store a set of three double precision numbers and perform
  *  some trivial arithmetic operations. */
 class Point{
 public:
@@ -56,16 +56,16 @@ class TRIPLET {
 public:
   int vals[3];
   int x, y, z;
-  
+
   /* Construct a TRIPLET with the three provided components.*/
   TRIPLET(int myX, int myY, int myZ);
 
   /* Access one of the TRIPLETs three values.*/
   int& operator[](int index);
-  
+
   /** Add each component of the triplet to that of the provided TRIPLET
    *  and return the result. */
-  const TRIPLET operator+(const TRIPLET& other); 
+  const TRIPLET operator+(const TRIPLET& other);
 };
 
 /** Data structure used to store a set of three points */
@@ -74,7 +74,7 @@ public:
   double x, y ,z;
 
   XYZ(double myX = 0.0, double myY = 0.0, double myZ = 0.0);
-  
+
   void print(std::ostream& out = std::cout) const;
 
   const double magnitude() const;
@@ -89,7 +89,7 @@ public:
   const XYZ operator+(const XYZ& other) const;
   const double operator*(const XYZ& other) const;
   const XYZ unit() const;
-  const XYZ cross(const XYZ& other) const; 
+  const XYZ cross(const XYZ& other) const;
   double angle_between(const XYZ& other) const;
   double euclid_dist(const XYZ& other) const;
 };
@@ -126,8 +126,8 @@ std::pair<int, std::vector<Point> > findLineIntersections(Point p1, Point p2, Po
 
 std::pair<int, std::vector<Point> > findLineSegIntersections(Point p1, Point p2, Point circCenter, double rad);
 
-/* Returns the shortest distance along a sphere of the provided circle radius 
- * between the two provided points. Refer to http://en.wikipedia.org/wiki/Great-circle_distance. */ 
+/* Returns the shortest distance along a sphere of the provided circle radius
+ * between the two provided points. Refer to http://en.wikipedia.org/wiki/Great-circle_distance. */
 double calcSphereDistance(Point p1, Point p2, double circRad);
 
 /* Returns the projection of the provided Point onto the circle with the specified center and radius. */

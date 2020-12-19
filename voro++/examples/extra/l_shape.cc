@@ -39,7 +39,7 @@ class wall_l_shape : public wall {
 			// Set the cell to be equal to the L-shape
 			c=v;
 			c.translate(-x,-y,-z);
-			
+
 			// Set the tolerance to 100, to make the code search
 			// for cases where non-convex cells are cut in multiple
 			// places
@@ -61,7 +61,7 @@ int main() {
 	wall_l_shape(wls);
 	con.add_wall(wls);
 
-	// Add particles, making sure not to place any outside of the L-shape 
+	// Add particles, making sure not to place any outside of the L-shape
 	while(i<particles) {
 		x=2*rnd()-1;
 		y=2*rnd()-1;

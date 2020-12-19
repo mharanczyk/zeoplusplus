@@ -7,5 +7,3 @@ Undocumented functions
 -gridGprojdataBohr history_1.lvol out.cube history_1.cssr       - saves a grid with counts of number of points in particular volumetric bin, based on .lvol file
 
 -gridGprojdataBohr list_lvol out.cube history_1.cssr - save a grid with counts of number of frames that have a particular bin, please not that list_lvol is a file with a list of .lvol files
-
-

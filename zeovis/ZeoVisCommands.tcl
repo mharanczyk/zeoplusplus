@@ -13,7 +13,7 @@ proc initialize {} {
     global available_colors
     global color_list
     global draw_count
-    
+
     set draw_count 0
 
     set index [lsearch $available_colors black]
@@ -25,13 +25,13 @@ proc initialize {} {
 	global "num_$type\s"
 	global "draw_$type\_log"
 	global "draw_$type\_count"
- 
+
 	set num_elements [subst "\$num_$type\s"]
 	for {set i 0} {$i < $num_elements} {incr i} {
 	    set "draw_$type\_log($i)" [dict create]
 	}
     }
-    
+
     set colorIndex 0
     foreach type $colorable_types {
 	global "num_$type\s"
@@ -39,7 +39,7 @@ proc initialize {} {
 	global "$type\Colors"
 	set num_elements [subst "\$num_$type\s"]
 	set newColor [lindex $color_list $colorIndex]
-	
+
 	puts "COLORED $type $newColor"
 
 	for {set i 0} {$i < $num_elements} {incr i} {
@@ -57,7 +57,7 @@ proc initialize {} {
 	    set "old_$type\_radii($i)" {}
 	}
     }
-    
+
     set list_of_actions {}
     set probe_radius -1
     return ""
@@ -73,16 +73,16 @@ proc clear_env {} {
     initialize
     draw  delete         all
     return "ENVIRONMENT CLEARED"
-} 
+}
 
 proc translate_point {pt da db dc} {
     if {[llength $pt] != 3} {
 	return "ERROR: A POINT MUST BE A LIST CONTAINING THREE NUMBERS.";
     }
-    global uc_a_vector uc_b_vector uc_c_vector 
-    set newX [expr [lindex $pt 0] + $da * [lindex $uc_a_vector 0] + $db * [lindex $uc_b_vector 0] + $dc * [lindex $uc_c_vector 0] ] 
-    set newY [expr [lindex $pt 1] + $da * [lindex $uc_a_vector 1] + $db * [lindex $uc_b_vector 1] + $dc * [lindex $uc_c_vector 1] ] 
-    set newZ [expr [lindex $pt 2] + $da * [lindex $uc_a_vector 2] + $db * [lindex $uc_b_vector 2] + $dc * [lindex $uc_c_vector 2] ] 
+    global uc_a_vector uc_b_vector uc_c_vector
+    set newX [expr [lindex $pt 0] + $da * [lindex $uc_a_vector 0] + $db * [lindex $uc_b_vector 0] + $dc * [lindex $uc_c_vector 0] ]
+    set newY [expr [lindex $pt 1] + $da * [lindex $uc_a_vector 1] + $db * [lindex $uc_b_vector 1] + $dc * [lindex $uc_c_vector 1] ]
+    set newZ [expr [lindex $pt 2] + $da * [lindex $uc_a_vector 2] + $db * [lindex $uc_b_vector 2] + $dc * [lindex $uc_c_vector 2] ]
     return [list $newX $newY $newZ]
 }
 
@@ -114,7 +114,7 @@ proc show_trans_helper {type index extra_args} {
 
     set item_name "$type\s($index)"
     set old_record [subst "\$$item_name"]
-    
+
     set result {}
     foreach line $old_record {
 	lappend result [translate_command $line $da $db $dc]
@@ -138,7 +138,7 @@ proc checkElementTypes {type list_of_types} {
 
 proc checkElementIndex {type index} {
     global "num_$type\s"
-    set num_elements [subst "\$num_$type\s"] 
+    set num_elements [subst "\$num_$type\s"]
     if {$num_elements == 0} {
 	error "ERROR: THERE AREN'T ANY $type\s"
     } elseif {$index >= $num_elements} {
@@ -159,17 +159,17 @@ proc checkListIndices {lst type} {
 
 
 proc undo {} {
-    global list_of_actions 
+    global list_of_actions
     if {[llength $list_of_actions] == 0} {
-	return "NOTHING TO BE UNDONE" 
+	return "NOTHING TO BE UNDONE"
     }
     set last_action [lindex $list_of_actions [expr [llength $list_of_actions] - 1]]
     set list_of_actions [lreplace $list_of_actions end end]
-    set numPairs [expr [llength $last_action] / 2] 
+    set numPairs [expr [llength $last_action] / 2]
     for {set i 0} {$i < $numPairs} {incr i} {
 	set element_name  [lindex $last_action [expr 2 * $i]]
 	set indices [lindex $last_action [expr 1 + [expr 2 * $i]]]
-	
+
 	if {[string first "color_" $element_name] != -1} {
 	    set type [string range $element_name 6 end];
 	    revert color $type $indices
@@ -196,15 +196,15 @@ proc undo {} {
 		set real_indices [string range $indices 0 [expr [string first "_" $indices] - 1]]
 		set disp [string range $indices [expr [string first "_" $indices] + 1] end]
 	    }
-	    hide_trans [expr [string index $disp 0] - 4] [expr [string index $disp 1] - 4] [expr [string index $disp 2] - 4] $type $real_indices 
+	    hide_trans [expr [string index $disp 0] - 4] [expr [string index $disp 1] - 4] [expr [string index $disp 2] - 4] $type $real_indices
 	    set list_of_actions [lreplace $list_of_actions end end]
-	} elseif {[string first "sample_sa" $element_name] != -1} { 
+	} elseif {[string first "sample_sa" $element_name] != -1} {
 	    set first_index [lindex $indices 0]
 	    set last_index  [lindex $indices end]
 	    for {set i $first_index} {$i <= $last_index} {incr i} {
 		draw delete $i
 	    }
-	} elseif {[string first "sample_ray_atom" $element_name] != -1} { 
+	} elseif {[string first "sample_ray_atom" $element_name] != -1} {
 	    set first_index [lindex $indices 0]
 	    set last_index  [lindex $indices end]
 	    for {set i $first_index} {$i <= $last_index} {incr i} {
@@ -216,19 +216,19 @@ proc undo {} {
             for {set i $first_index} {$i <= $last_index} {incr i} {
                 draw delete $i
             }
-	} elseif {[string first "sample_ray_sphere" $element_name] != -1} { 
+	} elseif {[string first "sample_ray_sphere" $element_name] != -1} {
 	    set first_index [lindex $indices 0]
 	    set last_index  [lindex $indices end]
 	    for {set i $first_index} {$i <= $last_index} {incr i} {
 		draw delete $i
 	    }
-	} elseif {[string first "sample_ray_andrew_sphere" $element_name] != -1} { 
+	} elseif {[string first "sample_ray_andrew_sphere" $element_name] != -1} {
 	    set first_index [lindex $indices 0]
 	    set last_index  [lindex $indices end]
 	    for {set i $first_index} {$i <= $last_index} {incr i} {
 		draw delete $i
 	    }
-	} elseif {[string first "sample_ray_andrew_atom" $element_name] != -1} { 
+	} elseif {[string first "sample_ray_andrew_atom" $element_name] != -1} {
 	    set first_index [lindex $indices 0]
 	    set last_index  [lindex $indices end]
 	    for {set i $first_index} {$i <= $last_index} {incr i} {
@@ -267,7 +267,7 @@ proc do_all {proc_name log_prefix type msg_name {extra_args {}}}  {
 	    set new_actions [lrange $list_of_actions [expr [llength $list_of_actions] - $actionCount]  end]
 	    set list_of_actions [lrange $list_of_actions 0 [expr [llength $list_of_actions] - [expr $actionCount + 1]]]
 	    lappend list_of_actions [join $new_actions]
-	}	
+	}
     }
     return "$msg_name"
 }
@@ -308,7 +308,7 @@ proc do_list {proc_name lst log_prefix type msg_name {extra_args {}}}  {
 proc helperInvoker {helperProc type indices log_message msg extra_args} {
     if {[is_list $indices]} {
 	checkListIndices $indices $type
-	do_list $helperProc $indices $log_message $type $msg $extra_args 
+	do_list $helperProc $indices $log_message $type $msg $extra_args
     } elseif {[string compare $indices "all"] == 0} {
 	do_all $helperProc $log_message $type $msg $extra_args
     } else {
@@ -327,25 +327,25 @@ proc show_helper {type index extra_args} {
     global list_of_actions draw_count
     global "draw_$type\_log" "$type\s" "$type\Colors" nodeColors vorcellColors
     global atomRadii nodeRadii sphere_resolution
-    
+
     set vec [expr [lindex $extra_args 0] + 4][expr [lindex $extra_args 1] + 4][expr [lindex $extra_args 2] + 4]
     if {[dict exists [subst "\$draw\_$type\_log($index)"] $vec]} {
 	return -1
     }
 
-    incr "draw_$type\_count($index)" 
+    incr "draw_$type\_count($index)"
 
     set suffix "s($index)"
-    set element [subst "\$$type$suffix"]	
+    set element [subst "\$$type$suffix"]
     set draw_id_list {}
-    
+
     foreach line $element {
 	set command [subst $line]
-	set id [draw $command] 
+	set id [draw $command]
 	lappend draw_id_list $id
 	set draw_count $id
     }
-    
+
     lappend list_of_actions [list "draw_$type" "$index\_$vec"]
     dict set [subst "draw_$type\_log($index)"] $vec $draw_id_list
     return "$type #$index DRAWN"
@@ -364,7 +364,7 @@ proc hide_trans_helper {type index extra_args} {
     if {[dict exists [subst "\$draw\_$type\_log($index)"] $vec]} {
 	set values [dict get [subst "\$draw\_$type\_log($index)"] $vec]
 	set [subst "draw\_$type\_log($index)"] [dict remove [subst "\$draw\_$type\_log($index)"] $vec]
-	
+
 	for {set i 0} {$i < [llength $values]} {incr i} {
 	    foreach drawID $values {draw delete $drawID}
 	}
@@ -392,14 +392,14 @@ proc hide_all_images_helper {type index extra_args} {
     global "draw_$type\_log"
     global list_of_actions
     set logname "draw_$type\_log($index)"
-    
+
     if {[dict size [subst "\$draw\_$type\_log($index)"]] == 0} {
 	return -1
     }
-    
+
     set keys   [dict keys   [subst "\$draw\_$type\_log($index)"]]
     set values [dict values [subst "\$draw\_$type\_log($index)"]]
-    
+
     set actions ""
     for {set i 0} {$i < [llength $keys]} {incr i} {
 	foreach drawID [lindex $values $i] {draw delete $drawID}
@@ -430,14 +430,14 @@ proc color_helper {type index extra_args} {
     global "$type\Colors" "old_$type\_colors"
     global list_of_actions
     set newColor [lindex $extra_args 0]
-    lappend "old_$type\_colors($index)" [subst "\$$type\Colors($index)"] 
+    lappend "old_$type\_colors($index)" [subst "\$$type\Colors($index)"]
     lappend list_of_actions [list "color_$type" $index]
     set "$type\Colors($index)" $newColor
     update_env $type $index
     if {[string compare $type "unitcell"] == 0} {
 	return "COLOR OF $type CHANGED TO $newColor"
     } else {
-	return "COLOR OF $type #$index CHANGED TO $newColor" 
+	return "COLOR OF $type #$index CHANGED TO $newColor"
     }
 }
 
@@ -477,7 +477,7 @@ proc update_env {type index} {
 	set keys [dict keys [subst "\$draw\_$type\_log($index)"]]
 	hide_all_images $type $index
 	foreach key $keys {show_trans [expr [string index $key 0] - 4] [expr [string index $key 1] - 4] [expr [string index $key 2] - 4] $type $index}
-	set list_of_actions [lreplace $list_of_actions $num_actions end] 
+	set list_of_actions [lreplace $list_of_actions $num_actions end]
     }
 }
 
@@ -524,7 +524,7 @@ proc scale_helper {type index extra_args} {
     size_helper $type $index [list $new_radius]
 }
 
-proc reset {characteristic type {indices 0}} { 
+proc reset {characteristic type {indices 0}} {
     checkElementTypes $characteristic {color size}
     if {[string compare $characteristic "color"] == 0} {
 	global colorable_types
@@ -606,7 +606,7 @@ proc revert_helper {type index extra_args} {
 proc color_code_nodes {probeRad} {
     global num_nodes
     global axs_node_color
-    global inaxs_node_color 
+    global inaxs_node_color
     global inputFile
     run_network_program [list "-r" "-axs" $probeRad "ZeoVisInput.axs" $inputFile]
     set fp [open "ZeoVisInput.axs" r]
@@ -616,7 +616,7 @@ proc color_code_nodes {probeRad} {
     set new_list_actions {}
     foreach line $file_data {
 	if {[string compare $line "true"] == 0} {
-	    color $axs_node_color node $nodeID 
+	    color $axs_node_color node $nodeID
 	} else {
 	    color $inaxs_node_color node $nodeID
 	}
@@ -624,7 +624,7 @@ proc color_code_nodes {probeRad} {
     }
 
     remove_file "ZeoVisInput.axs"
-    
+
     global list_of_actions
     set list_of_actions [lrange $list_of_actions 0 [expr [llength $list_of_actions] - [expr $num_nodes + 1]]]
     lappend list_of_actions {color_node all}
@@ -771,7 +771,7 @@ proc id_channels {probeRad} {
     global inputFile probe_radius
     global list_of_actions
     set probe_radius $probeRad
-    
+
     if {$num_channels != 0} {
 	hide_all_images channel all
 	set list_of_actions [lreplace $list_of_actions end end]
@@ -785,14 +785,14 @@ proc id_channels {probeRad} {
 
     run_network_program [list "-r" "-zchan" $probeRad "ZeoVisInput.zchan" $inputFile]
     source "ZeoVisInput.zchan"
-    
+
     remove_file "ZeoVisInput.zchan"
     if {$num_channels > 0} {
 	puts "$num_channels CHANNELS IDENTIFIED INDEXED 0 THROUGH [expr $num_channels - 1]"
     } else {
 	puts "NO CHANNELS WERE IDENTIFIED. THE PROBE SIZE IS TOO LARGE FOR TRAVERSAL. \nTRY A SMALLER PROBE SIZE"
     }
-    
+
     global color_list
     global element_types
     set chanColor [lindex $color_list [lsearch $element_types channel]]
@@ -807,7 +807,7 @@ proc id_channels {probeRad} {
 proc helperInvoker {helperProc type indices log_message msg extra_args} {
     if {[is_list $indices]} {
 	checkListIndices $indices $type
-	do_list $helperProc $indices $log_message $type $msg $extra_args 
+	do_list $helperProc $indices $log_message $type $msg $extra_args
     } elseif {[string compare $indices "all"] == 0} {
 	do_all $helperProc $log_message $type $msg $extra_args
     } else {
@@ -831,14 +831,14 @@ proc id_segments {} {
 
     set list_of_actions [lsearch -regexp -all -inline -index 0 -not $list_of_actions ".*segment"]
     set num_segments 0
-    global num_channels segments probe_radius inputFile segmentColors available_colors 
+    global num_channels segments probe_radius inputFile segmentColors available_colors
     run_network_program [list "-r" "-zseg" $probe_radius "ZeoVisInput.zseg" $inputFile]
     source "ZeoVisInput.zseg"
     remove_file "ZeoVisInput.zseg"
 
     source "seginfo.data"
     remove_file "seginfo.data"
-   
+
     for {set i 0} {$i < $num_channels} {incr i} {
 	set old_seg_index $num_segments
 	set num_segments [expr $num_segments + [lindex $seg_counts $i]]
@@ -895,7 +895,7 @@ proc id_features {} {
 }
 
 proc id_cages {probeRad} {
-    global num_cages cages inputFile 
+    global num_cages cages inputFile
     global old_cage_colors cageColors available_colors draw_cage_log
     global list_of_actions
     if {$num_cages != 0} {
@@ -928,8 +928,8 @@ proc id_cages {probeRad} {
 }
 
 proc load_new_file {fileName incRadius} {
-    global num_vorcells num_faces num_vornets num_nodes num_atoms num_unitcells num_channels uc_a_vector uc_b_vector uc_c_vector 
-    global sphere_resolution atoms atomRadii nodes nodeRadii vornets vorcells faces num_faces num_channels num_features num_segments num_cages 
+    global num_vorcells num_faces num_vornets num_nodes num_atoms num_unitcells num_channels uc_a_vector uc_b_vector uc_c_vector
+    global sphere_resolution atoms atomRadii nodes nodeRadii vornets vorcells faces num_faces num_channels num_features num_segments num_cages
     clear_env
     run_network_program [list "-r" "-zvor" $incRadius "ZeoVisInput.zor" $fileName]
     source "ZeoVisInput.zvor"
@@ -988,7 +988,7 @@ proc help {{procName "NONE"}} {
 	set description "REMOVES ALL DISPLAYED ELEMENTS. RESETS SIZE AND COLORS OF ALL ELEMENTS TO THEIR ORIGINAL VALUES. CAN NOT BE UNDONE"
     }  elseif {[string compare $procName "color_code_nodes"] == 0} {
 	global axs_node_color
-	global inaxs_node_color 
+	global inaxs_node_color
 	set description "COLORS THE NODES ACCORDING TO ACCESSIBILITY FOR THE PROBE SIZE. \nACCESSIBLE AND INACCESSIBLE NODES ARE $axs_node_color AND $inaxs_node_color RESPECTIVELY."
     } elseif {[string compare $procName "sample_surface_area"] == 0} {
 	set description "SAMPLES THE ACCESSIBLE SURFACE AREA FOR THE PROVIDED PROBE.\n POINTS WITHIN ATOMS ARE NOT SHOWN. ACCESSIBLE AND INACESSIBLE POINTS ARE GREEN AND RED RESPECTIVELY."
@@ -1072,7 +1072,7 @@ proc show_range_helper {type index extra_args} {
     set coord1 [lindex $extra_args 0]; set coord2 [lindex $extra_args 1];
     set minX [lindex $coord1 0];  set minY [lindex $coord1 1];  set minZ [lindex $coord1 2];
     set maxX [lindex $coord2 0];  set maxY [lindex $coord2 1];  set maxZ [lindex $coord2 2];
-    
+
     set minX [max $minX -4]
     set minY [max $minY -4]
     set minZ [max $minZ -4]

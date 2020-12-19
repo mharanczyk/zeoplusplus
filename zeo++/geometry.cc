@@ -2,7 +2,7 @@
  *  procedures that are used throughout the package.
  */
 
-/** Simple class used to store a set of three numbers and perform 
+/** Simple class used to store a set of three numbers and perform
  *  some trivial geometric operations. */
 
 #include <cstdlib>
@@ -24,10 +24,10 @@ double trans_to_origuc(double x){
     return newX+1;
   else
     return newX;
-} 
+}
 XYZ trans_to_origuc(XYZ xyz){
   return XYZ(trans_to_origuc(xyz.x), trans_to_origuc(xyz.y), trans_to_origuc(xyz.z));
-} 
+}
 
 /** Returns the determinant of the provided 3x3 matrix of doubles. */
 double calcDeterminant(double matrix[3][3]){
@@ -54,7 +54,7 @@ void invertMatrix(double matrix [3][3], double newMatrix[3][3]){
         << "\n" << "Exiting ..." << "\n";
         exit(1);
     }
-    
+
     double invDet = 1/determinant;
     newMatrix[0][0] = invDet*   (matrix[2][2]*matrix[1][1]-matrix[2][1]*matrix[1][2]);
     newMatrix[0][1] = invDet*-1*(matrix[2][2]*matrix[0][1]-matrix[2][1]*matrix[0][2]);
@@ -88,29 +88,29 @@ bool tryInvertMatrix(double matrix [3][3], double newMatrix[3][3]){
   return ok;
 }
 
-Point::Point (double myX, double myY, double myZ){  
-  vals[0] = myX; 
-  vals[1] = myY; 
+Point::Point (double myX, double myY, double myZ){
+  vals[0] = myX;
+  vals[1] = myY;
   vals[2] = myZ;
 }
-const Point Point::add(Point other) const { 
-  return Point(vals[0] + other[0], vals[1] + other[1], vals[2] + other[2]); 
+const Point Point::add(Point other) const {
+  return Point(vals[0] + other[0], vals[1] + other[1], vals[2] + other[2]);
 }
-const bool Point::equals(Point other) const { 
-  double tol = 0.00000001; 
-  return abs(vals[0] - other[0]) < tol && abs(vals[1] - other[1]) < tol && abs(vals[2] - other[2]) < tol; 
+const bool Point::equals(Point other) const {
+  double tol = 0.00000001;
+  return abs(vals[0] - other[0]) < tol && abs(vals[1] - other[1]) < tol && abs(vals[2] - other[2]) < tol;
 }
-const Point  Point::subtract(Point other) const { 
-  return Point(vals[0]-other[0], vals[1]-other[1], vals[2]-other[2]); 
+const Point  Point::subtract(Point other) const {
+  return Point(vals[0]-other[0], vals[1]-other[1], vals[2]-other[2]);
 }
 const double Point::magnitude() const {
-  return sqrt(vals[0]*vals[0] + vals[1]*vals[1] + vals[2]*vals[2]); 
+  return sqrt(vals[0]*vals[0] + vals[1]*vals[1] + vals[2]*vals[2]);
 }
-const Point  Point::scale(const double factor) const { 
-  return Point(vals[0]*factor, vals[1]*factor, vals[2]*factor); 
+const Point  Point::scale(const double factor) const {
+  return Point(vals[0]*factor, vals[1]*factor, vals[2]*factor);
 }
 const double Point::dot_product(Point other) const {
-  return vals[0]*other[0] + vals[1]*other[1] + vals[2]*other[2]; 
+  return vals[0]*other[0] + vals[1]*other[1] + vals[2]*other[2];
 }
 const Point Point::unit() const {
   return Point(vals[0]/magnitude(),vals[1]/magnitude(),vals[2]/magnitude());
@@ -127,13 +127,13 @@ double& Point::operator[](const int index) {
     return vals[index];
 }
 const Point Point::operator-(Point other) const {
-   return Point(vals[0]-other[0], vals[1]-other[1], vals[2]-other[2]); 
+   return Point(vals[0]-other[0], vals[1]-other[1], vals[2]-other[2]);
 }
 const Point Point::operator+(Point other) const {
-   return Point(vals[0] + other[0], vals[1] + other[1], vals[2] + other[2]); 
+   return Point(vals[0] + other[0], vals[1] + other[1], vals[2] + other[2]);
 }
 const double Point::operator*(Point other) const {
-  return vals[0]*other[0] + vals[1]*other[1] + vals[2]*other[2]; 
+  return vals[0]*other[0] + vals[1]*other[1] + vals[2]*other[2];
 }
 void Point::print(std::ostream &out) const {
   out << vals[0] << " " << vals[1] << " " << vals[2];
@@ -158,8 +158,8 @@ bool pointIsLess(Point p1, Point p2){
 
 /* Construct a TRIPLET with the three provided components.*/
 TRIPLET::TRIPLET(int myX, int myY, int myZ){
-  vals[0] = x = myX; 
-  vals[1] = y = myY; 
+  vals[0] = x = myX;
+  vals[1] = y = myY;
   vals[2] = z = myZ;
 }
 
@@ -207,17 +207,17 @@ const XYZ XYZ::cross(const XYZ& other) const{
   return XYZ(y*other.z-z*other.y,z*other.x-x*other.z,x*other.y-y*other.x);
 }
 const double XYZ::dot_product(const XYZ& other) const {
-  return x*other.x + y*other.y + z*other.z; 
+  return x*other.x + y*other.y + z*other.z;
 }
 //double XYZ::angle_between(XYZ other) {const XYZ other_const = other; return angle_between(other_const);}
 double XYZ::angle_between(const XYZ& other)  const {
   double cos_angle = dot_product(other)/(magnitude()*other.magnitude());
-  // These steps are necessary for rounding issues when cos_angle should be 
+  // These steps are necessary for rounding issues when cos_angle should be
   // exactly 1 or -1, but falls very slightly on the wrong side
   if(cos_angle>1) {
     cos_angle = 1;
   } else if(cos_angle<-1) {
-    cos_angle = -1; 
+    cos_angle = -1;
   }
   double output = acos(cos_angle);
   if(isnan(output)) {
@@ -236,17 +236,17 @@ double& XYZ::operator[](const int index){
      exit(1);
 }
 const XYZ XYZ::operator-(const XYZ& other) const {
-   return XYZ(x-other.x, y-other.y, z-other.z); 
+   return XYZ(x-other.x, y-other.y, z-other.z);
 }
 const XYZ XYZ::operator+(const XYZ& other) const {
-   return XYZ(x + other.x, y + other.y, z + other.z); 
+   return XYZ(x + other.x, y + other.y, z + other.z);
 }
 const double XYZ::operator*(const XYZ& other) const {  //Dot product
-  return x*other.x + y*other.y + z*other.z; 
+  return x*other.x + y*other.y + z*other.z;
 }
 double XYZ::euclid_dist(const XYZ& other) const {  //Distance between two XYZ's
-    double dx = x-other.x;  
-    double dy = y-other.y; 
+    double dx = x-other.x;
+    double dy = y-other.y;
     double dz = z-other.z;
     return sqrt(dx*dx + dy*dy + dz*dz);
 }
@@ -360,8 +360,8 @@ pair<int, vector<Point> > findLineIntersections(Point p1, Point p2, Point circCe
 
   double a = (p2[0] - p1[0])*(p2[0] - p1[0]) + (p2[1] - p1[1])*(p2[1] - p1[1]) + (p2[2] - p1[2])*(p2[2] - p1[2]);
   double b = 2.0*((p2[0] - p1[0])*(p1[0] - circCenter[0]) + (p2[1] - p1[1])*(p1[1] - circCenter[1]) + (p2[2] - p1[2])*(p1[2] - circCenter[2]));
-  double c = circCenter[0]*circCenter[0] + circCenter[1]*circCenter[1] + circCenter[2]*circCenter[2] 
-    + p1[0]*p1[0] + p1[1]*p1[1] + p1[2]*p1[2] 
+  double c = circCenter[0]*circCenter[0] + circCenter[1]*circCenter[1] + circCenter[2]*circCenter[2]
+    + p1[0]*p1[0] + p1[1]*p1[1] + p1[2]*p1[2]
     - 2.0*(circCenter[0]*p1[0] +circCenter[1]*p1[1] + circCenter[2]*p1[2]) - rad*rad;
 
   double discriminant = b*b - 4.0*a*c;
@@ -398,7 +398,7 @@ pair<int, vector<Point> > findLineIntersections(Point p1, Point p2, Point circCe
 
 pair<int, vector<Point> > findLineSegIntersections(Point p1, Point p2, Point circCenter, double rad){
   pair<int, vector<Point> > prelimResults = findLineIntersections(p1, p2, circCenter, rad);
- 
+
   if(prelimResults.first == 0)
     return prelimResults;
   else{
@@ -419,8 +419,8 @@ pair<int, vector<Point> > findLineSegIntersections(Point p1, Point p2, Point cir
   }
 }
 
-/* Returns the shortest distance along a sphere of the provided circle radius 
- * between the two provided points. Refer to http://en.wikipedia.org/wiki/Great-circle_distance. */ 
+/* Returns the shortest distance along a sphere of the provided circle radius
+ * between the two provided points. Refer to http://en.wikipedia.org/wiki/Great-circle_distance. */
 double calcSphereDistance(Point p1, Point p2, double circRad){
   pair<double,double> coords1 = findLongAndLat(p1);
   pair<double,double> coords2 = findLongAndLat(p2);
@@ -428,7 +428,7 @@ double calcSphereDistance(Point p1, Point p2, double circRad){
   double lambda1 = coords1.second; double lambda2 = coords2.second;
   double deltaLambda = lambda1-lambda2;
 
-  double deltaSigma = atan( (sqrt (pow(cos(phi1)*sin(deltaLambda),2.0) +  pow(cos(phi2)*sin(phi1)-sin(phi2)*cos(phi1)*cos(deltaLambda),2))) 
+  double deltaSigma = atan( (sqrt (pow(cos(phi1)*sin(deltaLambda),2.0) +  pow(cos(phi2)*sin(phi1)-sin(phi2)*cos(phi1)*cos(deltaLambda),2)))
 			    / (sin(phi1)*sin(phi2) + cos(phi1)*cos(phi2)*cos(deltaLambda)));
   return circRad*deltaSigma;
 }
@@ -455,7 +455,6 @@ pair<double,double> findLongAndLat(Point pt){
 double distToPlane(Point pnt,Point p,Point normal){
   if ((normal * (pnt - p)) < 0)
     return -(normal * (pnt - p));
-  
+
   return normal * (pnt - p);
 }
-

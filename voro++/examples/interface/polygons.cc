@@ -104,4 +104,3 @@ void draw_polygon(FILE *fp,vector<int> &f_vert,vector<double> &v,int j) {
 	}
 	fputs("\ttexture{t2}\n}\n",fp);
 }
-

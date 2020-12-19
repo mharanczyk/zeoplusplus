@@ -658,8 +658,8 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNode;
 struct __pyx_obj_3zeo_10netstorage_VoronoiNetwork;
 
 /* "zeo/geometry.pxd":24
- * 
- * 
+ *
+ *
  * cdef class Xyz:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ XYZ class defined in geometry.h
@@ -671,8 +671,8 @@ struct __pyx_obj_3zeo_8geometry_Xyz {
 
 
 /* "zeo/geometry.pxd":32
- * 
- * 
+ *
+ *
  * cdef class Point:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ Point class defined in geometry.h
@@ -684,11 +684,11 @@ struct __pyx_obj_3zeo_8geometry_Point {
 
 
 /* "zeo/voronoicell.pxd":39
- * 
- * 
+ *
+ *
  * cdef class VorFace:             # <<<<<<<<<<<<<<
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorFace {
   PyObject_HEAD
@@ -698,10 +698,10 @@ struct __pyx_obj_3zeo_11voronoicell_VorFace {
 
 /* "zeo/voronoicell.pxd":42
  *     cdef  VOR_FACE* thisptr
- * 
+ *
  * cdef class VorCell:             # <<<<<<<<<<<<<<
  *     cdef VOR_CELL* thisptr
- * 
+ *
  */
 struct __pyx_obj_3zeo_11voronoicell_VorCell {
   PyObject_HEAD
@@ -711,7 +711,7 @@ struct __pyx_obj_3zeo_11voronoicell_VorCell {
 
 /* "zeo/voronoicell.pxd":45
  *     cdef VOR_CELL* thisptr
- * 
+ *
  * cdef class BasicVCell:             # <<<<<<<<<<<<<<
  *     cdef BASIC_VCELL* thisptr
  */
@@ -723,7 +723,7 @@ struct __pyx_obj_3zeo_11voronoicell_BasicVCell {
 
 /* "zeo/netstorage.pxd":120
  *             VORONOI_NETWORK* vornet, ATOM_NETWORK* atmnet)
- * 
+ *
  * cdef class Atom:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM class.
@@ -736,7 +736,7 @@ struct __pyx_obj_3zeo_10netstorage_Atom {
 
 /* "zeo/netstorage.pxd":126
  *     cdef ATOM* thisptr
- * 
+ *
  * cdef class AtomNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ ATOM_NETWORK class.
@@ -750,7 +750,7 @@ struct __pyx_obj_3zeo_10netstorage_AtomNetwork {
 
 /* "zeo/netstorage.pxd":135
  *     cdef bint rad_flag
- * 
+ *
  * cdef class VoronoiNode:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VOR_NODE class.
@@ -763,7 +763,7 @@ struct __pyx_obj_3zeo_10netstorage_VoronoiNode {
 
 /* "zeo/netstorage.pxd":141
  *     cdef VOR_NODE* thisptr
- * 
+ *
  * cdef class VoronoiNetwork:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper class for Zeo++ VORONOI_NETWORK class.
@@ -1081,7 +1081,7 @@ static PyObject *__pyx_codeobj__24;
 
 /* "zeo/netio.pyx":13
  * #def bint checkInputFile(char* filename)
- * 
+ *
  * def readCiffile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -1159,7 +1159,7 @@ static PyObject *__pyx_pf_3zeo_5netio_readCiffile(CYTHON_UNUSED PyObject *__pyx_
   __Pyx_INCREF(__pyx_v_filename);
 
   /* "zeo/netio.pyx":14
- * 
+ *
  * def readCiffile(filename, radialflag):
  *     atmnet = AtomNetwork()             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
@@ -1177,7 +1177,7 @@ static PyObject *__pyx_pf_3zeo_5netio_readCiffile(CYTHON_UNUSED PyObject *__pyx_
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
@@ -1232,7 +1232,7 @@ static PyObject *__pyx_pf_3zeo_5netio_readCiffile(CYTHON_UNUSED PyObject *__pyx_
  *     if not  readCIFFile(c_filename, atmnet.thisptr, radialflag):
  *         raise ValueError        # Find the appropriate error and return it             # <<<<<<<<<<<<<<
  *     return atmnet
- * 
+ *
  */
     __Pyx_Raise(__pyx_builtin_ValueError, 0, 0, 0);
     __PYX_ERR(0, 19, __pyx_L1_error)
@@ -1250,7 +1250,7 @@ static PyObject *__pyx_pf_3zeo_5netio_readCiffile(CYTHON_UNUSED PyObject *__pyx_
  *     if not  readCIFFile(c_filename, atmnet.thisptr, radialflag):
  *         raise ValueError        # Find the appropriate error and return it
  *     return atmnet             # <<<<<<<<<<<<<<
- * 
+ *
  * def readArcfile(filename, radialflag):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -1260,7 +1260,7 @@ static PyObject *__pyx_pf_3zeo_5netio_readCiffile(CYTHON_UNUSED PyObject *__pyx_
 
   /* "zeo/netio.pyx":13
  * #def bint checkInputFile(char* filename)
- * 
+ *
  * def readCiffile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -1281,7 +1281,7 @@ static PyObject *__pyx_pf_3zeo_5netio_readCiffile(CYTHON_UNUSED PyObject *__pyx_
 
 /* "zeo/netio.pyx":22
  *     return atmnet
- * 
+ *
  * def readArcfile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -1359,7 +1359,7 @@ static PyObject *__pyx_pf_3zeo_5netio_2readArcfile(CYTHON_UNUSED PyObject *__pyx
   __Pyx_INCREF(__pyx_v_filename);
 
   /* "zeo/netio.pyx":23
- * 
+ *
  * def readArcfile(filename, radialflag):
  *     atmnet = AtomNetwork()             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
@@ -1377,7 +1377,7 @@ static PyObject *__pyx_pf_3zeo_5netio_2readArcfile(CYTHON_UNUSED PyObject *__pyx
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
@@ -1432,7 +1432,7 @@ static PyObject *__pyx_pf_3zeo_5netio_2readArcfile(CYTHON_UNUSED PyObject *__pyx
  *     if not readARCFile(c_filename, atmnet.thisptr, radialflag):
  *         raise IOError             # <<<<<<<<<<<<<<
  *     return atmnet
- * 
+ *
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
     __PYX_ERR(0, 28, __pyx_L1_error)
@@ -1450,7 +1450,7 @@ static PyObject *__pyx_pf_3zeo_5netio_2readArcfile(CYTHON_UNUSED PyObject *__pyx
  *     if not readARCFile(c_filename, atmnet.thisptr, radialflag):
  *         raise IOError
  *     return atmnet             # <<<<<<<<<<<<<<
- * 
+ *
  * def readCucfile(filename, radialflag):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -1460,7 +1460,7 @@ static PyObject *__pyx_pf_3zeo_5netio_2readArcfile(CYTHON_UNUSED PyObject *__pyx
 
   /* "zeo/netio.pyx":22
  *     return atmnet
- * 
+ *
  * def readArcfile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -1481,7 +1481,7 @@ static PyObject *__pyx_pf_3zeo_5netio_2readArcfile(CYTHON_UNUSED PyObject *__pyx
 
 /* "zeo/netio.pyx":31
  *     return atmnet
- * 
+ *
  * def readCucfile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -1559,7 +1559,7 @@ static PyObject *__pyx_pf_3zeo_5netio_4readCucfile(CYTHON_UNUSED PyObject *__pyx
   __Pyx_INCREF(__pyx_v_filename);
 
   /* "zeo/netio.pyx":32
- * 
+ *
  * def readCucfile(filename, radialflag):
  *     atmnet = AtomNetwork()             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
@@ -1577,7 +1577,7 @@ static PyObject *__pyx_pf_3zeo_5netio_4readCucfile(CYTHON_UNUSED PyObject *__pyx
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
@@ -1632,7 +1632,7 @@ static PyObject *__pyx_pf_3zeo_5netio_4readCucfile(CYTHON_UNUSED PyObject *__pyx
  *     if not readCUCFile(c_filename, atmnet.thisptr, radialflag):
  *         raise IOError             # <<<<<<<<<<<<<<
  *     return atmnet
- * 
+ *
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
     __PYX_ERR(0, 37, __pyx_L1_error)
@@ -1650,7 +1650,7 @@ static PyObject *__pyx_pf_3zeo_5netio_4readCucfile(CYTHON_UNUSED PyObject *__pyx
  *     if not readCUCFile(c_filename, atmnet.thisptr, radialflag):
  *         raise IOError
  *     return atmnet             # <<<<<<<<<<<<<<
- * 
+ *
  * def readCssrfile(filename, radialflag):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -1660,7 +1660,7 @@ static PyObject *__pyx_pf_3zeo_5netio_4readCucfile(CYTHON_UNUSED PyObject *__pyx
 
   /* "zeo/netio.pyx":31
  *     return atmnet
- * 
+ *
  * def readCucfile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -1681,7 +1681,7 @@ static PyObject *__pyx_pf_3zeo_5netio_4readCucfile(CYTHON_UNUSED PyObject *__pyx
 
 /* "zeo/netio.pyx":40
  *     return atmnet
- * 
+ *
  * def readCssrfile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -1759,7 +1759,7 @@ static PyObject *__pyx_pf_3zeo_5netio_6readCssrfile(CYTHON_UNUSED PyObject *__py
   __Pyx_INCREF(__pyx_v_filename);
 
   /* "zeo/netio.pyx":41
- * 
+ *
  * def readCssrfile(filename, radialflag):
  *     atmnet = AtomNetwork()             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
@@ -1777,7 +1777,7 @@ static PyObject *__pyx_pf_3zeo_5netio_6readCssrfile(CYTHON_UNUSED PyObject *__py
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
@@ -1832,7 +1832,7 @@ static PyObject *__pyx_pf_3zeo_5netio_6readCssrfile(CYTHON_UNUSED PyObject *__py
  *     if not readCSSRFile(c_filename, atmnet.thisptr, radialflag):
  *         raise IOError             # <<<<<<<<<<<<<<
  *     return atmnet
- * 
+ *
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
     __PYX_ERR(0, 46, __pyx_L1_error)
@@ -1850,7 +1850,7 @@ static PyObject *__pyx_pf_3zeo_5netio_6readCssrfile(CYTHON_UNUSED PyObject *__py
  *     if not readCSSRFile(c_filename, atmnet.thisptr, radialflag):
  *         raise IOError
  *     return atmnet             # <<<<<<<<<<<<<<
- * 
+ *
  * def readV1file(filename, radialflag):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -1860,7 +1860,7 @@ static PyObject *__pyx_pf_3zeo_5netio_6readCssrfile(CYTHON_UNUSED PyObject *__py
 
   /* "zeo/netio.pyx":40
  *     return atmnet
- * 
+ *
  * def readCssrfile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -1881,7 +1881,7 @@ static PyObject *__pyx_pf_3zeo_5netio_6readCssrfile(CYTHON_UNUSED PyObject *__py
 
 /* "zeo/netio.pyx":49
  *     return atmnet
- * 
+ *
  * def readV1file(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -1959,7 +1959,7 @@ static PyObject *__pyx_pf_3zeo_5netio_8readV1file(CYTHON_UNUSED PyObject *__pyx_
   __Pyx_INCREF(__pyx_v_filename);
 
   /* "zeo/netio.pyx":50
- * 
+ *
  * def readV1file(filename, radialflag):
  *     atmnet = AtomNetwork()             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
@@ -1977,7 +1977,7 @@ static PyObject *__pyx_pf_3zeo_5netio_8readV1file(CYTHON_UNUSED PyObject *__pyx_
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_2 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
@@ -2032,7 +2032,7 @@ static PyObject *__pyx_pf_3zeo_5netio_8readV1file(CYTHON_UNUSED PyObject *__pyx_
  *     if not readV1File(c_filename, atmnet.thisptr, radialflag):
  *         raise IOError             # <<<<<<<<<<<<<<
  *     return atmnet
- * 
+ *
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
     __PYX_ERR(0, 55, __pyx_L1_error)
@@ -2050,7 +2050,7 @@ static PyObject *__pyx_pf_3zeo_5netio_8readV1file(CYTHON_UNUSED PyObject *__pyx_
  *     if not readV1File(c_filename, atmnet.thisptr, radialflag):
  *         raise IOError
  *     return atmnet             # <<<<<<<<<<<<<<
- * 
+ *
  * def writeCssrfile(filename, atmnet):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -2060,7 +2060,7 @@ static PyObject *__pyx_pf_3zeo_5netio_8readV1file(CYTHON_UNUSED PyObject *__pyx_
 
   /* "zeo/netio.pyx":49
  *     return atmnet
- * 
+ *
  * def readV1file(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -2081,7 +2081,7 @@ static PyObject *__pyx_pf_3zeo_5netio_8readV1file(CYTHON_UNUSED PyObject *__pyx_
 
 /* "zeo/netio.pyx":58
  *     return atmnet
- * 
+ *
  * def writeCssrfile(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -2160,13 +2160,13 @@ static PyObject *__pyx_pf_3zeo_5netio_10writeCssrfile(CYTHON_UNUSED PyObject *__
   __Pyx_INCREF(__pyx_v_filename);
 
   /* "zeo/netio.pyx":59
- * 
+ *
  * def writeCssrfile(filename, atmnet):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -2187,7 +2187,7 @@ static PyObject *__pyx_pf_3zeo_5netio_10writeCssrfile(CYTHON_UNUSED PyObject *__
     __pyx_t_3 = 0;
 
     /* "zeo/netio.pyx":59
- * 
+ *
  * def writeCssrfile(filename, atmnet):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
@@ -2221,7 +2221,7 @@ static PyObject *__pyx_pf_3zeo_5netio_10writeCssrfile(CYTHON_UNUSED PyObject *__
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToCSSR(c_filename, c_atmnet):             # <<<<<<<<<<<<<<
  *         raise IOError
- * 
+ *
  */
   __pyx_t_2 = ((!(writeToCSSR(__pyx_v_c_filename, __pyx_v_c_atmnet) != 0)) != 0);
   if (__pyx_t_2) {
@@ -2230,7 +2230,7 @@ static PyObject *__pyx_pf_3zeo_5netio_10writeCssrfile(CYTHON_UNUSED PyObject *__
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToCSSR(c_filename, c_atmnet):
  *         raise IOError             # <<<<<<<<<<<<<<
- * 
+ *
  * def writeCiffile(filename, atmnet):
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
@@ -2241,13 +2241,13 @@ static PyObject *__pyx_pf_3zeo_5netio_10writeCssrfile(CYTHON_UNUSED PyObject *__
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToCSSR(c_filename, c_atmnet):             # <<<<<<<<<<<<<<
  *         raise IOError
- * 
+ *
  */
   }
 
   /* "zeo/netio.pyx":58
  *     return atmnet
- * 
+ *
  * def writeCssrfile(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -2269,7 +2269,7 @@ static PyObject *__pyx_pf_3zeo_5netio_10writeCssrfile(CYTHON_UNUSED PyObject *__
 
 /* "zeo/netio.pyx":66
  *         raise IOError
- * 
+ *
  * def writeCiffile(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -2348,13 +2348,13 @@ static PyObject *__pyx_pf_3zeo_5netio_12writeCiffile(CYTHON_UNUSED PyObject *__p
   __Pyx_INCREF(__pyx_v_filename);
 
   /* "zeo/netio.pyx":67
- * 
+ *
  * def writeCiffile(filename, atmnet):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -2375,7 +2375,7 @@ static PyObject *__pyx_pf_3zeo_5netio_12writeCiffile(CYTHON_UNUSED PyObject *__p
     __pyx_t_3 = 0;
 
     /* "zeo/netio.pyx":67
- * 
+ *
  * def writeCiffile(filename, atmnet):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
@@ -2409,7 +2409,7 @@ static PyObject *__pyx_pf_3zeo_5netio_12writeCiffile(CYTHON_UNUSED PyObject *__p
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToCIF(c_filename, c_atmnet):             # <<<<<<<<<<<<<<
  *         raise IOError
- * 
+ *
  */
   __pyx_t_2 = ((!(writeToCIF(__pyx_v_c_filename, __pyx_v_c_atmnet) != 0)) != 0);
   if (__pyx_t_2) {
@@ -2418,7 +2418,7 @@ static PyObject *__pyx_pf_3zeo_5netio_12writeCiffile(CYTHON_UNUSED PyObject *__p
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToCIF(c_filename, c_atmnet):
  *         raise IOError             # <<<<<<<<<<<<<<
- * 
+ *
  * def writeV1file(filename, atmnet):
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
@@ -2429,13 +2429,13 @@ static PyObject *__pyx_pf_3zeo_5netio_12writeCiffile(CYTHON_UNUSED PyObject *__p
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToCIF(c_filename, c_atmnet):             # <<<<<<<<<<<<<<
  *         raise IOError
- * 
+ *
  */
   }
 
   /* "zeo/netio.pyx":66
  *         raise IOError
- * 
+ *
  * def writeCiffile(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -2457,7 +2457,7 @@ static PyObject *__pyx_pf_3zeo_5netio_12writeCiffile(CYTHON_UNUSED PyObject *__p
 
 /* "zeo/netio.pyx":74
  *         raise IOError
- * 
+ *
  * def writeV1file(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -2536,13 +2536,13 @@ static PyObject *__pyx_pf_3zeo_5netio_14writeV1file(CYTHON_UNUSED PyObject *__py
   __Pyx_INCREF(__pyx_v_filename);
 
   /* "zeo/netio.pyx":75
- * 
+ *
  * def writeV1file(filename, atmnet):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -2563,7 +2563,7 @@ static PyObject *__pyx_pf_3zeo_5netio_14writeV1file(CYTHON_UNUSED PyObject *__py
     __pyx_t_3 = 0;
 
     /* "zeo/netio.pyx":75
- * 
+ *
  * def writeV1file(filename, atmnet):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
@@ -2597,7 +2597,7 @@ static PyObject *__pyx_pf_3zeo_5netio_14writeV1file(CYTHON_UNUSED PyObject *__py
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToV1(c_filename, c_atmnet):             # <<<<<<<<<<<<<<
  *         raise IOError
- * 
+ *
  */
   __pyx_t_2 = ((!(writeToV1(__pyx_v_c_filename, __pyx_v_c_atmnet) != 0)) != 0);
   if (__pyx_t_2) {
@@ -2606,7 +2606,7 @@ static PyObject *__pyx_pf_3zeo_5netio_14writeV1file(CYTHON_UNUSED PyObject *__py
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToV1(c_filename, c_atmnet):
  *         raise IOError             # <<<<<<<<<<<<<<
- * 
+ *
  * def writeNt2file(filename, vornet, minRad = None):
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
@@ -2617,13 +2617,13 @@ static PyObject *__pyx_pf_3zeo_5netio_14writeV1file(CYTHON_UNUSED PyObject *__py
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToV1(c_filename, c_atmnet):             # <<<<<<<<<<<<<<
  *         raise IOError
- * 
+ *
  */
   }
 
   /* "zeo/netio.pyx":74
  *         raise IOError
- * 
+ *
  * def writeV1file(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -2645,7 +2645,7 @@ static PyObject *__pyx_pf_3zeo_5netio_14writeV1file(CYTHON_UNUSED PyObject *__py
 
 /* "zeo/netio.pyx":82
  *         raise IOError
- * 
+ *
  * def writeNt2file(filename, vornet, minRad = None):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -2737,13 +2737,13 @@ static PyObject *__pyx_pf_3zeo_5netio_16writeNt2file(CYTHON_UNUSED PyObject *__p
   __Pyx_INCREF(__pyx_v_filename);
 
   /* "zeo/netio.pyx":83
- * 
+ *
  * def writeNt2file(filename, vornet, minRad = None):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -2764,7 +2764,7 @@ static PyObject *__pyx_pf_3zeo_5netio_16writeNt2file(CYTHON_UNUSED PyObject *__p
     __pyx_t_3 = 0;
 
     /* "zeo/netio.pyx":83
- * 
+ *
  * def writeNt2file(filename, vornet, minRad = None):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
@@ -2848,7 +2848,7 @@ static PyObject *__pyx_pf_3zeo_5netio_16writeNt2file(CYTHON_UNUSED PyObject *__p
  *     else:
  *         if not writeToNt2(c_filename, c_vornet_ptr):             # <<<<<<<<<<<<<<
  *             raise IOError
- * 
+ *
  */
   /*else*/ {
     __pyx_t_2 = ((!(writeToNt2(__pyx_v_c_filename, __pyx_v_c_vornet_ptr) != 0)) != 0);
@@ -2858,8 +2858,8 @@ static PyObject *__pyx_pf_3zeo_5netio_16writeNt2file(CYTHON_UNUSED PyObject *__p
  *     else:
  *         if not writeToNt2(c_filename, c_vornet_ptr):
  *             raise IOError             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
       __PYX_ERR(0, 92, __pyx_L1_error)
@@ -2869,7 +2869,7 @@ static PyObject *__pyx_pf_3zeo_5netio_16writeNt2file(CYTHON_UNUSED PyObject *__p
  *     else:
  *         if not writeToNt2(c_filename, c_vornet_ptr):             # <<<<<<<<<<<<<<
  *             raise IOError
- * 
+ *
  */
     }
   }
@@ -2877,7 +2877,7 @@ static PyObject *__pyx_pf_3zeo_5netio_16writeNt2file(CYTHON_UNUSED PyObject *__p
 
   /* "zeo/netio.pyx":82
  *         raise IOError
- * 
+ *
  * def writeNt2file(filename, vornet, minRad = None):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -2898,8 +2898,8 @@ static PyObject *__pyx_pf_3zeo_5netio_16writeNt2file(CYTHON_UNUSED PyObject *__p
 }
 
 /* "zeo/netio.pyx":95
- * 
- * 
+ *
+ *
  * def writeXyzfile(filename, atmnet, supercell_flag, is_duplicate_perimeter_atoms):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -2997,13 +2997,13 @@ static PyObject *__pyx_pf_3zeo_5netio_18writeXyzfile(CYTHON_UNUSED PyObject *__p
   __Pyx_INCREF(__pyx_v_filename);
 
   /* "zeo/netio.pyx":96
- * 
+ *
  * def writeXyzfile(filename, atmnet, supercell_flag, is_duplicate_perimeter_atoms):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -3024,7 +3024,7 @@ static PyObject *__pyx_pf_3zeo_5netio_18writeXyzfile(CYTHON_UNUSED PyObject *__p
     __pyx_t_3 = 0;
 
     /* "zeo/netio.pyx":96
- * 
+ *
  * def writeXyzfile(filename, atmnet, supercell_flag, is_duplicate_perimeter_atoms):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
@@ -3067,7 +3067,7 @@ static PyObject *__pyx_pf_3zeo_5netio_18writeXyzfile(CYTHON_UNUSED PyObject *__p
  *     if not writeToXYZ(c_filename, c_atmnet, supercell_flag,
  *             is_duplicate_perimeter_atoms):             # <<<<<<<<<<<<<<
  *         raise IOError
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_is_duplicate_perimeter_atoms); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 101, __pyx_L1_error)
 
@@ -3085,7 +3085,7 @@ static PyObject *__pyx_pf_3zeo_5netio_18writeXyzfile(CYTHON_UNUSED PyObject *__p
  *     if not writeToXYZ(c_filename, c_atmnet, supercell_flag,
  *             is_duplicate_perimeter_atoms):
  *         raise IOError             # <<<<<<<<<<<<<<
- * 
+ *
  * def writeVtkfile(filename, atmnet):
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
@@ -3101,8 +3101,8 @@ static PyObject *__pyx_pf_3zeo_5netio_18writeXyzfile(CYTHON_UNUSED PyObject *__p
   }
 
   /* "zeo/netio.pyx":95
- * 
- * 
+ *
+ *
  * def writeXyzfile(filename, atmnet, supercell_flag, is_duplicate_perimeter_atoms):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3124,7 +3124,7 @@ static PyObject *__pyx_pf_3zeo_5netio_18writeXyzfile(CYTHON_UNUSED PyObject *__p
 
 /* "zeo/netio.pyx":104
  *         raise IOError
- * 
+ *
  * def writeVtkfile(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3203,13 +3203,13 @@ static PyObject *__pyx_pf_3zeo_5netio_20writeVtkfile(CYTHON_UNUSED PyObject *__p
   __Pyx_INCREF(__pyx_v_filename);
 
   /* "zeo/netio.pyx":105
- * 
+ *
  * def writeVtkfile(filename, atmnet):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -3230,7 +3230,7 @@ static PyObject *__pyx_pf_3zeo_5netio_20writeVtkfile(CYTHON_UNUSED PyObject *__p
     __pyx_t_3 = 0;
 
     /* "zeo/netio.pyx":105
- * 
+ *
  * def writeVtkfile(filename, atmnet):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
@@ -3264,7 +3264,7 @@ static PyObject *__pyx_pf_3zeo_5netio_20writeVtkfile(CYTHON_UNUSED PyObject *__p
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToVTK(c_filename, c_atmnet):             # <<<<<<<<<<<<<<
  *         raise IOError
- * 
+ *
  */
   __pyx_t_2 = ((!(writeToVTK(__pyx_v_c_filename, __pyx_v_c_atmnet) != 0)) != 0);
   if (__pyx_t_2) {
@@ -3273,7 +3273,7 @@ static PyObject *__pyx_pf_3zeo_5netio_20writeVtkfile(CYTHON_UNUSED PyObject *__p
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToVTK(c_filename, c_atmnet):
  *         raise IOError             # <<<<<<<<<<<<<<
- * 
+ *
  * def writeMopacfile(filename, atmnet, supercell_flag):
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
@@ -3284,13 +3284,13 @@ static PyObject *__pyx_pf_3zeo_5netio_20writeVtkfile(CYTHON_UNUSED PyObject *__p
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToVTK(c_filename, c_atmnet):             # <<<<<<<<<<<<<<
  *         raise IOError
- * 
+ *
  */
   }
 
   /* "zeo/netio.pyx":104
  *         raise IOError
- * 
+ *
  * def writeVtkfile(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3312,7 +3312,7 @@ static PyObject *__pyx_pf_3zeo_5netio_20writeVtkfile(CYTHON_UNUSED PyObject *__p
 
 /* "zeo/netio.pyx":112
  *         raise IOError
- * 
+ *
  * def writeMopacfile(filename, atmnet, supercell_flag):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3400,13 +3400,13 @@ static PyObject *__pyx_pf_3zeo_5netio_22writeMopacfile(CYTHON_UNUSED PyObject *_
   __Pyx_INCREF(__pyx_v_filename);
 
   /* "zeo/netio.pyx":113
- * 
+ *
  * def writeMopacfile(filename, atmnet, supercell_flag):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
  *     cdef char* c_filename = filename
  */
-  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename); 
+  __pyx_t_1 = PyUnicode_Check(__pyx_v_filename);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -3427,7 +3427,7 @@ static PyObject *__pyx_pf_3zeo_5netio_22writeMopacfile(CYTHON_UNUSED PyObject *_
     __pyx_t_3 = 0;
 
     /* "zeo/netio.pyx":113
- * 
+ *
  * def writeMopacfile(filename, atmnet, supercell_flag):
  *     if isinstance(filename, unicode):             # <<<<<<<<<<<<<<
  *         filename = (<unicode>filename).encode('utf8')
@@ -3461,7 +3461,7 @@ static PyObject *__pyx_pf_3zeo_5netio_22writeMopacfile(CYTHON_UNUSED PyObject *_
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToMOPAC(c_filename, c_atmnet, supercell_flag):             # <<<<<<<<<<<<<<
  *         raise IOError
- * 
+ *
  */
   __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_supercell_flag); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 117, __pyx_L1_error)
   __pyx_t_1 = ((!(writeToMOPAC(__pyx_v_c_filename, __pyx_v_c_atmnet, __pyx_t_2) != 0)) != 0);
@@ -3471,8 +3471,8 @@ static PyObject *__pyx_pf_3zeo_5netio_22writeMopacfile(CYTHON_UNUSED PyObject *_
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToMOPAC(c_filename, c_atmnet, supercell_flag):
  *         raise IOError             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __Pyx_Raise(__pyx_builtin_IOError, 0, 0, 0);
     __PYX_ERR(0, 118, __pyx_L1_error)
@@ -3482,13 +3482,13 @@ static PyObject *__pyx_pf_3zeo_5netio_22writeMopacfile(CYTHON_UNUSED PyObject *_
  *     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
  *     if not writeToMOPAC(c_filename, c_atmnet, supercell_flag):             # <<<<<<<<<<<<<<
  *         raise IOError
- * 
+ *
  */
   }
 
   /* "zeo/netio.pyx":112
  *         raise IOError
- * 
+ *
  * def writeMopacfile(filename, atmnet, supercell_flag):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3575,7 +3575,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netio.pyx":13
  * #def bint checkInputFile(char* filename)
- * 
+ *
  * def readCiffile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -3587,7 +3587,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netio.pyx":22
  *     return atmnet
- * 
+ *
  * def readArcfile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -3599,7 +3599,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netio.pyx":31
  *     return atmnet
- * 
+ *
  * def readCucfile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -3611,7 +3611,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netio.pyx":40
  *     return atmnet
- * 
+ *
  * def readCssrfile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -3623,7 +3623,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netio.pyx":49
  *     return atmnet
- * 
+ *
  * def readV1file(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -3635,7 +3635,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netio.pyx":58
  *     return atmnet
- * 
+ *
  * def writeCssrfile(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3647,7 +3647,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netio.pyx":66
  *         raise IOError
- * 
+ *
  * def writeCiffile(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3659,7 +3659,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netio.pyx":74
  *         raise IOError
- * 
+ *
  * def writeV1file(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3671,7 +3671,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netio.pyx":82
  *         raise IOError
- * 
+ *
  * def writeNt2file(filename, vornet, minRad = None):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3682,8 +3682,8 @@ static int __Pyx_InitCachedConstants(void) {
   __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mbkumar_venvs_pmg_venv_cod, __pyx_n_s_writeNt2file, 82, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 82, __pyx_L1_error)
 
   /* "zeo/netio.pyx":95
- * 
- * 
+ *
+ *
  * def writeXyzfile(filename, atmnet, supercell_flag, is_duplicate_perimeter_atoms):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3695,7 +3695,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netio.pyx":104
  *         raise IOError
- * 
+ *
  * def writeVtkfile(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3707,7 +3707,7 @@ static int __Pyx_InitCachedConstants(void) {
 
   /* "zeo/netio.pyx":112
  *         raise IOError
- * 
+ *
  * def writeMopacfile(filename, atmnet, supercell_flag):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3833,7 +3833,7 @@ PyMODINIT_FUNC PyInit_netio(void)
 
   /* "zeo/netio.pyx":13
  * #def bint checkInputFile(char* filename)
- * 
+ *
  * def readCiffile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -3845,7 +3845,7 @@ PyMODINIT_FUNC PyInit_netio(void)
 
   /* "zeo/netio.pyx":22
  *     return atmnet
- * 
+ *
  * def readArcfile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -3857,7 +3857,7 @@ PyMODINIT_FUNC PyInit_netio(void)
 
   /* "zeo/netio.pyx":31
  *     return atmnet
- * 
+ *
  * def readCucfile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -3869,7 +3869,7 @@ PyMODINIT_FUNC PyInit_netio(void)
 
   /* "zeo/netio.pyx":40
  *     return atmnet
- * 
+ *
  * def readCssrfile(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -3881,7 +3881,7 @@ PyMODINIT_FUNC PyInit_netio(void)
 
   /* "zeo/netio.pyx":49
  *     return atmnet
- * 
+ *
  * def readV1file(filename, radialflag):             # <<<<<<<<<<<<<<
  *     atmnet = AtomNetwork()
  *     if isinstance(filename, unicode):
@@ -3893,7 +3893,7 @@ PyMODINIT_FUNC PyInit_netio(void)
 
   /* "zeo/netio.pyx":58
  *     return atmnet
- * 
+ *
  * def writeCssrfile(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3905,7 +3905,7 @@ PyMODINIT_FUNC PyInit_netio(void)
 
   /* "zeo/netio.pyx":66
  *         raise IOError
- * 
+ *
  * def writeCiffile(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3917,7 +3917,7 @@ PyMODINIT_FUNC PyInit_netio(void)
 
   /* "zeo/netio.pyx":74
  *         raise IOError
- * 
+ *
  * def writeV1file(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3929,7 +3929,7 @@ PyMODINIT_FUNC PyInit_netio(void)
 
   /* "zeo/netio.pyx":82
  *         raise IOError
- * 
+ *
  * def writeNt2file(filename, vornet, minRad = None):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3940,8 +3940,8 @@ PyMODINIT_FUNC PyInit_netio(void)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "zeo/netio.pyx":95
- * 
- * 
+ *
+ *
  * def writeXyzfile(filename, atmnet, supercell_flag, is_duplicate_perimeter_atoms):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3953,7 +3953,7 @@ PyMODINIT_FUNC PyInit_netio(void)
 
   /* "zeo/netio.pyx":104
  *         raise IOError
- * 
+ *
  * def writeVtkfile(filename, atmnet):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3965,7 +3965,7 @@ PyMODINIT_FUNC PyInit_netio(void)
 
   /* "zeo/netio.pyx":112
  *         raise IOError
- * 
+ *
  * def writeMopacfile(filename, atmnet, supercell_flag):             # <<<<<<<<<<<<<<
  *     if isinstance(filename, unicode):
  *         filename = (<unicode>filename).encode('utf8')
@@ -3978,7 +3978,7 @@ PyMODINIT_FUNC PyInit_netio(void)
   /* "zeo/netio.pyx":1
  * # distutils: language = c++             # <<<<<<<<<<<<<<
  * # distutils: sources = ../networkio.cc
- * 
+ *
  */
   __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);

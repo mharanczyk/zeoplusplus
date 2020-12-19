@@ -10,7 +10,7 @@
 #ifndef EIGEN_UMFPACKSUPPORT_H
 #define EIGEN_UMFPACKSUPPORT_H
 
-namespace Eigen { 
+namespace Eigen {
 
 /* TODO extract L, extract U, compute det, etc... */
 
@@ -198,7 +198,7 @@ class UmfPackLU : internal::noncopyable
       return m_q;
     }
 
-    /** Computes the sparse Cholesky decomposition of \a matrix 
+    /** Computes the sparse Cholesky decomposition of \a matrix
      *  Note that the matrix should be column-major, and in compressed format for best performance.
      *  \sa SparseMatrix::makeCompressed().
      */
@@ -249,7 +249,7 @@ class UmfPackLU : internal::noncopyable
     {
       if(m_symbolic) umfpack_free_symbolic(&m_symbolic,Scalar());
       if(m_numeric)  umfpack_free_numeric(&m_numeric,Scalar());
-      
+
       grapInput(matrix.derived());
 
       analyzePattern_impl();
@@ -269,7 +269,7 @@ class UmfPackLU : internal::noncopyable
         umfpack_free_numeric(&m_numeric,Scalar());
 
       grapInput(matrix.derived());
-      
+
       factorize_impl();
     }
 
@@ -296,7 +296,7 @@ class UmfPackLU : internal::noncopyable
       m_valuePtr              = 0;
       m_extractedDataAreDirty = true;
     }
-    
+
     template<typename InputMatrixType>
     void grapInput_impl(const InputMatrixType& mat, internal::true_type)
     {
@@ -316,7 +316,7 @@ class UmfPackLU : internal::noncopyable
         m_valuePtr      = mat.valuePtr();
       }
     }
-    
+
     template<typename InputMatrixType>
     void grapInput_impl(const InputMatrixType& mat, internal::false_type)
     {
@@ -325,13 +325,13 @@ class UmfPackLU : internal::noncopyable
       m_innerIndexPtr = m_copyMatrix.innerIndexPtr();
       m_valuePtr      = m_copyMatrix.valuePtr();
     }
-    
+
     template<typename InputMatrixType>
     void grapInput(const InputMatrixType& mat)
     {
       grapInput_impl(mat, internal::umfpack_helper_is_sparse_plain<InputMatrixType>());
     }
-    
+
     void analyzePattern_impl()
     {
       int errorCode = 0;
@@ -344,7 +344,7 @@ class UmfPackLU : internal::noncopyable
       m_factorizationIsOk = false;
       m_extractedDataAreDirty = true;
     }
-    
+
     void factorize_impl()
     {
       int errorCode;
@@ -374,7 +374,7 @@ class UmfPackLU : internal::noncopyable
     int m_factorizationIsOk;
     int m_analysisIsOk;
     mutable bool m_extractedDataAreDirty;
-    
+
   private:
     UmfPackLU(UmfPackLU& ) { }
 };
@@ -424,7 +424,7 @@ bool UmfPackLU<MatrixType>::_solve(const MatrixBase<BDerived> &b, MatrixBase<XDe
   eigen_assert((BDerived::Flags&RowMajorBit)==0 && "UmfPackLU backend does not support non col-major rhs yet");
   eigen_assert((XDerived::Flags&RowMajorBit)==0 && "UmfPackLU backend does not support non col-major result yet");
   eigen_assert(b.derived().data() != x.derived().data() && " Umfpack does not support inplace solve");
-  
+
   int errorCode;
   for (int j=0; j<rhsCols; ++j)
   {

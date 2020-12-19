@@ -51,21 +51,21 @@ class TRIPLET {
 public:
   int vals[3];
   int x, y, z;
-  
+
   /* Construct a TRIPLET with the three provided components.*/
   TRIPLET(int myX, int myY, int myZ);
 
   /* Access one of the TRIPLETs three values.*/
   int& operator[](int index);
-  
+
   /** Add each component of the triplet to that of the provided TRIPLET
    *  and return the result. */
-  TRIPLET add(TRIPLET other); 
+  TRIPLET add(TRIPLET other);
 };
 
 
 // The number and directions of a grid point's neighbors
-const int NUM_DIRECTIONS = 6; 
+const int NUM_DIRECTIONS = 6;
 const TRIPLET DIRECTIONS [6] = {TRIPLET(1,0,0), TRIPLET(-1,0,0), TRIPLET(0,1,0), TRIPLET(0,-1,0), TRIPLET(0,0,1), TRIPLET(0,0,-1)};
 
 
@@ -77,11 +77,11 @@ const TRIPLET DIRECTIONS [6] = {TRIPLET(1,0,0), TRIPLET(-1,0,0), TRIPLET(0,1,0),
 /* Return the 1-d index for the provided grid indices*/
 int transformIndex(int x, int y, int z, int numX, int numY);
 
-/* Returns the energy of the point located at the provided grid indices. 
+/* Returns the energy of the point located at the provided grid indices.
  * Assumes the grid indices are within the appropriate range.*/
 float getEnergy(int x, int y, int z, int numX, int numY, float *energyGrid);
 
-/* Returns the energy of the point located in the grid referred to by the TRIPLET of indices. 
+/* Returns the energy of the point located in the grid referred to by the TRIPLET of indices.
  * Assumes the grid indices are within the appropriate range.*/
 float getEnergy(TRIPLET indices, int numX, int numY, float *energyGrid);
 
@@ -108,7 +108,7 @@ bool isAccessible(TRIPLET indices, int numX, int numY, float *accessGrid);
 bool hasHigherEnergy(std::pair<TRIPLET, DISP_INFO > p1, std::pair<TRIPLET, DISP_INFO > p2);
 
 // Helper function used in calculateMinEnergyBarrier()
-bool findMinEnergyBarrier(int startX, int startY, int startZ, double &barrier, 
+bool findMinEnergyBarrier(int startX, int startY, int startZ, double &barrier,
 			  int numX, int numY, int numZ, float *energyGrid, float *accessGrid, UNIT_CELL unit_cell);
 
 /* Calculates the minimum energy barrier of a path that must pass through the point referred to by the provided

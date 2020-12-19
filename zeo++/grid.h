@@ -16,7 +16,7 @@ void generateBOVGrid(ATOM_NETWORK *atmnet, std::string name_f_dist, std::string 
 void generateGaussianGrid(ATOM_NETWORK *atmnet, std::string cubefilename, bool angstrom_to_bohr, bool useMassFlag);
 
 /*   Gausian cube file with accessibility information  */
-void generateGaussianGridWithAccessibilityInfo(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgAtomnet, bool highAccuracy, double probe_radius, 
+void generateGaussianGridWithAccessibilityInfo(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgAtomnet, bool highAccuracy, double probe_radius,
                                                std::string cubefilename, bool angstrom_to_bohr, bool useMassFlag);
 
 /* Gaussian grid (cube format) for averaging */
@@ -26,7 +26,7 @@ void calculateAverageGrid(ATOM_NETWORK *atmnet, std::string inputfilename, std::
 /* Gaussian grid (cube gormat) with 3D histogram of number of occupancies (1 per frame) */
 void calculateAverageGridPerFrame(ATOM_NETWORK *atmnet, std::string inputfilename, std::string cubefilename, bool angstrom_to_bohr, bool useMassFlag);
 
-/* Gaussian grid (cube format) class 
+/* Gaussian grid (cube format) class
    Multipurpose class written intially to handle averaging tasts */
 
 class GaussianCube {
@@ -66,7 +66,7 @@ class GaussianCube {
   gridsize = na * nb *nc;
 
   // zeroing the grid
-  for(int i=0; i<size_a; i++) 
+  for(int i=0; i<size_a; i++)
     for(int j=0; j<size_b; j++)
       for(int k=0; k<size_c; k++)
         cube[i][j][k] = 0.0;
@@ -84,7 +84,7 @@ void deinit()
 // saves grid to Gaussian cube file
 void writeGrid(ATOM_NETWORK *atmnet, std::string cubefilename, bool angstrom_to_bohr, bool useMassFlag);
 
-// calculate distnace grid 
+// calculate distnace grid
 void calculateDistanceGrid(ATOM_NETWORK *atmnet);
 
 // calculate distance grid with accessibility information

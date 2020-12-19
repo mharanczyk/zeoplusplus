@@ -14,5 +14,3 @@ Check with Chris:
 Testing the code:
 for memory leaks. example:
 valgrind -v --leak-check=yes ./network -sa 1.2 1.2 2000 DDR.cssr
-
-

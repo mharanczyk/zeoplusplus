@@ -57,15 +57,15 @@ def lookupRadius(element):
     """"
     Args:
         element:
-            Element name in conventional shorthand 
-            Ex: Al for aluminum 
-                Si for silicon 
+            Element name in conventional shorthand
+            Ex: Al for aluminum
+                Si for silicon
     Returns:
         radius of the input element
     """
     radius = zeo_lookupRadius(element, True)
     return radius
-    
+
 def lookupCovRadius(element):
     return zeo_lookupCovRadius(element)
 

@@ -1,4 +1,4 @@
-/** 
+/**
   * In material.* files, there are functions to control execution of Material class
   * This is the main class to store information about a structure and its porosity
   *
@@ -37,7 +37,7 @@ class MATERIAL {
     bool highAccuracy;
     string AccSetting;
 
-    AccessibilityClassNINF accessAnalysis; 
+    AccessibilityClassNINF accessAnalysis;
 
     // Visualization setting
     bool VisFlag;
@@ -52,10 +52,10 @@ class MATERIAL {
 
     bool doneFlatVoroFlag;
     bool doneInflatedVoroFlag;
-    
+
 //    bool doneAccessibilityAnalysis;
 
-    
+
     /* Data structures storing the results */
 
     // free sphere stuff
@@ -73,7 +73,7 @@ class MATERIAL {
     bool AVwithin_rangeFlag;
 
     vector<Point> AVaxsPoints; // stores accessible points (fractional coordinates)
-    vector<int> AVaxsPointsChannelIDs; // stores the corresponding channel IDs 
+    vector<int> AVaxsPointsChannelIDs; // stores the corresponding channel IDs
     vector<Point> AVinaxsPoints; // inaccessible points (fractonal coordinates)
     vector<int> AVinaxsPointsPocketIDs; // stores the corresponding pocket IDs
     vector<int> AVcount_inChannel;  // stores the number of points assigned to particular channel
@@ -85,7 +85,7 @@ class MATERIAL {
     bool AVrequestPSD; // flag that indicates that PSD calculation need to be executed
 
     /* AV related flags */
-    bool AVdoneFlag;  
+    bool AVdoneFlag;
     bool AVPSDdoneFlag;
     bool AVblockDoneFlag;
 
@@ -94,11 +94,11 @@ class MATERIAL {
     int ASAnumSamples;  // total number of samples (sum over all atoms)
     //int ASAcount;
     //int ASAcount_inaxs;
-    double ASAtotal; // accessible surface 
-    double ASAtotal_inaxs; // inaccessible ASA  
+    double ASAtotal; // accessible surface
+    double ASAtotal_inaxs; // inaccessible ASA
 
     vector<Point> ASAaxsPoints; // stores accessible points (fractional coordinates)
-    vector<int> ASAaxsPointsChannelIDs; // stores the corresponding channel IDs 
+    vector<int> ASAaxsPointsChannelIDs; // stores the corresponding channel IDs
     vector<Point> ASAinaxsPoints; // inaccessible points (fractonal coordinates)
     vector<int> ASAinaxsPointsPocketIDs; // stores the corresponding pocket IDs
     vector<double> ASA_inChannel;  // stores the SA assigned to particular channel
@@ -118,7 +118,7 @@ class MATERIAL {
 
    AVrequestBlockingPockets = false; // by default dont save blocking spheres in AV run
    AVrequestPSD = false; // by default do not run PSD after AV run
- 
+
    highAccuracy = true; AccSetting = "DEF";
    cout << "-ha setting is default now (DEF setting). Please use \"-noha\" to override.\n";
 
@@ -167,7 +167,7 @@ class MATERIAL {
   void AVreportPSDPoints(ostream &output);
 
   void ASAcalc(double r, int sampleDensity,ostream &output, char *filename);
-  void ASAreportPoints(ostream &output); 
+  void ASAreportPoints(ostream &output);
 
   void visualizeVoroNet(char *, double, int, int, int);
 

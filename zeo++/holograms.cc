@@ -101,7 +101,7 @@ void analyze_accessible_voronoi_by_atoms(ATOM_NETWORK *atmnet, VORONOI_NETWORK *
 			float_edge_length_bin_upper_bounds[i] = 3.0 + 0.25*((float)i);
 		else
 			float_edge_length_bin_upper_bounds[i] = 3.0 + 0.5*((float)i); //idea for atom triplets (pharmacophores)
-	}	
+	}
 	float_edge_length_bin_upper_bounds[NUM_BINS-1] = 1000; //i.e. 'infinity'
 
 	//DEBUG print bins
@@ -201,7 +201,7 @@ int num_cage_atoms_before_checking_images = 0;
 											candidate_image.z = best_coords[count].z+k_diff;
 											char already_pushed = 0;
 											for(k=0; k<pushed_images.size() && already_pushed==0; k++) {
-												if(candidate_image.x==pushed_images.at(k).x && candidate_image.y==pushed_images.at(k).y && candidate_image.z==pushed_images.at(k).z) already_pushed = 1; 
+												if(candidate_image.x==pushed_images.at(k).x && candidate_image.y==pushed_images.at(k).y && candidate_image.z==pushed_images.at(k).z) already_pushed = 1;
 											}
 											if(already_pushed==0) {
 												Point image_xyz = abc_to_xyz(candidate_image.x, candidate_image.y, candidate_image.z, atmnet);
@@ -349,7 +349,7 @@ int num_cage_atoms_before_checking_images = 0;
 }
 
 void analyze_accessible_voronoi_with_segments(VORONOI_NETWORK *vornet, float probeRad, vector<int> *accessInfo, vector<double> *segment_radii_vector, int num_segments, char *name) { //accessInfo now contains for each node, segment number (1+) or 0 if inaccessible
-	
+
 	cout << "NUM_BINS = " << NUM_BINS << "\n";
 
 	//find info and count accessible nodes
@@ -1023,4 +1023,3 @@ int get_bin(float measure, float *upper_bounds) {
 	}
 	return NUM_BINS-1; //i.e. the final bin will contain everything too large for the others
 }
-

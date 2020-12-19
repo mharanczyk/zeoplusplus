@@ -27,7 +27,7 @@
 const unsigned int randSeed2 = 994879221;
 
 class FEATURE : public CHANNEL {
-  ATOM_NETWORK   *UnitCellPtr;     // pointer to the original unit cell, to be used for distance calcs with periodic boundary conditions 
+  ATOM_NETWORK   *UnitCellPtr;     // pointer to the original unit cell, to be used for distance calcs with periodic boundary conditions
   int nsegments;                   // Number of segments
   std::vector <int> segments;           // segment ID for each node
 //moved_to_public  vector <double> segment_max_r;   // largest radius in a segment
@@ -36,7 +36,7 @@ class FEATURE : public CHANNEL {
   std::vector <SEGCONN> segment_conn_fulllist; // lists all connections (edges) briging different segments
                                           // this will be used to determine topology of segments
   std::vector < std::vector<int> > segment_faces_conn;   // list of connections of 'faces' for each segment, faces are clusters of nodes that connect to another segment
-  std::vector < std::vector<double> > segment_faces_max_r; // max r for each segment's face  
+  std::vector < std::vector<double> > segment_faces_max_r; // max r for each segment's face
   int nfeatures;                   // Number of features after merging
   std::vector <int> features;           // feature ID for each segment after merging
   std::vector <int> feature_node_mapping; // feature id for each node

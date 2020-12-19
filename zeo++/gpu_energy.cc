@@ -11,10 +11,10 @@ using namespace std;
 
 /* Construct a unit cell with the provided vector components*/
 UNIT_CELL::UNIT_CELL(double vax, double vbx, double vby, double vcx, double vcy, double vcz){
-  va_x = vax; 
-  vb_x = vbx; vb_y = vby; 
+  va_x = vax;
+  vb_x = vbx; vb_y = vby;
   vc_x = vcx; vc_y = vcy; vc_z = vcz;
-  
+
   double invDet = 1/(va_x*vb_y*vc_z);
   inv_va_x = 1/va_x;
   inv_vb_x = invDet*-1*vc_z*vb_x; inv_vb_y = 1/vb_y;
@@ -44,14 +44,14 @@ void UNIT_CELL::xyz_to_abc(double x, double y, double z, double &a, double &b, d
 // Constructor that creates a dummy container
 DISP_INFO::DISP_INFO(){
   isReal = false;
-} 
+}
 
 /** Create a container with the provided displacement components and energy.
 *   Displacements are stored as characters to conserve space. */
 DISP_INFO::DISP_INFO(int myA, int myB, int myC, float myMaxEnergy){
   isReal = true;
-  a = (char)myA; 
-  b = (char)myB; 
+  a = (char)myA;
+  b = (char)myB;
   c = (char)myC;
   maxEnergy = myMaxEnergy;
 }
@@ -66,8 +66,8 @@ bool DISP_INFO::equalDisplacement(DISP_INFO other){
 
 /* Construct a TRIPLET with the three provided components.*/
 TRIPLET::TRIPLET(int myX, int myY, int myZ){
-  vals[0] = x = myX; 
-  vals[1] = y = myY; 
+  vals[0] = x = myX;
+  vals[1] = y = myY;
   vals[2] = z = myZ;
 }
 
@@ -96,13 +96,13 @@ int transformIndex(int x, int y, int z, int numX, int numY){
   return x + y*numX + z*numX*numY;
 }
 
-/* Returns the energy of the point located at the provided grid indices. 
+/* Returns the energy of the point located at the provided grid indices.
  * Assumes the grid indices are within the appropriate range.*/
 float getEnergy(int x, int y, int z, int numX, int numY, float *energyGrid){
   return energyGrid[transformIndex(x, y, z, numX, numY)];
 }
 
-/* Returns the energy of the point located in the grid referred to by the TRIPLET of indices. 
+/* Returns the energy of the point located in the grid referred to by the TRIPLET of indices.
  * Assumes the grid indices are within the appropriate range.*/
 float getEnergy(TRIPLET indices, int numX, int numY, float *energyGrid){
   return getEnergy(indices[0], indices[1], indices[2], numX, numY, energyGrid);
@@ -128,7 +128,7 @@ double translate_to_original_uc(double x){
     return newX+1;
   else
     return newX;
-} 
+}
 
 /* Adjusts the indices so that they lie within the appropriate range
 *  and such that they are adjusted according to periodic boundary conditions.
@@ -137,7 +137,7 @@ void adjustIndices(TRIPLET &gridIndices, TRIPLET &shift, UNIT_CELL &uc){
   double a, b, c;
   uc.xyz_to_abc(gridIndices[0], gridIndices[1], gridIndices[2], a, b, c);
   double newA, newB, newC;
-  newA = translate_to_original_uc(a); newB = translate_to_original_uc(b); newC = translate_to_original_uc(c); 
+  newA = translate_to_original_uc(a); newB = translate_to_original_uc(b); newC = translate_to_original_uc(c);
   double x, y, z;
   uc.abc_to_xyz(newA, newB, newC, x, y, z);
   shift = TRIPLET(nearestInt(a - newA), nearestInt(b - newB), nearestInt(c - newC));
@@ -156,11 +156,11 @@ bool hasHigherEnergy(pair<TRIPLET, DISP_INFO > p1, pair<TRIPLET, DISP_INFO > p2)
 }
 
 // Helper function used in calculateMinEnergyBarrier()
-bool findMinEnergyBarrier(int startX, int startY, int startZ, double &barrier, 
+bool findMinEnergyBarrier(int startX, int startY, int startZ, double &barrier,
 			  int numX, int numY, int numZ, float *energyGrid, float *accessGrid, UNIT_CELL unit_cell){
   barrier = DBL_MAX;
   vector<DISP_INFO> visitedNodes = vector<DISP_INFO> (numX*numY*numZ, DISP_INFO());
-  
+
   // Place starting node on heap with (0,0,0) displacement
   HEAP<pair<TRIPLET, DISP_INFO > > heap (hasHigherEnergy); // Lowest energy paths are favored
   heap.insert(pair<TRIPLET, DISP_INFO> (TRIPLET(startX, startY, startZ), DISP_INFO(0, 0, 0, getEnergy(startX, startY, startZ, numX, numY, energyGrid))));
@@ -185,12 +185,12 @@ bool findMinEnergyBarrier(int startX, int startY, int startZ, double &barrier,
     else{
       // Add all connected neigbors if appropriate
       visitedNodes[arrayIndex] = pathInfo.second;
-      
+
       for(int i = 0; i < NUM_DIRECTIONS; i++){
 	TRIPLET dir = DIRECTIONS[i];
 	TRIPLET newIndices = dir.add(pathInfo.first);
 	TRIPLET change_in_uc(0,0,0);
-	adjustIndices(newIndices, change_in_uc, unit_cell);	
+	adjustIndices(newIndices, change_in_uc, unit_cell);
 
 	if(isAccessible(newIndices, numX, numY, accessGrid)){
 	  int da = change_in_uc[0] + pathInfo.second.a;
@@ -200,7 +200,7 @@ bool findMinEnergyBarrier(int startX, int startY, int startZ, double &barrier,
 	}
       }
     }
-  } 
+  }
   return false;
 }
 
@@ -234,7 +234,7 @@ bool calculateMinEnergyBarrier(double &minEnergy, double &barrierEnergy, float b
     return false;
   }
   cout << "Global accessible energy minimum found" << "\n";
-  
+
   // Construct the unit cell vectors in terms of grid points
   double grid_spacing_x = box_x/numX, grid_spacing_y = box_y/numY, grid_spacing_z = box_z/numZ;
   vax /= grid_spacing_x;
@@ -244,10 +244,10 @@ bool calculateMinEnergyBarrier(double &minEnergy, double &barrierEnergy, float b
 
   cout << "Calculating energy barrier for box of dimensions:" << box_x << " by " << box_y << " by " << box_z << "\n"
        << "Grid size: " << numX << " by " << numY << " by " << numZ << "\n"
-       << "Grid unitcell vectors:" 
+       << "Grid unitcell vectors:"
        << "\t v_a:(" << vax << ", 0, 0)" << "\n"
        << "\t v_b:(" << vbx << ", " << vby << ", 0)" << "\n"
-       << "\t v_c:{" << vcx << ", " << vcy << ", " << vcz << ")" << "\n" 
+       << "\t v_c:{" << vcx << ", " << vcy << ", " << vcz << ")" << "\n"
        << "\n" << "\n";
 
   // Calculate the barrier

@@ -19,7 +19,7 @@ endif
 LIB = -lvoro++
 
 # The relative of path of the main library source files
-VOROINCLDIR = -I../voro++/src 
+VOROINCLDIR = -I../voro++/src
 VOROLINKDIR = -L../voro++/src
 
 #Object files to be created for network
@@ -137,7 +137,7 @@ ${STATIC_LIB}: ${STATIC_OBJS}
 	@echo Linking $@
 	ar rs $@ $^ #$(VOROINCLDIR) $(VOROLINKDIR) $(LIB)
 
-dylib: CFLAGS += -fPIC 
+dylib: CFLAGS += -fPIC
 dylib: ${DY_LIB}
 
 ${DY_LIB}: ${DY_OBJS}
@@ -148,8 +148,7 @@ ${DY_LIB}: ${DY_OBJS}
 %.o: %.cc
 	$(CC) $(VOROINCLDIR) $(CFLAGS) -c $<
 
-clean: 
+clean:
 	rm -f $(TOT_OBJS) *.err $(EXECUTABLES)
 
 .PHONY: all clean depend
-

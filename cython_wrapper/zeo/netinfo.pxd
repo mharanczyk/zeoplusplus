@@ -28,4 +28,3 @@ cdef extern from "../../networkinfo.h":
     cdef int zeo_lookupAtomicNumber "lookupAtomicNumber"(string atomType)
 
     cdef bint zeo_isMetal "isMetal"(string atomType)
-

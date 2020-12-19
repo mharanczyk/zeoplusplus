@@ -23,7 +23,7 @@ bool IsUniqueVertex(XYZ *p, ATOM_NETWORK &cell) {
     dist=cell.calcDistanceABC(p->x,p->y,p->z,cell.vertices.at(v).abc.x,cell.vertices.at(v).abc.y,cell.vertices.at(v).abc.z);
     if(dist<DISTANCE_TOLERANCE) return false;
   }
-  return true;  
+  return true;
 }
 
 /* Checks if a given point p is equivalent by symmetry with any of other points */
@@ -68,7 +68,7 @@ vector < vector<int> >  IdentifyEquivalentVertices(ATOM_NETWORK &cell, int space
             if(cell.vertices[i].name!=cell.vertices[Groups[gr].at(0)].name)
               {
               cerr << "Vertices of different names occupy positions equivalent by symmetry.\n";
-              exit(EXIT_FAILURE); 
+              exit(EXIT_FAILURE);
               };
             VertexGroup[i]=gr;
             Groups[gr].push_back(i);
@@ -76,7 +76,7 @@ vector < vector<int> >  IdentifyEquivalentVertices(ATOM_NETWORK &cell, int space
             };
          };
          if(dist<TOLERANCE) break; // leave the outer loop if equivalent position was found
-      }; // outer loop 
+      }; // outer loop
 
     if(dist>=TOLERANCE) // if dist larger than TOLERANCE, equivalent position has not been found and a new group of equivalent position is to be created
       {
@@ -90,13 +90,13 @@ vector < vector<int> >  IdentifyEquivalentVertices(ATOM_NETWORK &cell, int space
     }; // loop other all atoms
 
 
- // Print Symmetry group summary 
+ // Print Symmetry group summary
  for(unsigned int i=0; i<Groups.size(); i++)
    {
    cout << "Group " << i << "  size= " << Groups[i].size() << "\n";
    };
 
-  return Groups; 
+  return Groups;
 
 }
 */
@@ -121,18 +121,18 @@ vector < vector<int> >  IdentifyEquivalentAtoms(ATOM_NETWORK &atomNet, int space
     {
     double dist;
 
-    for(unsigned int gr=0; gr<EqPosGroup.size(); gr++) 
+    for(unsigned int gr=0; gr<EqPosGroup.size(); gr++)
       {
       for(unsigned int pos=0; pos<EqPosGroup[gr].size(); pos++)
          {
          dist=atomNet.calcDistanceXYZABC(atomNet.atoms[i].x,atomNet.atoms[i].y,atomNet.atoms[i].z,
                                     EqPosGroup[gr].at(pos).x,EqPosGroup[gr].at(pos).y,EqPosGroup[gr].at(pos).z);
-         if(dist<TOLERANCE) 
+         if(dist<TOLERANCE)
             {
             if(atomNet.atoms[i].type!=atomNet.atoms[Groups[gr].at(0)].type)
               {
               cerr << "Atoms of different types occupy positions equivalent by symmetry.\n";
-              exit(1); 
+              exit(1);
               };
             AtomGroup[i]=gr;
             Groups[gr].push_back(i);
@@ -140,7 +140,7 @@ vector < vector<int> >  IdentifyEquivalentAtoms(ATOM_NETWORK &atomNet, int space
             };
          };
          if(dist<TOLERANCE) break; // leave the outer loop if equivalent position was found
-      }; // outer loop 
+      }; // outer loop
 
     if(dist>=TOLERANCE) // if dist larger than TOLERANCE, equivalent position has not been found and a new group of equivalent position is to be created
       {
@@ -154,18 +154,18 @@ vector < vector<int> >  IdentifyEquivalentAtoms(ATOM_NETWORK &atomNet, int space
     }; // loop other all atoms
 
 
- // Print Symmetry group summary 
+ // Print Symmetry group summary
  for(unsigned int i=0; i<Groups.size(); i++)
    {
    cout << "Group " << i << "  size= " << Groups[i].size() << "\n";
    };
 
-  return Groups; 
+  return Groups;
 
 }
 
 /* Returns a vector of positions equivalent by symmetry to an input position
-Spacegroups were taken from http://it.iucr.org/Ab/ch7o1v0001/    
+Spacegroups were taken from http://it.iucr.org/Ab/ch7o1v0001/
 For groups with multiple definitions, we took first axis choice, second origin choice
 and rhombo-cell tather than hexagonal one. */
 vector <XYZ> GetEquivalentPositions(int spacegroup, XYZ *pt) {
@@ -738,7 +738,7 @@ p.set(-x+1.0/2,y,z); p=p+(Sets[i]); EqPosVec.push_back(p);
      };
    break;
 
-case 47: // P m m m 
+case 47: // P m m m
    s.set(0,0,0); Sets.push_back(s);
    for(unsigned int i=0; i<Sets.size(); i++)
      {
@@ -850,7 +850,7 @@ p.set(-x,y,z); p=p+(Sets[i]); EqPosVec.push_back(p);
      };
    break;
 
-case 54: // P c c a 
+case 54: // P c c a
    s.set(0,0,0); Sets.push_back(s);
    for(unsigned int i=0; i<Sets.size(); i++)
      {
@@ -978,7 +978,7 @@ p.set(-x+1.0/2,y+1.0/2,z); p=p+(Sets[i]); EqPosVec.push_back(p);
      };
    break;
 
-case 62: // P n m a 
+case 62: // P n m a
    s.set(0,0,0); Sets.push_back(s);
    for(unsigned int i=0; i<Sets.size(); i++)
      {
@@ -2025,7 +2025,7 @@ p.set(y+1.0/2,x+1.0/2,z); p=p+(Sets[i]); EqPosVec.push_back(p);
      };
    break;
 
-case 126: // P 4/n n c 
+case 126: // P 4/n n c
    s.set(0,0,0); Sets.push_back(s);
    for(unsigned int i=0; i<Sets.size(); i++)
      {
@@ -2265,7 +2265,7 @@ p.set(y+1.0/2,x+1.0/2,z+1.0/2); p=p+(Sets[i]); EqPosVec.push_back(p);
      };
    break;
 
-case 136: // P 42/m n m 
+case 136: // P 42/m n m
    s.set(0,0,0); Sets.push_back(s);
    for(unsigned int i=0; i<Sets.size(); i++)
      {
@@ -2313,7 +2313,7 @@ p.set(y,x,z+1.0/2); p=p+(Sets[i]); EqPosVec.push_back(p);
      };
    break;
 
-case 138: // P 42/n c m 
+case 138: // P 42/n c m
    s.set(0,0,0); Sets.push_back(s);
    for(unsigned int i=0; i<Sets.size(); i++)
      {
@@ -4759,7 +4759,7 @@ p.set(x,x-y,z); p=p+(Sets[i]); EqPosVec.push_back(p);
      };
    break;
 
-  default: // default switch to handle unknown groups 
+  default: // default switch to handle unknown groups
     cerr << "Unknown space group: << " << spacegroup << ". Check symmetry.c for definitions\n";
     exit(EXIT_FAILURE);
   }; // end of switch
@@ -5021,4 +5021,3 @@ int get_sym_ID(string s) {
   printf("WARNING: could not parse symmetry group string \"%s\" to find the corresponding ID number\n", s.c_str());
   return -1; //could not parse string!
 }
-

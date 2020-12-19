@@ -37,18 +37,18 @@ public:
     int basis [3][3];               // Basis vectors of pore
 
 
-    /* Reconstructs the PORE by propagating paths until all nodes have been accessed. 
+    /* Reconstructs the PORE by propagating paths until all nodes have been accessed.
      * Stores each node in the unit cell in which it is encountered.
-     * Attempts to minimize the number of unit cells required for reconstruction by 
+     * Attempts to minimize the number of unit cells required for reconstruction by
      * favoring nodes in already-accessed unit cells over nodes in new unit cells. */
     void reconstruct();
 
-    /* Constructs a pore from the provided  nodes in the DIJKSTRA_NETWORK. 
+    /* Constructs a pore from the provided  nodes in the DIJKSTRA_NETWORK.
      * Reconstructs the pore by trying to minimize the number of unit cells
      * required to show a single pore unit.
      */
     PORE(std::vector<int> nodeIDs, DIJKSTRA_NETWORK *dnet, int dim, int basisVecs[3][3]);
-  
+
     /* Create a PORE that does not contain any nodes or connections
      * and spans 0 unit cells.*/
     PORE();
@@ -61,10 +61,10 @@ public:
     /* provides a vector with IDs of original voronoi nodes that correspond to the pore*/
     std::vector <int> nodeIds();
 
-    /** Nodes within the provided DIJKSTRA_NETWORK can be classified as either accessible or inaccessible, 
+    /** Nodes within the provided DIJKSTRA_NETWORK can be classified as either accessible or inaccessible,
      *  where sets of accessible  nodes constitute a CHANNEL and inaccessible POCKET. This function identifies
-     *  the POREs that exist for the provided particle diameter and stores them using the provided pointer 
-     *  to a vector of POREs. CHANNEL and PORE can be distunguished by dimentionality. 
+     *  the POREs that exist for the provided particle diameter and stores them using the provided pointer
+     *  to a vector of POREs. CHANNEL and PORE can be distunguished by dimentionality.
      *  In addition, the pointer to the vector of bools is used to a store bool
      *  for each VORONOI_NODE, where infoStorage[i] is true iff node #i is accessible. */
     static void findChannelsAndPockets(DIJKSTRA_NETWORK *, std::vector<bool> *, std::vector<PORE> *);
@@ -74,18 +74,18 @@ public:
      *  the one provided as argument */
     static void findChannelsAndPockets(VORONOI_NETWORK *, double, std::vector<bool> *, std::vector<PORE> *);
 
-    /** Prints all pore information (nodes, their positions and radii) to a file 
+    /** Prints all pore information (nodes, their positions and radii) to a file
      *  Atom_network is needed to convert xyz coordinates to abc **/
 
     void printPoreSummary(std::ostream &out, ATOM_NETWORK *atmNet);
 
     /** Calculates center of mass and internal void radii (distance between the center of mass and its nearest atom)
-     *  This function attempts pore reconstruction in cases where pores cross the cell boundaries. 
+     *  This function attempts pore reconstruction in cases where pores cross the cell boundaries.
      */
     pair <XYZ, double> getCenterOfMass();
 
-    /** Attempt to reconstruct a pore (dim==0) to get structue without PBC 
-     */ 
+    /** Attempt to reconstruct a pore (dim==0) to get structue without PBC
+     */
     vector< pair <int,XYZ> >  getReconstructedPore();
 
     /**  Attempts to reconstructure a pore (dim==0) to get structure without PBC,
@@ -100,7 +100,7 @@ public:
 
     /** Return the largest free and included along free sphere path for a path between two nodes **/
 
-    pair <double,double> getFreeIncludedSphereDiameterforNodePair(int node1, int node2); 
+    pair <double,double> getFreeIncludedSphereDiameterforNodePair(int node1, int node2);
 
     // function that fills a vector with data on pocket
     // Di, coordinates of Di, and radii that encapsulates the pocket
@@ -111,7 +111,7 @@ public:
      *  Functions that segment pore into sub fragments and calculate Df between sub fragments
      **/
 
-     void getRestrictingDiameters(int nSegments, vector<int> vorNetID, vector< vector<double> > *PLDtable, vector< vector< pair<int,int> > > *PLDEdgeTable, 
+     void getRestrictingDiameters(int nSegments, vector<int> vorNetID, vector< vector<double> > *PLDtable, vector< vector< pair<int,int> > > *PLDEdgeTable,
                                  vector<double> *segmentDi, vector<int> *segmentDiNodeID, vector <double> *segmentDiFinal, vector<int> *segmentDiFinalNodeID);
 
 };
@@ -121,7 +121,7 @@ public:
 
     CHANNEL(std::vector<int> nodeIDs, DIJKSTRA_NETWORK *dnet, int dim, int basisVecs[3][3])
            : PORE(nodeIDs, dnet, dim, basisVecs){};
-  
+
     CHANNEL() : PORE(){};
 
     CHANNEL(PORE *);
@@ -136,30 +136,30 @@ public:
      * node information is outputted if requested.*/
     void print(bool dispNodeInfo);
 
-    /** Write the commands necessary to draw the CHANNEL in ZeoVis 
+    /** Write the commands necessary to draw the CHANNEL in ZeoVis
      *  to the provided output stream. */
     void writeToVMD(int n, std::fstream &output);
 
-    /** Write the commands necessary to draw the CHANNEL in ZeoVis 
+    /** Write the commands necessary to draw the CHANNEL in ZeoVis
      *  to the provided output stream. Includes a type because features and segments
      *  are drawn using the same command.*/
     void writeToVMD(std::string type, int n, std::fstream &output);
 
-    /** Nodes within the provided DIJKSTRA_NETWORK can be classified as either accessible or inaccessible, 
+    /** Nodes within the provided DIJKSTRA_NETWORK can be classified as either accessible or inaccessible,
      *  where sets of accessible  nodes constitute a CHANNEL. This function identifies
-     *  the CHANNELs that exist for the provided particle diameter and stores them using the provided pointer 
+     *  the CHANNELs that exist for the provided particle diameter and stores them using the provided pointer
      *  to a vector of channels. In addition, the pointer to the vector of bools is used to a store bool
      *  for each VORONOI_NODE, where infoStorage[i] is true iff node #i is accessible. */
     static void findChannels(DIJKSTRA_NETWORK *, std::vector<bool> *, std::vector<CHANNEL> *);
 
-    /** Nodes within the provided VORONOI_NETWORK can be classified as either accessible or inaccessible, 
+    /** Nodes within the provided VORONOI_NETWORK can be classified as either accessible or inaccessible,
      *  where sets of accessible  nodes constitute a CHANNEL. This function identifies
-     *  the CHANNELs that exist for the provided particle diameter and stores them using the provided pointer 
+     *  the CHANNELs that exist for the provided particle diameter and stores them using the provided pointer
      *  to a vector of channels. In addition, the pointer to the vector of bools is used to a store bool
      *  for each VORONOI_NODE, where infoStorage[i] is true iff node #i is accessible. */
     static void findChannels(VORONOI_NETWORK *, double, std::vector<bool> *, std::vector<CHANNEL> *);
- 
-  
+
+
     /* Stores the ids of all atoms that bound this channel using the provided vector reference. An atom is considered
     *  to bound a channel if a node in the channel is a member of the atom's Voronoi cell. */
     void findBoundingAtoms(ATOM_NETWORK *, std::vector<BASIC_VCELL> &, std::vector<int> &);
@@ -170,7 +170,7 @@ public:
     /* Returns the largest free sphere diameter for the current channel */
     std::pair<double, std::pair <double,double> >  findFreeIncludedSphereDiameter();
 
-    /* Return the largest free sphere starting from a partiular node 
+    /* Return the largest free sphere starting from a partiular node
        It uses a pair<pair> object that storage the current 'record' Di/df/dif
        This is to speed-up by early discart of paths with more restriction than the current path */
     std::pair<double, std::pair<double,double> >  findFreeIncludedSphereDiameterforNode(int, std::pair<double, std::pair<double,double> >);
@@ -178,7 +178,7 @@ public:
 };
 
 
-/** Class POCKET is handling inaccessible pockets and have different functions than CHANNEL 
+/** Class POCKET is handling inaccessible pockets and have different functions than CHANNEL
  *
  * */
 
@@ -195,10 +195,10 @@ public:
 
 };
 
- 
+
 /** Special class used to compare pair<int,DELTA_POS> instances when rebuilding
- *  CHANNEL instances. Used in conjunction with a HEAP, this class ensures that nodes 
- *  located in the current unit cell or in past unit cells are given preference over 
+ *  CHANNEL instances. Used in conjunction with a HEAP, this class ensures that nodes
+ *  located in the current unit cell or in past unit cells are given preference over
  *  other nodes when reconstructing the channel. */
 class ReconstructorComparator{
     DELTA_POS currentPos;
@@ -207,11 +207,11 @@ class ReconstructorComparator{
 public:
     /* Reset the visited positions and set the current position to the origin. */
     ReconstructorComparator();
-  
+
     /* Set the current position and store the old position. */
     void setPosition(DELTA_POS p);
 
-    bool compare(std::pair<int,DELTA_POS> p1, std::pair<int,DELTA_POS> p2); 
+    bool compare(std::pair<int,DELTA_POS> p1, std::pair<int,DELTA_POS> p2);
 };
 
 

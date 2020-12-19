@@ -11,7 +11,7 @@
 #ifndef EIGEN_PERMUTATIONMATRIX_H
 #define EIGEN_PERMUTATIONMATRIX_H
 
-namespace Eigen { 
+namespace Eigen {
 
 template<int RowCol,typename IndicesType,typename MatrixType, typename StorageKind> class PermutedImpl;
 
@@ -209,7 +209,7 @@ class PermutationBase : public EigenBase<Derived>
 
     /**** multiplication helpers to hopefully get RVO ****/
 
-  
+
 #ifndef EIGEN_PARSED_BY_DOXYGEN
   protected:
     template<typename OtherDerived>
@@ -250,7 +250,7 @@ class PermutationBase : public EigenBase<Derived>
     template<typename Other> friend
     inline PlainPermutationType operator*(const Transpose<PermutationBase<Other> >& other, const PermutationBase& perm)
     { return PlainPermutationType(internal::PermPermProduct, other.eval(), perm); }
-    
+
     /** \returns the determinant of the permutation matrix, which is either 1 or -1 depending on the parity of the permutation.
       *
       * This function is O(\c n) procedure allocating a buffer of \c n booleans.

@@ -97,7 +97,7 @@ def writeXyzfile(filename, atmnet, supercell_flag, is_duplicate_perimeter_atoms)
         filename = (<unicode>filename).encode('utf8')
     cdef char* c_filename = filename
     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
-    if not writeToXYZ(c_filename, c_atmnet, supercell_flag, 
+    if not writeToXYZ(c_filename, c_atmnet, supercell_flag,
             is_duplicate_perimeter_atoms):
         raise IOError
 
@@ -116,5 +116,3 @@ def writeMopacfile(filename, atmnet, supercell_flag):
     cdef ATOM_NETWORK* c_atmnet = (<AtomNetwork?>atmnet).thisptr
     if not writeToMOPAC(c_filename, c_atmnet, supercell_flag):
         raise IOError
-
-

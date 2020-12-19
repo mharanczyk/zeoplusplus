@@ -1,6 +1,6 @@
 /* Functions of the MATERIAL class
  * (some fragments taken from main()
- * Added by M. Haranczyk, Feb 2014 
+ * Added by M. Haranczyk, Feb 2014
  *
  */
 
@@ -55,7 +55,7 @@ void MATERIAL::AVcalc(double r, int sampleDensity,ostream &output, char *filenam
   if(!AVdoneFlag) NEWcalcAV(pMaterial, r, sampleDensity);
   AVdoneFlag = true;
 
-  NEWcalcAVprint(pMaterial, output,filename); 
+  NEWcalcAVprint(pMaterial, output,filename);
   };
 
 void MATERIAL::AVblockPockets(ostream &output){
@@ -129,7 +129,7 @@ void MATERIAL::PLDcalc(double r, double seg_r, string seg_file, ostream &output,
     } else
     { // segment the network based on provided segment definitions from a file
     accessAnalysis.calculatePLDbasedOnFile(seg_file);
-    accessAnalysis.reportPLD(output);    
+    accessAnalysis.reportPLD(output);
     };
 /*
   MATERIAL *pMaterial = this;
@@ -139,7 +139,7 @@ void MATERIAL::PLDcalc(double r, double seg_r, string seg_file, ostream &output,
 */
   };
 
-// PLDcalc uses molecules present in the periodic box to segment the void space into POREs, then takes the network available to r and analysie PLD between the segments 
+// PLDcalc uses molecules present in the periodic box to segment the void space into POREs, then takes the network available to r and analysie PLD between the segments
 void MATERIAL::PLDcalcFromMolecules(double r, ostream &output, char *filename){
   runVoroFlat();
   accessAnalysis.AccessibilityClassSetup(&atmnet, &orgAtomnet, highAccuracy, rad_con, &vornet, &bvcells, &cells);
@@ -154,7 +154,7 @@ void MATERIAL::PLDvisualize(string basefilename, string visformat){
 
   fstream output;
 
-  // Three data structures storing information about 
+  // Three data structures storing information about
   vector<Point> NodesFracCoord;
   vector<int> NodesSegmentIDs;
   vector<double> NodesSize;
@@ -200,5 +200,3 @@ void MATERIAL::PLDvisualize(string basefilename, string visformat){
 
   output.close();
 }
-
-

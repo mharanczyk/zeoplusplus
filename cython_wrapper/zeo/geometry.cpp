@@ -538,8 +538,8 @@ struct __pyx_obj_3zeo_8geometry_Xyz;
 struct __pyx_obj_3zeo_8geometry_Point;
 
 /* "zeo/geometry.pxd":24
- * 
- * 
+ *
+ *
  * cdef class Xyz:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ XYZ class defined in geometry.h
@@ -551,8 +551,8 @@ struct __pyx_obj_3zeo_8geometry_Xyz {
 
 
 /* "zeo/geometry.pxd":32
- * 
- * 
+ *
+ *
  * cdef class Point:             # <<<<<<<<<<<<<<
  *     """
  *     Cython wrapper declaration for Zeo++ Point class defined in geometry.h
@@ -784,10 +784,10 @@ static PyObject *__pyx_n_s_z;
 
 /* "zeo/geometry.pyx":17
  *     """
- * 
+ *
  *     def __cinit__(self, double x=0.0, double y=0.0, double z=0.0):             # <<<<<<<<<<<<<<
  *         self.thisptr = new XYZ(x,y,z)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -886,10 +886,10 @@ static int __pyx_pf_3zeo_8geometry_3Xyz___cinit__(struct __pyx_obj_3zeo_8geometr
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
   /* "zeo/geometry.pyx":18
- * 
+ *
  *     def __cinit__(self, double x=0.0, double y=0.0, double z=0.0):
  *         self.thisptr = new XYZ(x,y,z)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0):
  */
   try {
@@ -902,10 +902,10 @@ static int __pyx_pf_3zeo_8geometry_3Xyz___cinit__(struct __pyx_obj_3zeo_8geometr
 
   /* "zeo/geometry.pyx":17
  *     """
- * 
+ *
  *     def __cinit__(self, double x=0.0, double y=0.0, double z=0.0):             # <<<<<<<<<<<<<<
  *         self.thisptr = new XYZ(x,y,z)
- * 
+ *
  */
 
   /* function exit code */
@@ -921,10 +921,10 @@ static int __pyx_pf_3zeo_8geometry_3Xyz___cinit__(struct __pyx_obj_3zeo_8geometr
 
 /* "zeo/geometry.pyx":20
  *         self.thisptr = new XYZ(x,y,z)
- * 
+ *
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0):             # <<<<<<<<<<<<<<
  *         pass
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1026,10 +1026,10 @@ static int __pyx_pf_3zeo_8geometry_3Xyz_2__init__(CYTHON_UNUSED struct __pyx_obj
 
 /* "zeo/geometry.pyx":23
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1048,20 +1048,20 @@ static void __pyx_pf_3zeo_8geometry_3Xyz_4__dealloc__(struct __pyx_obj_3zeo_8geo
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "zeo/geometry.pyx":24
- * 
+ *
  *     def __dealloc__(self):
  *         del self.thisptr             # <<<<<<<<<<<<<<
- * 
+ *
  *     property x:
  */
   delete __pyx_v_self->thisptr;
 
   /* "zeo/geometry.pyx":23
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
   /* function exit code */
@@ -1069,7 +1069,7 @@ static void __pyx_pf_3zeo_8geometry_3Xyz_4__dealloc__(struct __pyx_obj_3zeo_8geo
 }
 
 /* "zeo/geometry.pyx":27
- * 
+ *
  *     property x:
  *         def __get__(self): return self.thisptr.x             # <<<<<<<<<<<<<<
  *         def __set__(self, x_in): self.thisptr.x = x_in
@@ -1253,7 +1253,7 @@ static int __pyx_pf_3zeo_8geometry_3Xyz_1y_2__set__(struct __pyx_obj_3zeo_8geome
  *     property z:
  *         def __get__(self): return self.thisptr.z             # <<<<<<<<<<<<<<
  *         def __set__(self, z_in): self.thisptr.z = z_in
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1299,7 +1299,7 @@ static PyObject *__pyx_pf_3zeo_8geometry_3Xyz_1z___get__(struct __pyx_obj_3zeo_8
  *     property z:
  *         def __get__(self): return self.thisptr.z
  *         def __set__(self, z_in): self.thisptr.z = z_in             # <<<<<<<<<<<<<<
- * 
+ *
  *     def scale(self, double factor):
  */
 
@@ -1340,7 +1340,7 @@ static int __pyx_pf_3zeo_8geometry_3Xyz_1z_2__set__(struct __pyx_obj_3zeo_8geome
 
 /* "zeo/geometry.pyx":36
  *         def __set__(self, z_in): self.thisptr.z = z_in
- * 
+ *
  *     def scale(self, double factor):             # <<<<<<<<<<<<<<
  *         new_xyz = Xyz()
  *         self.thisptr.scale(factor, new_xyz.thisptr)
@@ -1383,7 +1383,7 @@ static PyObject *__pyx_pf_3zeo_8geometry_3Xyz_6scale(struct __pyx_obj_3zeo_8geom
   __Pyx_RefNannySetupContext("scale", 0);
 
   /* "zeo/geometry.pyx":37
- * 
+ *
  *     def scale(self, double factor):
  *         new_xyz = Xyz()             # <<<<<<<<<<<<<<
  *         self.thisptr.scale(factor, new_xyz.thisptr)
@@ -1399,7 +1399,7 @@ static PyObject *__pyx_pf_3zeo_8geometry_3Xyz_6scale(struct __pyx_obj_3zeo_8geom
  *         new_xyz = Xyz()
  *         self.thisptr.scale(factor, new_xyz.thisptr)             # <<<<<<<<<<<<<<
  *         return new_xyz
- * 
+ *
  */
   __pyx_v_self->thisptr->scale(__pyx_v_factor, __pyx_v_new_xyz->thisptr);
 
@@ -1407,7 +1407,7 @@ static PyObject *__pyx_pf_3zeo_8geometry_3Xyz_6scale(struct __pyx_obj_3zeo_8geom
  *         new_xyz = Xyz()
  *         self.thisptr.scale(factor, new_xyz.thisptr)
  *         return new_xyz             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef class Point:
  */
   __Pyx_XDECREF(__pyx_r);
@@ -1417,7 +1417,7 @@ static PyObject *__pyx_pf_3zeo_8geometry_3Xyz_6scale(struct __pyx_obj_3zeo_8geom
 
   /* "zeo/geometry.pyx":36
  *         def __set__(self, z_in): self.thisptr.z = z_in
- * 
+ *
  *     def scale(self, double factor):             # <<<<<<<<<<<<<<
  *         new_xyz = Xyz()
  *         self.thisptr.scale(factor, new_xyz.thisptr)
@@ -1437,10 +1437,10 @@ static PyObject *__pyx_pf_3zeo_8geometry_3Xyz_6scale(struct __pyx_obj_3zeo_8geom
 
 /* "zeo/geometry.pyx":46
  *     """
- * 
+ *
  *     def __cinit__(self, double x=0.0, double y=0.0, double z=0.0):             # <<<<<<<<<<<<<<
  *         self.thisptr = new CPoint(x,y,z)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1539,10 +1539,10 @@ static int __pyx_pf_3zeo_8geometry_5Point___cinit__(struct __pyx_obj_3zeo_8geome
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
   /* "zeo/geometry.pyx":47
- * 
+ *
  *     def __cinit__(self, double x=0.0, double y=0.0, double z=0.0):
  *         self.thisptr = new CPoint(x,y,z)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0):
  */
   try {
@@ -1555,10 +1555,10 @@ static int __pyx_pf_3zeo_8geometry_5Point___cinit__(struct __pyx_obj_3zeo_8geome
 
   /* "zeo/geometry.pyx":46
  *     """
- * 
+ *
  *     def __cinit__(self, double x=0.0, double y=0.0, double z=0.0):             # <<<<<<<<<<<<<<
  *         self.thisptr = new CPoint(x,y,z)
- * 
+ *
  */
 
   /* function exit code */
@@ -1574,10 +1574,10 @@ static int __pyx_pf_3zeo_8geometry_5Point___cinit__(struct __pyx_obj_3zeo_8geome
 
 /* "zeo/geometry.pyx":49
  *         self.thisptr = new CPoint(x,y,z)
- * 
+ *
  *     def __init__(self, double x=0.0, double y=0.0, double z=0.0):             # <<<<<<<<<<<<<<
  *         pass
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1679,10 +1679,10 @@ static int __pyx_pf_3zeo_8geometry_5Point_2__init__(CYTHON_UNUSED struct __pyx_o
 
 /* "zeo/geometry.pyx":52
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1701,20 +1701,20 @@ static void __pyx_pf_3zeo_8geometry_5Point_4__dealloc__(struct __pyx_obj_3zeo_8g
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "zeo/geometry.pyx":53
- * 
+ *
  *     def __dealloc__(self):
  *         del self.thisptr             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __repr__(self):
  */
   delete __pyx_v_self->thisptr;
 
   /* "zeo/geometry.pyx":52
  *         pass
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         del self.thisptr
- * 
+ *
  */
 
   /* function exit code */
@@ -1723,10 +1723,10 @@ static void __pyx_pf_3zeo_8geometry_5Point_4__dealloc__(struct __pyx_obj_3zeo_8g
 
 /* "zeo/geometry.pyx":55
  *         del self.thisptr
- * 
+ *
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return "("+str(self.x)+','+str(self.y)+','+str(self.y)+')'
- * 
+ *
  */
 
 /* Python wrapper */
@@ -1754,10 +1754,10 @@ static PyObject *__pyx_pf_3zeo_8geometry_5Point_6__repr__(struct __pyx_obj_3zeo_
   __Pyx_RefNannySetupContext("__repr__", 0);
 
   /* "zeo/geometry.pyx":56
- * 
+ *
  *     def __repr__(self):
  *         return "("+str(self.x)+','+str(self.y)+','+str(self.y)+')'             # <<<<<<<<<<<<<<
- * 
+ *
  *     property x:
  */
   __Pyx_XDECREF(__pyx_r);
@@ -1817,10 +1817,10 @@ static PyObject *__pyx_pf_3zeo_8geometry_5Point_6__repr__(struct __pyx_obj_3zeo_
 
   /* "zeo/geometry.pyx":55
  *         del self.thisptr
- * 
+ *
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return "("+str(self.x)+','+str(self.y)+','+str(self.y)+')'
- * 
+ *
  */
 
   /* function exit code */
@@ -1837,7 +1837,7 @@ static PyObject *__pyx_pf_3zeo_8geometry_5Point_6__repr__(struct __pyx_obj_3zeo_
 }
 
 /* "zeo/geometry.pyx":59
- * 
+ *
  *     property x:
  *         def __get__(self): return self.thisptr.vals[0]             # <<<<<<<<<<<<<<
  *         def __set__(self, x_in): self.thisptr.vals[0] = x_in
@@ -2021,7 +2021,7 @@ static int __pyx_pf_3zeo_8geometry_5Point_1y_2__set__(struct __pyx_obj_3zeo_8geo
  *     property z:
  *         def __get__(self): return self.thisptr.vals[2]             # <<<<<<<<<<<<<<
  *         def __set__(self, z_in): self.thisptr.vals[2] = z_in
- * 
+ *
  */
 
 /* Python wrapper */
@@ -2067,7 +2067,7 @@ static PyObject *__pyx_pf_3zeo_8geometry_5Point_1z___get__(struct __pyx_obj_3zeo
  *     property z:
  *         def __get__(self): return self.thisptr.vals[2]
  *         def __set__(self, z_in): self.thisptr.vals[2] = z_in             # <<<<<<<<<<<<<<
- * 
+ *
  *     #def scale(self, double scaling_factor):
  */
 
@@ -2546,7 +2546,7 @@ PyMODINIT_FUNC PyInit_geometry(void)
 
   /* "zeo/geometry.pyx":6
  * """
- * 
+ *
  * __author__ = "Bharat Medasani"             # <<<<<<<<<<<<<<
  * __maintainer__ = "Bharat Medasani"
  * __email__ = "mbkumar@gmail.com"
@@ -2554,7 +2554,7 @@ PyMODINIT_FUNC PyInit_geometry(void)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_author, __pyx_kp_s_Bharat_Medasani) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 6; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "zeo/geometry.pyx":7
- * 
+ *
  * __author__ = "Bharat Medasani"
  * __maintainer__ = "Bharat Medasani"             # <<<<<<<<<<<<<<
  * __email__ = "mbkumar@gmail.com"
@@ -2567,7 +2567,7 @@ PyMODINIT_FUNC PyInit_geometry(void)
  * __maintainer__ = "Bharat Medasani"
  * __email__ = "mbkumar@gmail.com"             # <<<<<<<<<<<<<<
  * __date__ = "Dec 09, 2013"
- * 
+ *
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_email, __pyx_kp_s_mbkumar_gmail_com) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
@@ -2575,8 +2575,8 @@ PyMODINIT_FUNC PyInit_geometry(void)
  * __maintainer__ = "Bharat Medasani"
  * __email__ = "mbkumar@gmail.com"
  * __date__ = "Dec 09, 2013"             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_date, __pyx_kp_s_Dec_09_2013) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 

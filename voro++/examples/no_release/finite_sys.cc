@@ -91,7 +91,7 @@ int main() {
 		// Get particle position
 		cl.pos(x,y,z);
 
-		// Remove half of the particles to see a cross-section 
+		// Remove half of the particles to see a cross-section
 		if(y<0) continue;
 
 		if(con.compute_cell(c,cl)) {
@@ -106,7 +106,7 @@ int main() {
 				"sphere{<%g,%g,%g>,s}\n",x,y,z);
 		}
 	} while(cl.inc());
-	
+
 	// Close the output files
 	fclose(finside);
 	fclose(foutside);

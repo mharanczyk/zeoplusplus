@@ -11,7 +11,7 @@ template <class T>
 class HEAP{
   std::vector<T> elements;
   bool(*comparator) (T,T);
-  
+
 public:
   /* Creates a heap with no nodes that uses the provided comparator
    * for ordering. The comparator should return true iff T1 is less
@@ -20,15 +20,15 @@ public:
     comparator = comp;
     elements = std::vector<T> ();
   }
-  
-  /* Creates a heap using the given nodes and comparator for ordering. 
+
+  /* Creates a heap using the given nodes and comparator for ordering.
    * The comparator should return true iff T1 is less than T2. */
   HEAP(std::vector<T> nodes, bool (*comp) (T,T)) {
     comparator = comp;
     elements = nodes;
     std::make_heap(elements.begin(), elements.end(), comparator);
   }
-  
+
   /* Inserts the provided element into the heap */
   void insert(T newNode){
     elements.push_back(newNode);
@@ -47,7 +47,7 @@ public:
   int size(){
     return elements.size();
   }
-  
+
   /*Rearrranges the entire heap to ensure that the proper ordering is preserved */
   void reHeapify(){
       std::make_heap(elements.begin(), elements.end(), comparator);

@@ -11,12 +11,12 @@
 *
 * The PSD function generates sample points across a unit cell; for each point, accessibility is determined.
 * Accessible points are stored. Each point is compared to all of the nodes in the Voronoi network. If the point
-* is within the radius of one or more node sphere, the point's coordinate and the largest encompassing 
+* is within the radius of one or more node sphere, the point's coordinate and the largest encompassing
 * radius are stored. If the point is not within the radius of any node, the point is stored, and the default
 * radius is 0. These stored radii are the lower bounds for our next test.
-* Next, a new "ghost" Voronoi cell centered on each sample point is created in relation to existing atoms, and 
+* Next, a new "ghost" Voronoi cell centered on each sample point is created in relation to existing atoms, and
 * the distance from the sample point to each of the the vertices of the nodes is calculated. The maximum distance
-* out of this set is compared to the stored radius value. If distance > node radius, this is the radius of the 
+* out of this set is compared to the stored radius value. If distance > node radius, this is the radius of the
 * largest sphere that will encapsulate our sample point; otherwise, the node radius remains the largest sphere.
 *
 * A histogram with bin size BINSTEP is generated (this is set to 0.1 by default). The output file (PSD histogram) is
@@ -25,7 +25,7 @@
 * A file containing a list of xyz coordinates of accessible points and largest sphere radii is generated for
 * visualization in Visit. The output file is (materialName).vpsdpts
 *
-* A file containing a list of spheres for visualization is also available in one of two forms. 
+* A file containing a list of spheres for visualization is also available in one of two forms.
 * With the flag -vpsd, it will produce a list of spheres labeled either 1 (node sphere) or 0 (ghost cell sphere).
 * The latter file is named (materialName).vpsdradii
 */
@@ -50,11 +50,11 @@ using namespace voro;
 static const float BINSTEP=0.1;
 //#define PI 3.14159265358973
 static const float TOL=0.9;
- 
- 
+
+
 void calcPoreSizeDistr(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgAtomnet, bool highAccuracy, double r_probe_chan, double r_probe, int numSamples, bool excludePockets, string histogramFile, string pointsFile, string nodeAndRadiiFile, string spheresDistFile, bool visualize, bool visVISIT){
 
-    ofstream output; 
+    ofstream output;
     if (!histogramFile.empty()) output.open(histogramFile.data());
     ofstream outfile;
     if (!pointsFile.empty()) outfile.open(pointsFile.data());
@@ -69,7 +69,7 @@ void calcPoreSizeDistr(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgAtomnet, bool high
 
   srand(randSeed);
 
-//Vectors to store accessible points, inaccessible points, and accessible points which lie outside Voronoi nodes and edges. 
+//Vectors to store accessible points, inaccessible points, and accessible points which lie outside Voronoi nodes and edges.
   vector<Point> axsPoint = vector<Point>();
   vector<Point> inaxsPoint = vector<Point>();
 
@@ -119,10 +119,10 @@ void calcPoreSizeDistr(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgAtomnet, bool high
     }
 // Store accessible points
     if(accessAnalysis.needToResample() == false &&!overlaps) {
-	count++;     
+	count++;
 	Point abcCoords = Point(aPoint, bPoint, cPoint);
 	Point coords = atmnet->abc_to_xyz(abcCoords);
-	axsPoint.push_back(coords); 
+	axsPoint.push_back(coords);
     }
   } // ends loop over all sampled points
 
@@ -152,20 +152,20 @@ void calcPoreSizeDistr(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgAtomnet, bool high
         Point nodePt = Point(accessAnalysis.vornet.nodes.at(b).x, accessAnalysis.vornet.nodes.at(b).y, accessAnalysis.vornet.nodes.at(b).z);
         double radius = accessAnalysis.vornet.nodes.at(b).rad_stat_sphere + r_probe;
         double sampToNode = accessAnalysis.analyzedAtomNet.calcDistanceXYZ(samplePt[0], samplePt[1], samplePt[2], nodePt[0], nodePt[1], nodePt[2]);
-        bool inSphere = (sampToNode <= radius); 
+        bool inSphere = (sampToNode <= radius);
         //if point is inside more than one sphere, chooses largest sphere (i.e. largest radius)
         if (inSphere){
           maxRadius = max(radius, maxRadius);
           //If query zpsd, this stores the largest node sphere and its coordinate for visualization in Visit
           if (visualize){
             if (radius==maxRadius){
-               maxNodeCoord = nodePt; 
+               maxNodeCoord = nodePt;
                }
             }
         } // ends if(inSphere)
       }
      }
-    if (maxRadius==0) outcount++; 
+    if (maxRadius==0) outcount++;
     if (maxRadius!=0) incount++;
 
 
@@ -205,7 +205,7 @@ void calcPoreSizeDistr(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgAtomnet, bool high
       if (visualize){
         if (calcDistFromCtoV==maxDistFromCtoV){
           maxGhostCoord = vertexGlobalCoord;
-        } 
+        }
       }
     }
 
@@ -214,10 +214,10 @@ void calcPoreSizeDistr(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgAtomnet, bool high
 
 //Compares node radius to biggest ghost radius and stores the larger of the two values accordingly
     double origNodeRadius = maxRadius;
-    double ghostRadius = maxDistFromCtoV;  
-    bool compareRadii = (origNodeRadius >= ghostRadius); 
+    double ghostRadius = maxDistFromCtoV;
+    bool compareRadii = (origNodeRadius >= ghostRadius);
     if (compareRadii) {
-      diameterOfLargestSphere.push_back(2.0*origNodeRadius); 
+      diameterOfLargestSphere.push_back(2.0*origNodeRadius);
       if (visualize){
       axsPoint_and_radiiOfNodeSphere.push_back(pair<Point, double>(samplePt, origNodeRadius));
       checkDuplicates(&(accessAnalysis.analyzedAtomNet), &(accessAnalysis.vornet), nodeIDs, coord_and_radiiOfNodeSphere, maxNodeCoord, origNodeRadius);
@@ -263,12 +263,12 @@ void calcPoreSizeDistr(ATOM_NETWORK *atmnet, ATOM_NETWORK *orgAtomnet, bool high
 
 
 
-/* NEW version of PSD function that operates on MATERIAL class, and shares data through the class */ 
+/* NEW version of PSD function that operates on MATERIAL class, and shares data through the class */
 void NEWcalcPoreSizeDistr(MATERIAL *Mat, ostream &output){
 
 /* PSD debug section (old code that is not used */
   bool PSDDEBUG = false; // this flag enables execution of old parts of PSD output
-                         // that can be used for debuging  
+                         // that can be used for debuging
 
   string pointsFile, nodeAndRadiiFile;
   if(PSDDEBUG == true) { pointsFile = "DEBUG_PSDpointsfile"; nodeAndRadiiFile = "DEBUG_PSDnodeAndRadiiFile"; };
@@ -296,11 +296,11 @@ void NEWcalcPoreSizeDistr(MATERIAL *Mat, ostream &output){
 
   int count = Mat->AVcount; // number of AV samples that turned accessible
   int incount = 0; // count number of points inside Voronoi nodes
-  int outcount = 0; 
+  int outcount = 0;
 
-  cout << "PSD calculation for " << count << " points(" << Mat->AVaxsPoints.size() << ").\n"; 
+  cout << "PSD calculation for " << count << " points(" << Mat->AVaxsPoints.size() << ").\n";
 
-  double pointParticleRadius; // used to be set to = Mat->AVprobeRadius; 
+  double pointParticleRadius; // used to be set to = Mat->AVprobeRadius;
 
            // After vivid discussions with Rich, we concluded that the ghost particle radius
            // should be set to the smallest radius in the system
@@ -333,25 +333,25 @@ void NEWcalcPoreSizeDistr(MATERIAL *Mat, ostream &output){
          //double radius = Mat->accessAnalysis.vornet.nodes.at(b).rad_stat_sphere + Mat->AVprobeRadius;
                         // commented out in non-inflated version
         double sampToNode = Mat->accessAnalysis.analyzedAtomNet->calcDistanceXYZ(samplePt[0], samplePt[1], samplePt[2], nodePt[0], nodePt[1], nodePt[2]);
-        bool inSphere = (sampToNode <= radius); 
+        bool inSphere = (sampToNode <= radius);
         //if point is inside more than one sphere, chooses largest sphere (i.e. largest radius)
         if (inSphere){
           maxRadius = max(radius, maxRadius);
           //If query zpsd, this stores the largest node sphere and its coordinate for visualization in Visit (only for PSD DEBUG)
           if (radius==maxRadius){
-             maxNodeCoord = nodePt; 
+             maxNodeCoord = nodePt;
              }
         } // ends if(inSphere)
       }
      }
-    if (maxRadius==0) outcount++; 
+    if (maxRadius==0) outcount++;
     if (maxRadius!=0) incount++;
 
 
 
 //Generate new "ghost" Voronoi cell
 
-    // ghost cell particle radius (pointParticleRadius) is now set to the radius of the 
+    // ghost cell particle radius (pointParticleRadius) is now set to the radius of the
     // smallest atom (before the main PSD loop)
 
     voronoicell v(*(Mat->accessAnalysis.new_rad_con));
@@ -380,10 +380,10 @@ void NEWcalcPoreSizeDistr(MATERIAL *Mat, ostream &output){
 
 //Compares node radius to biggest ghost radius and stores the larger of the two values accordingly
     double origNodeRadius = maxRadius;
-    double ghostRadius = maxDistFromCtoV;  
-    bool compareRadii = (origNodeRadius >= ghostRadius); 
+    double ghostRadius = maxDistFromCtoV;
+    bool compareRadii = (origNodeRadius >= ghostRadius);
     if (compareRadii) {
-      Mat->AVaxsPointsPSD.push_back(2.0*origNodeRadius); 
+      Mat->AVaxsPointsPSD.push_back(2.0*origNodeRadius);
       if (PSDDEBUG){
       axsPoint_and_radiiOfNodeSphere.push_back(pair<Point, double>(samplePt, origNodeRadius));
       checkDuplicates((Mat->accessAnalysis.analyzedAtomNet), &(Mat->accessAnalysis.vornet), nodeIDs, coord_and_radiiOfNodeSphere, maxNodeCoord, origNodeRadius);
@@ -424,15 +424,15 @@ void NEWcalcPoreSizeDistr(MATERIAL *Mat, ostream &output){
 
 /* backup copy of PSD function
 
- 
+
 void calcPoreSizeDistr(ATOM_NETWORK *atmnet, double r_probe_chan, double r_probe, int numSamples, bool excludePockets, ostream &output, ostream &outfile, ostream &nodeAndRadii, ostream &spheresDist, bool visualize, bool visVISIT){
 //Creates temporary copy of atomic network in which each atom's radius has been increased by probe radius.
   ATOM_NETWORK newAtomNet;
   atmnet->copy(&newAtomNet);
 
-  for(int i = 0; i < newAtomNet.numAtoms; i++){ 
-    newAtomNet.atoms[i].radius += r_probe; 
-  }  
+  for(int i = 0; i < newAtomNet.numAtoms; i++){
+    newAtomNet.atoms[i].radius += r_probe;
+  }
 
   VORONOI_NETWORK vornet;
   vector<BASIC_VCELL> vorcells;
@@ -446,10 +446,10 @@ void calcPoreSizeDistr(ATOM_NETWORK *atmnet, double r_probe_chan, double r_probe
   CHANNEL::findChannels(&vornet, max(0.0, r_probe_chan - r_probe), &accessInfo, &channels);
 srand(randSeed);
 
-//Vectors to store accessible points, inaccessible points, and accessible points which lie outside Voronoi nodes and edges. 
+//Vectors to store accessible points, inaccessible points, and accessible points which lie outside Voronoi nodes and edges.
   vector<Point> axsPoint = vector<Point>();
   vector<Point> inaxsPoint = vector<Point>();
-  vector< pair<int, Point> > resampledInfo = vector< pair<int, Point> > (); 
+  vector< pair<int, Point> > resampledInfo = vector< pair<int, Point> > ();
 
 //List of largest sphere diameters for PSD histogram
   vector<double> diameterOfLargestSphere;
@@ -487,18 +487,18 @@ srand(randSeed);
     ATOM curAtom = atmnet->atoms[minAtomID];
 
 // Adjust sampling point so that it lies within the Voronoi cell of interest constructed previously
-    Point newSamplingPoint = (samplingPoint.add(Point(curAtom.x, curAtom.y, curAtom.z).subtract(Point(newAtomX, newAtomY, newAtomZ)))); 
+    Point newSamplingPoint = (samplingPoint.add(Point(curAtom.x, curAtom.y, curAtom.z).subtract(Point(newAtomX, newAtomY, newAtomZ))));
 
     double minDist = calcEuclideanDistance(newSamplingPoint[0], newSamplingPoint[1], newSamplingPoint[2], curAtom.x, curAtom.y, curAtom.z);
-    if(minDist < r_probe + curAtom.radius - 0.00000001) overlaps = true; 
+    if(minDist < r_probe + curAtom.radius - 0.00000001) overlaps = true;
     bool inside = overlaps;
 // If necessary, check Voronoi nodes of cell to determine accessibility of point
     if(!overlaps && excludePockets){
       BASIC_VCELL vcell = vorcells[minAtomID]; //stores voronoi cell location at minID point
       Point circCenter = Point(curAtom.x, curAtom.y, curAtom.z);
-      double samplingRadius = minDist; 
-      Point sampleRay = Point(newSamplingPoint[0]-curAtom.x, newSamplingPoint[1]-curAtom.y, newSamplingPoint[2]-curAtom.z); 
-      
+      double samplingRadius = minDist;
+      Point sampleRay = Point(newSamplingPoint[0]-curAtom.x, newSamplingPoint[1]-curAtom.y, newSamplingPoint[2]-curAtom.z);
+
 // Scan the nodes in the Voronoi cell to find if line can be drawn from the node to the sampling point
       bool foundNode = false;
       if(vcell.getNumNodes() == 0){
@@ -506,7 +506,7 @@ srand(randSeed);
         exit(1);
       }
       for(int k = 0; k < vcell.getNumNodes(); k++){
-	Point nodePoint = vcell.getNodeCoord(k); 
+	Point nodePoint = vcell.getNodeCoord(k);
 	double ptDist= calcEuclideanDistance(nodePoint[0], nodePoint[1], nodePoint[2], circCenter[0], circCenter[1], circCenter[2]);
 	bool nodeInsideSphere = (ptDist < samplingRadius);
 	if(!nodeInsideSphere){
@@ -517,15 +517,15 @@ srand(randSeed);
 	    // making the path not viable
 	  }
 	  else {
-	    // Angle is at least 90 degrees and so the line segment interesects only once, 
+	    // Angle is at least 90 degrees and so the line segment interesects only once,
 	    // thereby representing a viable path--> overlaps is now FALSE
 	    foundNode = true;
 	    overlaps = !accessInfo.at(vcell.getNodeID(k));
-	    break; 
+	    break;
 	  }
 	}
       }
-// Sampling failed due to lying on Voronoi cell face and numerical inaccurarcy. 
+// Sampling failed due to lying on Voronoi cell face and numerical inaccurarcy.
 // Record failure, resample and notify user later
       if(!foundNode){
 	resampleCount++;
@@ -542,10 +542,10 @@ srand(randSeed);
     }
 // Store accessible points
     if(!overlaps) {
-	count++;     
+	count++;
 	Point abcCoords = Point(aPoint, bPoint, cPoint);
 	Point coords = atmnet->abc_to_xyz(abcCoords);
-	axsPoint.push_back(coords); 
+	axsPoint.push_back(coords);
     }
   }
 
@@ -564,20 +564,20 @@ srand(randSeed);
         Point nodePt = Point(vornet.nodes.at(b).x, vornet.nodes.at(b).y, vornet.nodes.at(b).z);
         double radius = vornet.nodes.at(b).rad_stat_sphere + r_probe;
         double sampToNode = newAtomNet.calcDistanceXYZ(samplePt[0], samplePt[1], samplePt[2], nodePt[0], nodePt[1], nodePt[2]);
-        bool inSphere = (sampToNode <= radius); 
+        bool inSphere = (sampToNode <= radius);
         //if point is inside more than one sphere, chooses largest sphere (i.e. largest radius)
         if (inSphere){
           maxRadius = max(radius, maxRadius);
           //If query zpsd, this stores the largest node sphere and its coordinate for visualization in Visit
           if (visualize){
             if (radius==maxRadius){
-               maxNodeCoord = nodePt; 
+               maxNodeCoord = nodePt;
                }
             }
         } // ends if(inSphere)
       }
      }
-    if (maxRadius==0) outcount++; 
+    if (maxRadius==0) outcount++;
     if (maxRadius!=0) incount++;
 
 //Generate new "ghost" Voronoi cell
@@ -604,16 +604,16 @@ srand(randSeed);
       if (visualize){
         if (calcDistFromCtoV==maxDistFromCtoV){
           maxGhostCoord = vertexGlobalCoord;
-        } 
+        }
       }
     }
 
 //Compares node radius to biggest ghost radius and stores the larger of the two values accordingly
     double origNodeRadius = maxRadius;
-    double ghostRadius = maxDistFromCtoV;  
-    bool compareRadii = (origNodeRadius >= ghostRadius); 
+    double ghostRadius = maxDistFromCtoV;
+    bool compareRadii = (origNodeRadius >= ghostRadius);
     if (compareRadii) {
-      diameterOfLargestSphere.push_back(2.0*origNodeRadius); 
+      diameterOfLargestSphere.push_back(2.0*origNodeRadius);
       if (visualize){
       axsPoint_and_radiiOfNodeSphere.push_back(pair<Point, double>(samplePt, origNodeRadius));
       checkDuplicates(newAtomNet, vornet, nodeIDs, coord_and_radiiOfNodeSphere, maxNodeCoord, origNodeRadius);
@@ -671,11 +671,11 @@ void checkDuplicates(ATOM_NETWORK *atomnetwork, VORONOI_NETWORK *vornet, vector 
   }
 }
 
-//This function checks the amount of overlap between spheres. 
+//This function checks the amount of overlap between spheres.
 //In the circumstance that the volume of intersection overlap is above the threshold, the larger sphere is selected
 void calcSphereIntersect(vector<pair <Point, double> > &inputNodeSphereAndRadii, vector<pair <Point, double> > &outputNodeSphereAndRadii){
-	int size = inputNodeSphereAndRadii.size(); 
-	vector <int> overlap_nodes; 
+	int size = inputNodeSphereAndRadii.size();
+	vector <int> overlap_nodes;
 	for (int a=0; a<inputNodeSphereAndRadii.size(); a++){
 		bool noOverlap = true;
 		for (int b=a+1; b<inputNodeSphereAndRadii.size() && noOverlap; b++){
@@ -697,7 +697,7 @@ void calcSphereIntersect(vector<pair <Point, double> > &inputNodeSphereAndRadii,
 					printf("Node %d encompasses Node %d\n", b, a);
 				}*/
 				if (!inside){
-				double distsq = dist*dist; 
+				double distsq = dist*dist;
 				double Rad1sq = Radius1*Radius1; double Rad2sq = Radius2*Radius2;
 				double volIntersect = (PI/(12*dist))*(Radius1 + Radius2 - dist)*(Radius1 + Radius2 - dist)*(distsq+2*dist*(Radius1 + Radius2) - 3*(Radius1 - Radius2)*(Radius1-Radius2));
 				double overlapDist = Radius1 + Radius2 - dist;
@@ -706,11 +706,11 @@ void calcSphereIntersect(vector<pair <Point, double> > &inputNodeSphereAndRadii,
 				int largerID; double largerRadius; Point largerCoord;
 				double smallerRadius; Point smallerCoord;
 				if (size){
-					diff = 2*Radius2 - overlapDist; 
-					volFraction = volIntersect/ vol2; 
+					diff = 2*Radius2 - overlapDist;
+					volFraction = volIntersect/ vol2;
 				}
 				if (!size){
-					diff = 2*Radius1 - overlapDist; 
+					diff = 2*Radius1 - overlapDist;
 					volFraction = volIntersect/vol1;
 				}
 				if (volFraction>=TOL) {
@@ -736,20 +736,20 @@ void calcSpheresDistance(ATOM_NETWORK atomnetwork, vector <pair <Point, double> 
 					if (a !=b){
 						double checkDistance = atomnetwork.calcDistanceXYZ(coord1[0], coord1[1], coord1[2], coord2[0], coord2[1], coord2[2]);
 						minDistance = min(minDistance, checkDistance);
-						SpheresDistanceCalc = minDistance; 
+						SpheresDistanceCalc = minDistance;
 					}
 				}
 			}
 		}
 		distanceBetweenSpheres.push_back(SpheresDistanceCalc);
-	}	
+	}
 }
 
 //This function will output a histogram file with extension .distr
 //R1: bin step R2: Count R3: Cumulative distribution R4: Derivative of Cumulative distribution (PSD)
 void Histogram(ostream& output, const double binSize, const int maxBins, vector<double>& diam, int count, double nodefrac, double outfrac, int numSamples){
   assert(binSize > threshold);
-  int bins[maxBins]; 
+  int bins[maxBins];
   double cumBins[maxBins];
   double derivBins[maxBins];
   for (int i=0; i<maxBins; i++){
@@ -757,7 +757,7 @@ void Histogram(ostream& output, const double binSize, const int maxBins, vector<
     cumBins[i] = 0;
     derivBins[i] = 0;
   }
- 
+
   int bin;
   for (unsigned int i=0; i<diam.size(); i++){
     bin = diam.at(i)/binSize;
@@ -769,13 +769,13 @@ void Histogram(ostream& output, const double binSize, const int maxBins, vector<
       cumBins[j]++;
     }
   }
-//Cumulative distribution: 1 is added to the bin PLUS all preceding bins. 
+//Cumulative distribution: 1 is added to the bin PLUS all preceding bins.
 //Each bin is divided by the value of the first bin.
   double maxC= cumBins[0];
   for (unsigned int b=0; b<maxBins; b++){
     cumBins[b] = (cumBins[b]/maxC);
   }
-//Derivative of cumulative distribution: This is pore size distribution. 
+//Derivative of cumulative distribution: This is pore size distribution.
   double deriv;
   for (unsigned int n=1; n<maxBins-1; n++){
     double fxh= cumBins[n+1];
@@ -787,7 +787,7 @@ void Histogram(ostream& output, const double binSize, const int maxBins, vector<
     }
     derivBins[n]=deriv;
   }
- 
+
   double numBin;
   numBin = binSize * 1.0 * maxBins;
 
@@ -809,7 +809,7 @@ void printFileCoords_Radii(ostream& outfile, vector<pair <Point, double> > &pt_n
 		if (overlaps){
 			if (pt_node_rad.at(i).second>=startRad && pt_node_rad.at(i).second <= endRad) outfile <<"3\t";
 			if (pt_node_rad.at(i).second<startRad) outfile <<"2\t";
-		  if (pt_node_rad.at(i).second>endRad) outfile <<"1\t"; 
+		  if (pt_node_rad.at(i).second>endRad) outfile <<"1\t";
 		}
 		else outfile <<"1\t";
 		outfile << pt_node_rad.at(i).first[0]<< "\t"<< pt_node_rad.at(i).first[1]<< "\t" << pt_node_rad.at(i).first[2]<<"\t"<<pt_node_rad.at(i).second;
@@ -828,4 +828,3 @@ void printFileCoords_Radii(ostream& outfile, vector<pair <Point, double> > &pt_n
 	outfile<<"\n";
   }
 }
-

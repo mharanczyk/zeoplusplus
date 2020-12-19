@@ -23,13 +23,13 @@ light_source{<20,-15,5> color rgb <0.38,0.40,0.40>}
 // Particles
 union{
 #include "cylinder_p.pov"
-scale <1,-1,1>	
+scale <1,-1,1>
 	pigment{rgb <1,0.95,0.5>} finish{reflection 0.1 specular 0.3 ambient 0.42}
 }
 
 // Voronoi cells
 union{
 #include "cylinder_v.pov"
-scale <1,-1,1>	
+scale <1,-1,1>
 pigment{rgb <0.5,0.8,1>} finish{specular 0.5 ambient 0.42}
 }
