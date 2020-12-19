@@ -642,9 +642,11 @@ never larger than j float_edge_stats_bins[i][j][k] =
 ((float)int_edge_stats_bins[i][j][k])/segment_num_edges[l];
                                                 if(float_edge_stats_bins[i][j][k]
 > 0) {
-                                                        //write this point to
-seg_holo file if(IS_COUNT==0) output2 << "# " << i << " " << j << " " << k << "
-" << float_edge_stats_bins[i][j][k] << "\n"; else output2 << "# " << i << " " <<
+
+//write this point to seg_holo file
+//if(IS_COUNT==0) output2 << "# " << i << " " << j << " " << k << " " <<
+float_edge_stats_bins[i][j][k] << "\n";
+//else output2 << "# " << i << " " <<
 j << " " << k << " " << int_edge_stats_bins[i][j][k] << "\n";
                                                 }
                                         }
@@ -1162,7 +1164,16 @@ void analyze_accessible_voronoi_pre_segment(VORONOI_NETWORK *vornet,
       for (j = 0; j < NUM_BINS; j++) {
         for (k = 0; k <= j; k++) {  // because k is never larger than j
           if (int_edge_stats_bins[i][j][k] > 0) {
-            //						output2 << "# " << i << " " << j << " " << k
+            //						output2 << "# " << i <<
+            //"
+            //"
+            //<<
+            // j
+            //<<
+            //"
+            //"
+            //<<
+            // k
             //<<
             //"
             //"

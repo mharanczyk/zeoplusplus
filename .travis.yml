@@ -11,7 +11,7 @@ dist: trusty
 env:
   global:
   # add network executable to PATH
-  - PATH=${PATH}:${TRAVIS_BUILD_DIR}
+  - PATH=${PATH}:${TRAVIS_BUILD_DIR}/zeo++
 
 install:
   - cd voro++; make; cd -

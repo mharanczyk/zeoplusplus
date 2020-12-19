@@ -103,6 +103,14 @@ using Voronoi networks in analysis of porous materials. The second reference
 describes extensions allowing sampling of structures from a database of
 porous materials using divrsity-based selelction.
 
+## Development
+
+Before making changes to the code, please install the pre-commit hooks for automatic code formatting and linting:
+```
+pip install pre-commit
+pre-commit install
+```
+
 ## Copyright Notice
 
 Zeo++, Copyright (c) 2011, The Regents of the

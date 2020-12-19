@@ -7,7 +7,8 @@
   - id: double-quote-string-fixer
     exclude: &exclude_files >
       (?x)^(
-          .*.cif
+          .*.cif|
+          zeo\+\+/Eigen/.*
       )$
   - id: end-of-file-fixer
     exclude: *exclude_files
@@ -22,6 +23,7 @@
   rev: 0.8.0
   hooks:
   - id: docker-clang-format
+    exclude: *exclude_files
 #  - id: docker-cppcheck
 #  # enable below for linting
 #  # - id: cpplint
