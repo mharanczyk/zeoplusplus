@@ -2,21 +2,21 @@
 # To see instructions of implementation please see README
 
 #Use GNU C++ Compilier
-CC = g++
+#CXX = g++
 
 #Flags to compile with
-CFLAGS = -g #-fPIC
-CFLAGS_DYLIB = -fPIC
+CFLAGS += -g #-fPIC
+CFLAGS_DYLIB += -fPIC
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-    LDFLAGS_DYLIB = -shared
+    LDFLAGS_DYLIB += -shared
 else ifeq ($(UNAME_S),Darwin)
-    LDFLAGS_DYLIB = -dynamiclib
+    LDFLAGS_DYLIB += -dynamiclib
 endif
 
 #Libraries to use while compiling
-LIB = -lvoro++
+LIB += -lvoro++
 
 # The relative of path of the main library source files
 VOROINCLDIR = -I../voro++/src -I../eigen-3.2.7/
@@ -114,22 +114,22 @@ all: network framework_builder molecule_to_abstract
 include Makefile.dep
 
 depend:
-	$(CC) -MG $(CFLAGS) -MM $(SRC) | sed 's/voro++\.hh //g' > Makefile.dep
+	$(CXX) -MG $(CFLAGS) -MM $(SRC) | sed 's/voro++\.hh //g' > Makefile.dep
 
 network: ${OBJS} ${MAIN_OBJ}
 	@echo
 	@echo Linking $@
-	$(CC) $(VOROINCLDIR) $(VOROLINKDIR) -o $@ $(CFLAGS) ${OBJS} ${MAIN_OBJ} $(LIB)
+	$(CXX) $(VOROINCLDIR) $(VOROLINKDIR) -o $@ $(CFLAGS) ${OBJS} ${MAIN_OBJ} $(LIB)
 
 framework_builder: ${OBJS} ${FB_OBJ}
 	@echo
 	@echo Linking $@
-	$(CC) $(VOROINCLDIR) $(VOROLINKDIR) -o $@ $(CFLAGS) ${OBJS} ${FB_OBJ} $(LIB)
+	$(CXX) $(VOROINCLDIR) $(VOROLINKDIR) -o $@ $(CFLAGS) ${OBJS} ${FB_OBJ} $(LIB)
 
 molecule_to_abstract: ${OBJS} ${MTA_OBJ}
 	@echo
 	@echo Linking $@
-	$(CC) $(VOROINCLDIR) $(VOROLINKDIR) -o $@ $(CFLAGS) ${OBJS} ${MTA_OBJ} $(LIB)
+	$(CXX) $(VOROINCLDIR) $(VOROLINKDIR) -o $@ $(CFLAGS) ${OBJS} ${MTA_OBJ} $(LIB)
 
 statlib: ${STATIC_LIB}
 ${STATIC_LIB}: ${STATIC_OBJS}
@@ -143,10 +143,10 @@ dylib: ${DY_LIB}
 ${DY_LIB}: ${DY_OBJS}
 	@echo
 	@echo Linking $@
-	$(CC) $(VOROINCLDIR) $(VOROLINKDIR) -o $@ $(LDFLAGS_DYLIB) ${OBJS} $(LIB)
+	$(CXX) $(VOROINCLDIR) $(VOROLINKDIR) -o $@ $(LDFLAGS_DYLIB) ${OBJS} $(LIB)
 
 %.o: %.cc
-	$(CC) $(VOROINCLDIR) $(CFLAGS) -c $<
+	$(CXX) $(VOROINCLDIR) $(CFLAGS) -c $<
 
 clean:
 	rm -f $(TOT_OBJS) *.err $(EXECUTABLES)

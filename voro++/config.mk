@@ -8,7 +8,7 @@
 # the Makefiles.
 
 # C++ compiler
-CXX=g++
+#CXX=g++
 
 # Flags for the C++ compiler
 CFLAGS=-Wall -ansi -pedantic -O3
@@ -18,7 +18,7 @@ E_INC=-I../../src
 E_LIB=-L../../src
 
 # Installation directory
-PREFIX=/usr/local
+#PREFIX=/usr/local
 
 # Install command
 INSTALL=install

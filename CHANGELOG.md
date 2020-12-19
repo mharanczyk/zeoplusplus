@@ -1,3 +1,9 @@
+## Version 0.4.0 (December, 2020)
+
+ * fix: if pockets were not clearly separated from the channels, zeo++ could go into into infinite loops. #2
+ * chore: stop vendoring Eigen3
+ * chore: standardize code formatting
+
 ## Version 0.3.0 (June, 2017)
 
 
