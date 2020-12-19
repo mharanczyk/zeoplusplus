@@ -39,7 +39,7 @@ can be carried out using GNU Make.
 
 Clone the git repository
 ```
-git clone https://github.com/ltalirz/zeoplusplus
+git clone https://github.com/lsmo-epfl/zeoplusplus
 cd zeoplusplus
 ```
 
