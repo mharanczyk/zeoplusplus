@@ -9,15 +9,14 @@
 
 // Order of import matters here!
 // clang-format off
-#include "symmetry.h"
-
 #include <cstdio>
 #include <cstdlib>
 
-#include "geometry.h"
 #include "networkstorage.h"
+#include "geometry.h"
+#include "symmetry.h"
 #include "zeo_consts.h"
-//clang-format on
+// clang-format on
 
 /* Checks whether a given XYZ position is unique to any existing VERTEX in a
  * ATOM_NETWORK */

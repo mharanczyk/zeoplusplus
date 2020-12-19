@@ -40,6 +40,13 @@ can be carried out using GNU Make.
 Clone the git repository
 ```
 git clone https://github.com/ltalirz/zeoplusplus
+cd zeoplusplus
+```
+
+Download Eigen library v3.2.7 (if not already installed)
+```
+wget https://gitlab.com/libeigen/eigen/-/archive/3.2.7/eigen-3.2.7.tar.bz2
+tar xf eigen-3.2.7.tar.bz2
 ```
 
 Compile Voro++ library (you may need first to review config.mk file in voro++/ directory; please check Voro++ documentation or

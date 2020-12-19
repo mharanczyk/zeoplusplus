@@ -28,3 +28,6 @@ zeo++/framework_builder
 zeo++/molecule_to_abstract
 zeo++/network
 *.swp
+
+eigen-3.2.7/
+eigen-3.2.7.tar.bz2
