@@ -1,12 +1,14 @@
+## Version 0.3.0 (June, 2017)
 
-Version 0.2.1 (November, 2013)
-===============================
+
+## Version 0.2.1 (November, 2013)
+
 * a number of bug fixes
 * .car file reader
 * improved CIF file reader
 
-Version 0.2 (June, 2013)
-===============================
+## Version 0.2 (June, 2013)
+
 * radial Voronoi decomposition (-r) becomes default
 * high accuracy routines available (-ha)
 * adding stochastic rays appraoch
@@ -15,7 +17,7 @@ Version 0.2 (June, 2013)
 * BOV and GaussianCube distance grids output
 * number of smaller fetures to connect with VTK/Visit, extended output for -res etc
 
-Version 0.1 (December 24, 2011)
-===============================
+## Version 0.1 (December 24, 2011)
+
 * Initial version just after obtaining the license
 

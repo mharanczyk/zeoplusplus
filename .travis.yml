@@ -14,8 +14,8 @@ env:
   - PATH=${PATH}:${TRAVIS_BUILD_DIR}
 
 install:
-  - cd voro++/src; make; cd -
-  - make
+  - cd voro++; make; cd -
+  - cd zeo++; make; cd -
 
 script:
   - cd tests/ && ./run_tests.sh

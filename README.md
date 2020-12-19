@@ -1,9 +1,16 @@
-Zeo++, high-throughput analysis of crystalline porous materials
+# Zeo++-LSMO
+
+High-throughput analysis of crystalline porous materials
 By Maciej Haranczyk, Chris H Rycroft, Richard L Martin, Thomas F Willems
+
+This repository contains a fork of the original zeo++ code (version 0.3.0) with bug fixes and improvements, maintained by the [Laboratory of Molecular Simulation](http://lsmo.epfl.ch/) at EPFL.
+For a list of changes, see the [CHANGELOG.md](./CHANGELOG.md).
 
 WWW: http://www.carboncapturematerials.org/Zeo++/
 Email: mharanczyk@lbl.gov (Zeo++) and chr@alum.mit.edu (Voro++)
-=====================================================================
+
+## About
+
 Zeo++ is a software package for high-throughput analysis of structure 
 and topology of crystalline porous materials. For a given material's 
 structure, the code calculates the geometrical parameters describing 
@@ -21,46 +28,39 @@ The code also offers some aids with structure analysis, e.g. MOF open
 metal site detection, and simluations, e.g. generation of blocking spheres. 
 
 
-Compilation - Linux / Mac OS / Windows with Cygwin
-=====================================================================
+## Compilation - Linux / Mac OS / Windows with Cygwin
+
 The code is written in ANSI C++, and compiles on many system architectures. The
 package contains the C++ source code of Zeo++ as well as Voro++ library.
 On Linux, Mac OS, and Windows (using Cygwin), the compilation and installed 
 can be carried out using GNU Make.
 
+#### Step by step compilation
 
-*** Step by step compilation ***
+Clone the git repository
+```
+git clone https://github.com/ltalirz/zeoplusplus
+```
 
-1) Unpack the provided Zeo++ package (the following commands will create 
-   zeo++-0.3.0 directory containing the Zeo++ code; Voro++ library 
-   will be placed in one of subfolders (zeo++-0.3.0/voro++)):
+Compile Voro++ library (you may need first to review config.mk file in voro++/ directory; please check Voro++ documentation or
+read voro++/README):
+```
+cd voro++
+make
+```
 
-  gunzip zeo++-0.3.0.tar.gz
-  tar xvf zeo++-0.3.0.tar
+Compile Zeo++ code:
 
+```
+cd ../zeo++
+make
+```
 
-2) Compile Voro++ library (you may need first to review config.mk file in 
-   zeo++-0.3.0/voro++/ directory; please check Voro++ documentation or
-   read zeo++-0.3.0/voro++/README):
+This will create `network` binary, the main Zeo++ binary. 
+Please view the Zeo++ website for instructions, review documentation/README or contact the authors to inquire about otherwise undocumented or custom features.
 
-  cd zeo++-0.3.0/voro++/src
-  make
+## Related programs
 
-
-3) Compile Zeo++ code:
-
-  cd ../..
-  make
-
-
-4) Step (3) will create "network" binary inside zeo++-0.3.0. This is the main
-   Zeo++ binary. Please view the Zeo++ website for instructions, review 
-   zeo++-0.3.0/documentation/README or contact the authors to inquire about 
-   otherwise undocumented or custom features.
-
-
-Related programs
-=====================================================================
 No external dependencies are required to compile and run the code 
 (except for the Voro++ library provided with the code), but several
 programs may be useful for analyzing the output:
@@ -76,8 +76,9 @@ programs may be useful for analyzing the output:
 
 - VisIt - powerful visualization package; https://wci.llnl.gov/codes/visit/
 
-Usage
-=====================================================================
+
+## Usage
+
 Zeo++ is released as free software through the Lawrence Berkeley National
 Laboratory - a detailed copyright notice is provided below, and the complete
 terms of the license can be found in the LICENSE file.
@@ -102,10 +103,8 @@ using Voronoi networks in analysis of porous materials. The second reference
 describes extensions allowing sampling of structures from a database of 
 porous materials using divrsity-based selelction. 
 
+## Copyright Notice
 
-
-Copyright Notice
-=====================================================================
 Zeo++, Copyright (c) 2011, The Regents of the
 University of California, through Lawrence Berkeley National
 Laboratory (subject to receipt of any required approvals from the U.S.
@@ -129,12 +128,9 @@ reproduce, prepare derivative works, distribute copies to the public,
 perform publicly and display publicly, and to permit others to do so.
 
 
-Acknowledgements
-=====================================================================
+## Acknowledgements
+
 This work was supported by the U.S. Department of Energy under 
 contract DE-AC02-05CH11231 and through SciDAC project #CSNEW918 
 entitled “Knowledge guided screening tools for identification 
 of porous materials for CO2 separations”.
-
-
-
