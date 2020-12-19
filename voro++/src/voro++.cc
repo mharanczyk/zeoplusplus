@@ -7,13 +7,13 @@
 /** \file voro++.cc
  * \brief A file that loads all of the function implementation files. */
 
+#include "c_loops.cc"
 #include "cell.cc"
 #include "common.cc"
-#include "v_base.cc"
 #include "container.cc"
-#include "unitcell.cc"
 #include "container_prd.cc"
 #include "pre_container.cc"
+#include "unitcell.cc"
+#include "v_base.cc"
 #include "v_compute.cc"
-#include "c_loops.cc"
 #include "wall.cc"

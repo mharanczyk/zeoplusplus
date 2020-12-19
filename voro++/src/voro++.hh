@@ -317,17 +317,17 @@
 #ifndef VOROPP_HH
 #define VOROPP_HH
 
-#include "config.hh"
-#include "common.hh"
+#include "c_loops.hh"
 #include "cell.hh"
-#include "v_base.hh"
-#include "rad_option.hh"
+#include "common.hh"
+#include "config.hh"
 #include "container.hh"
-#include "unitcell.hh"
 #include "container_prd.hh"
 #include "pre_container.hh"
+#include "rad_option.hh"
+#include "unitcell.hh"
+#include "v_base.hh"
 #include "v_compute.hh"
-#include "c_loops.hh"
 #include "wall.hh"
 
 #endif
