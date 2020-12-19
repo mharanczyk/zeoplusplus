@@ -1162,7 +1162,10 @@ void analyze_accessible_voronoi_pre_segment(VORONOI_NETWORK *vornet,
       for (j = 0; j < NUM_BINS; j++) {
         for (k = 0; k <= j; k++) {  // because k is never larger than j
           if (int_edge_stats_bins[i][j][k] > 0) {
-            //						output2 << "# " << i << " " << j << " " << k << " "
+            //						output2 << "# " << i << " " << j << " " << k
+            //<<
+            //"
+            //"
             //<< float_edge_stats_bins[i][j][k] << "\n";
             fprintf(output2, "%d %d %d %.3f\n", i, j, k,
                     float_edge_stats_bins[i][j][k]);
