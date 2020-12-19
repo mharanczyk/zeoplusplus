@@ -6,15 +6,15 @@
  */
 #include <vector>
 
-#include "networkstorage.h"
-#include "graphstorage.h"
 #include "geometry.h"
+#include "graphstorage.h"
+#include "networkstorage.h"
 
-class CYCLE{
-public:
-    double length;
-    std::vector<DIJKSTRA_NODE> nodes;
-    CYCLE();
+class CYCLE {
+ public:
+  double length;
+  std::vector<DIJKSTRA_NODE> nodes;
+  CYCLE();
 };
 
 /* Function to compute girth of voronoi network
@@ -35,7 +35,8 @@ double girth(const VORONOI_NETWORK* inp_vor);
  *  Output:
  *      Returns length of smallest cycle
  */
-//int girth(const VORONOI_NETWORK* inp_vor, bool weight_flag=false, int range=1);
+// int girth(const VORONOI_NETWORK* inp_vor, bool weight_flag=false, int
+// range=1);
 
 /* Function to compute a cycle of given length for each voronoi node
  * Args:
@@ -49,7 +50,8 @@ double girth(const VORONOI_NETWORK* inp_vor);
  *  Output:
  *      Returns false if the cycle of given length cannot be found
  */
-//bool compute_cycle(const VORONOI_NETWORK* vornet, int cycle_legnth, vector<CYCLE>* cycles, bool weight_flag=false, int range=1);
+// bool compute_cycle(const VORONOI_NETWORK* vornet, int cycle_legnth,
+// vector<CYCLE>* cycles, bool weight_flag=false, int range=1);
 
 /* Function to compute cycles of length 4 for each voronoi node
  * Args:
@@ -67,7 +69,8 @@ double girth(const VORONOI_NETWORK* inp_vor);
  *  Output:
  *      Returns false if the cycle of given length cannot be found
  */
-bool compute_4cycle(VORONOI_NETWORK* vornet, vector<CYCLE>* cycles, bool weight_flag=false, int weigth_range=1);
+bool compute_4cycle(VORONOI_NETWORK* vornet, vector<CYCLE>* cycles,
+                    bool weight_flag = false, int weigth_range = 1);
 
 /* Computes the centroid of the dijskstra nodes in the cycle */
 void centroid(const CYCLE* const, XYZ*, vector<int>*);

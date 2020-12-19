@@ -1,5 +1,6 @@
 
-/* This function prints program instructions when Zeo++ is executed without parameters.
+/* This function prints program instructions when Zeo++ is executed without
+ * parameters.
  */
 
 #ifndef INSTRUCTIONS_H

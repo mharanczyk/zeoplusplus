@@ -49,12 +49,9 @@
  *           }
  *    - rmsd: measures similarity between the vectors
  */
-void calculate_rotation_rmsd(double ref_xlist[][3],
-                             double mov_xlist[][3],
-                             int n_list,
-                             double mov_com[3],
-                             double mov_to_ref[3],
-                             double U[3][3],
+void calculate_rotation_rmsd(double ref_xlist[][3], double mov_xlist[][3],
+                             int n_list, double mov_com[3],
+                             double mov_to_ref[3], double U[3][3],
                              double* rmsd);
 
 /*
@@ -63,10 +60,7 @@ void calculate_rotation_rmsd(double ref_xlist[][3],
  * Fast calculation of rmsd w/o calculating a rotation matrix,
  * adapted from the BTK by Chris Saunders 11/2002.
  */
-void fast_rmsd(double ref_xlist[][3],
-               double mov_xlist[][3],
-               int n_list,
+void fast_rmsd(double ref_xlist[][3], double mov_xlist[][3], int n_list,
                double* rmsd);
-
 
 #endif

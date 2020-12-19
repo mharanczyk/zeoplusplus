@@ -1,6 +1,6 @@
 /* This file is used to store information about the radii and weights of
- * atoms. The information can be specified in input files or default values can be used
- * for more common types.
+ * atoms. The information can be specified in input files or default values can
+ * be used for more common types.
  */
 
 #ifndef NETWORKINFO_H

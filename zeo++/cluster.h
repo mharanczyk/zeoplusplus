@@ -7,10 +7,10 @@
 
 #include "networkstorage.h"
 
-class Vector_XYZ{
-public:
-    std::vector<XYZ> nodes;
-    Vector_XYZ(){}
+class Vector_XYZ {
+ public:
+  std::vector<XYZ> nodes;
+  Vector_XYZ() {}
 };
 
 /* Function to compact voronoi network
@@ -22,7 +22,8 @@ public:
  *  Output:
  *      Returns compacted voronoi network
  */
-VORONOI_NETWORK cluster_reduce(const VORONOI_NETWORK* inp_vor, const float cluster_rad=0.5);
+VORONOI_NETWORK cluster_reduce(const VORONOI_NETWORK* inp_vor,
+                               const float cluster_rad = 0.5);
 
 void simplify_ha_vornet(ATOM_NETWORK*);
 /*
@@ -45,13 +46,13 @@ void high_accuracy_vornodes_reduction(ATOM_NETWORK*, std::vector<XYZ>*);
  *  Output:
  *      Returns compacted voronoi network
  */
-void prune_high_accuracy_voronoi_network(VORONOI_NETWORK* ha_vor, ATOM_NETWORK* low_atm_net,
-                                        ATOM_NETWORK* high_atm_net, double delta, bool print=false);
+void prune_high_accuracy_voronoi_network(VORONOI_NETWORK* ha_vor,
+                                         ATOM_NETWORK* low_atm_net,
+                                         ATOM_NETWORK* high_atm_net,
+                                         double delta, bool print = false);
 
-/* Function to identify the nearest high accuracy voronoi node that has a high radius.
- * Removes the voronoi nodes within the higher radius atoms
- * Args:
- *  Input:
+/* Function to identify the nearest high accuracy voronoi node that has a high
+ * radius. Removes the voronoi nodes within the higher radius atoms Args: Input:
  *      ha_vornet: Pointer to high accuracy voronoi network
  *      vornet: Pointer to original voronoi network
  *      atm_net: Pointer to atom network
@@ -60,8 +61,10 @@ void prune_high_accuracy_voronoi_network(VORONOI_NETWORK* ha_vor, ATOM_NETWORK* 
  *      red_vornet: Pointer to reduced voronoi network
  */
 void nearest_largest_diameter_ha_vornet(VORONOI_NETWORK* ha_vornet,
-        VORONOI_NETWORK* vornet, ATOM_NETWORK* atmnet,
-        VORONOI_NETWORK* red_vornet, float cutoff=0.25);
+                                        VORONOI_NETWORK* vornet,
+                                        ATOM_NETWORK* atmnet,
+                                        VORONOI_NETWORK* red_vornet,
+                                        float cutoff = 0.25);
 
 /* Function to simplify the high accuracy voronoi network such that
  * the small spheres pertaining to vornodes originate from different
@@ -74,7 +77,8 @@ void nearest_largest_diameter_ha_vornet(VORONOI_NETWORK* ha_vornet,
  *      red_vornet: Pointer to reduced voronoi network
  */
 void simplify_high_accuracy_vornet(VORONOI_NETWORK* ha_vornet,
-        ATOM_NETWORK* ha_atmnet, VORONOI_NETWORK* red_vornet);
+                                   ATOM_NETWORK* ha_atmnet,
+                                   VORONOI_NETWORK* red_vornet);
 
 /* Function to prune the voronoi network based on geometry
  * such that within a 0.1Ang^2 grid only one voronoi node is retained.
@@ -101,4 +105,4 @@ void geometry_pruning(VORONOI_NETWORK* ha_vornet, ATOM_NETWORK* atmnet,
  *      red_vornet: Pointer to reduced voronoi network
  */
 void ha_prune_within_atom(VORONOI_NETWORK* ha_vornet, ATOM_NETWORK* atmnet,
-                      float cutoff, VORONOI_NETWORK* red_vornet);
+                          float cutoff, VORONOI_NETWORK* red_vornet);

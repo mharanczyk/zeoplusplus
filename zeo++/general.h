@@ -6,9 +6,8 @@
 #ifndef GENERAL_H
 #define GENERAL_H
 
-
-//strucutre that stores edges connecting segments
-//typedef struct {
+// strucutre that stores edges connecting segments
+// typedef struct {
 /*
 class SEGCONN {
 public:
@@ -21,14 +20,13 @@ int merged; // connection to be merged
 //} SEGCONN;
 
 typedef struct {
-     double x,y,z,r;
+  double x, y, z, r;
 } SPHERE;
 
-
 class NODESPHERE {
-  public:
+ public:
   double a, b, c, r;
   NODESPHERE(){};
- };
+};
 
 #endif
