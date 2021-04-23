@@ -1,3 +1,12 @@
+## Version 0.4.2 (April, 2021)
+
+ * fix: re-enable -allowAdjustCoordsAndCell flag (#9)
+ * fix: infinite loop when reading CIF file ending without newline  (#11)
+
+## Version 0.4.1 (April, 2021)
+
+ * fix: print all error messages to stderr (#7)
+
 ## Version 0.4.0 (December, 2020)
 
  * fix: if pockets were not clearly separated from the channels, zeo++ could go into into infinite loops. #2
