@@ -1,4 +1,5 @@
 [![Build Status](https://github.com/lsmo-epfl/zeopp-lsmo/workflows/ci/badge.svg)](https://github.com/lsmo-epfl/zeopp-lsmo/actions)
+[![conda-forge](https://img.shields.io/conda/vn/conda-forge/zeopp-lsmo.svg?style=flat)](https://anaconda.org/conda-forge/zeopp-lsmo)
 
 # Zeo++-LSMO
 
@@ -29,6 +30,14 @@ of channel systems as well as in Monte Carlo sampling of accessible
 surfaces, volumes and pore size distributions.
 The code also offers some aids with structure analysis, e.g. MOF open
 metal site detection, and simluations, e.g. generation of blocking spheres.
+
+## Installation
+
+The easiest way to install zeo++ is through the [conda](https://docs.conda.io/en/latest/) package manager:
+
+```
+conda install -c conda-forge zeopp-lsmo
+```
 
 
 ## Compilation - Linux / Mac OS / Windows with Cygwin
