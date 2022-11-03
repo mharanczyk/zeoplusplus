@@ -12,7 +12,11 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: build zeo++
-      run: bash .github/build.sh
+    
+      run: |
+        apt-add-repository universe
+        apt-get install libeigen3-dev
+        bash .github/build.sh
 
     - name: test zeo++
       run: |
